@@ -19,5 +19,12 @@
 *.tar.gz
 *.rar
 
+# Java File
+java_GSB/.project
+.gitignore
+java_GSB/.classpath
+
+
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
