@@ -7,9 +7,11 @@ public class VariableEx01 {
 		 * 자료형 변수명 = 초기값;
 		 *  
 		 */
+		
 		boolean isEven =false; 
 		char operator = '+'; // 무조건 따옴표 ' '
 		int age = 30;
+		long longint = 39939393939L ; // int 범위를 넘어가는 숫자를 쓸때는 L을 써줘야됨. (안넘어가면 안써도 됨)
 		float pi = 3.1415f;// float 은 접미사 f/F를 붙여야 한다.
 		double pi2 = 3.1415; // double은 안써도 됨.
 		// 기본 자료형 = 변수에 자료 값이 그대로 저장
@@ -32,7 +34,7 @@ public class VariableEx01 {
 		/* 관례 안지켜도 되지만 많은 개발자들이 지키는 것
 		 * 1. 카멜표기법
 		 * 2. 클래스와 인터페이스는 대문자로 시작
-		 * 3. 상수는 전부 대문자로 
+		 * 3. 상수는 전부 대문자로 , _언더바는 상수에서 관례적으로 허용
 		 */
 	}
 
