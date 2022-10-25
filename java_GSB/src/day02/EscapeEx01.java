@@ -7,7 +7,7 @@ public class EscapeEx01 {
 		char ch3 = '\\';
 		char ch4 = '\'';
 		char ch5 = '\"';
-		char ch6 = '\u002B';
+		char ch6 = '\u002B'; //002B는 16진수로 10진수 43에 대응
 		System.out.println(ch1 + "안녕하세요.");
 		System.out.println(ch2 + "안녕하세요.");
 		System.out.println(ch3 + "안녕하세요.");
