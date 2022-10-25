@@ -17,9 +17,7 @@ public class OperatorEx08 {
 		boolean isEven = ((temp%2)==0);
 		System.out.println("입력된 정수 "+ temp+"은/는 "+ (isEven?"짝수":"홀수")+"입니다.");
 				scan.close();
-		int a = 10;
-		int b = 12;
-		System.out.println(a<<2);
+		
 		
 	}
 
