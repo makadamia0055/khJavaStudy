@@ -13,6 +13,5 @@ public class TypeCastingEx01 {
 		int num4 = (int)12345678901L; //out of range 에러가 나오지만 L을 붙여서 에러 없애고, 강제 int화
 		System.out.printf("%d,\n %d", num2, num3);
 		
-		
-	}
+		}
 }
