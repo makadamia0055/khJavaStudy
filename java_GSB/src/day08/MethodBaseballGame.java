@@ -28,7 +28,7 @@ public class MethodBaseballGame {
 		System.out.println();
 		System.out.println("test용-----------");
 		
-		
+		int playCount = 0;
 		do {
 		Scanner scan = new Scanner(System.in);
 		// 판정
@@ -50,7 +50,8 @@ public class MethodBaseballGame {
 		System.out.println();
 		int[] result=judge(baseball, myNum);
 		printJudge(result);
-	
+		playCount++;
+
 		if(result[0]==3) {
 			
 			System.out.println("---------------------");
@@ -62,11 +63,10 @@ public class MethodBaseballGame {
 	
 		} while(!win);
 	
-	
-	
+	System.out.println(playCount);
 	
 	}
-	// 이거 선생님 코드는 너무 더워서 제대로 못쳤음. 
+	// 이거 선생님 코드는 교실이 너무 더워서 제대로 못쳤음. 
 	/* 선생님 구현 함수
 	 * 기능 : Scanner 가 주어지면 정수를 size 개만큼 입력받아 배열에 저장하고, 
 	 * 		저장된 배열을 돌려주는 메소드
