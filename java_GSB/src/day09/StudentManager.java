@@ -23,7 +23,7 @@ public class StudentManager {
 			//메뉴 선택(입력)
 			menu = selectMenu();
 			
-			runMenu(menu, stdList, count);
+			count=runMenu(menu, stdList, count);
 		
 			
 		}while(menu!=4);
