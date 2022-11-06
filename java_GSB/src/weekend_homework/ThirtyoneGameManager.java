@@ -91,6 +91,7 @@ public static void runGame(ThirtyoneGame toG) {
 	// 컴 스타트 자리찾기 -롤(난수생성) -/움직임 결과 출력/- -(표시-판정)-넘기기
 	
 		int p1Index = toG.countStep(gameArr);
+		System.out.println();
 		System.out.println("컴퓨터가 "+ (p1Index+1)+"에서 출발!");
 		int p1Step = toG.getCom().ranNum();
 		toG.step(gameArr, p1Step, 1);
@@ -101,7 +102,8 @@ public static void runGame(ThirtyoneGame toG) {
 		}
 		
 		int p2Index = toG.countStep(gameArr);
-		System.out.println("플레이어가 "+ (p2Index+1)+"에서 출발!");
+		System.out.println();
+		System.out.println("→ 플레이어가 "+ (p2Index+1)+"에서 출발!");
 		int p2Step = toG.scanMynum();
 		toG.step(gameArr, p2Step, 2);
 		toG.printStep(p2Index, p2Step);
