@@ -45,7 +45,15 @@ public class StudentManagerTest {
 	 *  
 	 * 			 	
 	 */
-		
+		StudentPrograms sp = new StudentPrograms();
+		int menu = 0;
+		do {
+			sp.printMenu();
+			menu = sp.selectMenu();
+			
+			sp.run(menu);
+			
+		}while(menu!=4);
 		
 		
 		

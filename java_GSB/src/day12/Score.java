@@ -16,6 +16,10 @@ public class Score {
 		this.pfas = pfas;
 	}
 	
+	Score(String subject, int semester){
+		this.subject = subject;
+		this.semester = semester;
+	}
 	
 	
 	
@@ -52,22 +56,41 @@ public class Score {
 		return midScore;
 	}
 	public void setMidScore(int midScore) {
+		if(midScore<0||midScore>50) {
+			System.out.println("잘못된 성적 입력입니다.");
+		}else {
 		this.midScore = midScore;
+		}
 	}
 	public int getFinalScore() {
+		
 		return finalScore;
 	}
 	public void setFinalScore(int finalScore) {
+		if(finalScore<0||finalScore>50) {
+			System.out.println("잘못된 성적 입력입니다.");
+		} else {
 		this.finalScore = finalScore;
+		}
 	}
 	public int getPfas() {
 		return pfas;
 	}
 	public void setPfas(int pfas) {
+		if(pfas<0||pfas>50) {
+			System.out.println("잘못된 성적 입력입니다.");
+		} else {
 		this.pfas = pfas;
+		}
+		
 	}
 	
-	
+	public void printInfo() {
+		
+		System.out.printf("%d학기 %s과목 성적 : 중간고사 %d점, 기말고사 %d점, 수행평가 %d점 \n", semester, subject, midScore, finalScore ,pfas);
+
+		
+	}
 	
 	
 	

@@ -6,7 +6,7 @@ public class HighStudent {
 	private int classNum;
 	private int stdNum;
 	private String stdName;
-	private Score[] stdScores;
+	private Score[] stdScores = new Score[0];
 	
 	HighStudent(int grade, int classnum, int stdnum, String name){
 		this.grade = grade;
@@ -31,9 +31,27 @@ public class HighStudent {
 		return stdName;
 	}
 
+	public void printInfo() {
+		if(stdScores.length==0) {
+			System.out.println(stdName+"학생의 입력된 성적이 없습니다.");
+		}else {
+		System.out.printf("%d학년 %d반 %d번 %s 학생\n", grade, classNum, stdNum, stdName);
+			for(Score i : stdScores) {
+			i.printInfo();
+			}
+		}
+		
+		
+	}
+	
+	
 	public Score[] getStdScores() {
 		return stdScores;
 	}
+	public void setStdScores(Score[] tmpScoreArr) {
+		this.stdScores = tmpScoreArr;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -63,7 +81,16 @@ public class HighStudent {
 		return true;
 	}
 	
-		
+	public Score findScore(String sub, int seme) {
+		Score tmp = new Score(sub, seme);
+		Score rst =null;
+		for(Score i : this.getStdScores()) {
+			if(tmp.equals(i)) {
+				rst = i;
+			} 
+		}
+		return rst;
+	}
 
 	
 }
