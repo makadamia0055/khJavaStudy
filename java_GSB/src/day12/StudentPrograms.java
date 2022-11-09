@@ -63,14 +63,21 @@ public class StudentPrograms {
 				
 				break;
 			} else {
-			HighStudent[] tmpHSArray = new HighStudent[HSArray.length+1];
-			//어레이 복사 해야됨.
-			System.arraycopy(HSArray, 0, tmpHSArray, 0, HSArray.length);
-			//
-			tmpHSArray[tmpHSArray.length-1] = tmp;
-			HSArray=tmpHSArray;
-			System.out.printf("%d학년 %d반 %d번 %s학생이 정상적으로 저장되었습니다.\n", grade, classnum, stdnum, name);
-			break;
+				HighStudent[] tmpHSArray = new HighStudent[HSArray.length+1];
+				//어레이 복사 해야됨.
+				System.arraycopy(HSArray, 0, tmpHSArray, 0, HSArray.length);
+				//
+				tmpHSArray[tmpHSArray.length-1] = tmp;
+				HSArray=tmpHSArray;
+				System.out.printf("%d학년 %d반 %d번 %s학생이 정상적으로 저장되었습니다.\n", grade, classnum, stdnum, name);
+				break;
+				
+				/* Object클래스-업캐스팅을 통한 메소드 정리 시도
+				Object[] tmpArr = HSArray;
+				Object tmpA = tmp;
+				HSArray=(HighStudent[]) copyArrayOnePlus(tmpArr, tmpA);
+				// 완벽히는 안됨. 캐스팅 문제 생김. 일단 상속의 구조와 로더의 구조 등을 알때까지 손대지 말기. 
+				*/
 			}
 		case 2: // 학생 성적 추가
 			System.out.println("학생 성적을 추가합니다.");
@@ -86,7 +93,6 @@ public class StudentPrograms {
 				subject = scan.next();
 				semester = scan.nextInt();
 				//중복 판별 메소드
-				System.out.println(subject+semester);
 				if(tmp.findScore(subject, semester)==null) {
 					
 					Score tmpScore = new Score(subject, semester);
@@ -170,6 +176,16 @@ public class StudentPrograms {
 		return rst;
 		}
 	
+	/*(public Object[] copyArrayOnePlus(Object[] origin, Object obj) {
 	
+		Object[] tmpArray = new Object[origin.length+1];
+		System.arraycopy(origin, 0, tmpArray, 0, origin.length);
+		tmpArray[tmpArray.length-1] = obj;
+		origin=tmpArray;
+		 //Object로 묶으면 제네릭 안써도 가능할까 싶어서 해봄. 
+		  * 처음에는 Arrays[] Arrays 로 시도.
+		
+		return origin;
+		}*/ // 아직 잘 안됨. 
 	
 }
