@@ -1,12 +1,14 @@
 package day12;
 
+import java.util.ArrayList;
+
 public class HighStudent {
 
 	private int grade;
 	private int classNum;
 	private int stdNum;
 	private String stdName;
-	private Score[] stdScores = new Score[0];
+	private ArrayList<Score> stdScores = new ArrayList<Score>();
 	
 	HighStudent(int grade, int classnum, int stdnum, String name){
 		this.grade = grade;
@@ -32,7 +34,7 @@ public class HighStudent {
 	}
 
 	public void printInfo() {
-		if(stdScores.length==0) {
+		if(stdScores.size()==0) {
 			System.out.println(stdName+"학생의 입력된 성적이 없습니다.");
 		}else {
 		System.out.printf("%d학년 %d반 %d번 %s 학생\n", grade, classNum, stdNum, stdName);
@@ -45,10 +47,10 @@ public class HighStudent {
 	}
 	
 	
-	public Score[] getStdScores() {
+	public ArrayList<Score> getStdScores() {
 		return stdScores;
 	}
-	public void setStdScores(Score[] tmpScoreArr) {
+	public void setStdScores(ArrayList<Score> tmpScoreArr) {
 		this.stdScores = tmpScoreArr;
 	}
 	

@@ -1,11 +1,12 @@
 package day12;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import day12.*;
 public class StudentPrograms {
 
-	public HighStudent[] HSArray = new HighStudent[0];
+	public ArrayList<HighStudent> HSArray = new ArrayList<HighStudent>();
 
 	
 	public void printMenu() {
@@ -48,37 +49,10 @@ public class StudentPrograms {
 
 		switch(menu) {
 		case 1: // 학생 정보 추가
-			System.out.println("학생 정보를 추가합니다.");
-			System.out.println("학년, 반, 번호, 이름 순으로 입력해주십시오.");
-			String name;
-			grade = scan.nextInt();
-			classnum = scan.nextInt();
-			stdnum = scan.nextInt();
-			name = scan.next();
+			tmp = scanStd();
+			addStd(tmp);
 			
-			tmp = new HighStudent(grade, classnum, stdnum, name);
-			if(findStd(tmp)!=null) {
-				System.out.println("이미 해당 학생이 존재합니다.");
-				System.out.println("초기메뉴로 돌아갑니다.");
-				
-				break;
-			} else {
-				HighStudent[] tmpHSArray = new HighStudent[HSArray.length+1];
-				//어레이 복사 해야됨.
-				System.arraycopy(HSArray, 0, tmpHSArray, 0, HSArray.length);
-				//
-				tmpHSArray[tmpHSArray.length-1] = tmp;
-				HSArray=tmpHSArray;
-				System.out.printf("%d학년 %d반 %d번 %s학생이 정상적으로 저장되었습니다.\n", grade, classnum, stdnum, name);
-				break;
-				
-				/* Object클래스-업캐스팅을 통한 메소드 정리 시도
-				Object[] tmpArr = HSArray;
-				Object tmpA = tmp;
-				HSArray=(HighStudent[]) copyArrayOnePlus(tmpArr, tmpA);
-				// 완벽히는 안됨. 캐스팅 문제 생김. 일단 상속의 구조와 로더의 구조 등을 알때까지 손대지 말기. 
-				*/
-			}
+			
 		case 2: // 학생 성적 추가
 			System.out.println("학생 성적을 추가합니다.");
 			System.out.println("성적을 입력할 학생의 학년, 반, 번호를 입력해주세요.");
@@ -106,10 +80,12 @@ public class StudentPrograms {
 					tmpScore.setPfas(pfas);
 					
 					
-					Score [] tmpScoreArray = new Score[tmp.getStdScores().length+1];
+					tmp.getStdScores().add(tmpScore);
+					/*Score [] tmpScoreArray = new Score[tmp.getStdScores().length+1];
 					System.arraycopy(tmp.getStdScores(), 0, tmpScoreArray, 0, tmp.getStdScores().length);
 					tmpScoreArray[tmpScoreArray.length-1] = tmpScore;
 					tmp.setStdScores(tmpScoreArray);
+					*/
 					
 					System.out.printf("%s학생의 %d 학기 %s 과목 성적이 정상적으로 입력되었습니다. ", tmp.getStdName(), semester, subject);
 					
@@ -130,7 +106,7 @@ public class StudentPrograms {
 			
 		case 3://학생 정보 출력
 			
-			if(HSArray.length==0) {
+			if(HSArray.size()==0) {
 				System.out.println("입력된 학생이 없습니다.");
 			} else {
 				for(HighStudent j: HSArray) {
@@ -147,6 +123,47 @@ public class StudentPrograms {
 	}
 	
 	
+
+	private void addStd(HighStudent tmp) {
+		if(findStd(tmp)!=null) {
+			System.out.println("이미 해당 학생이 존재합니다.");
+			System.out.println("초기메뉴로 돌아갑니다.");
+			return;
+		} else {
+			HSArray.add(tmp);
+			/*HighStudent[] tmpHSArray = new HighStudent[HSArray.length+1];
+			//어레이 복사 해야됨.
+			System.arraycopy(HSArray, 0, tmpHSArray, 0, HSArray.length);
+			//
+			tmpHSArray[tmpHSArray.length-1] = tmp;
+			HSArray=tmpHSArray;*/
+			System.out.printf("%d학년 %d반 %d번 %s학생이 정상적으로 저장되었습니다.\n", tmp.getGrade(), tmp.getClassNum(), tmp.getStdNum(), tmp.getStdName());
+			return;
+			
+			/* Object클래스-업캐스팅을 통한 메소드 정리 시도
+			Object[] tmpArr = HSArray;
+			Object tmpA = tmp;
+			HSArray=(HighStudent[]) copyArrayOnePlus(tmpArr, tmpA);
+			// 완벽히는 안됨. 캐스팅 문제 생김. 일단 상속의 구조와 로더의 구조 등을 알때까지 손대지 말기. 
+			*/
+	}
+	}
+
+
+	private HighStudent scanStd() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("학생 정보를 추가합니다.");
+		System.out.println("학년, 반, 번호, 이름 순으로 입력해주십시오.");
+		String name;
+		int grade = scan.nextInt();
+		int classnum = scan.nextInt();
+		int stdnum = scan.nextInt();
+		name = scan.next();
+		
+		return new HighStudent(grade, classnum, stdnum, name);
+		
+	}
+
 
 	/**
 	 * 

@@ -48,6 +48,7 @@ public class StudentManagerTest {
 		StudentPrograms sp = new StudentPrograms();
 		int menu = 0;
 		do {
+			
 			sp.printMenu();
 			menu = sp.selectMenu();
 			
