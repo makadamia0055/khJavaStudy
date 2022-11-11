@@ -27,7 +27,6 @@ public class CalendarEx01 {
 		int min = cal.get(Calendar.MINUTE);
 		System.out.print(min+ "분 ");
 		
-		
 	}
 
 }
