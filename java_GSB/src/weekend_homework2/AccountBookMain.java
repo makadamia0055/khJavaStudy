@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import interfacePractice01.SampleInplementsClass;
 
-public class Test {
+public class AccountBookMain {
 
 	public static void main(String[] args) {
 		/* 가계부 프로그램을 작성하세요.
@@ -55,6 +55,12 @@ public class Test {
 		 *   
 		 *   
 		 * */
+		//AccountBook ab = new AccountBook(new Scaner(System.in));
+		//ab.run();
+		
+		//새롭게 구현할 객체지향적 코드
+		
+		
 		SampleInplementsClass SIC = new SampleInplementsClass();
 		int menu = 0;
 		int min = 1, max = 5;
