@@ -15,16 +15,16 @@ public class AccountBook {
 	
 	public void run() {
 		System.out.println("가계부 프로그램 실행합니다.");
-		ArrayList<HK> hkBook = new ArrayList<HK>();
+		ArrayList<Item> hkBook = new ArrayList<Item>();
 		int min = 1, max = 5;
 		int menu = -1;
 
 		//샘플코드
 		
-		hkBook.add(new HK(2, "간식비", "마트에서 간식", 5000, 2022, 11, 13));
-		hkBook.add(new HK(2, "집세", "송금", 350000, 2022, 11, 1));
-		hkBook.add(new HK(2, "게임비", "스팀에서 구매", 15000, 2021, 11, 13));
-		hkBook.add(new HK(1, "월급", "월급날이라 받음", 5000000, 2023, 5, 13));
+		hkBook.add(new Item(2, "간식비", "마트에서 간식", 5000, 2022, 11, 13));
+		hkBook.add(new Item(2, "집세", "송금", 350000, 2022, 11, 1));
+		hkBook.add(new Item(2, "게임비", "스팀에서 구매", 15000, 2021, 11, 13));
+		hkBook.add(new Item(1, "월급", "월급날이라 받음", 5000000, 2023, 5, 13));
 		
 		
 		
@@ -46,8 +46,8 @@ public class AccountBook {
 		}
 		this.scan = scan;
 	}
-	private static void runMenu(int menu, ArrayList<HK> hkBook) {
-		Iterator<HK> iterator = hkBook.iterator();
+	private static void runMenu(int menu, ArrayList<Item> hkBook) {
+		Iterator<Item> iterator = hkBook.iterator();
 		int tmpYear=0, tmpMonth=0, tmpDay=0;
 		switch(menu) {
 		case 1:
@@ -60,8 +60,7 @@ public class AccountBook {
 		case 2:
 			System.out.println("→2. 내역 확인");
 			int submenu = 0;
-			System.out.println("1. 전체내역 확인 2. 년도별 내역 검색 3. 월별 내역 검색 4. 일별 내역 검색");
-			System.out.println("1~4 숫자를 입력해 메뉴를 선택해 주십시오");
+			printSubMenu("1. 전체내역 확인 2. 년도별 내역 검색 3. 월별 내역 검색 4. 일별 내역 검색\n1~4 숫자를 입력해 메뉴를 선택해 주십시오");
 			submenu = inputScan(submenu, 1, 4, "1~4 사이의 숫자를 입력해 주십시오.");
 			switch(submenu) {
 			case 1: //전체 출력
@@ -70,7 +69,7 @@ public class AccountBook {
 				System.out.println("구분|일시|분류|내용|금액 순으로 출력됩니다.");
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
-					HK tmpHKP =iterator.next();
+					Item tmpHKP =iterator.next();
 					System.out.println(tmpHKP);
 				}
 				System.out.println("---------내역 종료----------");
@@ -85,7 +84,7 @@ public class AccountBook {
 				
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
-					HK tmpHKP = iterator.next();
+					Item tmpHKP = iterator.next();
 					tmpHKP.printBy(tmpYear);
 				}
 				break;
@@ -101,7 +100,7 @@ public class AccountBook {
 				
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
-					HK tmpHKP = iterator.next();
+					Item tmpHKP = iterator.next();
 					tmpHKP.printBy(tmpYear, tmpMonth);
 				}
 				
@@ -109,7 +108,7 @@ public class AccountBook {
 				break;
 			case 4: //일 출력
 			
-				DataCal tmpdataCal = getDate();
+				DataCal tmpdataCal = DataCal.getDate();
 				tmpYear = tmpdataCal.getYear();
 				tmpMonth = tmpdataCal.getMonth();
 				tmpDay = tmpdataCal.getDay();
@@ -118,7 +117,7 @@ public class AccountBook {
 				
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
-					HK tmpHKP = iterator.next();
+					Item tmpHKP = iterator.next();
 					tmpHKP.printBy(tmpYear, tmpMonth, tmpDay);
 				}//해보니까 프린트는 따로 하고 , 서치로 새로운 arraylist나 번지 리턴해주는 함수가 더 좋은듯.
 				
@@ -129,7 +128,7 @@ public class AccountBook {
 			break;
 		case 3:
 			
-			DataCal tmpdataCal = getDate();
+			DataCal tmpdataCal = DataCal.getDate();
 			tmpYear = tmpdataCal.getYear();
 			tmpMonth = tmpdataCal.getMonth();
 			tmpDay = tmpdataCal.getDay();
@@ -137,10 +136,10 @@ public class AccountBook {
 			System.out.println(tmpYear+"년도 " +tmpMonth+"월" + tmpDay+"일의 내역 출력합니다.");
 			
 			iterator = hkBook.iterator();
-			ArrayList<HK> tmpAL = new ArrayList<HK>();
+			ArrayList<Item> tmpAL = new ArrayList<Item>();
 			// 검색 먼저 수행 이후 결과 출력
 			while(iterator.hasNext()) {
-				HK tmpHKP = iterator.next();
+				Item tmpHKP = iterator.next();
 				if(tmpHKP.seachBy(tmpYear, tmpMonth, tmpDay)!=null) {
 					tmpAL.add(tmpHKP);
 				}
@@ -154,15 +153,15 @@ public class AccountBook {
 			int tmpNum=0;
 			tmpNum = inputScan(tmpNum, 1, tmpAL.size(), "해당하는 값이 없습니다.");
 			// 왜 이걸 tmp숫자 받아서 하는걸로 설계했지?
-			HK deleteHK = tmpAL.get(tmpNum-1);
+			Item deleteHK = tmpAL.get(tmpNum-1);
 			
 			//귀찮아서 확인 작업 뺌
 			
 			hkBook.remove(deleteHK);
 			
-			ArrayList<HK> tmpcreateHKBook = new ArrayList<HK>();
+			ArrayList<Item> tmpcreateHKBook = new ArrayList<Item>();
 			runCase1(tmpcreateHKBook);
-			HK tmpCreateHK = tmpcreateHKBook.get(0);
+			Item tmpCreateHK = tmpcreateHKBook.get(0);
 			hkBook.add(tmpCreateHK);
 			Collections.sort(hkBook);
 			System.out.println(deleteHK+"내역을"+tmpCreateHK+"로 변경하였습니다.");
@@ -181,11 +180,15 @@ public class AccountBook {
 		
 	}
 
-	private static void runCase4(ArrayList<HK> hkBook) {
+	private static void printSubMenu(String string) {
+		System.out.println(string);
+	}
+	
+	private static void runCase4(ArrayList<Item> hkBook) {
 		int tmpYear, tmpMonth, tmpDay;
-		Iterator<HK> iterator = hkBook.iterator();
+		Iterator<Item> iterator = hkBook.iterator();
 
-		DataCal tmpdataCal = getDate();
+		DataCal tmpdataCal = DataCal.getDate();
 		tmpYear = tmpdataCal.getYear();
 		tmpMonth = tmpdataCal.getMonth();
 		tmpDay = tmpdataCal.getDay();
@@ -193,10 +196,10 @@ public class AccountBook {
 		System.out.println(tmpYear+"년도 " +tmpMonth+"월" + tmpDay+"일의 내역 출력합니다.");
 		
 		iterator = hkBook.iterator();
-		ArrayList<HK> tmpAL = new ArrayList<HK>();
+		ArrayList<Item> tmpAL = new ArrayList<Item>();
 		// 검색 먼저 수행 이후 결과 출력
 		while(iterator.hasNext()) {
-			HK tmpHKP = iterator.next();
+			Item tmpHKP = iterator.next();
 			if(tmpHKP.seachBy(tmpYear, tmpMonth, tmpDay)!=null) {
 				tmpAL.add(tmpHKP);
 			}
@@ -210,7 +213,7 @@ public class AccountBook {
 		int tmpNum=0;
 		tmpNum = inputScan(tmpNum, 1, tmpAL.size(), "해당하는 값이 없습니다.");
 		// 왜 이걸 tmp숫자 받아서 하는걸로 설계했지?
-		HK deleteHK = tmpAL.get(tmpNum-1);
+		Item deleteHK = tmpAL.get(tmpNum-1);
 		
 		//귀찮아서 확인 작업 뺌
 		
@@ -219,7 +222,7 @@ public class AccountBook {
 		tmpAL.clear();
 	}
 
-	private static void runCase1(ArrayList<HK> hkBook) {
+	private static void runCase1(ArrayList<Item> hkBook) {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("1. 수입/2. 지출 여부 입력 :  ");
 		int tmpIO=0;
@@ -236,49 +239,15 @@ public class AccountBook {
 		int tmpAmount = scan.nextInt();
 		
 		System.out.println("5.날짜를 기입해주십시오.");
-		DataCal tmpDataCal = getDate();
+		DataCal tmpDataCal = DataCal.getDate();
 		
-		HK tmpHK =new HK(tmpIO, tmpSort, tmpContents, tmpAmount, tmpDataCal);
+		Item tmpHK =new Item(tmpIO, tmpSort, tmpContents, tmpAmount, tmpDataCal);
 		hkBook.add(tmpHK);
 		Collections.sort(hkBook);
 		
 	}
 
-	private static DataCal getDate() {
-		
-		System.out.println("년 : ");
-		int tmpYear=0;
-		tmpYear = inputScan(tmpYear, 1970, 2050, "1970과 2050 사이의 년도를 입력해주십시오.");
-		
-		System.out.println("월 : ");
-
-		int tmpMonth = 0;
-		tmpMonth= inputScan(tmpMonth, 1, 12, "1과 12 사이의 월을 입력해주십시오.");
-		
-		System.out.println("일 : ");
-		int tmpDay = 0;
-		Calendar cal = Calendar.getInstance();
-		
-		do {
-		tmpDay = inputScan(tmpDay, 1, 31, "1과 31사이의 숫자를 입력해주십시오.");
-		cal.set(tmpYear, tmpMonth-1, 1);
-		System.out.println(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		if(tmpDay>(cal.getActualMaximum(Calendar.DAY_OF_MONTH))) {
-			System.out.println((tmpMonth)+ "월에는 "+tmpDay+"일이 없습니다.");
-			System.out.println("일 : ");
-		}else {
-			
-			System.out.printf("%d년 %d월 %d일이 정상 입력 되었습니다.", tmpYear, tmpMonth, tmpDay);
-			break;
-		}
-		
-		}while(true);
-		
-		 
-		
-		return new DataCal(tmpYear, tmpMonth, tmpDay);
-	}
-
+	
 	private static int inputScan(int tmp, int i, int j, String string) {
 		Scanner scan =new Scanner(System.in);
 		do {
