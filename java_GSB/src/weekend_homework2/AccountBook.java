@@ -21,10 +21,7 @@ public class AccountBook {
 
 		//샘플코드
 		
-		hkBook.add(new Item(2, "간식비", "마트에서 간식", 5000, 2022, 11, 13));
-		hkBook.add(new Item(2, "집세", "송금", 350000, 2022, 11, 1));
-		hkBook.add(new Item(2, "게임비", "스팀에서 구매", 15000, 2021, 11, 13));
-		hkBook.add(new Item(1, "월급", "월급날이라 받음", 5000000, 2023, 5, 13));
+		
 		
 		
 		
@@ -85,7 +82,10 @@ public class AccountBook {
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
 					Item tmpHKP = iterator.next();
-					tmpHKP.printBy(tmpYear);
+					if(tmpHKP.seachBy(tmpYear)!=null) {
+						System.out.println(tmpHKP.seachBy(tmpYear));
+					}
+					
 				}
 				break;
 			case 3: //월 출력
@@ -101,7 +101,10 @@ public class AccountBook {
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
 					Item tmpHKP = iterator.next();
-					tmpHKP.printBy(tmpYear, tmpMonth);
+					if(tmpHKP.seachBy(tmpYear, tmpMonth)!=null) {
+						System.out.println(tmpHKP.seachBy(tmpYear, tmpMonth));
+					}
+
 				}
 				
 				
@@ -118,7 +121,10 @@ public class AccountBook {
 				iterator = hkBook.iterator();
 				while(iterator.hasNext()) {
 					Item tmpHKP = iterator.next();
-					tmpHKP.printBy(tmpYear, tmpMonth, tmpDay);
+					if(tmpHKP.seachBy(tmpYear, tmpMonth, tmpDay)!=null) {
+						System.out.println(tmpHKP.seachBy(tmpYear, tmpMonth, tmpDay));
+					}
+					
 				}//해보니까 프린트는 따로 하고 , 서치로 새로운 arraylist나 번지 리턴해주는 함수가 더 좋은듯.
 				
 				break;
@@ -147,7 +153,7 @@ public class AccountBook {
 			
 			for(int i = 0; i< tmpAL.size(); i++) {
 				System.out.print((i+1)+"번 :");
-				tmpAL.get(i).printBy(tmpYear, tmpMonth, tmpDay);
+				System.out.println(tmpAL.get(i).seachBy(tmpYear, tmpMonth, tmpDay));
 			}
 			System.out.println("몇 번을 수정하시겠습니까?");
 			int tmpNum=0;
@@ -207,7 +213,7 @@ public class AccountBook {
 		
 		for(int i = 0; i< tmpAL.size(); i++) {
 			System.out.print((i+1)+"번 :");
-			tmpAL.get(i).printBy(tmpYear, tmpMonth, tmpDay);
+			System.out.println(tmpAL.get(i).seachBy(tmpYear, tmpMonth, tmpDay));
 		}
 		System.out.println("몇 번을 삭제하시겠습니까?");
 		int tmpNum=0;

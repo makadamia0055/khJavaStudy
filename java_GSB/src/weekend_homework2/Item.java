@@ -58,24 +58,24 @@ public class Item implements Comparable<Item>{
 	
 	
 	
-	public void printBy(int inputY) {
+	public Item seachBy(int inputY) {
 		if(this.dataCal.getYear()==inputY) {
-			System.out.println(this);
+			return(this);
+		}else {
+			return null;
 		}
 	}
 	
 
-	public void printBy(int inputY, int inputM) {
+	public Item seachBy(int inputY, int inputM) {
 		if(this.dataCal.getYear()==inputY&&this.dataCal.getMonth()==inputM) {
-			System.out.println(this);
+			return(this);
+		}else {
+			return null;
 		}
 	}
 	
-	public void printBy(int inputY, int inputM, int inputD) {
-		if(this.dataCal.getYear()==inputY&&this.dataCal.getMonth()==inputM&&this.dataCal.getDay()==inputD) {
-			System.out.println(this);
-		}
-	}
+	
 	
 	public Item seachBy(int inputY, int inputM, int inputD) {
 		if(this.dataCal.getYear()==inputY&&this.dataCal.getMonth()==inputM&&this.dataCal.getDay()==inputD) {
