@@ -3,6 +3,7 @@ package day18;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public interface AccountService {
 	void insertItem(ArrayList<Item> list, Item item);//가계부에 있는 내역 리스트, 추가할 아이템
@@ -11,6 +12,9 @@ public interface AccountService {
 
 	void printItem(ArrayList<Item> list, int ...dates);//가계부에 있는 내역 리스트
 
+	void printItem(ArrayList<Item> list, Predicate<Item> p);//가계부에 있는 내역 리스트
+
+	
 	public int inputYear(Scanner scan);
 	
 	public int inputMonth(Scanner scan);

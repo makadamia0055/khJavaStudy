@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 import javax.management.RuntimeErrorException;
 
@@ -281,14 +282,16 @@ public class AccountServiceImp implements AccountService{
 				break;
 			case 2:
 				year = inputYear(scan);
-				printItem(list, year);
+				//printItem(list, year);
+				printItem(list, (s)->s.getDateStr().substring(0, 4).equals(""+year));
+				
 				
 				break;
 			case 3:
 				year = inputYear(scan);
 				month = inputMonth(scan);
-				printItem(list, year, month);
-				
+				//printItem(list, year, month);
+				printItem(list, (s)->s.getDateStr().substring(0, 7).equals(""+year+"-"+month));
 				
 				break;
 			case 4:
@@ -296,14 +299,32 @@ public class AccountServiceImp implements AccountService{
 				year = inputYear(scan);
 				month = inputMonth(scan);
 				day = inputDay(scan);
-				printItem(list, year, month, day);
-				
+				//printItem(list, year, month, day);
+				printItem(list, (s)->s.getDateStr().substring(0, 10).equals(""+year+"-"+month+"-"+day));
 				break;
 				
+			case 5:
+				/*System.out.println("수입/지출 선택 : ");
+				String type = scan.next();
+				int intType = type.equals("수입")?1:2;
+				printItem(list, (s)->s.getType());
+				*/
 				default:
 					
 			}
 	}
+
+	@Override
+	public void printItem(ArrayList<Item> list, Predicate<Item> p) {
+			
+			for(Item tmp : list) {
+				if(p.test(tmp)) {
+					System.out.println(tmp);
+				}
+			}
+			
+	}
+
 	
 
 }
