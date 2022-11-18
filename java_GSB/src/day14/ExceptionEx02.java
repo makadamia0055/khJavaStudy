@@ -23,7 +23,8 @@ public class ExceptionEx02 {
 			}
 		
 		}while(true);
-		
+		scan.close();
+
 	}
 
 }

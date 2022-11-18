@@ -1,12 +1,10 @@
 package day17;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 
 import day16.UserManagerService;
-import day16.UserManagerServiceImp;
 
 public class BoardManagerMain {
 

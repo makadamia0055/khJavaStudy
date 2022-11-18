@@ -18,6 +18,7 @@ public class StudentManagerTest01 {
 			
 			runMenu(menu, stds);
 		}//for문 끝
+		scan.close();
 	}//main 끝
 
 	private static void runMenu(int menu, ArrayList<Student> stds) {
@@ -108,7 +109,9 @@ public class StudentManagerTest01 {
 		int classNum = scan.nextInt();
 		System.out.print("번호 : ");
 		int num = scan.nextInt();
+		scan.close();
 		return new Student(grade, classNum, num);
+		
 	}
 
 	private static void printMenu() {

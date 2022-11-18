@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import day16.UserManagerServiceImp;
 
 public class UserManagerMapMain {
 

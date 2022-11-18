@@ -11,7 +11,7 @@ public class Book implements Comparable<Book>{
 	private int ISBN;
 	private int price;
 	private String company;
-	private Sort sort;
+	private String sort;
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -37,7 +37,7 @@ public class Book implements Comparable<Book>{
 		
 		return ISBN-o.ISBN;
 	}
-	public Book(String title, ArrayList<String> author, int iSBN, int price, String company, Sort sort) {
+	public Book(String title, ArrayList<String> author, int iSBN, int price, String company, String sort) {
 		super();
 		this.title = title;
 		this.author = author;

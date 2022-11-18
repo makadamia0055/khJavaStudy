@@ -32,7 +32,8 @@ public class EnumEx02 {
 			System.out.println("잘못 입력했습니다.");
 		}
 		
-	
+		scan.close();
+
 		
 		
 		

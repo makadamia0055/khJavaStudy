@@ -3,7 +3,6 @@ package interfacePractice01;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import day15.ScanNumException;
 
 public class SampleInplementsClass implements SampleInterface {
 
@@ -26,6 +25,8 @@ public class SampleInplementsClass implements SampleInterface {
 			System.out.println("오류가 발생했습니다.");
 			e.printStackTrace();
 		}
+		scan.close();
+
 		return tmp;
 	}
 

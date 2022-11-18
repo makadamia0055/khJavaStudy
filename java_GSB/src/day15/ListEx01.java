@@ -1,7 +1,6 @@
 package day15;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ListEx01 {
@@ -105,6 +104,8 @@ public class ListEx01 {
 	//try 처리
 	System.out.println("일정이 성공적으로 입력되었습니다.");
 	System.out.println("---------------");
+	scan.close();
+
 	}
 
 	private static int selectMenu(int min, int max) {

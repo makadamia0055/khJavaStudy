@@ -1,7 +1,6 @@
 package day10;
 
 import java.util.Scanner;
-import day10.Record;
 public class UpDownGameManager {
 
 	public static void main(String[] args) {

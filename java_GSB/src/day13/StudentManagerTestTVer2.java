@@ -136,7 +136,7 @@ public class StudentManagerTestTVer2 {
 			}else {
 				System.out.println("잘못된 메뉴!!");
 			}
-			
+			scan.close();
 			
 			
 			

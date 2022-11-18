@@ -2,7 +2,6 @@ package day15;
 
 import java.util.ArrayList;
 
-import lombok.Data;
 
 
 public class Word {

@@ -15,6 +15,8 @@ public class RegexEx02 {
 		}else {
 			System.out.println("아이디는 5~20자의 영문 소문자, 숫자와 특수기호 _, -만 사용 가능함");
 		}
+		scan.close();
+
 		
 	}
 

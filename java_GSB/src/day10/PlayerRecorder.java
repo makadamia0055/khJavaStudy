@@ -38,11 +38,11 @@ public class PlayerRecorder {
 		// index 값으로 다시 정리 필요
 		
 		
+		scan.close();
 		
 		} else {
 			// 기록달성 실패
 		}
-		
 	}
 	
 	

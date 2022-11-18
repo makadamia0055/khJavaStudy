@@ -2,9 +2,7 @@ package day10;
 
 import java.util.Scanner;
 
-import day10.Baseball;
-public class BaseballManager {
-
+public class BaseballManager{
 	public static void main(String[] args) {
 		/* 숫자 야구게ㅐ임을 플레이 한 후, 기록을 저장하는 프로그램을 
 		 * 작성하세요.

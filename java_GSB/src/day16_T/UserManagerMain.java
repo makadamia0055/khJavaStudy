@@ -54,6 +54,7 @@ public class UserManagerMain {
 				
 				break;
 			case 5: 
+				scan.close();
 				System.out.println("프로그램 종료");
 				break;
 				default:

@@ -1,5 +1,4 @@
 package day15;
-import interfacePractice01.SampleInterface;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -99,7 +98,6 @@ public class WordListMain {
 		String tmptmpmean = tmpWordClass.getMeans().get((int)(num-1));
 		tmpWordClass.getMeans().remove((int)(num-1));
 		System.out.println(num + "번 "+ tmptmpmean + "가 성공적으로 삭제되었습니다.");
-		
 	}
 
 	private static void updateWord(ArrayList<Word> wordList) throws Exception {
@@ -183,7 +181,7 @@ public class WordListMain {
 				System.out.println("단어 "+ tmpWord +": ("+ tmpMean +")를 성공적으로 입력했습니다.");
 
 			}
-		
+			scan.close();
 		
 	}
 

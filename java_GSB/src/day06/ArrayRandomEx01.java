@@ -1,9 +1,7 @@
 package day06;
 
 import java.util.Scanner;
-import day06.RandomClass01;
-public class ArrayRandomEx01 {
-
+public class ArrayRandomEx01{
 	public static void main(String[] args) {
 		// 랜덤으로 1~9사이의 숫자를 3개 생성하여 배열에 저장하는 코드를 작성
 

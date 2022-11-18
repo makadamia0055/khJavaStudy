@@ -27,7 +27,7 @@ public class ExceptionEx03 {
 		}
 			
 		}while(menu!=3);
-		
+		scan.close();
 		
 		
 	}

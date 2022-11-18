@@ -25,6 +25,8 @@ public static void main(String[] args) {
 				System.out.println(tmpEmail+"은 휴대전화 번호 형식이 아닙니다.");
 				
 			}
+			scan.close();
+
 		}
 
 	}

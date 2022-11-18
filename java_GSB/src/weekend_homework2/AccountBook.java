@@ -1,7 +1,6 @@
 package weekend_homework2;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -250,7 +249,7 @@ public class AccountBook {
 		Item tmpHK =new Item(tmpIO, tmpSort, tmpContents, tmpAmount, tmpDataCal);
 		hkBook.add(tmpHK);
 		Collections.sort(hkBook);
-		
+		scan.close();
 	}
 
 	
@@ -259,13 +258,14 @@ public class AccountBook {
 		do {
 			tmp=scan.nextInt();
 			if(tmp>=i&&tmp<=j) {
+				scan.close();
 				return tmp;
 			}else {
 				System.out.println(string);
+				scan.close();
 			}
 			
 		}while(true);
-		
 		
 		
 		

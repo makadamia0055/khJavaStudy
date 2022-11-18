@@ -25,6 +25,7 @@ public class RegexEx01 {
 			System.out.println(tmpEmail+"은 이메일 형식이 아닙니다.");
 			
 		}
+		scan.close();
 	}
 
 }

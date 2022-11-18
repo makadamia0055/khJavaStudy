@@ -1,9 +1,7 @@
 package day12;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import day12.*;
 public class StudentPrograms {
 
 	public ArrayList<HighStudent> HSArray = new ArrayList<HighStudent>();
@@ -34,7 +32,7 @@ public class StudentPrograms {
 			break;
 		}
 		}while(true);
-				
+		scan.close();		
 		return menu;
 	}
 
@@ -116,7 +114,9 @@ public class StudentPrograms {
 			}
 			break;
 		case 4: //종료
+			scan.close();
 			break;
+			
 			default:
 				System.out.println("잘못된 접근 입니다.");
 		}
@@ -159,7 +159,7 @@ public class StudentPrograms {
 		int classnum = scan.nextInt();
 		int stdnum = scan.nextInt();
 		name = scan.next();
-		
+		scan.close();
 		return new HighStudent(grade, classnum, stdnum, name);
 		
 	}

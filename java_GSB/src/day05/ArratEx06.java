@@ -32,7 +32,7 @@ public class ArratEx06 {
 			System.out.println(arr[i]);
 			
 		}
-		
+		scan.close();
 		//두번째 방법
 		
 		

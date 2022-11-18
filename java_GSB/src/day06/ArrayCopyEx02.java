@@ -1,6 +1,5 @@
 package day06;
 
-import java.util.Arrays;
 
 public class ArrayCopyEx02 {
 

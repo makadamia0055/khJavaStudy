@@ -17,6 +17,7 @@ public class StudentManagerTest {
 			
 			count = runMenu(menu, stds, count);
 		}//for문 끝
+		scan.close();
 	}//main 끝
 
 	private static int runMenu(int menu, Student[] stds, int count) {
@@ -41,6 +42,7 @@ public class StudentManagerTest {
 			printStudentList(stds, count);
 			break;
 		case 4: 
+			scan.close();
 			System.out.println("프로그램 종료");
 			break;
 		default:
@@ -98,6 +100,7 @@ public class StudentManagerTest {
 		int finalScore = scan.nextInt();
 		System.out.print("수행평가 : ");
 		int performace = scan.nextInt();
+		scan.close();
 		return new Score(title, term, midScore, finalScore, performace);
 	}
 
@@ -109,6 +112,7 @@ public class StudentManagerTest {
 		int classNum = scan.nextInt();
 		System.out.print("번호 : ");
 		int num = scan.nextInt();
+		scan.close();
 		return new Student(grade, classNum, num);
 	}
 

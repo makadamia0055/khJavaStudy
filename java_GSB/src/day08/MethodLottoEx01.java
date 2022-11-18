@@ -110,6 +110,8 @@ public class MethodLottoEx01 {
 				int tmp = scan.nextInt();
 				myNumArr[i] = tmp;
 				}
+			scan.close();
+
 			return myNumArr;
 		}
 			

@@ -55,6 +55,8 @@ public class StudentManager {
 		System.out.println("유효하지 않은 입력입니다.");
 		return 0;
 	} else {
+		scan.close();
+
 		return menu;
 	}
 		
