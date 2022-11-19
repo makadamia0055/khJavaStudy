@@ -64,5 +64,15 @@ public class PhoneNumber implements Comparable<PhoneNumber>{
 		
 		return Integer.parseInt(tmp1)-Integer.parseInt(tmp2);
 	}
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "[저장명 : " + numbername + " 번호 :" + number + "]";
+	}
 	
 }
