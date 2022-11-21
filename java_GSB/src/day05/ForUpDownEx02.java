@@ -39,6 +39,7 @@ public class ForUpDownEx02 {
 					char yn = scan.next().charAt(0);
 					if (yn == 'y' || yn == 'Y') {
 						game = false;
+						scan.close();
 						System.out.println("플레이해주셔서 감사합니다.");
 					} else if (yn == 'n' || yn == 'N') {
 						break;
@@ -48,7 +49,7 @@ public class ForUpDownEx02 {
 
 		}
 		
-		scan.close();
+		
 
 	}
 

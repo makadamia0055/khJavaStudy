@@ -45,7 +45,7 @@ public class MethodLottoEx01 {
 		printRank(getRank(lotto, myLottoNum, bonus, mybonus1));
 		
 		
-		
+		scan.close();
 		
 		
 	}

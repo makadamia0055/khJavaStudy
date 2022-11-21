@@ -41,6 +41,8 @@ public class ArrayUpDownEx01 {
 				}
 								
 			} while(input !=r);
+			scan.close();
+
 			System.out.println(playcnt+"번만에 맞췄습니다!");
 			playpoint[crrnt] = playcnt;
 			System.out.println();
@@ -57,7 +59,6 @@ public class ArrayUpDownEx01 {
 		}
 		System.out.println("입니다↑");
 	
-		scan.close();
 	}
 
 }

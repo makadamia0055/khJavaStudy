@@ -65,7 +65,7 @@ public class ListEx01 {
 		runCase2(toDoList);
 		System.out.print("삭제할 할일 번호 선택 : ");
 		int deleteNum = scan.nextInt()-1;
-		
+		scan.close();
 		if(toDoList.size()<deleteNum||deleteNum<0) {
 			throw new Exception("예외발생 : 삭제할 번호가 없습니다.");
 			// 이거 이전에 아웃오브 바운드 예외가 먼저 발생
@@ -115,10 +115,10 @@ public class ListEx01 {
 		do {
 		 tmp = scan.nextInt();
 		 if(tmp>=min&&tmp<=max) {
+			 scan.close();
 			 return tmp;
 		 }
 		}while(true);
-		
 		
 	}
 

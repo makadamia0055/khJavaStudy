@@ -31,184 +31,193 @@ public class PhoneListMain {
 		int menu =-1;
 		
 		do {
+			try {
 			printMenu();
 			menu = selectMenu(1, 5);
-			switch(menu) {
-			
-			case 1:
-				System.out.println("→ 전화번호 추가");
-				Profile tmpProfile = addProfile(list);
-				list.add(tmpProfile);
-
-				System.out.println(tmpProfile.getFullName()+"씨의 전화번호를 입력합니다.");
+			runMenu(list, menu);
+			}catch(Exception e) {
 				
-				addPhoneNumber(tmpProfile);
-				
-				System.out.println("전화번호 추가가 완료되었습니다.");
-				
-				break;
-			case 2:
-				// 이름 입력
-				System.out.println("전화번호부를 수정합니다.");
-				
-				//이름으로 검색 시작
-				// 이름이 포함된 전화번호부를 검색하여 출력 번호와 함께
-				
-				ArrayList<Profile> searchList = searchByName(list);
-				
-				// 검색 끝			
-				
-				//수정번호 출력 및 선택
-				
-				System.out.println("수정할 번호를 선택해주십시오.");
-				int modNum = selectMenu(1, searchList.size()+1) -1;
-				
-				Profile modProfile = list.get(modNum);
-				
-				
-				System.out.println(modProfile.getFullName()+"님에 대한 수정사항을 선택하십시오.");
-				System.out.println("1. 기본 신상 수정\n"
-						+ "2. 기존 전화번호 수정\n"
-						+ "3. 새로운 전화번호 추가\n");
-				//1. 이름, 직장 수정(기본 신상 수정)
-				//2. 기존 전화번호 (수정)
-				//3. 새로운 전화번호 추가
-				
-				int subMenu = selectMenu(1, 3);
-				switch(subMenu) {
-				case 1:
-					editProfile(list, modProfile);
-					System.out.println("기본 신상 수정이 끝났습니다.");
-					break;
-					
-				case 2:// 기존 전화번호 수정
-					//기존 전화번호 찾기
-					
-				
-					
-					
-					if(modProfile.getNumberList().size()!=0) {
-						for(int i =0; i<modProfile.getNumberList().size();i++) {
-							System.out.printf("%d번 %s : %s\n", i+1, modProfile.getNumberList().get(i).getNumbername(), modProfile.getNumberList().get(i).getNumber());
-							
-						}
-					}else {
-						System.out.println("해당 검색 결과가 없습니다.");
-						break;
-					}
-					
-					System.out.println("수정할 번호를 선택해주십시오.");
-					modNum = selectMenu(1, searchList.size()+1) -1;
-					PhoneNumber modPhoneNum = modProfile.getNumberList().get(modNum);
-					scan.nextLine();
-					//메소드에서 긁어옴.
-					modProfile.getNumberList().remove(modPhoneNum);
-					boolean tmpTF = checkPhoneNum(modProfile, modPhoneNum);
-					if(tmpTF) {
-						//여기까지.
-						Collections.sort(modProfile.getNumberList());
-						System.out.println("기존 번호 수정이 완료되었습니다.");
-					}else {
-						System.out.println("오류 발생. 기존 번호를 복구합니다.");
-						modProfile.getNumberList().add(modPhoneNum);
-					}
-					
-					break;
-					
-				case 3:
-					addPhoneNumber(modProfile);
-					System.out.println("새 전화번호가 성공적으로 저장되었습니다.");
-					break;
-				
-				
-				}
-								
-				// 검색 메소드-리턴 검색된 어레이
-				// 검색 메소드 출력해서 선택 가능하게 하는 메소드 -번호 스캔해서 선택 개체 리턴
-				// 선택 메소드 -검색된 어레이 받고, 선택값 받아서 
-				
-				
-				
-				// 수정할 번호부를 선택
-				
-				break;
-			case 3: //번호 삭제
-				
-				searchList = searchByName(list);
-				
-				System.out.println("수정할 번호를 선택해주십시오.");
-				modNum = selectMenu(1, searchList.size()+1) -1;
-				
-				modProfile = list.get(modNum);
-				
-				System.out.print("정말 "+modProfile.getFullName()+"님의 연락처를 삭제하시겠습니까? Y/N :");
-				char tmpYN = scan.next().charAt(0);
-				if(tmpYN=='y'||tmpYN=='Y') {
-					list.remove(modProfile);
-					System.out.println("해당 연락처가 성공적으로 제거되었습니다.");
-				}else if(tmpYN=='N'||tmpYN=='n') {
-					System.out.println("취소하고 초기메뉴로 돌아갑니다.");
-				}else {
-					System.out.println("잘못된 입력입니다.");
-				}
-				
-				
-				break;
-			case 4:
-				//일단 풀조회 구현
-				System.out.println("전화번호 조회\n"
-						+ "1. 전체 조회\n"
-						+ "2. 이름 검색 조회\n");
-				
-				subMenu = selectMenu(1, 2); 
-				
-				switch(subMenu) {
-				case 1:
-					System.out.println("전체 연락처 출력");
-					System.out.println("------------");
-					for(Profile tmp : list) {
-						System.out.println(tmp);
-					}
-					
-					break;
-				case 2:
-					searchList = searchByName(list);
-					
-					System.out.println("열람할 연락처의 번호를 선택해주십시오.");
-					modNum = selectMenu(1, searchList.size()+1) -1;
-					
-					modProfile = list.get(modNum);
-					
-					System.out.println("연락처 상세 열람");
-					System.out.println("-------------------------------");
-
-					System.out.printf("성 : %s \n이름: %s\n", modProfile.getSung(), modProfile.getName());
-					System.out.printf("직업/업무처 : %s\n", modProfile.getJob());
-					
-					int count = 1;
-					for(PhoneNumber tmp : modProfile.getNumberList()) {
-						System.out.printf("%d번 연락처\t저장명 : %s\t번호 : %s\n", count, tmp.getNumbername(), tmp.getNumber());
-					}
-					System.out.println("-------------------------------");
-					
-					break;
-				}
-				
-				//이름을 입력
-				// 이름이 포함된 전화번호부를 검색해서 출력(번호와 함께)
-				// 조회할 전화번호부를 선택
-				// 전화번호 조회
-				break;
-			case 5:
-				System.out.println("프로그램을 종료합니다.");
-				break;
-				default:
 			}
 		}while(menu!=5);
 		
 		scan.close();
 		
 		
+	}
+	public static void runMenu(ArrayList<Profile> list, int menu) throws Exception {
+		switch(menu){
+	case 1:
+		System.out.println("→ 전화번호 추가");
+		Profile tmpProfile = addProfile(list);
+		list.add(tmpProfile);
+
+		System.out.println(tmpProfile.getFullName()+"씨의 전화번호를 입력합니다.");
+		
+		addPhoneNumber(tmpProfile);
+		
+		System.out.println("전화번호 추가가 완료되었습니다.");
+		
+		break;
+	case 2:
+		// 이름 입력
+		System.out.println("전화번호부를 수정합니다.");
+		
+		//이름으로 검색 시작
+		// 이름이 포함된 전화번호부를 검색하여 출력 번호와 함께
+		
+		ArrayList<Profile> searchList = searchByName(list);
+		
+		// 검색 끝			
+		
+		//수정번호 출력 및 선택
+		
+		System.out.println("수정할 번호를 선택해주십시오.");
+		int modNum = selectMenu(1, searchList.size()+1) -1;
+		
+		Profile modProfile = list.get(modNum);
+		
+		
+		System.out.println(modProfile.getFullName()+"님에 대한 수정사항을 선택하십시오.");
+		System.out.println("1. 기본 신상 수정\n"
+				+ "2. 기존 전화번호 수정\n"
+				+ "3. 새로운 전화번호 추가\n");
+		//1. 이름, 직장 수정(기본 신상 수정)
+		//2. 기존 전화번호 (수정)
+		//3. 새로운 전화번호 추가
+		
+		int subMenu = selectMenu(1, 3);
+		switch(subMenu) {
+		case 1:
+			editProfile(list, modProfile);
+			System.out.println("기본 신상 수정이 끝났습니다.");
+			break;
+			
+		case 2:// 기존 전화번호 수정
+			//기존 전화번호 찾기
+			
+		
+			
+			
+			if(modProfile.getNumberList().size()!=0) {
+				for(int i =0; i<modProfile.getNumberList().size();i++) {
+					System.out.printf("%d번 %s : %s\n", i+1, modProfile.getNumberList().get(i).getNumbername(), modProfile.getNumberList().get(i).getNumber());
+					
+				}
+			}else {
+				System.out.println("해당 검색 결과가 없습니다.");
+				break;
+			}
+			
+			System.out.println("수정할 번호를 선택해주십시오.");
+			modNum = selectMenu(1, searchList.size()+1) -1;
+			PhoneNumber modPhoneNum = modProfile.getNumberList().get(modNum);
+			scan.nextLine();
+			//메소드에서 긁어옴.
+			modProfile.getNumberList().remove(modPhoneNum);
+			boolean tmpTF = checkPhoneNum(modProfile, modPhoneNum);
+			if(tmpTF) {
+				//여기까지.
+				Collections.sort(modProfile.getNumberList());
+				System.out.println("기존 번호 수정이 완료되었습니다.");
+			}else {
+				System.out.println("오류 발생. 기존 번호를 복구합니다.");
+				modProfile.getNumberList().add(modPhoneNum);
+			}
+			
+			break;
+			
+		case 3:
+			addPhoneNumber(modProfile);
+			System.out.println("새 전화번호가 성공적으로 저장되었습니다.");
+			break;
+		
+		
+		}
+						
+		// 검색 메소드-리턴 검색된 어레이
+		// 검색 메소드 출력해서 선택 가능하게 하는 메소드 -번호 스캔해서 선택 개체 리턴
+		// 선택 메소드 -검색된 어레이 받고, 선택값 받아서 
+		
+		
+		
+		// 수정할 번호부를 선택
+		
+		break;
+	case 3: //번호 삭제
+		
+		searchList = searchByName(list);
+		
+		System.out.println("수정할 번호를 선택해주십시오.");
+		modNum = selectMenu(1, searchList.size()+1) -1;
+		
+		modProfile = list.get(modNum);
+		
+		System.out.print("정말 "+modProfile.getFullName()+"님의 연락처를 삭제하시겠습니까? Y/N :");
+		char tmpYN = scan.next().charAt(0);
+		if(tmpYN=='y'||tmpYN=='Y') {
+			list.remove(modProfile);
+			System.out.println("해당 연락처가 성공적으로 제거되었습니다.");
+		}else if(tmpYN=='N'||tmpYN=='n') {
+			System.out.println("취소하고 초기메뉴로 돌아갑니다.");
+		}else {
+			System.out.println("잘못된 입력입니다.");
+		}
+		
+		
+		break;
+	case 4:
+		//일단 풀조회 구현
+		System.out.println("전화번호 조회\n"
+				+ "1. 전체 조회\n"
+				+ "2. 이름 검색 조회\n");
+		
+		subMenu = selectMenu(1, 2); 
+		
+		switch(subMenu) {
+		case 1:
+			System.out.println("전체 연락처 출력");
+			System.out.println("------------");
+			for(Profile tmp : list) {
+				System.out.println(tmp);
+			}
+			
+			break;
+		case 2:
+			searchList = searchByName(list);
+			
+			System.out.println("열람할 연락처의 번호를 선택해주십시오.");
+			modNum = selectMenu(1, searchList.size()+1) -1;
+			
+			modProfile = list.get(modNum);
+			
+			System.out.println("연락처 상세 열람");
+			System.out.println("-------------------------------");
+
+			System.out.printf("성 : %s \n이름: %s\n", modProfile.getSung(), modProfile.getName());
+			System.out.printf("직업/업무처 : %s\n", modProfile.getJob());
+			
+			int count = 1;
+			for(PhoneNumber tmp : modProfile.getNumberList()) {
+				System.out.printf("%d번 연락처\t저장명 : %s\t번호 : %s\n", count, tmp.getNumbername(), tmp.getNumber());
+			}
+			System.out.println("-------------------------------");
+			
+			break;
+		}
+		
+		//이름을 입력
+		// 이름이 포함된 전화번호부를 검색해서 출력(번호와 함께)
+		// 조회할 전화번호부를 선택
+		// 전화번호 조회
+		break;
+	case 5:
+		System.out.println("프로그램을 종료합니다.");
+		break;
+		
+	default:
+	
+	
+	}
 	}
 
 	private static ArrayList<Profile> searchByName(ArrayList<Profile> list) {
@@ -338,10 +347,10 @@ public class PhoneListMain {
 	
 	
 
-	private static int selectMenu(int min, int max) {
+	private static int selectMenu(int min, int max) throws Exception {
 		int tmp = scan.nextInt();
 		if(tmp<min-1||tmp>max+1) {
-			//예외처리
+			throw new Exception("범위를 벗어난 값입니다.");
 		}
 				
 		return tmp;

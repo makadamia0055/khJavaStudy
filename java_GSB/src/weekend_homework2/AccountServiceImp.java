@@ -52,13 +52,13 @@ public class AccountServiceImp implements AccountService {
 			do {
 				tmp=scan.nextInt();
 				if(tmp>=i&&tmp<=j) {
+					scan.close();
 					return tmp;
 				}else {
 					System.out.println(string);
 				}
 				
 			}while(true);
-			
 			
 		}		
 	

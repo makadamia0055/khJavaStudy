@@ -45,6 +45,7 @@ public class ForUpDownEx01 {
 				System.out.println("Down");			
 			}  else {
 				System.out.println("정답입니다.");
+				scan.close();
 				break;
 			}
 

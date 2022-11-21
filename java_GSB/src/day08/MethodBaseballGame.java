@@ -46,7 +46,7 @@ public class MethodBaseballGame {
 			}
 			
 		} while(cnt<3) ; 
-		
+		scan.close();
 		System.out.println();
 		int[] result=judge(baseball, myNum);
 		printJudge(result);

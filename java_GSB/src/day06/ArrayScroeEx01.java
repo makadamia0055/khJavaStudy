@@ -54,7 +54,7 @@ public class ArrayScroeEx01 {
 		
 		
 		
-		
+		scan.close();
 		
 	}
 

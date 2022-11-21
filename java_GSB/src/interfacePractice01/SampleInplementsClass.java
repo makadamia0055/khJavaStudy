@@ -20,8 +20,10 @@ public class SampleInplementsClass implements SampleInterface {
 		 }
 		}while(true);
 		}catch(InputMismatchException e) {
+			scan.close();
 			System.out.println("입력 오류가 발생했습니다.\n숫자를 입력해주세요.");
 		}catch(Exception e){
+			scan.close();
 			System.out.println("오류가 발생했습니다.");
 			e.printStackTrace();
 		}

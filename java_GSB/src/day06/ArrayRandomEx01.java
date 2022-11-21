@@ -55,6 +55,7 @@ public class ArrayRandomEx01{
 			System.out.print(i + " ");
 
 		}
+		scan.close();
 		// 야구게임이 이것의 활용형인듯. // 다만 랜덤수에 중복 불가능 규칙 필요
 
 	}

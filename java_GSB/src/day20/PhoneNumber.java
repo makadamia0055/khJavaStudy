@@ -46,8 +46,8 @@ public class PhoneNumber implements Comparable<PhoneNumber>{
 	
 	public String stripNum(String num) {
 		String tmp = new String(num.substring(4));
-		num.replaceAll("-", "");
-		num.replaceAll(" ", "");
+		tmp=tmp.replaceAll("-", "");
+		tmp=tmp.replaceAll(" ", "");
 
 		return tmp;
 	}
