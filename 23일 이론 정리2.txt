@@ -1,0 +1,65 @@
+반복문
+for : 초기화, 조건식, 증감식
+while : 조건식
+do-while : 조건식, 1번 실행
+
+또 함정들이 있으니 잘 체크해보기.
+
+배열 Array
+- 같은 타입의 데이터들을 모아놓은 것
+- 크기를 변경할 수 없다, 
+- 배열 초기값.
+	- 정수형 변수 : 0
+	- 실수형 변수 : 0.0, 0.0f
+	-참조변수 : null
+Q; int [] nums = new int[5];
+sysout(nums[0]) =? 
+A : 0
+Q2;
+Student [] nums = new Student[5];
+sysout(nums[0]) = ? 
+A : null
+
+배열을 복사하는 방법
+		- for문
+		- System.arraycopy()
+		-Arrays.copy()
+
+참조변수를 복사
+	-얕은 복사
+	=> 주소 값을 공유, 객체를 공유하기 때문에 다른 곳에서 수정하면 영향을 받음
+	-깊은 복사
+	-> 객체를 새로 생성하여 복사. 별개의 객체이기 때문에 영향을 받지 않음.
+	
+-배열 초기화
+자료형 [] 배열명 = { 값1, 값2, 값3};
+자료형 [] 배열명;
+배열명[index] = 값;
+
+
+클래스 Class
+추상화
+
+"클래스 다이어그램"을 보고 클래스 필드, 메소드 만들 수 있기(별거 없음)
+
+class Person{
+
+private String pNo;
+
+
+public void setPNo(String pNo){
+	this.pNo = pNo;
+}
+
+}
+
+
+- 메소드 오버로딩
+	- 메소드 명이 같아야함
+	- 매개변수의 개수가 다르거나
+	- 매개변수의 타입이 달라야 함.
+	- 리턴타입은 상관없음.
+
+api, collection은 안나옴.
+
+ObjectInputStream/ObjectOutputStream 은 나옴.

@@ -1,0 +1,60 @@
+스트림
+
+
+
+바이트 단위 처리 
+	입력 스트림
+		최상위 클래스 InputStream
+		하위 클래스 XXXInputStream
+
+	출력 스트림
+		최상위 스트림 OuputStream
+		하위 클래스 XXXOutputStream
+
+문자 단위 처리
+
+
+
+
+
+
+
+
+InputStream
+바이트 기반 입력 스트림의 최상위 클래스로 '추상클래스'
+
+
+
+
+
+
+
+상대경로 
+
+실행하는 자바 파일을 기준으로 
+
+
+절대경로와 상대경로의 개념 차이 알기(문제 나오는 듯)
+
+
+
+FileInputStream
+파일로부터 바이트 단위로 읽을 때 사용
+
+파일이 존재하지 않을 때 filenotFountException이 발생해서 예외처리 필수
+
+
+FileOutputStream
+
+파일이 존재하는 경우 파일을 덮어씀
+
+기존 파일에 이어서 작성하고 싶으면
+FileOutputStream(String fileName, boolean append)에 true 넣어줘야함.
+
+
+보조스트림
+
+
+스트림의 기능을 향상시키거나 새로운 기능을 추가시키기 위해 사용
+다만 실제 데이터를 주고 받는 스트림이 아니기때문에 입출력처리는 기반스트림에 의존해야함
+그래서 기반스트림을 먼저 생성 후 이를 이용하여 보조 스트림 생성

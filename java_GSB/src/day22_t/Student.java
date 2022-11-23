@@ -1,5 +1,8 @@
 package day22_t;
 
+import lombok.Data;
+
+@Data
 public class Student {
 	private String name;
 	private String birthday;
