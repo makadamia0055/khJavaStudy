@@ -24,6 +24,7 @@ A : null
 		- for문
 		- System.arraycopy()
 		-Arrays.copy()
+		arr2 = arr1.clone();
 
 참조변수를 복사
 	-얕은 복사
@@ -63,3 +64,23 @@ public void setPNo(String pNo){
 api, collection은 안나옴.
 
 ObjectInputStream/ObjectOutputStream 은 나옴.
+
+직렬화 Serialization
+데이터를 파일에 쓰거나 네트워크 전송을 위해 보내려고 바이트 단위로 분해하여 순차적으로 보내야하는데 
+이러한 작업을 직렬화라고 한다. 전송을 받을때는 이를 역순으로 실행해야하는데, 이를 역직렬화(Deserialization)이라고 한다. 
+
+자바에서는 객체를 데이터스트림으로 만드는 것을 말하며, 객체의 데이터를 출력하기 위해서 연속적인 데이터로 변환하는 것이다.
+
+직렬화가 가능한 조건
+1. 기본타입
+2. Serializable 인터페이스를 구현한 클래스(빈 인터페이스라 구현의무가 있는 메소드는 없다)
+3. 객체멤버가 있을 경우 모두 Serializable을 implements해야한다.
+4. transient가 사용된 멤버는 전송하지 않는다.(보안상의 이유가 있을때 사용)
+
+
+객체 스트림
+ObjectOutputStream
+직렬화에 사용
+ObjectInputStream
+역직렬화에 사용
+둘다 InputStream과 OutputStream을 직접 상속 받지만 보조 스트림이라 입출력을 기반스트림에 의존해야한다.
