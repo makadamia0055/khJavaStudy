@@ -21,6 +21,7 @@ public class AttendanceMain {
 				System.out.println(e.getMessage());
 			}
 		}while(menu!=3);
+		
 	}
 
 	private static void runMenu(int menu, Attendance attendance) {
@@ -106,6 +107,11 @@ public class AttendanceMain {
 		printStr("학생 정보를 추가했습니다.");
 		System.out.println(stds);
 	}
+	
+	
+	
+	
+	
 	private static void addStudent(ArrayList<Student> stds) {
 		if(stds==null) {
 			throw new RuntimeException("예외 발생 : 학생 정보를 관리하는 리스트가 없습니다.");
