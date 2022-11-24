@@ -22,8 +22,8 @@ A : null
 
 배열을 복사하는 방법
 		- for문
-		- System.arraycopy()
-		-Arrays.copy()
+		- System.arraycopy(src, index, dest, destindex, len);
+		-Arrays.copy(a, a.length);
 		arr2 = arr1.clone();
 
 참조변수를 복사
