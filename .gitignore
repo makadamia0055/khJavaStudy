@@ -28,5 +28,49 @@ java_GSB/.classpath
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< Updated upstream
 
 java_GSB/src/text.txt
+=======
+/.metadata/
+>>>>>>> Stashed changes
+
+java_GSB/text.txt
+
+java_GSB/test.txt
+
+java_GSB/src/day12/.classpath
+
+java_GSB/src/day12/.project
+
+java_GSB/src/day13/.classpath
+
+java_GSB/src/day13/.project
+
+java_GSB/src/day14/.classpath
+
+java_GSB/src/day14/.project
+
+java_GSB/src/day15/.classpath
+
+java_GSB/src/day15/.project
+
+java_GSB/src/day16/.classpath
+
+java_GSB/src/day16/.project
+
+java_GSB/src/day17/.classpath
+
+java_GSB/src/day17/.project
+
+java_GSB/src/day18/.classpath
+
+java_GSB/src/day18/.project
+
+java_GSB/src/day19/.classpath
+
+java_GSB/src/day19/.project
+
+java_GSB/src/day23/.classpath
+
+java_GSB/src/day23/.project
