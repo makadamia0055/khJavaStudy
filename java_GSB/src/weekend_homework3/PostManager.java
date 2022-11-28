@@ -27,27 +27,32 @@ public class PostManager implements Serializable{
 		} else {
 			Scanner scan = new Scanner(System.in);
 			Member verfiedMem = (Member)client;
-			System.out.println("글의 분류를 기입하여 주십시오");
-			System.out.println("분류 : (공지사항/잡담/질의응답/건의사항)");
-			postSort sort = postSort.valueOf(scan.next());
+			Post tmp =makePost(scan, verfiedMem);
 			
-			System.out.println("제목을 기입해 주십시오");
-			System.out.println("제목 : ");
-			scan.nextLine();
-			String title = scan.nextLine();
-			
-			System.out.println("내용을 기입해 주십시오");
-			System.out.println("내용 : ");
-			String contents = scan.nextLine();
-	
-			
-			Post tmp = new Post(sort, title, verfiedMem.getId(), contents);
 			postLatestNum++;
 			list.add(tmp);
 		
 		}
 	}
 	
+	private Post makePost(Scanner scan, Member verfiedMem) {
+		System.out.println("글의 분류를 기입하여 주십시오");
+		System.out.println("분류 : (공지사항/잡담/질의응답/건의사항)");
+		postSort sort = postSort.valueOf(scan.next());
+		
+		System.out.println("제목을 기입해 주십시오");
+		System.out.println("제목 : ");
+		scan.nextLine();
+		String title = scan.nextLine();
+		
+		System.out.println("내용을 기입해 주십시오");
+		System.out.println("내용 : ");
+		String contents = scan.nextLine();
+
+		
+		return new Post(sort, title, verfiedMem.getId(), contents);
+	}
+
 	public static int getPostLatestNum() {
 		return postLatestNum;
 	}
@@ -146,6 +151,10 @@ public class PostManager implements Serializable{
 		
 	}
 	private void searchPostByAuthor(Scanner scan, Client client) {
+		if(list==null||list.size()==0) {
+			System.out.println("작성된 게시글이 없습니다.");
+			return ;
+		}
 		System.out.println("검색할 문자열을 입력해주세요.");
 		String tmp = scan.nextLine();
 		ArrayList<Post> searchList = new ArrayList<Post>();
@@ -181,8 +190,22 @@ public class PostManager implements Serializable{
 			Member tmp = (Member)client;
 			if(tmp.getId()==list.get(num).getAuthor()) {
 				System.out.println("1. 돌아가기");
-				System.out.println("2. 수정 및 삭제");
-				System.out.println();
+				System.out.println("2. 수정");
+				System.out.println("3. 삭제");
+				System.out.println("--------------");
+				Scanner scan = new Scanner(System.in);
+				int menu = scan.nextInt();
+				switch(menu) {
+				case 1: break;
+				case 2: list.add(num, makePost(scan, tmp));
+					System.out.println("포스트 수정이 완료되었습니다.");
+					break;
+				case 3: list.remove(num);
+					System.out.println("포스트 삭제가 완료되었습니다.");
+					break;
+					default:
+					
+				}
 			}
 		}
 		
