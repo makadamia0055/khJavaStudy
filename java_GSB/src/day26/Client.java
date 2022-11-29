@@ -20,10 +20,9 @@ public class Client {
 		Thread t = new Thread(()->{
 			try {
 			OutputStream os = socket.getOutputStream();
-			String str = scan.nextLine();
 			while(true) {
 				System.out.print("전송할 문자열: ");
-				str = scan.nextLine();
+				String str = scan.nextLine();
 				if(str.equals("exit"))
 					break;
 				byte[] byteBuffer = str.getBytes("UTF-8");
