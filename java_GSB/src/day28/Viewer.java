@@ -1,10 +1,10 @@
-package day27;
+package day28;
 
 public class Viewer {
 
 	
 	
-	public static boolean verifiedClient(Object obj) {
+	public static boolean verifiedClient(Viewer obj) {
 		if(obj instanceof Qulifiable) {
 			return true;
 		}else {

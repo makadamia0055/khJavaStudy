@@ -1,4 +1,4 @@
-package day27;
+package day28;
 
 import java.io.Serializable;
 
@@ -10,12 +10,33 @@ public class Post implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -2306831176202268634L;
-	private Sort sort;
+	private String sort;
 	private String title;
 	private String contents;
 	private String author;
 	private int view;
 	private int num;
+	
+	
+	Post(String sort, String title, String contents, Client client, int num){
+		this.sort = sort;
+		this.title = title;
+		this.contents = contents;
+		this.author = client.getId();
+		view = 0;
+		this.num = num;
+	}
+	Post(String sort, String title, String contents, Client client, int num, int view){
+		this.sort = sort;
+		this.title = title;
+		this.contents = contents;
+		this.author = client.getId();
+		this.view = view;
+		this.num = num;
+	}
+	
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -39,8 +60,4 @@ public class Post implements Serializable{
 	
 	
 	
-}
-
-enum Sort{
-	공지, 자유
 }

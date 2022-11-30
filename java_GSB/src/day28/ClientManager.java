@@ -1,4 +1,4 @@
-package day27;
+package day28;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class ClientManager implements Serializable{
 		clientList.add(new MasterClient("master", "master"));
 	}
 	
-	class MasterClient extends Client implements Masterable{
+	class MasterClient extends Client implements Masterable, Serializable{
 
 		public MasterClient(String id, String pw) {
 			super(id, pw);

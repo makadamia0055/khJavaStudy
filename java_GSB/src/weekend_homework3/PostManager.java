@@ -112,7 +112,7 @@ public class PostManager implements Serializable{
 				e.printStackTrace();
 			} break;
 			case 3:
-				page = (page>1)?page-1:page;	
+				page = (page>=1)?page-1:page;	
 				break;
 			case 4: 
 				page = (list.size()-page*10>10)?page+1:page; 

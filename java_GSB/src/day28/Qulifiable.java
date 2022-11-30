@@ -1,4 +1,4 @@
-package day27;
+package day28;
 
 public interface Qulifiable {
 
