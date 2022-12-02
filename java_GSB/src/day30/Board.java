@@ -86,7 +86,7 @@ public class Board {
 	}
 	
 	public void print() {
-		System.out.printf("%d %s %s %s", num, title, writer, contents);	
+		System.out.printf("%d %s %s %s\n", num, title, writer, contents);	
 	}
 	
 	
