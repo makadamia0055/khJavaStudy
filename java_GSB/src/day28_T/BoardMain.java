@@ -13,6 +13,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class BoardMain {
 	private static Scanner scan = new Scanner(System.in);
@@ -255,9 +256,22 @@ public class BoardMain {
 		
 		if(categoryList.remove(category)) {
 			printStr("카테고리를 삭제했습니다.");
+			
+			char yn = 'a';
+			System.out.println("해당 카테고리의 글들을 모두 삭제하시겠습니까? Y/N");
+			yn = scan.nextLine().toUpperCase().charAt(0);
+			if(yn=='Y') {
+				deleteOldcategory(category);
+				System.out.println("해당 카테고리에 속하는 모든 글들을 삭제했습니다.");
+			}
+			
+			
 			return;
 		}
 		printStr("등록되지 않은 카테고리입니다.");
+	}
+	private static void deleteOldcategory(String category) {
+		boardList.stream().filter(p->p.getCategory().equals(category)).collect(Collectors.toList()).forEach(p->boardList.remove(p));
 	}
 
 	private static void updateCategory() {
@@ -276,12 +290,17 @@ public class BoardMain {
 		printBar();
 		//기존 카테고리에 있는지 확인하여 없으면 수정
 		if(!categoryList.contains(newCategory)) {
-			categoryList.remove(category);
-			categoryList.add(newCategory);
+			categoryList.set(categoryList.indexOf(category), newCategory);
+			changeToNewcategory(category, newCategory);
 			printStr("카테고리 수정에 성공했습니다.");
 			return;
 		}
 		printStr("이미 등록된 카테고리 입니다.");
+	}
+
+	private static void changeToNewcategory(String category, String newCategory) {
+		boardList.stream().filter(p->p.getCategory().equals(category)).forEach(p->p.setCategory(newCategory));
+		
 	}
 
 	private static void insertCategory() {

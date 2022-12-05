@@ -56,6 +56,10 @@ public class Product {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+	public String print() {
+		return "분류 : " + Sort + "| 제품 명 : " + name + "| 구매액 : " + inPrice + "| 판매액 " + outPrice
+				+ "| 현 재고" + amount;
+	}
 	
 	
 	
