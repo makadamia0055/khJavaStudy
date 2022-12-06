@@ -13,6 +13,7 @@ public class Ex01_Client {
 		try {
 			socket = new Socket();
 			socket.connect(new InetSocketAddress("localhost",5001));
+			// 위에서 서버 아이피주소/도메인 이름 삭제하면 localhost로 적용
 			System.out.println("[연결 성공]");
 			send(socket, "맘모스쌈바돼지");
 			receive(socket);

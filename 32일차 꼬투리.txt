@@ -1,0 +1,12 @@
+inputStream 읽기 , 파일이 없으면 filenotfoundException 발생
+
+outputStream 쓰기, 파일이 없으면 새로 생성, 
+	있으면 덮어쓰기
+	있으면 이어쓰기(추가모드) 파일을 열때 ("파일명", true)으로 쓰면 이어쓰기 모드.
+
+파일은 열었으면 꼭 닫아야한다. 
+
+try with resource
+
+try(.....) 하고 괄호 안에 다 쓰는것
+조건 java.lang.AutoCloseable 인터페이스를 구현하고 있어야 한다.
