@@ -1,0 +1,37 @@
+sql 치트시트
+
+Create 데이터베이스명 
+Create schema 스키마명;
+=create database 데이터베이스명;
+
+Drop 데이터베이스 지우기
+Drop 스키마명;
+
+테이블 생성
+Create table 테이블명(컬럼1 데이터 타입[default 형식], ...)
+
+key 타입은 데이터 타입 뒤에 기술해도 되지만 별도 기술해도 된다.
+
+Create table 'table1' (id1 varchar(12) primary key, id2 varchar(12),
+
+foreign key(id2) reference '원테이블명'(id2)
+)
+
+
+foreign 상세
+
+CONSTRAINT [CONSTRAINT_NAME(규칙명)] FOREIGN KEY(자식 테이블 컬럼명) REFERENCES 참조테이블(부모 테이블 기본키 명)
+ON UPDATE 옵션 ON DELETE 옵션;
+
+
+ALTER 테이블 요소 변경
+ALTER TABLE 테이블명 ADD FOREIGN KEY(자식 테이블 컬럼명) REFERENCES  원테이블(컬럼명);
+
+ALTER 테이블이름 RENAME 새로운테이블이름;
+
+/CF RENAME
+
+RENAME TABLE 테이블이름 TO 새로운테이블이름;
+
+RENAME는 데이터베이스명.테이블명 TO 새로운 데이터베이스명.테이블명
+이렇게 데이터베이스 이동도 가능;

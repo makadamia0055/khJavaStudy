@@ -1,6 +1,6 @@
 -- drop database if exists shoppingmall2;
 create database if not exists shoppingmall2;
-use shoppingmall2;
+use shoppingmproduct_categoryproduct_categoryall2;
 
 create table if not exists member(
 	-- 
