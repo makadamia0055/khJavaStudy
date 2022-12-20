@@ -1,0 +1,73 @@
+시험 대비 주요 항목들
+변수 선언 방법.
+변수의 형변환
+cast (변수 as 데이터형)
+convert(변수, 데이터형)
+
+주요 윈도우 함수
+순위함수
+row_number
+dense_rank
+rank
+ntile(n)
+
+형식
+순위함수 over(
+[partition by <partition_by_list>]
+order by <order_by_list> asc|desc)
+
+분석함수
+lead(속성) 혹은 lead(속성, n, x) 속성의 다음 n개 값 가져오고 없으면 x로 대체)
+lag(속성)
+first_value(속성)
+
+cume_dist() : 누적 백분율
+
+
+피벗 개념 : 한 열에 포함된 여러 값들을 토대로 하나의 테이블을 만드는 것.
+
+with와 cte(common table expression)
+with cte_테이블명(열이름)
+as
+{
+
+<쿼리문>
+}
+select 열이름 from cte_테이블이름;
+
+
+
+주요 내장함수들
+concat
+format
+left, right
+replace(문자열, 원래문자열, 바꿀문자열)
+substring(문자열, 시작위치, 길이)
+
+adddate(날짜, 차이) subdate(날짜, 차이)
+차이의 단위 interval을 넣어줘야함.
+addtime(시간, 차이) subtime(시간, 차이)
+
+case 문
+if문 사용법(select내부 if메소드 말하는거)
+
+유니온 : 두 쿼리의 결과를 행으로 합치는 명령어
+
+union, union all : 합집합 ( join과 다르게 속성이 늘어나지는 않음)
+	-속성 이름이 같아야함.
+union : 중복을 제거
+union all : 중복을 제거하지 않음. union보다 빠름
+
+
+사용법
+
+select쿼리
+	union
+select쿼리;
+
+in / not in 해당 조건을 만족하는 것으로 조건 걸기
+
+
+with rollup group by를 기준으로 삽입된 부분까지의 합계를 매김
+
+
