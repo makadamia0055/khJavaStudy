@@ -83,7 +83,7 @@ public class DBManager {
 				
 		rs = stmt.executeQuery(sql);
 		
-		switch(t.getClass().getName()) {
+		switch(t.getClass().getSimpleName()) {
 		case "Course":
 			while(rs.next()) {
 				String co_num = rs.getString(1);
@@ -189,7 +189,16 @@ public class DBManager {
 			String str = scan.nextLine();
 			pStmt.setString(i+2, str);
 		}
-		printCount();
+		String newstr = pStmt.toString().substring(pStmt.toString().indexOf(":")+2).replaceFirst("\'", "").replaceFirst("\'", "") + ";";
+
+		pStmt = con.prepareStatement(newstr);
+		int cnt = pStmt.executeUpdate();
+		if(cnt==0) {
+			System.out.println("입력 실패");
+		}else {
+			System.out.println("");
+		}
+		
 
 		
 	} 
@@ -226,18 +235,28 @@ public class DBManager {
 		
 		
 		int count = t.getClass().getDeclaredFields().length;
+		String four =t.getClass().getDeclaredFields()[0].getName();
+		String two;
 		for(int i = 1; i<count ; i++) {
 			pStmt = con.prepareStatement(sql);
-			pStmt.setString(1, t.getClass().getName());
-			pStmt.setString(4, t.getClass().getDeclaredFields()[0].getName());
+			pStmt.setString(1, t.getClass().getSimpleName());
+			pStmt.setString(4, four);
 			pStmt.setString(5, primary_key);
 			
 			System.out.println(""+t.getClass().getDeclaredFields()[i].getName()+"의 값을 입력하십시오(공백입력시 생략)");
 			String tmp = scan.nextLine();
 			if(!tmp.equals("")) {
-				pStmt.setString(3, t.getClass().getDeclaredFields()[i].getName());
-				pStmt.setString(4, tmp);
-				printCount();
+				two = t.getClass().getDeclaredFields()[i].getName();
+				pStmt.setString(2, two);
+				pStmt.setString(3, tmp);
+				String newsql = pStmt.toString().substring(pStmt.toString().indexOf(":")+2).replaceFirst("\'", "").replaceFirst("\'", "").replaceFirst("\'"+two+"\'", two).replaceFirst("\'"+four+"\'", four) + ";";
+				System.out.println(newsql);
+				int cnt = pStmt.executeUpdate(newsql);
+				if(cnt==0) {
+					System.out.println("수정 실패");
+				}else {
+					System.out.println("수정 성공");
+				}
 			}
 			
 		}
@@ -254,11 +273,18 @@ public class DBManager {
 		String primaryKey = scan.nextLine();
 		pStmt = con.prepareStatement(sql);
 		Field[] primarykeyArr = t.getClass().getDeclaredFields();
-		pStmt.setString(1, t.getClass().getName());
+		pStmt.setString(1, t.getClass().getSimpleName());
 		pStmt.setString(2, primarykeyArr[0].getName());
 		pStmt.setString(3, primaryKey);
+		String newsql = pStmt.toString().substring(pStmt.toString().indexOf(":")+2).replace("\'", "") + ";";
+		System.out.println(newsql);
 		
-		printCount();
+		int count = pStmt.executeUpdate(newsql);
+		if(count==0) {
+			System.out.println("삭제 실패");
+		}else {
+			System.out.println("삭제 성공");
+		}
 	}
 
 	
