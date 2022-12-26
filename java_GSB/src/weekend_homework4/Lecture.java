@@ -5,18 +5,18 @@ import lombok.Data;
 @Data
 public class Lecture {
 
-	int le_num;
+	String le_num;
 	String le_pr_num;
 	String le_name;
 	String le_current_capa;
 	String le_schedule;
-	int le_point;
-	int le_year;
-	int le_term;
-	int le_class;
+	String le_point;
+	String le_year;
+	String le_term;
+	String le_class;
 	
-	public Lecture(int le_num, String le_pr_num, String le_name, String le_current_capa, String le_schedule,
-			int le_point, int le_year, int le_term, int le_class) {
+	public Lecture(String le_num, String le_pr_num, String le_name, String le_current_capa, String le_schedule,
+			String le_point, String le_year, String le_term, String le_class) {
 		this.le_num = le_num;
 		this.le_pr_num = le_pr_num;
 		this.le_name = le_name;
@@ -26,6 +26,10 @@ public class Lecture {
 		this.le_year = le_year;
 		this.le_term = le_term;
 		this.le_class = le_class;
+	}
+
+	public Lecture() {
+		super();
 	}
 	
 	

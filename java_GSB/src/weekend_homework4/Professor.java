@@ -19,6 +19,10 @@ public class Professor {
 		this.pr_de_num = pr_de_num;
 		this.pr_state = pr_state;
 	}
+
+	public Professor() {
+		super();
+	}
 	
 	
 	

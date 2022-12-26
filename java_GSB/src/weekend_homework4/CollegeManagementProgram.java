@@ -1,10 +1,11 @@
 package weekend_homework4;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CollegeManagementProgram {
 	private Scanner scan = new Scanner(System.in);
-	
+	private DBManager dbm = new DBManager();
 //	-학부 등록/수정/삭제/조회
 //	-강좌 등록/수정/삭제/조회
 //	-교수 등록/수정/삭제/조회
@@ -15,7 +16,7 @@ public class CollegeManagementProgram {
 	
 	public void run() {
 		int menu = -1;
-		
+		dbm.connect();
 		do {
 			printMainMenu();
 			menu = scan.nextInt();
@@ -26,49 +27,128 @@ public class CollegeManagementProgram {
 	}
 
 	private void runMenu(int menu) {
+		int submenu = -1;
+		switch(menu) {	
+		case 1: case 2: case 3: case 4: 
+			
+			submenu = -1;
+			do {
+				printSubMenu(menu);
+				submenu = scan.nextInt();
+				scan.nextLine();
+				try {
+					runSubMenu(menu, submenu);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}while(submenu !=5);
+			
+			
+			
+			break;
+			
+		case 5: 
+			submenu = -1;
+		do {
+			printSubMenu(menu);
+			submenu = scan.nextInt();
+			scan.nextLine();
+			try {
+				runSubMenu(menu, submenu);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}while(submenu !=3);
+		
+		break;
+		
+		case 6: 
+			
+			submenu = -1;
+			do {
+				printSubMenu(menu);
+				submenu = scan.nextInt();
+				scan.nextLine();
+				try {
+					runSubMenu(menu, submenu);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}while(submenu !=4);
+			
+			 break;
+		case 7: 
+			
+			System.out.println("종료합니다.");
+			dbm.connectClose();
+			break;
+			
+		default: System.out.println("잘못된 메뉴 선택입니다.");
+		}
+	}
+	private void runSubMenu(int menu, int submenu) throws SQLException {
+		Object obj = returnObj(menu);
 		switch(menu) {
-		case 1: 
-			printSubMenu(1);
-			runSubMenu(1);
-			break;
-		case 2: 
-			printSubMenu(2);
-
-			break;
-		case 3: 
-			printSubMenu(3);
-
-			break;
-		case 4: 
-			printSubMenu(4);
-
+		case 1: case 2: case 3: case 4: 
+			
+			switch(submenu) {
+			case 1: 
+				dbm.insertObj(obj);
+				break;
+			case 2: 
+				dbm.updateObj(obj);
+				break;
+			case 3: 
+				dbm.deleteObj(obj);
+				break;
+			case 4: 
+				dbm.selectObj(obj);
+				break;
+			case 5: break;
+			default: System.out.println("잘못된 메뉴 선택입니다.");
+			}
+			
+			
 			break;
 		case 5: 
-			printSubMenu(5);
-
-			break;
+			switch(submenu) {
+			case 1: 
+				dbm.insertObj(obj);
+				break;
+			case 2: 
+				dbm.deleteObj(obj);
+				break;
+			case 3: 
+				
+				break;
+			default: System.out.println("잘못된 메뉴 선택입니다.");
+			}
+			
+			 break;
 		case 6: 
-			printSubMenu(6);
-
-			break;
+			
+			switch(submenu) {
+			case 1: 
+				dbm.insertObj(obj);
+				break;
+			case 2: 
+				dbm.updateObj(obj);
+				break;
+			case 3: 
+				dbm.selectObj(obj);
+				break;
+			case 4: break;
+			default: System.out.println("잘못된 메뉴 선택입니다.");
+			}
+			
+			 break;
 		case 7: 
 			System.out.println("종료합니다.");
 			break;
 		default: System.out.println("잘못된 메뉴 선택입니다.");
 		}
-}
-
-	private void runSubMenu(int menu) {
-	switch(menu) {	
-		case 1: ; break;
-		case 2: ; break;
-		case 3: ; break;
-		case 4: ; break;
-		case 5: ; break;
-		case 6: ; break;
-		default: System.out.println("잘못된 메뉴 선택입니다.");
-		}
 	}
+
 	private String returnSubStr(int menu) {
 		String str ="";
 		switch(menu) {
@@ -82,6 +162,22 @@ public class CollegeManagementProgram {
 		}
 		return str;
 	}
+	
+	private Object returnObj(int menu) {
+		Object obj = null;
+		switch(menu) {
+		case 1: obj = new Department(); break;
+		case 2: obj = new Lecture(); break;
+		case 3: obj = new Professor(); break;
+		case 4: obj = new Student(); break;
+		case 5: obj = new Course(); break;
+		case 6: obj = new Score(); break;
+		default: System.out.println("잘못된 메뉴 선택입니다.");
+		}
+		return obj;
+	}
+	
+	
 
 	private void printSubMenu(int menu) {
 		String str =returnSubStr(menu);

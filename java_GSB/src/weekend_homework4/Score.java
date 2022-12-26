@@ -23,6 +23,10 @@ public class Score {
 		this.sc_total = sc_total;
 		this.sc_co_num = sc_co_num;
 	}
+
+	public Score() {
+		super();
+	}
 	
 	
 }
