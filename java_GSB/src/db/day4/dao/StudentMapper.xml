@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.day4.dao.StudentDAO">
+  <!-- 
+  id : DAO에서 메소드명에 해당, 
+  resultType : 리턴타입인데, list인 경우 List로 쓰지 않고, List<?>의 데이터형을 
+  			- 한 행에 대한 데이터 타입을 쓰면 됨. 
+  -->  
+  <select id="selectAllStudent" resultType="db.day4.vo.StudentVO">
+  	select * from student
+  
+  </select>
+  <insert id="insertStudent" >
+  	insert into student(st_num, st_name, st_semester, st_state, st_pr_num) 
+  	value(#{st_num}, #{st_name}, #{st_semester}, #{st_state}, #{st_pr_num})
+  	</insert>
+  	<insert id="insertCourse" useGeneratedKeys="true" keyProperty="co_num">
+  	<!-- useGeneratedKeys => 만들어진 키를 사용하겠느냐. 리턴 받겠느냐는거, keyProperty=> 어디에 자동 생성 키 값을 반영할 것인가.  -->
+  		insert into course(co_st_num, co_le_num, co_type)
+  		value(#{co_st_num}, #{co_le_num}, #{co_type})
+  	</insert>
+</mapper>
