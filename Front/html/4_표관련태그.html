@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>테이블 예제</title>
+</head>
+<body>
+	<table>
+		<tr><!--한 행을 의미-->
+			<td>내용1</td><!--한 컬럼을 의미-->
+			<td>내용2</td>
+			
+
+
+
+		</tr>
+		<tr>
+			<th>th와 td의 차이: th=가운데 정렬 굵은 글자, td = 왼쪽 정렬 기본글자
+			</th>
+		</tr>
+	</table>
+
+	<table border="1">
+		<caption>과목별 성적</caption>
+		<colgroup>
+			<col style="background-color:red">
+			<col style="background-color:yellow">
+			<col style="background-color:green">
+		</colgroup>
+		<thead><tr> <!-- thead tbody tfoot 각 표의 구조를 명시하는 태그-->
+			<th>과목</th>
+			<th>이름</th>
+			<th>점수</th>
+
+		</tr></thead>
+		<tbody>
+		<tr>
+			<td rowspan="2">HTML</td>
+			<td>홍길동</td>
+			<td>100</td>
+		</tr>
+		<tr>
+			
+			<td>임꺽정</td>
+			<td>96</td>
+
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="2" align="center">평균</td>
+			
+			<td>98</td>
+		</tr></tfoot>
+
+	</table>
+	<figure>
+		<figcaption>
+			figure 태그 논문에서 이미지 설명 사용할 때 사용하는 느낌으로 해당 이미지나 표 밑에 사용
+		</figcaption>
+	</figure>
+
+
+</body>
+</html>
