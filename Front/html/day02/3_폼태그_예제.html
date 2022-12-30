@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>폼 태그</title>
+</head>
+<body>
+	<!-- 
+		폼태그 자체 혼자로는 아무런 역할이 없다. 그냥 div와 같다.
+
+		폼태그의 속성
+		method (생략시 기본값은 get) 
+		get 방식 :url창에 데이터를 보내는 방식. data크기에 제한이 있음. url의 ? 뒤에 나오는 정보들이 get 방식으로 전달되는 정보들.
+							data를 사용자가 볼 수 있음.(노출됨), 노출되어도 상관없는 정보를 보낼 때 사용.\
+							url?
+						  새로고침을 해도 같은 결과를 얻음, 같은 url에 대해 같은 결과
+		post 방식 : http request에 data를 넣어 보내는 방식
+							data 크기에 제한이 없음. data가 노출되지 않음. 노출이 되면 안되는 정보를 보낼 때 사용.
+							같은 url이라도 결과가 달라질 수 있다. 
+
+		name : 태그의 이름 지정
+		action 데이터를 처리할 페이지, 보낼 페이지(생략시 현재 페이지)
+		target 페이지를 어떻게 열지
+		autocomplete 이전 입력내용 출력하는 기능
+
+
+	폼태그의 안에 들어가는 부속 태그들
+	fieldset 폼 요소들을 그룹으로 묶고, 묶은 요소에 명칭을 뭍이는 태그
+	input 사용자로부터 데이터를 입력받기 위한 태그
+
+
+		input-type의 기본 속성
+		text
+		password
+		hidden
+		checkbox -갯수가 지정되어있지 않은 경우
+		radio - 반드시 1개만 선택해야하는 경우
+		file
+		
+		type html5 양식 태그
+		tel
+		email
+		url
+		
+		대체 가능한 요소들 button, image, submit(button태그로), reset(button태그로)
+
+	 -->
+
+	<form action="" method="get" >
+		<fieldset> <!--묶어주는 역할-->
+			<legend>form태그 연습</legend>
+			<input type="text" name="id"><br>
+			<input type="password" name="pw"><br>
+
+		</fieldset>
+		<input type="submit" value="전송버튼">
+
+	</form>
+</body>
+</html>
