@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>이미지 태그 예제</title>
+</head>
+<body>
+	<!-- width : 가로 height : 높이
+				- 기본 픽셀 단위. 
+				- auto : 비율에 맞게 크기를 조절, 보통 가로, 세로 하나만 지정 후 나머지 값으로
+					auto를 추가하여 이미지 비율이 깨지지 않도록 함. -->
+	<input type="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN3pT0RSVb3jtX-6BtCJ9R_uHd8AvkgE1BNw&usqp=CAU" alt="피자"><br>
+	<!-- src=> 이미지의 위치, alt=>이미지 없을 시 표시할 것. 
+	웹 표준 검사에서는 alt의 존재까지 검사한다. -->
+	<!--절대경로 : 최상위 폴더를 기준으로 경로를 탐색
+			- root 폴더(최상위 폴더 : html폴더
+			- /로 시작
+			- 최상위폴더가(root를 말함 여기서는 html 폴더) 바뀌면 문제가 됨.)-->
+	<input type="image" src="/image/페퍼로니.jpg" alt="페퍼로니"><br>
+
+	<!-- 상대경로 : 현재 파일 위치를 기준으로 탐색
+		- 최상위 폴더가 바뀌어도 문제가 안됨.
+	 	- .. : 상위 폴더로 이동
+		- ./ : 현재 폴더를 기준으로-->
+		<!-- input 태그와 img 태그의 차이는 마우스 호버 시 커서의 모양이 손가락으로 바뀌느냐 아니냐 (input가 변경됨) -->
+	<input width="300" height="auto" type="image" src="../image/페퍼로니.jpg" alt="페퍼로니">
+
+	<img width="300" height="200" src="../image/페퍼로니.jpg" alt="페퍼로니 피자"> <br>
+
+
+</body>
+
+</html>

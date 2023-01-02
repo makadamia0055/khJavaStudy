@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>속성 선택자</title>
+	<style>
+		input[type=text]{
+			color:red;
+		}
+		/* 
+		[속성=값]:속성이 값과 정확히 일치
+		[속성~=값] : 값이 포함된 요소를 선택. 단어로 포함되어야 함()
+			- 속성="값1 값2" 값1 선택 됨.
+			- 속성="값1값2" 값1값2라는 단어 통째로 인식되어서 선택 안됨.
+			- 보통 특정 클래스를 포함한 요소를 선택할 때 사용
+		[속성|=값] : 값이 포함된 요소를 선택. -로 구분.
+			- 속성 = "값1-값2"
+			- 속성 = "값1값2"
+			- 속성 = "값2-값1"
+		[속성^=값] : 값으로 시작하는 요소 선택
+		[속성$=값] : 값으로 끝나는 요소 선택
+		[속성*=값] : 값을 포함하는 요소 선택
+		*/
+		input[class~=pw]{ /* 띄어쓰기로 단어를 구분, ~이하 단어가 정확히 들어가있는지 체크*/
+			color:yellow;
+			background-color: blue; 
+			
+		}
+		input[class|=input]{background-color: gray;} 
+		[class^=p]{ font-size: 30px;}
+		[class$=pw]{border: 1px solid red;}
+		[class*=id]{border-radius: 30px;}
+
+		/* 다른 구분을 무시함 즉 -로 구분하면  띄어쓰기 등은 무시함. */
+
+	</style>
+
+</head>
+<body>
+	<input type="text" name="id" placeholder="id" value="123" class="input-id"><br>
+	<input type="password" name="pw" placeholder="pw" value="1234" class="pw inputpw"><br>
+	<input type="password" name="pw2" placeholder="pw" value="1234" class="input-pw pw pw2"><br>
+
+	<input type="password" name="pw2" placeholder="pw" value="1234" class="pwpw2 input-pw"><br>
+	<input type="password" name="pw2" placeholder="pw" value="1234" class="pw pw2 pw-input"><br>
+
+</body>
+
+</html>
