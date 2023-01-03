@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>포지셔닝 relative</title>
+	<style>
+		/* 
+		relative
+		- 기존 위치에서 상대적인 위치를 나타낼 때 사용
+			-top bottom left right 속성을 사용(반드시는 아님)
+			- top 양수 -> 위를 기준으로 삼아 10만큼 이동(아래로 10만큼 내림)
+			- top 음수 -> 위를 기준으로 -10 만큼 이동(위로 10만큼 올림)
+		- absolute의 기준 요소를 지정할 때 사용.
+		 */
+		 .box{width: 50px; height: 50px; background:  red;
+			color:white; text-align:  center; line-height: 50px;
+			display: inline-block ; margin-right:20px;
+			position: relative;
+		}
+
+		.box1{top: 10px ; right : 10px; }
+		.box2{left: 10px; bottom:10px;}
+		.box3{ left : -5px;}
+		.box4{bottom : -20px;}
+		.box5{right: -20px}
+
+				
+
+	</style>
+</head>
+<body>
+	<!-- 
+		position
+		static: 요소를 문서의 흐름에 맞춰 배치(default) (변경 반영 X)
+		relative : 이전 요소와 자연스럽게 연결해 배치, 위치 지정 가능
+		absolute : 원하는 위치를 지정해 배치(부모, 조상 요소의 position속성이 relative이여야함.)
+		fixed : 고정된 위치
+
+	 -->
+	 <div class="box box1">H</div>
+	 <div class="box box2">E</div>
+	 <div class="box box3">L</div>
+	 <div class="box box4">L</div>
+	 <div class="box box5">O</div>
+
+</body>
+</html>

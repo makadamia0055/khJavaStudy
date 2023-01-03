@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 100px; height: 100px; margin-bottom: 10px;
+		}
+		.box1{
+			border-top-color:red;
+			border-top-width:1px;
+			border-top-style: solid;
+			/* == border: 1px solid red; */
+			border-bottom: 2px dashed blue;
+			border-right : 3px double green;
+			border-left : 4px dotted gray;
+		}
+		.box2{
+			border-style: solid dashed double dotted;
+			border-width: 1px 2px 3px 4px;
+			border-color:red green blue gray
+		}
+		.box3{
+			border-style: solid dashed;
+			border-width : 1px 2px;
+			border-color: red blue
+		} 
+		/* 생략된 부분은 반대편을 따른다. 이런 특징은 다른 css요소에도 동일하게 적용 */
+		.box4{
+			border: 1px solid red;
+
+		}
+		.btn{
+			width:100px; height: 50px;
+			border-radius: 25px;
+			border-top-left-radius: 50px 25px;
+		}
+		/* border-radius는 위치가 top-left top-right, bottom-left, bottom-right
+				최대 해당 가로, 세로 길이의 반
+				이것도 하나만 변경하는거 가능.
+		*/
+	</style>
+</head>
+<body>
+	<!-- 
+		border-style : border의 스타일
+		border-width : 테두리의 두께
+		위치 : top, bottom, left, right
+					border-top-style, border-bottom-width 처럼 각각 위치의 스타일, 두께, 색상 지정 가능
+		border-color : 테두리의 색상
+		border : 한번에 적용하는 속성 순서 두께 스타일 색상값;
+	 -->
+	 <div class="box box1"></div>
+	 <div class="box box2"></div>
+	 <div class="box box3"></div>
+	 <div class="box box4"></div>
+	 <button class="btn"></button>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>margin을 이용한 가운데 정렬 예제</title>
+	<style>
+		.container-box{ text-align: center;}
+		.box2{
+			width:50px; height: 20px; background: red;
+			margin:0 auto;
+		}
+	</style>
+<!-- 
+	inline이나 inline-block 태그는 text-align:center를 통해 가운데 정렬이 가능
+	근데 block속성인 div box2는 그렇게 정렬이 안됨.
+
+	크기가 정해진 block태그를 좌우 가운데로 정렬하는 방법
+	: margin : 0 auto
+ -->
+</head>
+<body>
+	<div class="container-box">
+		<span class="box1">안녕</span>
+	</div>
+	<div class="container-box">
+		<div class="box2"></div>
+	</div>
+</body>
+</html>
