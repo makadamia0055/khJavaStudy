@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>표 스타일</title>
+	<style>
+		table{border-collapse: collapse;
+			empty-cells:hide;
+			width: 100%;
+		}
+		/* th, td{
+			border: 1px solid black;
+		} */
+		tr{
+			border: 1px solid black;
+			border-width: 1px 0;
+			/* 넓이만 뒤에서 다시 설정해주는 부분 */
+		}
+		tr>th:first-child{
+			width:150px;
+		}
+		tr>th:nth-child(2){
+			width:100px;
+		}
+		tr>th:nth-child(3){
+			width:100px;
+		}
+		th,td{
+			height : 40px;
+		}
+		
+		tr:hover:not(tr:first-child){
+			background: antiquewhite;
+		}
+		/* 
+			여기서 연습한 첫번째 줄 호버 적용 안되기 예제는 thead tbody 사용해서 tbody>tr로 해도 됨.
+		 */
+	</style>
+	<!-- 
+		caption-side : 테이블 캡션의 위치
+		width/height : 테이블에 지정하면 전체, td에 적용하면 해당 칼럼의
+		border-collapse: 테이블의 보더라인 합치기()
+		empty-cells : 비어있는 셀 표시할 지, 지울지 선택(border-collapse가 separate일 때 적용)
+		table-layout : 셀의 내용이 길어지면 자동으로 셀의 크기도 거기서 맞추어 커지는 옵션, 
+									기본: auto는 맞추어 조정, / fixed는 고정(넘는 글자는 튀어나감)
+	 -->
+</head>
+<body>
+	<table>
+		<tr>
+			<th>과목</th>
+			<th>이름</th>
+			<th>점수</th>
+		</tr>
+		<tr>
+			<td>HTML</td>
+			<td>홍길동</td>
+			<td>95</td>
+		</tr>
+		<tr>
+			<td>JAVA</td>
+			<td>임꺽정</td>
+			<td>100</td>
+		</tr>
+	</table>
+</body>
+</html>

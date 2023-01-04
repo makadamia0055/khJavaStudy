@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>박스 분할 예제 선생님 파일</title>
+	<style>
+		*{margin:0;}
+		.container-box{ border: 3px solid red;}
+		/* 바디태그에는 기본 마진이 있음. 위, 아래 좌우 8px씩 */
+		.container-box::after{
+			clear:both; display:block; content:'';
+		}
+		.box{
+			height: 100px; width: calc( (100% ) /3); background: yellow;
+			float:left; padding: 30px; box-sizing: border-box; 
+			
+		}
+		a{
+			color: inherit;
+		}
+		/* or box-sizing: border-box 를 이용해도 됨.*/
+		.box1{ background-color: burlywood; border-right: 5px solid red;}
+		.box2{ background-color: aquamarine; border-right: 5px solid red;}
+		/* 그냥 사이에 border를 넣으면 넓이가 100%보다 커져서 튀어나감. 그래서 넓이를 calc로 조정해줌. */
+	</style>
+</head>
+<body>
+	<div class="container-box">
+		<a href="http://www.naver.com"><div class="box box1">1.네이버로</div></a>
+		<a href="http://www.daum.net"><div class="box box2">2.다음으로</div></a>
+		<a href="http://www.google.com"><div class="box box3">3.구글로</div></a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>투명도 예제</title>
+	<style>
+		.container-box{
+			height: 500px; background: rgba(255,0,0,0.5);
+			padding: 100px; 
+		}
+		.box{
+			height: 200px; background: green;
+			opacity: 1;
+			font-size: 50px;
+		}
+		/* 
+		투명도를 지정하면 box 안의 내용도 같이 투명해진다. 
+		부모에 투명도를 지정하면 자식도 영향을 받는다.
+		그래서 이렇게 상속관계에 있는 개체들을 같이 다루면서 부모만 투명하게 하고 싶을때
+		rgba를 사용한다. 
+		*/
+	</style>
+</head>
+<body>
+	<div class="container-box">
+		<div class="box">HELLO</div>
+	</div>
+</body>
+</html>

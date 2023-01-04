@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>transform 예제</title>
+	<style>
+		.box{
+			width:300px; height:100px;
+			margin: 100px auto;
+			background: red;
+		}
+		body{
+			perspective :50px;
+		}
+		.box1{  transform: translateZ(-10px) } /*2차원 이동*/
+		.box2{ transform: scale(1); } /*확대*/
+		.box3{ transform: rotate(45deg);} /*원 방향으로 회전*/
+		.box4{ transform: skew( 45deg, 0);} /*변형*/
+		.box5{ transform: rotateX(45deg);		/*축을 기준으로 회전*/
+					background: url(../image/페퍼로니.jpg);
+					background-size: auto 100px; 
+					}
+		.box6{background-image: url(../image/images.jpg);
+					background-size : auto 100px;
+					transform-origin: bottom;
+					transform: rotateX(45deg)}
+	</style>
+</head>
+<body>
+	<div class="box box1"></div>
+	<div class="box box2"></div>
+	<div class="box box3"></div>
+	<div class="box box4"></div>
+	<div class="box box5"></div>
+	<div class="box box6"></div>
+</body>
+</html>

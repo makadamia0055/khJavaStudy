@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>transition 예제</title>
+	<style>
+		.box{
+			font-size: 50px;
+			transition-property: font-size;
+			transition-delay: 0.5s;
+			transition-duration: 3s;
+			transition-timing-function: ease; /* 변경 가속도 처리 방법 cubic~을 이용하여 수동 적용도 가능*/
+			transition: font-size 3s ease 0.5s, color 3s linear;
+		}
+		.box:hover{
+			font-size: 200px;
+			color: red;
+		}
+		/* 스타일 변경이 감지되었을 때 그 변경에 값을 주는 css 속성 */
+	</style>
+</head>
+<body>
+	<div class="box">꽝</div>
+</body>
+</html>

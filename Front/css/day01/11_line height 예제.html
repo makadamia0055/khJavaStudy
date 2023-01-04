@@ -8,10 +8,18 @@
 	<style>
 		.box{width:50px; height: 50px ; border: 1px solid black;}
 		.box2{line-height: 50px;}
+		/* 개인공부: 자식요소들이 부모요소들에게 상속 받을 때 퍼센트 수치를 상속받는 것이 아니라
+		부모의 퍼센트 수치를 기반으로 계산된 값을 상속 받는다. 단위가 지정된 숫자값도 마찬가지.
+		그래서 이렇게 계산된 값을 상속받는 요소들에서는 단위가 없는 숫자값을 쓰는게 좋다. 
+		20%-> 부모(가령 body의 값에서 *20%가 된 값 받음.) normal같은 값은 normal이 상속되긴 하나, 
+		브라우저마다 normal값이 다를 수 있다.
+		1.5 같은 단위 없는 숫자값을 쓰면 그대로 비율로 반영되고, 상속시에는 숫자값 그대로 상속됨. > 비율 유지됨.
+		때문에  */
 	</style>
 </head>
 <body>
 	<div class="box box1">1</div>
+	
 	<div class="box box2">2</div>
 </body>
 </html>

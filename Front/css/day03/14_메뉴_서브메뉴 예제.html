@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>박스>박스 예제</title>
+	<style>
+		.container-box{
+			width: 600px; height: 800px;
+			border: 3px solid red;
+			margin: 50px;
+			padding: 20px;
+		}
+		.container-box::after{
+			clear: both; content: ''; display: block;
+		}
+		.menu{width: 100px; height: 50px;
+			position: relative;
+			border: 2px solid green;
+			float:left;
+			
+		}
+			
+		.sub{width: 100px; height: 200px;
+			position: absolute;
+			top:100%;
+			float: left;
+			border: 2px solid blue;
+			display: none;
+		}
+		.menu1:hover + .sub1{
+			display:inlineblock;
+		}
+		/* .menu2:hover + .sub2{
+			display:inline-block;
+		}
+		.menu3:hover + .sub3{
+			display:inline-block;
+		}
+		.menu4:hover + .sub4{
+			display:inline-block;
+		} */
+
+	</style>
+</head>
+<body>
+	<div class="container-box">
+		<div class="menu menu1">1<div class="sub sub1">1</div>
+	</div>
+		<div class="menu menu2">2<div class="sub sub2">2</div>
+	</div>
+		<div class="menu menu3">3<div class="sub sub3">3</div>
+	</div>
+		<div class="menu menu4">4<div class="sub sub4">4</div>
+	</div>
+		
+
+
+	</div>
+</body>
+</html>

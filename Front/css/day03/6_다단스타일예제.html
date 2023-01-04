@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>다단 예제</title>
+	<style>
+		.box1{column-width: 500px;
+				-webkit-column-width: 500px;
+				-moz-column-width: 500px;
+			}
+
+		.box{ column-count:2;
+					column-gap: 100px;
+				column-rule-color : red;
+				column-rule-width : 1px;
+			column-rule-style: solid;
+			column-rule : 1px red solid;
+		}
+			/*
+			 column-width: 단의 넓이를 지정
+			 column-count: 단의 개수를 지정
+			 
+			 column-gap : 단 사이의 여백 설정
+			 column-rule : 단 사이의 효과 주는 속성
+
+			 column-span : 단을 합치는 것.
+			*/
+			.test{
+				height: 50px; background-color: coral;
+				column-span : all;
+			}
+	</style>
+</head>
+<!-- 접두사를 통해 최적화 가능 -->
+<body>
+	<div class="box">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, maiores? Porro, odio tenetur sequi illo sapiente ducimus debitis nulla aperiam iure, eligendi provident omnis ullam quo deserunt ipsa? Quo, eaque! Lorem ipsum dolor sit amet consectetur, adipisicing
+		<div class="test"></div> elit. Eum, maiores? Porro, odio tenetur sequi illo sapiente ducimus debitis nulla aperiam iure, eligendi provident omnis ullam quo deserunt ipsa? Quo, eaque! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, maiores? Porro, odio tenetur sequi illo sapiente ducimus debitis nulla aperiam iure, eligendi provident omnis ullam quo deserunt ipsa? Quo, eaque! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, maiores? Porro, odio tenetur sequi illo sapiente ducimus debitis nulla aperiam iure, eligendi provident omnis ullam quo deserunt ipsa? Quo, eaque! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, maiores? Porro, odio tenetur sequi illo sapiente ducimus debitis nulla aperiam iure, eligendi provident omnis ullam quo deserunt ipsa? Quo, eaque! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, maiores? Porro, odio tenetur sequi illo sapiente ducimus debitis nulla aperiam iure, eligendi provident omnis ullam quo deserunt ipsa? Quo, eaque!
+
+	</div>
+	
+</body>
+</html>

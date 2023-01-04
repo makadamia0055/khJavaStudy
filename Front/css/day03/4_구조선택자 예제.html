@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>구조선택자 예제</title>
+	<style>
+		li:nth-child(2){color: red;}
+		li:nth-of-type(2){ background-color: yellow;	}
+		.fruit:nth-child(3){text-decoration:underline;}
+		.fruit:nth-of-type(3){font-size:20px}
+
+		p:nth-child(2){color: red}
+		p:nth-of-type(2){background-color: yellow;}
+		/* 수열로 사용한다는 것=> ()안에 2n 혹은 2n-1을 넣어서 짝수나 홀수 등 조건을 설정 가능 */
+	</style>
+</head>
+<body>
+	<!-- 
+		선택자:nth-child(숫자)
+		- 부모 요소를 기준으로 숫자번째 자식 요소가 선택자인 요소
+		선택자:nth-of-type(숫자)
+		- 부모 요소를 기준으로 선택자와 일치하는 요소들 중에서 숫자번째 요소
+
+		위의 두 선택자는 요소의 가장 먼저 나오는 요소를 기준으로 작동해서 
+		class 같은 요소들을 넣고 사용하면 변별이 안된다고 함. li가 먼저 적용되어서 그런가봄
+
+	 -->
+	<ul>
+		<li class="">사과</li>
+		<li class="fruit">포도</li>
+		<li class="fruit">배</li>
+		<li class="fruit">바나나</li>
+	</ul>
+	<div>
+		<h1>h1태그</h1>
+		<p>p태그</p>
+		<p>p태그</p>
+		<p>p태그</p>
+	</div>
+</body>
+</html>

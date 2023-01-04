@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>애니메이션 예제</title>
+	<style>
+		@keyframes color_Red {
+			from{
+				color: red;
+			}
+			25%{
+				color: blue;
+			}
+			50%{
+				color:black;
+			}
+			75%{
+				color: green;
+			}
+			to{
+				color:red;
+			}
+			/* 먼저 애니메이션을 정의, 0%=from, 100%=to로 변경가능 */
+		}
+		.box{
+			font-size: 100px; font-weight: bold;
+			animation-name: color_Red;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">안녕하세요</div>
+	
+</body>
+</html>
