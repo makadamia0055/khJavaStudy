@@ -11,6 +11,7 @@
 			border: 3px solid red;
 			margin: 50px;
 			padding: 20px;
+			background-color: white;
 		}
 		.container-box::after{
 			clear: both; content: ''; display: block;
@@ -19,28 +20,36 @@
 			position: relative;
 			border: 2px solid green;
 			float:left;
+			box-sizing: border-box;
+			background-color: antiquewhite;
 			
+		}
+		.menu+.menu{
+			border-left: 1px;
 		}
 			
 		.sub{width: 100px; height: 200px;
 			position: absolute;
-			top:100%;
-			float: left;
-			border: 2px solid blue;
+			top:100%; left: -1px;
+			border: 1px solid blue;
 			display: none;
+			box-sizing:border-box;
+			background-color: azure;
+
 		}
-		.menu1:hover + .sub1{
-			display:inlineblock;
+		/* 박스 컨텐츠 시작 위치에 sub박스가 시작됨. */
+		/* .menu1:hover>.sub1{
+			display:block;
 		}
-		/* .menu2:hover + .sub2{
+		.menu2:hover>.sub2{
 			display:inline-block;
 		}
-		.menu3:hover + .sub3{
-			display:inline-block;
-		}
-		.menu4:hover + .sub4{
+		.menu3:hover>.sub3{
 			display:inline-block;
 		} */
+		.menu:hover>.sub{
+			display:inline-block;
+		}
 
 	</style>
 </head>
