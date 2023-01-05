@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>검색창 예제</title>
+	<style>
+		*{padding:0; margin:0;}
+		.search-container{
+			padding:10px;
+			padding-right: 62px;
+			width:400px;
+			border: 2px solid rgb(24, 206, 24); position: relative;
+			border-radius: 2px;
+		}
+		.search-input{
+			height: 30px; width: 100%; font-size: 18px; border: 0;
+			outline:0;
+			/* 클릭했을 때 보더라인 없애는 옵션 outline:0  */
+		}
+		.search-btn{
+			position:absolute; top:-2px; bottom:-2px; right:-2px; width: 52px;
+			background: rgb(24, 206, 24); border: 0; color: white; font-weight: bold;
+			border-radius: 0 2px 2px 0 ;
+			cursor:pointer;
+		}
+		/* 
+		이 예제의 포인트
+		1. padding을 통해서 입력창 위치 조정해주기
+		2. 오른쪽 끝에 딱 붙이기 위해서 position absolute를 이용 */
+	</style>
+</head>
+<body>
+	<form action="" class="search-container">
+		<input type="text" class="search-input">
+		<button type="submit" class="search-btn">검색</button>
+	</form>
+</body>
+</html>
