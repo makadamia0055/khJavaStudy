@@ -95,6 +95,16 @@
 			margin: 1px; background-color: #fff;
 			font-size: 18px; line-height: 24px;
 			color:#000; font-weight: 700; outline: 0;
+			border: 0;
+		}
+		.box-search .search-form{
+			position: relative;
+		}
+		.box-search .btn-search{
+			position: absolute; top: 0; right: 0; bottom: 0;
+			width: 56px; background-color: #19ce60;
+			border: 0; outline: 0;
+			border-radius: 0 2px 2px 0; cursor: pointer;
 		}
 		
 		/* 여백을 주기 위해서  */
@@ -113,8 +123,9 @@
 					</div>
 					<div class="logo-container"><i id="logo" class="logo img1"></i></div>
 					<div class="search-area green_window" id="search">
-					<form action="" method="get">
+					<form action="" method="get" class="search-form">
 						<input type="text" class="query">
+						<button class="btn-search"></button>
 					</form>
 				</div>
 				</div>

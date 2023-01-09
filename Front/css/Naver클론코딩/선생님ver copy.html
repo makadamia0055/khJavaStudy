@@ -13,12 +13,13 @@
 			min-width: 1190px;
 			font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
 			line-height: 16px; font-size: 12px; color: #202020;
+			height: 1000px;
 		}
 		.inner-container{ 
 			width: 1130px; margin: 0 auto; padding: 0 30px;
 		}
 		.box-search{
-			position: relative;
+			position: relative; height: 160px;
 		}
 		.box-search .box-service{
 			position: absolute; right: -3px; top: 12px;
@@ -34,40 +35,225 @@
 			background-position: -382px -213px;
 			vertical-align: top; margin: -3px 0 0 3px;
 		}
+		.box-search .link-jrnaver{
+			float: left;
+		}
+		.box-search .link-jrnaver .icon-jrnaver{
+			width: 60px; height: 10px; background-position: -264px -296px;
+			display: inline-block; vertical-align: top;
+			margin: 3px; 
+		}
+		.box-search .link-jrnaver:hover .icon-jrnaver{
+			background-position: -326px -296px;
+		}
+		.box-search .icon-bar{
+			float: left; width: 1px; height: 10px; margin: 3px 7px;
+			background: #e4e8eb;
+		}
+		.box-search .link-happybean{
+			float: left; margin-left: 6px;
+		}
+		.box-search .link-happybean .icon-happybean{
+			width: 34px; height: 11px; background-position: -365px -245px;
+			display: inline-block; vertical-align: top;
+			margin: 3px 3px 2px; 
+		}
+		.box-search .link-happybean:hover .icon-happybean{
+			background-position: -380px -199px;
+		}
 
-		.img1::after, #junior, #happybean{
-			background: url(img/img1.png);
+		.box-search .box-search-area{
+			position: absolute; top: 50%; left: 238px;
+			margin-top: -28px;
+		}
+		.box-search .form-search{
+			width: 582px; height: 52px; border: 2px solid  #19ce60;
+			border-radius: 2px; 
+		}
+		.box-search .input-search{
+			width: 444px; height: 24px; padding: 13px 15px;
+			margin: 1px; background-color: #fff;
+			font-size: 18px; line-height: 24px; color: #000;
+			font-weight: bold; outline: 0; border: 0;
+		}
+		.box-search .btn-search{
+			position: absolute; top: 0; right: 0; bottom: 0;
+			width: 56px; background-color: #19ce60;
+			border: 0; outline: 0;
+			border-radius: 0 2px 2px 0; cursor: pointer;
+		}
+		.box-search .icon-search{
+			width: 22px; height: 22px; display: inline-block;
+			vertical-align: top; background-position: -420px -24px;
+		}
+		.box-search .btn-auto-complete{
+			position: absolute; top: 0; bottom: 0; right: 64px;
+			width: 22px;
+		}
+		.box-search .icon-auto-complete{
+			display: inline-block; width: 10px; height: 5px;
+			background-position: -158px -151px;
+			position: absolute; top: 50%; left: 50%;
+			margin: -2px 0 0 -5px;
+		}
+		.box-search .btn-kbd{
+			position: absolute; top: 0; bottom: 0; right: 84px;
+			width: 36px;
+		}
+		.box-search .icon-kbd{
+			display: inline-block; width: 20px; height: 12px;
+			background-position: -398px -267px;
+			position: absolute; top: 50%; left: 50%;
+			margin: -6px 0 0 -10px;
+		}
+		.logo-area{
+			position: absolute;
+			top:50%;
+			left: -9px;
+			margin-top: -32px;
+			height: 100%;
+		}
+		.logo_naver{
+			display: block;
+		}
+		.logo_naver::before{
+			display: inline-block;
+			width:222px;
+			height: 52px;
+			background-position: 0 -158px;
+			vertical-align: top;
+			content:'';
+		}
+		.container-search{
+			border-bottom: 1px solid #e4e8eb;}
+			
+			.container-menu{
+				position: relative;
+				box-shadow:  0 1px 3px 0 rgb(0 0 0/ 12%);
+			}
+		.menu-inner-container{
+			position: relative;
+			width: 1130px;
+			padding: 0 30px;
+			margin: 0 auto;
+		}
+		.group_nav{
+			overflow: hidden;
+			position: relative;
+			padding: 11px 270px 11px 0;
+		}
+		.list_nav{
+			float:left; font-size: 15px; line-height: 30px; font-weight: 700;
+			color:#000; letter-spacing: -.3px;
+		}
+		.list_nav .nav_item{
+			float:left;
+			
+		}
+		.nav_item + .nav_item{
+			margin-left:12px;
+		}
+		.list_nav .nav{
+			display: block;
+			text-decoration: none;
+		}
+		.list_nav.list_nav.type_fix .nav{
+			color:#03c75a;
+		}
+		.list_nav .ico_mail{
+			display: inline-block;
+			width: 21px; height: 21px; background-position: -420px -73px;
+			vertical-align: top; margin:3px 9px 0 0 ;
+		}
+		.list_nav .ico_shopping{
+			width: 24px; height:20px; background-position: -76px -386px;
+			line-height: 30px;margin: 5px 0 0 0;
+			display: inline-block;
+		}
+		.list_nav .ico_shoppinglive{
+			width: 54px; height: 20px; background-position: -209px -267px;
+			vertical-align: top; margin: 5px 0px 0 0;
+			display: inline-block;
+		}
+		.list_nav .ico_tv{
+			display: inline-block;
+			width: 12px; height: 14px; background-position: -256px -212px;
+			vertical-align: top; margin: 9px 2px 0 0 ;
+
+		}
+		.btn-more{
+		float: left;
+		margin-left:17px;
+		font-size:13px;
+		line-height: 30px;
+		color:#202020; text-align: right;
+		}
+		.btn-more:hover{
+			text-decoration: underline;
+		}
+		.btn-more::after{
+			display: inline-block;
+			width: 11px; height: 7px; background-position: -402px -296px;
+			content:'';
+			margin-left:7px;
+			vertical-align: 2px;
+
+		}
+		.list_nav.type_custom .nav_item + .nav_item{
+			margin-left: 11px;
+			letter-spacing: -1px;
+		}
+		.group-weather{
+			width:270px; height: 52px; top:0; right:0;
+			bottom:0; overflow: hidden; text-align: right;
+			position: absolute;
+	
+		}
+		
+		.list_nav.NM_FAVORITE_LIST .nav{
+			color:inherit;
+		}
+		.list_nav + .list_nav{
+			margin-left:12px
+		}
+		/* body  */
+		.container-body{
+			position: relative;
+			width: 1130px; padding: 20px 30px;
+			margin: 0 auto;
+			letter-spacing: -.2px;
+		}
+		.container-body .box-left{
+			float: left;
+			width:750px;
+			
+		}
+		.container-body .box-right{
+			float:right;
+			width: 350px;
+		}
+		.box-left .link-left-ad{
+			display: inline-block;
+			width: 750px; height: 135px;
+			background-image: url(img/ads.jpg);
+			background-size: 750px 135px;
+		}
+
+		/* 공용 */
+			
+		.blind{
+			position: absolute;
+			width: 1px; height: 1px;margin: -1px; overflow: hidden;
+		}
+
+		.link-start-page::after, .icon-jrnaver.img1, .icon-happybean.img1,
+		.icon-search.img1, .icon-auto-complete.img1, .logo_naver::before,
+		.icon-kbd.img1, .ico_mail, .ico_shopping, .ico_shoppinglive, .ico_tv,
+		.btn-more::after{
+			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
-
 		
-		#junior{
-			width: 60px; height: 10px;
-			display:inline-block;
-			background-position: -264px -296px;
-			margin: 3px;
-		}
-		#junior:hover{ background-position: -326px -296px;}
-		#happybean{
-			width:34px; height: 11px;
-			display: inline-block;
-			background-position: -365px -245px;
-			margin : 3px 3px 2px;
-		}
-		#happybean:hover{	background-position: -380px -199px;	}
-		
-		.box-search .icon-bar{
-			width:1px; height: 10px;
-			margin: 3px 7px;
-			background:#ede8eb;
-			float:left
-		}
-
-	
-		.blind{
-			display: none;
-		}
-
 	</style>
 </head>
 <body>
@@ -76,17 +262,100 @@
 			<div class="inner-container">
 				<div class="box-search">
 					<div class="box-service">
-						<a href="#" class="link-start-page img1">네이버를 시작페이지로</a>
+						<a href="https://help.naver.com/service/30016/contents/18042?osType=PC&lang=ko" class="link-start-page img1">네이버를 시작페이지로</a>
 						<i class="icon-bar"></i>
-						<a href="#"><div id="junior" class="img1"></div><span class="blind">쥬니어네이버</span>
-							 </a>
-						<a href="#"><div id="happybean" class="img1"></div><span class="blind">해피빈</span></a>
+						<a href="https://jr.naver.com/" class="link-jrnaver">
+							<i class="icon-jrnaver img1"></i>
+							<span class="blind">쥬니어네이버</span>
+						</a>
+						<a href="https://happybean.naver.com/" class="link-happybean">
+							<i class="icon-happybean img1"></i>
+							<span class="blind">해피빈</span>
+						</a>
+					</div>
+					<div class="logo-area"><a href="/Naver클론코딩/선생님ver copy.html" class="logo_naver">
+						<span class="blind">네이버</span>
+					</a></div>
+					<!-- 우측 상단 서비스 페이지 구현 완료 -->
+					<div class="box-search-area">
+						<form action="" class="form-search">
+							<input type="text" class="input-search">
+							<button class="btn-search">
+								<i class="icon-search img1"></i>
+								<span class="blind">검색</span>
+							</button>
+							<a href="#" class="btn-kbd">
+								<i class="icon-kbd img1"></i>
+								<span class="blind">가상키보드</span>
+							</a>
+							<a href="#" class="btn-auto-complete">
+								<i class="icon-auto-complete img1"></i>
+								<span class="blind">자동완성</span>
+							</a>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container-menu"></div>
-		<div class="container-body"></div>
+		<div class="container-menu">
+			<div class="menu-inner-container">
+				<div class="group_nav">
+					<ul class="list_nav type_fix">
+						<li class="nav_item">
+							<a href="https://mail.naver.com" class="nav">
+								<i class="ico_mail"></i>메일
+							</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav">카페</a>
+						</li>
+						<li class="nav_item">
+							<a href="https://section.blog.naver.com/" class="nav">블로그</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav">지식iN</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav shopping"><i class="ico_shopping"></i><span class="blind">쇼핑</span></a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav shoppinglive"><i class="ico_shoppinglive"></i><span class="blind">쇼핑live</span></a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav">Pay</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav"><i class="ico_tv"></i>TV</a>
+						</li>
+
+					</ul>
+					<ul class="list_nav NM_FAVORITE_LIST type_custom">
+						<li class="nav_item"><a href="" class="nav">영어/영영</a></li>
+						<li class="nav_item"><a href="" class="nav">파파고</a></li>
+						<li class="nav_item"><a href="" class="nav">MYBOX</a></li>
+
+
+
+					</ul>
+					
+					<a href="#" class="btn-more">더보기</a>
+
+				</div>
+				<div class="group-weather"></div>
+			</div>
+		</div>
+		<div class="container-body">
+			<div class="box-left">
+				<div class="box-left-ad">
+					<a href="#" class="link-left-ad"><span class="blind">카트라이더광고</span></a>
+				</div>
+			</div>
+			<div class="box-right">2</div>
+
+
+
+
+		</div>
 		<footer class="container-footer"></footer>
 	</div>
 </body>
