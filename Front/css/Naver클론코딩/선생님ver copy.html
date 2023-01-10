@@ -238,18 +238,238 @@
 			background-image: url(img/ads.jpg);
 			background-size: 750px 135px;
 		}
+		/* 오른쪽 */
+		
+		/* 로그인 박스 */
+		.box-right-login{
+			padding: 16px 16px 12px 17px;
+			background-color: #f7f9fa;
+			border: 1px solid #dae1e6;
+		}
+		.login_msg{
+			padding-left: 3px;
+			color:gray;
+		}
+		.link_login{
+			display: block; padding: 15px 0; margin-top: 11px;
+			background-color: #19ce60; border: 1px solid #15c654;
+			border-radius: 2px; font-size: 13px; color:#fff; font-weight: 700;
+			text-align: center; text-decoration: none;
+
+		}
+		.ico_naver{
+			display: inline-block; width: 60px;
+			height: 12px; background-position: -202px -296px;
+			vertical-align: top; margin: 2px 5px 0 0;
+		}
+		.ico_lock::before{
+			display: inline-block; width: 10px; height: 14px;
+			background-position: -408px -55px; vertical-align: top;
+			margin: -1px 1px 1px; content: '';
+		}		
+		.sub_area{
+			margin: 14px 8px 0 4px;
+		}
+		.floatleft-sub_area{
+			float: left;
+		}
+		.floatright-sub_area{
+			float:right;
+		}
+		.ico_dot::before{
+			background-color: #d7dce0;
+			display: inline-block;
+			width: 3px; height: 3px; border-radius: 50%;
+			margin: 0 5px 0 2px;
+			vertical-align: 3px;
+			content: '';
+		}
+		.link_look, .link_join{
+			color:#404040;
+		}
+		.link_look:hover, .link_join:hover{
+			text-decoration: underline;
+		}
+		.ico_join::before{
+			display: inline-block;
+			width: 11px; height:11px; background-position: -401px -245px;
+			vertical-align: top;
+			content: ''; margin: 2px 5px 0 0 ;
+		}
+		.box-right-login .sub_area::after{
+			content: '';
+			display: table;
+			table-layout: fixed;
+			clear: both;
+
+		}
+	
+		/* 뉴스 박스 */
+		.box-news{
+			width: 750px;
+			margin-top: 12px;
+		}
+		.news-headline{
+			position: relative; padding: 12px 15px 11px 15px;
+			background-color: #f7f9fa; border: 1px solid #dae1e6;
+			line-height: 24px;
+		}
+		.headline-leftbox{
+			float: left;
+		}
+		
+		.leftbox-company{
+			overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+			float: left; position: relative; max-width: 89px; padding-right: 12px;
+			margin-right: 7px; font-size: 13px; color: #000; font-weight: 700;
+			text-decoration: none; letter-spacing: -.3px; display: inline-block;
+		}
+		.leftbox-company::after{
+			position: absolute; top: 7px; right:0 ; display: inline-block;
+			width: 6px; height: 10px; background-position: -262px -112px;
+			vertical-align: top; content:'';
+
+		}
+		.leftbox-title{
+			overflow: hidden; float: left; width: 310px; height: 24px;
+		}
+		.leftbox-title .leftbox-title-contents{
+			position: relative; overflow: hidden; min-width: 100%; height: 100%;
+			width:310px;
+		}
+		.leftbox-title-article{
+			color: #000;
+		}
+		.leftbox-title-article:hover{
+			text-decoration:  underline;
+		}
+		.news-headline::after{
+			content:''; display: table; table-layout: fixed; clear: both;
+		}
+		.headline-rightbox{
+			float: right;
+			font-weight: bold;
+		}
+		.link-newshome{
+			color:#3565c9;
+			
+		}
+		.rightbox-menu{
+			float:left; height: 24px; font-size: 13px; text-decoration: none;
+		}
+		.rightbox-menu .ico_dot{
+			margin: 0 0 0 8px;
+			vertical-align: 3px;
+		}
+		.rightbox-menu .link-news{
+			margin: 0 4px 0 7px;
+			color: #202020;
+		}
+
+		/* 뉴스 스탠드 */
+		.newstand-menubar{
+			padding: 22px 0 16px;
+			font-size: 14px;
+			line-height: 18px;
+		}
+
+		.leftbox-newstand-menubar>*{
+			float:left;
+		}
+		.ico_newnews{
+			display: inline-block; width: 27px; height: 24px;
+			background-position: -272px -342px; vertical-align: top;
+			content: '';
+			margin: -6px 1px 0 0 ;
+		}
+		.link-newstand-title{
+			color:#000; font-weight: 700; text-decoration: none;
+			white-space: nowrap;
+		}
+		.link-newstand-title::after{
+			display: inline-block; width: 7px; height: 11px;
+			background-position: -410px -213px; content:'';
+			margin-left: 6px; vertical-align: -1px;
+
+		}
+		.ico_bigdot{
+			background-color: #c7ccd1;
+			display: inline-block;
+			width: 4px; height: 4px; border-radius: 50%;
+			content:''; margin: 0 8px 0 4px;
+			vertical-align: 3px;
+		}
+		.leftbox-newstand-menubar .btn_sort{
+			font-size: 14px; color: #505050; 
+		}
+		.leftbox-newstand-menubar .btn_sort.btn_sort_selected{
+			color:#000; font-weight: 700;
+		}
+		.leftbox-newstand-menubar .sort_area{
+			float: left;
+			margin-left: 10px;
+		}
+		.rightbox-newstand-menubar{
+			float:right;
+
+		}
+		.rightbox-newstand-menubar .btn_set{
+			float:left;
+			padding: 0 9px;
+		}
+
+		.rightbox-newstand-menubar .ico_list{
+			display: inline-block;
+			width: 14px;
+			height: 13px;
+			background-position: -244px -310px;
+			vertical-align: top;
+			opacity: .7;
+		}
+		.rightbox-newstand-menubar .ico_list:hover{
+			opacity: 1;
+		}
+		.rightbox-newstand-menubar .ico_tile{
+			display: inline-block;
+			width: 13px;
+			height: 13px;
+			background-position: -291px -310px;
+			vertical-align: top;
+			opacity: .7;
+		}
+		.rightbox-newstand-menubar .ico_tile:hover{
+			opacity: 1;
+		}
+		.rightbox-newstand-menubar .ico_set{
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			background-position: -102px -386px;
+			vertical-align: top;
+			opacity: .7;
+			margin: -1px 0 1px;
+		}
+		.rightbox-newstand-menubar .ico_set:hover{
+			opacity: 1;
+		}
+		
+
+
+
+		
 
 		/* 공용 */
 			
 		.blind{
 			position: absolute;
-			width: 1px; height: 1px;margin: -1px; overflow: hidden;
+			width: 1px; height: 1px; margin: -1px; overflow: hidden;
 		}
 
 		.link-start-page::after, .icon-jrnaver.img1, .icon-happybean.img1,
 		.icon-search.img1, .icon-auto-complete.img1, .logo_naver::before,
 		.icon-kbd.img1, .ico_mail, .ico_shopping, .ico_shoppinglive, .ico_tv,
-		.btn-more::after{
+		.btn-more::after, .ico_naver.img1, .ico_lock::before, .ico_join::before,
+		.leftbox-company::after, .ico_newnews, .link-newstand-title::after, .ico_list, .ico_tile, .ico_set{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
@@ -349,9 +569,70 @@
 				<div class="box-left-ad">
 					<a href="#" class="link-left-ad"><span class="blind">카트라이더광고</span></a>
 				</div>
-			</div>
-			<div class="box-right">2</div>
 
+			<div class="box-news">
+				<span class="blind">뉴스스탠드</span>
+				<div class="news-headline">
+					<div class="headline-leftbox">
+					<div class="leftbox-company">연합뉴스</div>
+					<div class="leftbox-title">
+						<div class="leftbox-title-contents"><a href="" class="leftbox-title-article">중국, 한국인 단기비자 전면 중단</a></div>
+					</div>
+
+				</div>
+				<div class="headline-rightbox">
+					<div class="rightbox-menu">
+						<a href="" class="link-newshome">뉴스홈</a>
+						<i class="ico_dot"></i>
+						<a href="" class="link-news ent">연예</a>
+						<a href="" class="link-news sport">스포츠</a>
+						<a href="" class="link-news economy">경제</a>
+					</div>
+
+				</div>
+				</div>
+				<div class="newstand-menubar">
+					<div class="leftbox-newstand-menubar">
+						<a href="" class="link-newstand-title"><i class="ico_newnews"></i>
+						뉴스스탠드</a>
+						<div class="sort_area">
+						<a href="" class="btn_sort">구독한 언론사</a>
+						<i class="ico_bigdot"></i>
+						<a href="" class="btn_sort btn_sort_selected">전체 언론사</a>
+					</div>
+					</div>
+					<div class="rightbox-newstand-menubar">
+						<a href="" class="btn_set"><i class="ico_list"></i></a>
+						<a href="" class="btn_set"><i class="ico_tile"></i></a>
+						<a href="" class="btn_set"><i class="ico_set"></i></a>
+
+					</div>
+
+				</div>
+				<div class="newstand-contents"></div>
+			</div>
+			</div>
+			<div class="box-right">
+				<div class="box-right-login">
+					
+						<span class="blind">로그인</span>
+						<p class="login_msg">네이버를 더 안전하고 편리하게 이용하세요</p>
+						<a href="" class="link_login"><i class="ico_naver img1"></i><span class="blind">네이버</span>로그인</a>
+						<div class="sub_area">
+							<div class="floatleft-sub_area">
+								<a href="" class="link_look ico_lock">
+									아이디</a>
+									<a href="" class="link_look ico_dot">비밀번호찾기</a>
+							</div>
+							<div class="floatright-sub_area">
+								<a href="" class="link_join ico_join">회원가입</a>
+							</div>
+						</div>
+					
+				</div>
+
+			</div>
+			
 
 
 
