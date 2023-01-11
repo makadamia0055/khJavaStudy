@@ -314,20 +314,145 @@
 		.box-body-left2 .link-issue:hover{
 			text-decoration: underline;
 		}
-		.box-body-left2 .box-service>*{
+		.box-body-left2 .box-head .box-service>*{
 			float:left; line-height: 24px; font-size: 13px; color: #202020;
 			letter-spacing: -.2px; font-weight: bold;
 			margin: 0 4px 0 7px;
 		}
-		.box-body-left2 .box-service>.link-news-home{
+		.box-body-left2 .box-head .box-service>.link-news-home{
 			margin: 0; color: #3565c9;
 		}
-		.box-body-left2 .box-service>.link-news-home::after{
+		.box-body-left2 .box-head .box-service>.link-news-home::after{
 			width: 3px; height: 3px; border-radius: 50%;
 			display: inline-block; content: '';
 			vertical-align: 3px; background-color: #c8ccd1;
 			margin-left : 8px;
 		}
+		.box-body-left2 .box-title{
+			padding: 22px 0 16px; font-size: 14px; line-height: 18px;
+		}
+		.box-body-left2 .box-title .box-news-stand{
+			float: left;
+		}
+		.box-body-left2 .box-title .link-news-stand{
+		 color: #000; font-weight: bold; letter-spacing: -.2px;
+		 float:left;
+		}
+		.box-body-left2 .box-title .link-news-stand::before{
+		 width: 27px; height: 24px; display: inline-block; content: '';
+		 vertical-align: top; background-position: -272px -342px;
+		 margin: -6px 1px 0 0 ;
+		}
+		.box-body-left2 .box-title .link-news-stand::after{
+			width: 7px; height: 11px; display: inline-block; content: '';
+		 vertical-align: -1px; background-position: -410px -213px;
+		 margin-left: 6px;
+		}
+		.box-body-left2 .box-title .box-service{
+		float: right;
+		}
+		.box-body-left2 .box-title .box-list{
+			float:left; margin-left: 10px;
+		}
+		.box-body-left2 .box-title .btn-my-list,
+		.box-body-left2 .box-title .btn-all-list{
+			 margin-left: 10px; font-size: 14px; color: #505050;
+			letter-spacing: -.2px;
+		}
+		.box-body-left2 .box-title .btn-all-list{
+			margin-left:0;
+		}
+		.box-body-left2 .box-title .btn-my-list[aria-selected=true],
+		.box-body-left2 .box-title .btn-all-list[aria-selected=true]{
+			font-weight: bold; color:#000;
+		}
+		.box-body-left2 .box-title .btn-all-list::before{
+			width: 4px; height: 4px; display: inline-block; content: '';
+		 vertical-align: 3px; background-color: #c7ccd1;
+		 margin: 0 8px 0 4px; border-radius: 50%;
+		}
+		.box-body-left2 .box-title .box-service>*{
+			float:left; padding: 0 9px;
+		}
+		.box-body-left2 .box-title .icon-press-list{
+			width: 14px; height: 13px; display: inline-block; ;
+		 vertical-align: top; background-position: -244px -310px;
+		 opacity: .7;
+		}
+		.box-body-left2 .box-title .icon-press-thumb{
+			width: 13px; height: 13px; display: inline-block; ;
+		 vertical-align: 3px; background-position: -291px -310px;
+		 opacity: .7;
+		}
+		.box-body-left2 .box-title .icon-set{
+			width: 15px; height: 15px; display: inline-block; ;
+		 vertical-align: 3px; background-position: -102px -386px;;
+		 margin: -1px 0 1px; opacity: .7;
+		}
+		.box-body-left2 .box-title .box-service>a:hover i{
+			opacity: 1;
+			/* 박스 서비스 아래의 a태그에 호버하면 i태그의  opacity를 조정 */
+		}
+		.box-body-left2 .box-title .box-service [aria-selected=true] .icon-press-list{
+			background-position: -260px -310px; opacity: 1;
+		}
+		.box-body-left2 .box-title .box-service [aria-selected=true] .icon-press-thumb{
+			background-position: -276px -310px; opacity: 1;
+		}
+		.box-body-left2 .box-body{
+			position: relative;
+		}
+		.box-body-left2 .box-body .item-press{
+			float: left; width: 16.66px; height: 65px; position: relative;
+		}
+		.box-body-left2 .box-body .box-thumb{
+			width: 100%; padding: 23px 0 22px; text-align: center;
+			display: block;
+			/* height가 없는 이유: padding 값이 있어서 height가 있으면 박스 터진다. */
+			/* 이미지는 인라인 요소라 text-align으로 정렬된다고 함. */
+		}
+		.box-body-left2 .box-body .popup-wrap{
+			display: none; position: absolute; top:0; left:0; right:0; bottom:0;
+			background-color: #f7f9fa; padding: 19px 0 18px; font-size: 0; 
+			line-height: 0; text-align: center;
+		}
+		.box-body-left2 .box-body .item-press:hover .popup-wrap{
+			display: block;
+		}
+		.box-body-left2 .popup-wrap a{
+			padding : 7px 8px 5px; border: 1px solid  #dae1e6;
+			background-color: #fff; display: inline-block;
+			font-size: 12px; line-height: 16px; color: #505050;
+		}
+		.box-body-left2 .popup-wrap a+a{
+			margin-left: -1px;
+		}
+		.box-body-left2 .popup-wrap a:hover{
+			border-color: #bec8d8; position: relative;
+		}
+		.box-body-left2 .list-press{
+			border: 1px solid #dae1e6; border-width: 0 1px;
+		}
+		.box-body-left2 .box-line [class^=line-to-]{
+			position:absolute; background-color: #e4e8eb;
+			
+		}
+	
+		.box-body-left2 .box-line [class^=line-to-right]{
+			left:0; right:0; height: 1px;
+		}
+		.box-body-left2 .box-line .line-to-right1{ top: 65px;	}
+		.box-body-left2 .box-line .line-to-right2{ top: 130px;	}
+		.box-body-left2 .box-line .line-to-right3{ top: 195px;	}
+		.box-body-left2 .box-line [class^=line-to-bottom]{
+			top: 0; bottom:0; width:1px;
+		}
+		.box-body-left2 .box-line .line-to-bottom1{ left: 124px;	}
+		.box-body-left2 .box-line .line-to-bottom2{ left: 248px;	}
+		.box-body-left2 .box-line .line-to-bottom3{ left: 372px;	}
+		.box-body-left2 .box-line .line-to-bottom4{ left: 497px;	}
+		.box-body-left2 .box-line .line-to-bottom5{ left: 622px;	}
+
 
 		/* 공통 */
 		.clearfix::after{
@@ -345,7 +470,11 @@
 		.icon-more.img1, .icon-login.img1,
 		.box-body-right1 .box-service::before,
 		.box-body-right1 .link-signup::before,
-		.box-body-left2 .link-media::after{
+		.box-body-left2 .link-media::after,
+		.link-news-stand::after, .link-news-stand::before,
+		.box-body-left2 .box-title .icon-press-list,
+		.box-body-left2 .box-title .icon-press-thumb,
+		.box-body-left2 .box-title .icon-set{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
@@ -502,8 +631,58 @@
 									</div>
 								</div>
 							</div>
-							<div class="box-title"></div>
-							<div class="box-body"></div>
+							<div class="box-title clearfix">
+								<div class="box-new-stand">
+									<a href="#" class="link-news-stand">뉴스스탠드</a>
+									<div class="box-list">
+									<a href="#" class="btn-my-list">구독한 언론사</a>
+									<a href="#" class="btn-all-list" aria-selected="true">전체언론사</a>
+									</div>
+									
+								</div>
+								<div class="box-service">
+									<a href="" class="btn-press-list" aria-selected="true">
+										<i class="icon-press-list"></i>
+									<span class="blind">리스트형</span>
+								</a>
+								<a href="" class="btn-press-thumb" aria-selected="false">
+									<i class="icon-press-thumb"></i>
+								<span class="blind">썸네일형</span>
+								</a>
+								<a href="" class="list-news-set">
+									<i class="icon-set"></i>
+									<span class="blind">설정버튼</span>
+								</a>
+						
+								</div>
+							</div>
+							<div class="box-body">
+								<ul class="list-press clearfix">
+									<li class="item-press">
+										<a href="" class="box-thumb">
+										<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/016.png" alt="해럴드경제" height="20px">
+									</a>
+										<span class="popup-wrap">
+											<a href="" class="btn-subscribe">구독</a>
+											<a href="" class="link-view-news">기사보기</a>
+										</span>
+										<!-- html 표준에서 li태그 내에 div태그를 넣는 것을 추천하지 않음. -->
+									</li>
+
+								</ul>
+								<div class="box-line">
+									<div class="line to-right1"></div>
+									<div class="line to-right2"></div>
+									<div class="line to-right3"></div>
+									<div class="line to-bottom1"></div>
+									<div class="line to-bottom2"></div>
+									<div class="line to-bottom3"></div>
+									<div class="line to-bottom4"></div>
+									<div class="line to-bottom5"></div>
+
+									
+								</div>
+							</div>
 						</div>
 					</div>
 					<!-- 메인 왼쪽 박스 -->

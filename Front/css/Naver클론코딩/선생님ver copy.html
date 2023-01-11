@@ -452,14 +452,167 @@
 		.rightbox-newstand-menubar .ico_set:hover{
 			opacity: 1;
 		}
+		/* newstand */
+		.newstand-contents{
+			position: relative;
+			height: 260px; border: 1px solid #dae1e6;
+			border-width: 1px 0;
+		}
+		.thumb-contents{
+			position: relative;
+		}
+		.thumb-contents .btn_prev{
+			position: absolute; left:-26px; z-index: 10;
+			top: 109px; color: inherit; text-decoration: none;
+		}
+		.thumb-contents .ico_prev{
+			display: inline-block; width: 44px; height: 44px;
+			background-position: -224px -158px;
+			vertical-align: top;
+		}
+		.thumb-contents .btn_next{
+			position: absolute; right:-13px; z-index: 10;
+			top: 109px; color: inherit; text-decoration: none;
+		}
+		.thumb-contents .ico_next{
+			display: inline-block; width: 44px; height: 44px;
+			background-position: -92px -296px;
+			vertical-align: top;
+		}
+		.press_ci_container{
+			height: 100%; overflow: hidden;
+		}
+		.press_ci_container .plat1{
+			width: 750px; float: left; 
+		}
+		.press_ci_container .plat1 .tile_view{
+			position: relative;
+			height: 260px; border: 1px solid #dae1e6;
+			border-width:0 1px;
+		}
+
+		.tile_view .frame_area{
+			position: absolute; top: 0; left: 0; right: 0; bottom:0;
+		}
+		.tile_view .frame_area .line{
+			position: absolute; background-color: #e4e8eb; z-index: 1;
+		}
+		.tile_view .frame_area .to_right1,
+		.tile_view .frame_area .to_right2,
+		.tile_view .frame_area .to_right3{
+		left: 0; right: 0; height: 1px;
+		}
+		.tile_view .frame_area .to_bottom1,
+		.tile_view .frame_area .to_bottom2,
+		.tile_view .frame_area .to_bottom3,
+		.tile_view .frame_area .to_bottom4,
+		.tile_view .frame_area .to_bottom5{
+			top:0; bottom:0; width: 1px;
+		}
+
+		.tile_view .frame_area .to_right1{ top : 65px;	}
+		.tile_view .frame_area .to_right2{ top : 130px;	}
+		.tile_view .frame_area .to_right3{ top : 190px;	}
+
+		.tile_view .frame_area .to_bottom1{left : 124px;}
+		.tile_view .frame_area .to_bottom2{left : 248px;}
+		.tile_view .frame_area .to_bottom3{left : 372px;}
+		.tile_view .frame_area .to_bottom4{left : 497px;}
+		.tile_view .frame_area .to_bottom5{left : 622px;}
+
+		.thumb_area .thumb_box{
+			position: relative; float: left; width: 16.66%; height: 65px;
+
+		}
+		.thumb_area .thumb_box a.thumb{
+			display: block; padding: 23px 0 22px; text-align: center;
+			color: inherit; 
+		}
+		.tile_view .popup_wrap{
+			position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+			display: none;
+			overflow: hidden; padding: 19px 0 18px; background-color: #f7f9fa;
+			font-size: 0; line-height: 0; text-align: center; letter-spacing: -.2px;
+		}
+		.tile_view .btn_popup{
+			display: inline-block;
+			padding: 7px 8px 5px;
+			background-color: #fff;
+			border: 1px solid #dae1e6;
+			font-size: 12px; line-height: 16px; color: #505050;
+			vertical-align: top;
+		}
+		.tile_view .btn_popup + .btn_popup{
+			margin-left: -1px;
+		}
+		.tile_view .btn_popup:hover{
+			border-color: #bec8d8;
+		}
+		.tile_view .thumb_box:hover>.popup_wrap{
+			display: block;
+		}
+		.sc_timesquare{
+			position: relative;
+			height: 47px;
+			margin: 12px 0;
+			border: 1px solid #dae1e6;
+			letter-spacing: -.25px;
+		}
+		.sc_timesquare .card_wrap{
+			overflow: hidden;
+			height:47px;
+			padding-right: 67px;
+			/* 버튼 넣을 자리. */
+		}
+		.sc_timesquare .card_nav{
+			position:absolute;
+			top: 11px;
+			right: 10px;
+			overflow: hidden;
+		}
+		.sc_timesquare .card_nav .btn_nav{
+			float: left; background-color: #fff;
+			border: 1px solid #e4e8eb;
+		}
+		.sc_timesquare .card_nav .btn_nav:hover{
+			background-color: #fafbfc;
+		}
+		.sc_timesquare .card_nav .btn_prev::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -162px -327px; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
+
+		}
+		.sc_timesquare .card_nav .btn_prev:hover::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -154px -327px; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
+
+		}
+
 		
+		.sc_timesquare .card_nav .btn_next::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -146px -327px; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
 
+		}
+		.sc_timesquare .card_nav .btn_next:hover::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -138px -327px;; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
 
-
+		}
+		.sc_timesquare .card_nav .btn_nav + .btn_nav{
+			margin-left: -1px;
+		}
 		
 
 		/* 공용 */
-			
+		.clearfix::after{
+			clear: both; display: block; content: '';
+		}
+
 		.blind{
 			position: absolute;
 			width: 1px; height: 1px; margin: -1px; overflow: hidden;
@@ -469,7 +622,8 @@
 		.icon-search.img1, .icon-auto-complete.img1, .logo_naver::before,
 		.icon-kbd.img1, .ico_mail, .ico_shopping, .ico_shoppinglive, .ico_tv,
 		.btn-more::after, .ico_naver.img1, .ico_lock::before, .ico_join::before,
-		.leftbox-company::after, .ico_newnews, .link-newstand-title::after, .ico_list, .ico_tile, .ico_set{
+		.leftbox-company::after, .ico_newnews, .link-newstand-title::after, .ico_list, .ico_tile, .ico_set,
+		.ico_prev, .ico_next, .btn_prev::before, .btn_next::before{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
@@ -591,7 +745,7 @@
 
 				</div>
 				</div>
-				<div class="newstand-menubar">
+				<div class="newstand-menubar clearfix">
 					<div class="leftbox-newstand-menubar">
 						<a href="" class="link-newstand-title"><i class="ico_newnews"></i>
 						뉴스스탠드</a>
@@ -609,7 +763,307 @@
 					</div>
 
 				</div>
-				<div class="newstand-contents"></div>
+				<div class="newstand-contents">
+					<div class="thumb-contents">
+						<a href="" class="btn_prev" aria-selected="true">
+							<span class="blind">이전</span>
+							<i class="ico_prev"></i>
+						</a>
+						<a href="" class="btn_next" aria-selected="true">
+							<span class="blind">다음</span>
+							<i class="ico_next"></i>
+						</a>
+						<div class="press_ci_container">
+							<div class="plat1">
+								<div class="tile_view">
+									<div class="frame_area">
+										<i class="line to_right1"></i>
+										<i class="line to_right2"></i>
+										<i class="line to_right3"></i>
+										<i class="line to_bottom1"></i>
+										<i class="line to_bottom2"></i>
+										<i class="line to_bottom3"></i>
+										<i class="line to_bottom4"></i>
+										<i class="line to_bottom5"></i>
+
+									</div>
+									<div class="thumb_area">
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/422.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">연합뉴스</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/031.png" alt="아이뉴스"
+												class="news_logo" height="20"><span class="blind">아이뉴스</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="디지털타임즈"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/005.png" alt="국민일보"
+												class="news_logo" height="20"><span class="blind">국민일보</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/009.png" alt="매일경제"
+												class="news_logo" height="20"><span class="blind">매일경제</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/003.png" alt="뉴시스"
+												class="news_logo" height="20"><span class="blind">뉴시스</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/up/2022/0905/nsd131925414.png" alt="2dnet korea"
+												class="news_logo" height="20"><span class="blind">2dnet korea</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/052.png" alt="ytn"
+												class="news_logo" height="20"><span class="blind">ytn</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/022.png" alt="세계일보"
+												class="news_logo" height="20"><span class="blind">세계일보</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/904.png" alt="jtbc"
+												class="news_logo" height="20"><span class="blind">jtbc</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/308.png" alt="시사인"
+												class="news_logo" height="20"><span class="blind">시사인</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/139.png" alt="스포탈코리아"
+												class="news_logo" height="20"><span class="blind">스포탈코리아</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/327.png" alt="뉴데일리"
+												class="news_logo" height="20"><span class="blind">뉴데일리</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/018.png" alt="이데일리"
+												class="news_logo" height="20"><span class="blind">이데일리</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/925.png" alt="일요신문"
+												class="news_logo" height="20"><span class="blind">일요신문</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/965.png" alt="전기신문"
+												class="news_logo" height="20"><span class="blind">전기신문</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/up/2022/1024/nsd174430433.png" alt="서울와이어"
+												class="news_logo" height="20"><span class="blind">서울와이어</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/421.png" alt="뉴스1"
+												class="news_logo" height="20"><span class="blind">뉴스1</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/310.png" alt="여성신문"
+												class="news_logo" height="20"><span class="blind">여성신문</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/980.png" alt="kbc광주방송"
+												class="news_logo" height="20"><span class="blind">kbc광주방송</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/941.png" alt="초이스경제"
+												class="news_logo" height="20"><span class="blind">초이스경제</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
 			</div>
 			</div>
 			<div class="box-right">
@@ -630,6 +1084,14 @@
 						</div>
 					
 				</div>
+			<div class="sc_timesquare">
+				<div class="card_wrap">
+					<div class="card_nav">
+						<a href="" class="btn_nav btn_prev"><span class="blind">이전</span></a>
+						<a href="" class="btn_nav btn_next"><span class="blind">다음</span></a>
+					</div>
+				</div>
+			</div>
 
 			</div>
 			
