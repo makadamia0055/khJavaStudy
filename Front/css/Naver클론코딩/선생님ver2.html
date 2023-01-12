@@ -454,7 +454,179 @@
 		.box-body-left2 .btn-next:hover{
 			background-position: 0 -296px;
 		}
-		
+		/* 메인 오른쪽 두번째 컨텐츠 */
+		.box-body-right2{
+			position:relative; border:1px solid #dae1e6;
+			height:47px; letter-spacing: -.25px; margin: 12px 0;
+			padding-right : 67px;
+
+		}
+		.box-body-right2 .box-in{
+			 height: 100%; overflow: hidden;
+		}
+		.box-body-right2 .list-stock{
+			width: 400%; height: 100%;
+		}
+		.box-body-right2 .item-stock{
+			width: 25%; height: 100%;
+			float: left;
+		}
+		/* float:left를 설정해도 height 값을 주었기 때문에 부모에서 clearfix를 안해도 됨. */
+		.box-body-right2 .link-stock{
+			display: block; padding: 14px 0 13px 16px;
+		}
+		.box-body-right2 .icon-badge{
+			float: left; height: 18px; padding: 0 7px;
+			margin-right: 8px; border-radius: 10px;
+			font-size: 11px; line-height: 18px;
+			vertical-align: top; color:#202020;
+			border: 1px solid #202020;
+			font-weight: bold; font-style: normal;
+		}
+		.box-body-right2 .news{
+			line-height: 20px; font-size: 13px; color:#404040;
+			display: block; overflow: hidden;
+		}
+		.box-body-right2 .box-btn{
+			position: absolute; top: 11px; right: 10px;
+		}
+
+		.box-body-right2 .box-btn>*{
+			float: left; background-color: #fff; border: 1px solid #e4e8eb;
+			line-height: 0;
+		}
+		.box-body-right2 .box-btn .btn-next{
+			margin-left: -1px;
+		}
+
+		.box-body-right2 .box-btn .btn-prev .icon-prev,
+		.box-body-right2 .box-btn .btn-next .icon-next{
+			width: 6px; height: 9px; 
+			background-position: -162px -327px; margin: 7px 8px 6px;
+			display: inline-block;
+		}
+		.box-body-right2 .box-btn .btn-next .icon-next{
+			background-position: -146px -327px;
+		}
+
+		/* 오른쪽 3번째 컨텐츠 */
+		.box-body-right3{
+			height: 200px; overflow: hidden;
+			position: relative;
+			
+		}
+
+		.box-body-left3{
+			margin: 35px 0 27px;
+		}
+		.box-body-left3 .area-title{
+			float: left; letter-spacing: -.25px;
+		}
+		.box-body-left3 .area-info{
+			float:right;
+		}
+		.box-body-left3 .area-title .title{
+			font-size: 14px; color: #000;
+		}
+		.box-body-left3 .area-title .dsc{
+			color: gray; margin-left: 8px;
+		}
+
+		.box-body-left3 .area-info .info{
+			color: gray;
+		}
+		.box-body-left3 .area-info .info strong{
+			color: #000;
+		}
+		.box-body-left3 .area-info .btn-set{
+			color: #505050; margin-left: 14px; position: relative;
+		}
+		.box-body-left3 .area-info .btn-set::before{
+			width: 11px; height: 11px; 
+			background-position: -358px -310px; 
+			margin-right: 4px; content: ''; vertical-align: -1px;
+			display: inline-block; opacity: .7;
+		}
+		.box-body-left3 .area-info .btn-set:hover{
+			text-decoration: underline;
+		}
+		.box-body-left3 .area-info .btn-set:hover::before{
+			opacity: 1;
+		}
+		.box-body-left3 .area-info .btn-set::after{
+			width: 1px; height: 12px; 
+			top: 2px; left: -8px;
+			position: absolute;
+			background-color: #e4e8eb;
+			content: ''; 
+		}
+		.box-body-left3 .box-menu{
+			position: relative;
+		}
+		.box-body-left3 .box-menu::before{
+			position: absolute; top:0; right: 0; left:0; bottom:0;
+			border:1px solid #dae1e6; content: '';
+		}
+
+		.box-body-left3 .box-menu .box-in{
+			overflow: hidden;
+		}
+		.box-body-left3 .box-menu .list-menu{
+			font-size:0; line-height: 0; white-space: nowrap;
+		}
+		.box-body-left3 .box-menu .item-menu{
+			display: inline-block; font-size: 13px; line-height: 49px;
+		 width: 94px; position: relative;
+		}
+		/* 포지션 relative가 없으면 absolute가 적용된 테두리가 먼저 적용되어
+		테두리만 클릭 됨. 그래서 포지션 relative 추가 */
+
+		.box-body-left3 .box-menu .item-menu:nth-child(8n+1){
+			width: 92px;
+		}
+		.box-body-left3 .box-menu .btn-menu{
+			display: block; text-align: center;
+			font-weight: bold; font-size: 13px;
+			border-right: 1px solid #dae1e6; color: #202020;
+		}
+		.box-body-left3 .btn-menu .icon_middot{
+			display: inline-block;
+			width: 2px; height: 2px; 
+			margin: 0 2px; vertical-align: 4px;	
+			background-color: rgba(32, 32, 32, .8);
+			border-radius: 50%;
+			}
+
+		.box-body-left3 .item-menu .id_enter:hover { color: #e65da0;}
+		.box-body-left3 .item-menu .id_sports:hover { color: #0147b5;}
+		.box-body-left3 .item-menu .id_car:hover { color: #4a94e1;}
+		.box-body-left3 .item-menu .id_bboom:hover { color: #66c971;}
+		.box-body-left3 .item-menu .id_finance:hover { color: #35ae5e;}
+		.box-body-left3 .item-menu .id_myfeed:hover { color: #5290ff;}
+		.box-body-left3 .item-menu .id_recipe:hover { color: #ebaa00;}
+		.box-body-left3 .item-menu .id_living:hover { color: #c08d31;}
+		.box-body-left3 .item-menu .id_book:hover { color: #42be6f;}
+		.box-body-left3 .item-menu .id_beauty:hover { color: #8449ca;}
+
+
+		.box-body-left3 .item-menu [aria-selected=true]{ 
+			position: relative; margin: 0 -1px; border-radius: 1px;
+			box-shadow: 0 3px 6px 0px rgba(0 0 0 .16);
+			}
+		.box-body-left3 .item-menu .id_enter[aria-selected=true] { background-color: #e65da0; color:#fff;}
+		.box-body-left3 .item-menu .id_sports[aria-selected=true] { background-color: #0147b5; color:#fff;}
+		.box-body-left3 .item-menu .id_car[aria-selected=true] { background-color: #4a94e1; color:#fff;}
+		.box-body-left3 .item-menu .id_bboom[aria-selected=true] { background-color: #66c971; color:#fff;}
+		.box-body-left3 .item-menu .id_finance[aria-selected=true] { background-color: #35ae5e; color:#fff;}
+		.box-body-left3 .item-menu .id_myfeed[aria-selected=true] { background-color: #5290ff; color:#fff;}
+		.box-body-left3 .item-menu .id_recipe[aria-selected=true] { background-color: #ebaa00; color:#fff;}
+		.box-body-left3 .item-menu .id_living[aria-selected=true] { background-color: #c08d31; color:#fff;}
+		.box-body-left3 .item-menu .id_book[aria-selected=true] { background-color: #42be6f; color:#fff;}
+		.box-body-left3 .item-menu .id_beauty[aria-selected=true] { background-color: #8449ca; color:#fff;}
+
+
+
+
 		/* 공통 */
 		.clearfix::after{
 			clear: both; display: block; content: '';
@@ -478,7 +650,10 @@
 		.box-body-left2 .box-title .icon-press-thumb,
 		.box-body-left2 .box-title .icon-set,
 		.box-body-left2 .btn-prev,
-		.box-body-left2 .btn-next{
+		.box-body-left2 .btn-next,
+		.box-body-right2 .box-btn .btn-prev .icon-prev,
+		.box-body-right2 .box-btn .btn-next .icon-next,
+		.box-body-left3 .area-info .btn-set::before{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
@@ -606,7 +781,7 @@
 				<div class="box-body clearfix">
 					<div class="box-body-left">
 						<div class="box-body-left1">
-							<iframe src="add1.html" frameborder="0" class="frame"></iframe>
+							<iframe src="ad1.html" frameborder="0" class="frame"></iframe>
 							<span class="line line-top"></span>
 							<span class="line line-bottom"></span>
 							<span class="line line-left"></span>
@@ -892,6 +1067,61 @@
 							</div>
 						</div>
 						<!-- 메인 왼쪽 2번째 박스 -->
+						<div class="box-body-left3">
+							<div class="box-title clearfix">
+								<div class="area-title">
+									<strong class="title">오늘 읽을만한 글</strong><span class="dsc">주제별로 분류된 다양한 글 모음</span>
+								</div>
+								<div class="area-info">
+									<span class="info">
+									<strong class="new">678</strong>개의 글
+								</span>
+								<a href="" class="btn-set">관심주제 설정</a>
+								</div>
+							</div>
+
+							<div class="box-menu clearfix">
+								<div class="box-btn">
+									<a href="#" class="btn-prev"></a>
+									<a href="#" class="btn-next"></a>
+								</div>
+								<div class="box-in">
+									<ul class="list-menu">
+										<li class="item-menu">
+											<a href="" class="btn-menu id_enter" aria-selected="true">엔터</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_sports">스포츠</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_car">자동차</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_bboom">웹툰</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_finance">경제</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_myfeed">추천<span class="icon_middot"></span>구독</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_recipe">레시피</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_living">리빙</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_book">책방</a>
+										</li>
+										<li class="item-menu">
+											<a href="" class="btn-menu id_beauty">패션뷰티</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="box-contents"></div>
+						</div>
 					</div>
 					<!-- 메인 왼쪽 박스 -->
 					<div class="box-body-right">
@@ -909,9 +1139,59 @@
 							</div>
 						</div>
 						<!-- 메인 오른쪽 첫번째 박스 -->
+						<div class="box-body-right2">
+							<div class="box-in">
+								<ul class="list-stock">
+									<li class="item-stock">
+										<a href="" class="link-stock">
+											<i class="icon-badge">이슈</i>
+											<span class="news">코로나바이러스감염증-19 현황 1</span>
+										</a>
+									</li>
+									<li class="item-stock">
+										<a href="" class="link-stock">
+											<i class="icon-badge">이슈</i>
+											<span class="news">코로나바이러스감염증-19 현황 2</span>
+										</a>
+									</li>
+									<li class="item-stock">
+										<a href="" class="link-stock">
+											<i class="icon-badge">이슈</i>
+											<span class="news">코로나바이러스감염증-19 현황 3</span>
+										</a>
+									</li>
+									<li class="item-stock">
+										<a href="" class="link-stock">
+											<i class="icon-badge">이슈</i>
+											<span class="news">코로나바이러스감염증-19 현황 4</span>
+										</a>
+									</li>
+									
+								</ul>
+								<div class="box-btn">
+									<a href="" class="btn-prev">
+										<i class="icon-prev"></i>
+									</a>
+									<a href="" class="btn-next">
+										<i class="icon-next"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="box-body-right3">
+							<iframe src="add2.html" frameborder="0" width="350" height="200"></iframe>
+							<span class="line line-top"></span>
+							<span class="line line-bottom"></span>
+							<span class="line line-left"></span>
+							<span class="line line-right"></span>
+							<span class="blind">광고</span>
+						</div>
 					</div>
 					<!-- 메인 오른족 박스 -->
+					
 				</div>
+				
 			</div>
 		</div>
 		<footer class="container-footer">

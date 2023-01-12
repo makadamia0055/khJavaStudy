@@ -606,7 +606,159 @@
 		.sc_timesquare .card_nav .btn_nav + .btn_nav{
 			margin-left: -1px;
 		}
+		/* 오른쪽 첫번째 광고 */
+		.ads-right1 {
+			width: 350px; height:200px;
+		}
+		.ads-right1 .iframe-ads-right1{
+			width: 350px; height: 200px; visibility: inherit;
+			border:0px;
+		}
+		/* 왼쪽 테마케스트 */
+		.box-left-padding{
+			padding: 35px 0 27px;
+			letter-spacing: -.25px;
+		}
+		.group_title{
+			overflow: hidden;
+			padding-bottom: 17px;
+		}
+		.title-area{
+			float:left;
+		}
+		.group_title .title-area .title{
+			font-size: 14px; color: #000;
+		}
+		.group_title .title-area .subtitle{
+			margin-left: 8px;
+			color: grey;
+		}
+		.info-area{
+			float: right;
+		}
+		.group_title .info-area .info{color: grey;	}
+		.group_title .info-area .new{ color: #000;}
+		.group_title .info-area .btn_set{
+			position: relative; margin-left: 14px;
+			color: #505050;
+		}
+		.group_title .info-area .btn_set::before{
+			width: 11px; height: 11px; background-position: -358px -310px;
+			content:''; margin-right : 4px; vertical-align: -1px;
+			opacity: .7; display: inline-block;
+		}
+		.group_title .info-area .btn_set:hover::before, .btn_set:hover{
+			opacity: 1; text-decoration: underline;
+		}
+		.group_title .info-area .btn_set::after{
+			position: absolute;
+			top: 2px; left: -8px; content: '';
+			width: 1px; height: 12px; background-color: #e4e8eb;
+
+		}
 		
+		.container-main_category{
+			position: relative; background-color: #fff;
+		}
+		.container-main_category::before{
+			position: absolute; top: 0; left: 0 ; right:0; bottom:0;
+			content:''; border: 1px solid #dae1e6;
+		}
+		.pm_btn_next{
+			top: 6px; right: -18px;
+			position: absolute; z-index: 10;
+		}
+		.pm_btn_prev{
+			top: 6px; left: -23px;
+			position: absolute; z-index: 10;
+
+		}
+		.pm_btn_prev .ico_btn{
+			display: inline-block;
+			width: 40px; height: 40px; background-position: -128px -342px;
+			vertical-align: top;
+		}
+		.pm_btn_next .ico_btn{
+			display: inline-block;
+			width: 40px; height: 40px; background-position: -86px -342px;
+			vertical-align: top;
+		}
+		.list_category_wrap{
+			overflow: hidden;
+		}
+		.container-main_category .list_category_wrap .list_category{
+			font-size: 0; line-height: 0; white-space: nowrap;
+			transition: transform .3s ease;
+		}
+		.container-main_category .list_category_wrap .list_category:before{
+			top: 0; left: 0; right: 0; bottom: 0 ; content: ''; 
+			position: absolute;
+			border: 1px solid #dae1e6;
+		}
+		.frame-main_category .category_item{
+			position: relative; display: inline-block;
+			width: 94px; z-index: 1; vertical-align: top;
+		}
+		.frame-main_category .category_item:first-child, .main_category .category_item:nth-child(8n+1){
+			width:92px;
+		}
+		.frame-main_category .tab{
+			display: block; border-right: 1px solid #dae1e6;
+			font-size: 13px; line-height: 49px; font-weight: 700;
+			text-align: center; text-decoration: none;
+			color:inherit;
+		}
+		.frame-main_category .list_category::after{
+			content:'';display: table; table-layout: fixed;
+			clear: both;
+
+		}
+		
+
+
+		.frame-main_category .tab.id_enter:hover { color: #e65da0;}
+		.frame-main_category .tab.id_sports:hover { color: #0147b5;}
+		.frame-main_category .tab.id_cargame:hover { color: #4a94e1;}
+		.frame-main_category .tab.id_bboom:hover { color: #66c971;}
+		.frame-main_category .tab.id_finance:hover { color: #35ae5e;}
+		.frame-main_category .tab.id_myfeed:hover { color: #5290ff;}
+		.frame-main_category .tab.id_living:hover { color: #ebaa00;}
+		.frame-main_category .tab.id_livinghome:hover { color: #c08d31;}
+		.frame-main_category .tab.id_culture:hover { color: #42be6f;}
+		.frame-main_category .tab.id_beauty:hover { color: #8449ca;}
+
+		.frame-main_category .tab.id_enter[aria-selected=true] { background-color: #e65da0; color:#fff;}
+		
+
+		.frame-main_category .tab.id_sports[aria-selected=true] { background-color: #0147b5; color:#fff;}
+		.frame-main_category .tab.id_cargame[aria-selected=true] { background-color: #4a94e1; color:#fff;}
+		.frame-main_category .tab.id_bboom[aria-selected=true] { background-color: #66c971; color:#fff;}
+		.frame-main_category .tab.id_finance[aria-selected=true] { background-color: #35ae5e; color:#fff;}
+		.frame-main_category .tab.id_myfeed[aria-selected=true] { background-color: #5290ff; color:#fff;}
+		.frame-main_category .tab.id_living[aria-selected=true] { background-color: #ebaa00; color:#fff;}
+		.frame-main_category .tab.id_livinghome[aria-selected=true] { background-color: #c08d31; color:#fff;}
+		.frame-main_category .tab.id_culture[aria-selected=true] { background-color: #42be6f; color:#fff;}
+		.frame-main_category .tab.id_beauty[aria-selected=true] { background-color: #8449ca; color:#fff;}
+
+
+
+
+		.contentsbox{
+			height: 500px;
+			background-color: #15c654;
+		}
+
+
+
+
+
+
+		.ico_middot{
+			width: 2px; height: 2px; display: inline-block; margin: 0 2px;
+			background-color: rgba(32, 32, 32, .8);
+			border-radius: 50%; vertical-align: 4px;
+		}
+
 
 		/* 공용 */
 		.clearfix::after{
@@ -623,7 +775,9 @@
 		.icon-kbd.img1, .ico_mail, .ico_shopping, .ico_shoppinglive, .ico_tv,
 		.btn-more::after, .ico_naver.img1, .ico_lock::before, .ico_join::before,
 		.leftbox-company::after, .ico_newnews, .link-newstand-title::after, .ico_list, .ico_tile, .ico_set,
-		.ico_prev, .ico_next, .btn_prev::before, .btn_next::before{
+		.ico_prev, .ico_next, .btn_prev::before, .btn_next::before,
+		.group_title .info-area .btn_set::before,
+		.pm_btn_next>i, .pm_btn_prev>i{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
@@ -1064,7 +1218,84 @@
 
 
 				</div>
+	</div>
+	<div class="box-left-padding">
+		<div class="box-left-themecast">
+			<div class="headline-themecast">
+				<div class="group_title">
+					<span class="blind">주제별 캐스트</span>
+					<div class="title-area">
+						<strong class="title">오늘 읽을만한 글</strong>
+						<span class="subtitle">주제별로 분류된 다양한 글 모음</span>
+					</div>
+					<div class="info-area">
+						<span class="info">
+							<strong class="new">678</strong> 개의 글</span>
+							<a href="" class="btn_set">관심주제 설정</a>
+					</div>
+				</div>
+				<div class="frame-main_category">
+					<div class="container-main_category">
+						<a href="#" class="pm_btn_prev NM_theme_prev">
+							<i class="ico_btn"></i><span class="blind">이전</span>
+						</a>
+						<a href="#" class="pm_btn_next NM_THEME_NEXT">
+							<i class="ico_btn"></i><span class="blind">다음</span>
+						</a>
+						<div class="list_category_wrap">
+							<ul class="list_category">
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_enter" aria-selected="true">엔터</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_sports" aria-selected="false">스포츠</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_bboom" aria-selected="false">웹툰</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_finance" aria-selected="false">경제</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_myfeed" aria-selected="false">추천<span class="ico_middot"></span>구독</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_living" aria-selected="false">레시피</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_livinghome" aria-selected="false">리빙</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_culture" aria-selected="false">책방</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_beauty" aria-selected="false">패션뷰티</a>
+
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
 			</div>
+
+		</div>
+	</div>
+	<!-- 카테고리 박스 끝 -->
+
+	<div class="contentsbox"></div>
+
+	<!-- 왼쪽 컨텐츠 끝 -->
 			</div>
 			<div class="box-right">
 				<div class="box-right-login">
@@ -1086,12 +1317,26 @@
 				</div>
 			<div class="sc_timesquare">
 				<div class="card_wrap">
+					
 					<div class="card_nav">
 						<a href="" class="btn_nav btn_prev"><span class="blind">이전</span></a>
 						<a href="" class="btn_nav btn_next"><span class="blind">다음</span></a>
 					</div>
 				</div>
 			</div>
+			<!-- 오른쪽 세번째 광고 -->
+			<div class="ads-right1">
+				<div class="frame-ads-right1">
+				<span class="veta_bd_t"></span>
+				<span class="veta_bd_b"></span>
+				<span class="veta_bd_l"></span>
+				<span class="veta_bd_r"></span>
+
+				<iframe src="./add2.html" frameborder="0" class="iframe-ads-right1"></iframe>
+			</div>
+			</div>
+
+
 
 			</div>
 			
