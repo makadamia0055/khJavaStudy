@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자료형 예제</title>
+</head>
+<body>
+	<script>
+		let num1 = 10;
+		console.log(typeof num1);
+		let str = '10.123'
+		console.log(typeof str);
+		let str2 = new String('10.123');
+		console.log(typeof str2);
+		let num2;
+		console.log(typeof num2);
+		let obj = null;
+		console.log(typeof obj); // null 의 타입은 object로 나오지만
+		// 이는 언어상의 오류이며 null은 객체가 아니라고 함.
+		console.log(num2/2); // NaN not a number 숫자가 아니다.
+		console.log(typeof NaN); // NaN의 타입은 Number
+		num1 = true;
+		console.log(typeof num1); // 숫자형이었던 num1에 true를 넣으면 
+		//데이터형이 boolean으로 변환됨.
+
+
+	</script>
+</body>
+</html>

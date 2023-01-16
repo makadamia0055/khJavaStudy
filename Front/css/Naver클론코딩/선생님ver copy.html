@@ -759,6 +759,164 @@
 			border-radius: 50%; vertical-align: 4px;
 		}
 
+		/* 오른쪽 트랜드 쇼핑 */
+		.shopcast{
+			width: 350px; margin-top: 15px;
+		}
+		.frame-trendshopping-right3 {
+			padding: 12px 0 13px; line-height: 17px;
+		}
+		.frame-trendshopping-right3 .left-trendshopping{
+			float:left;
+			margin: 2px 0 0 1px;
+			font-size: 13px;
+			line-height: 17px; color: #000;
+		}
+		.frame-trendshopping-right3 .right-trendshopping{
+			float:right;
+		}
+		.frame-trendshopping-right3 .right-trendshopping>li{
+			float:left;
+		}
+		.right-trendshopping .tab{
+			display: block; padding: 0 1px; border-bottom: 2px solid transparent;
+			color:#202020; font-weight: 700;
+		}
+		.right-trendshopping .tab[aria-selected=true]{
+			border-color: #19ce60; color: #03c75a
+		}
+		.right-trendshopping .tab-item + .tab-item{
+			margin-left: 11px;
+		}
+		.frame-trendshopping-right3 .left-trendshopping .trendshopping{
+			color:inherit; font-weight: 700;
+		}
+		.frame-trendshopping-right3 .left-trendshopping .trendshopping::before{
+			display: inline-block; width:15px; height: 15px; 
+			background-position: -109px -22px;
+			content: ''; margin-right: 4px; vertical-align: -3px;
+		}
+		.frame-trendshopping-right3 .left-trendshopping .trendshopping::after{
+			display: inline-block; width:5px; height: 9px; 
+			background-position: -109px -49px;
+			content: ''; margin-left: 7px; vertical-align: 0px;
+		}
+
+		/* mall 컨테이너 */
+		.container-mall{
+			overflow: hidden;
+			width: 350px;
+			height: 1763px;
+			border: 1px solid #e4e8eb;
+		}
+		.mall-title{
+			overflow: hidden;
+			padding: 12px 4px 11px 10px;
+			background-color: #f7f9fa;
+			border-bottom: 1px solid #dae1e6;
+		}
+
+
+		.mall-title [class^=ls]{
+			background-color: #c9cccf;
+			
+			width: 3px; height: 3px; border-radius: 50%;
+			vertical-align: top; float: left;
+		}
+		.mall-title .ls13{	margin: 10px 13px 0;	}
+		.mall-title .ls12{	margin: 10px 12px 0;	}
+		.mall-title .ls11{	margin: 10px 11px 0;	}
+		.mall-title .ls10{	margin: 10px 11px 0;	}
+		.mall-title .link_mall{
+			float: left; line-height: 23px; color: #404040;
+		}
+		.container-mall .group_goods{
+			position: relative; padding: 55px 8px 20px;
+		}
+		.container-mall .group_goods .shop_control{
+			position: absolute; text-align: right;
+			top:13px; right: 8px;
+		}
+
+		.group_goods .shop_control .num_box {
+			float: left; line-height: 29px; color: gray;
+		}
+		.group_goods .shop_control .num_box .current{
+			margin-right: 4px; color:#202020;
+			font-weight: 700; 
+		}
+
+		.group_goods .shop_control .btn_box{
+			overflow: hidden; float: left; margin-left: 7px;
+		}
+		.shop_control .btn_box .btn_prev::before{
+			display: inline-block; width: 5px; height: 9px;
+			background-position: -116px -60px;
+			vertical-align: top; content: '';
+			margin: 9px 12px 9px 10px;
+		}
+		.shop_control .btn_box .btn_next::before{
+			display: inline-block; width: 5px; height: 9px;
+			background-position: -109px -60px;
+			vertical-align: top; content: '';
+			margin: 9px 10px 9px 12px;
+		}
+		.shop_control .btn_box .btn{
+			float: left;
+			background-color: #fff;
+			border: 1px solid #dae1e6;
+		}
+		.shop_control .btn_box .btn + .btn{
+			margin-left: -1px;
+		}
+
+		.group_goods .list_goods_wrap .list_goods{
+			margin-top: -21px; margin-right: -5px;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item{
+			margin-top: 20px; float: left; width: 33.33%;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods{
+			display: block; margin-right: 5px; color: inherit;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods:hover{
+			text-decoration: underline;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods .thumb_box{
+			overflow: hidden; position: relative;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods .thumb_box>img{
+			transform: translateZ(0);
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods:hover img{
+			transition-duration: .3s;
+			transform: scale(1.05);
+			
+		}
+
+		.goods_item .link_goods .thumb_box .thumb_bd{
+			position : absolute; top:0; left: 0; right: 0; bottom: 0; 
+			opacity: .08;
+			border: 1px solid #000;
+		}
+
+		.list_goods .goods_item .link-goods .thumb_box>img{
+			overflow: clip; vertical-align: top;
+			
+			
+		}
+	
+		.group_goods .title{
+			overflow: hidden; text-overflow: ellipsis;
+			white-space: nowrap; display: block;
+			text-align: center;
+		}
+		.group_goods .title:first-child{
+			line-height: 16px; font-weight: 700;
+		}
+		.goods_item .link_goods .title_box{
+			margin-top: 10px;
+		}
 
 		/* 공용 */
 		.clearfix::after{
@@ -780,6 +938,11 @@
 		.pm_btn_next>i, .pm_btn_prev>i{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
+		}
+		.img2-after::after,
+		.img2-before::before, .img2{
+			background-image: url(img/img2.png);
+			background-size: 129px 101px;
 		}
 		
 	</style>
@@ -1335,9 +1498,180 @@
 				<iframe src="./add2.html" frameborder="0" class="iframe-ads-right1"></iframe>
 			</div>
 			</div>
+			<div class="shopcast">
+				<!-- <iframe src="" frameborder="0" class="shopcast_iframe"> -->
+				<div class="frame-trendshopping-right3 clearfix">
+					<div class="left-trendshopping clearfix">
+						<a href="" class="trendshopping img2-before img2-after">트렌드쇼핑</a>
+					</div>
 
+					<ul class="right-trendshopping">
+						<li class="tab-item right-trendshopping-product"><a href="" class="tab tab-product" aria-selected="false">상품</a></li>
+						<li class="tab-item right-trendshopping-shoppingmall"><a href="" class="tab tab-shoppingmall" aria-selected="false">쇼핑몰</a></li>
+						<li class="tab-item right-trendshopping-men"><a href="" class="tab tab-men" aria-selected="true">MEN</a></li>
+					</ul>
+				</div>
 
+				<div class="container-mall">
+					<div class="mall-title">
+						<span class="blind">몰 바로가기</span>
+						<div class="mall-area  clearfix">
+						<a href="" class="link_mall">쿠팡</a>
+						<i class="ls13"></i>
+						<a href="" class="link_mall">G마켓</a>
+						<i class="ls13"></i>
+						<a href="" class="link_mall"><strong>옥션</strong></a>
+						<i class="ls12"></i>
+						<a href="" class="link_mall">11번가</a>
+						<i class="ls13"></i>
+						<a href="" class="link_mall">SSG닷컴</a>
+						<i class="ls12"></i>
+						<a href="" class="link_mall"><Strong>티몬</Strong></a>
+					</div>
+					<div class="mall-area  clearfix">
+						<a href="" class="link_mall"><strong>올리브영</strong></a>
+						<i class="ls11"></i>
+						<a href="" class="link_mall">위메프</a>
+						<i class="ls11"></i>
+						<a href="" class="link_mall">GS샵</a>
+						<i class="ls10"></i>
+						<a href="" class="link_mall"><strong>CJ온스타일</strong></a>
+						<i class="ls11"></i>
+						<a href="" class="link_mall">패션플러스</a>
+					</div>
+						
+					</div>
+					<div class="group_goods type_men">
+						<div class="shop_control clearfix">
+							<div class="num_box">
+								<span class="current">
+									<span class="blind">현재</span>1</span><span class="blind">전체</span>/ 6</div>
+							<div class="btn_box clearfix">
+								<a href="" class="btn_prev btn img2-before"><span class="blind">이전</span></a>
+								<a href="" class="btn btn_next img2-before"><span class="blind">다음</span></a>
+							</div>
+							
+							</div>
+							<div class="list_goods_wrap">
+								<span class="blind">상품 리스트</span>
+								<ul class="list_goods">
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									
+								</ul>
 
+						</div>
+					</div>
+				</div>
+				
+		</div>
+	<!-- </iframe> -->
 			</div>
 			
 

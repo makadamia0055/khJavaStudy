@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>비교연산자</title>
+<body>
+	<script>
+		/* 
+		같은 형을 가진 값 간의 비교
+		-문자열 간의 비교
+
+		문자열을 비교할 때 한글자씩 비교
+		-한글자씩 비교
+		- 숫자로 된 문자열은 자동으로 숫자로 변환되는 게 ""아님"".
+		- 숫자를 한글자씩 비교해서 비교한 결과를 이용.
+		*/
+		let num1 = '20', num2='12';
+		console.log(`'${num1}'> '${num2}': ${num1> num2}`);
+		num1 = '3'; //문자열 3
+		console.log(`'${num1}'> '${num2}': ${num1> num2}`)
+		// 숫자로 변환해서 비교하는게 아니라 그냥 문자열index 앞에서부터 parse해서 비교
+
+		// 다른 형을 가진 값 간의 비교시에는 변환이 수행됨.
+
+		/*
+		== 2개
+		-동등 연산자
+		-자료형이 달라도 값만 같으면 됨. 
+
+		=== 3개
+		- 일치 연산자
+		-자료형과 값이 같아야함.
+		*/
+		console.log(`'1'== 1 : ${'1'==1}`); // true
+		console.log(`'1'=== 1 : ${'1'===1}`); // false
+
+		console.log(`null == undefined : ${null==undefined}`);
+		console.log(`null === undefined : ${null===undefined}`);
+
+		// null vs 0
+		console.log(`null > 0 : ${null > 0}`);
+		console.log(`null == 0 : ${null == 0}`);
+		console.log(`null === 0 : ${null === 0}`);
+		console.log(`null >= 0 : ${null >= 0}`);
+
+
+	</script>
+</body>
+</html>

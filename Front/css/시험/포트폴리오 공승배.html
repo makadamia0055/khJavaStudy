@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>포트폴리오 문제 공승배</title>
+ <style>
+	
+	.box{
+		padding: 3px;
+	
+	}
+	
+	.letter{
+		display: inline-block;
+		text-align: center;
+		width: 70px;
+		font-weight: bold;
+		
+	}
+	.form{
+		display: inline-block;
+	}
+	.submit{
+		margin-top: 10px;
+		margin-left: 155px;
+	}
+	.form{
+		width: 300px;
+	}
+	.box-content{
+		position: relative;
+
+	}
+	.box .form input{
+		position: relative;
+		width: inherit;
+		height: inherit;
+	}
+	.content-form{
+		height: 200px;	
+	}
+	.content-letter{
+		height: inherit;
+		float: left;
+		position: absolute;
+		top: 100px;
+		
+	}
+
+	#input-content{
+		display: inline-block;
+		width: inherit;
+		height: inherit;
+		resize: none;
+		float: left;
+		position: absolute;
+		left: 80px;
+		
+	}
+	.bar{
+		margin: 25px 0 25px;
+	}
+	.table{
+		width: 100%;
+	}
+	.table thead{
+		background-color: brown;
+		color: white;
+		height: 40px;
+	}
+	.table tfoot{
+		background-color: brown;
+		color: white;
+		text-align: center;
+		font-weight: 700;
+	}
+	.table tbody{
+		background-color: blanchedalmond;
+	}
+	.table tbody .td-button{
+		width: 70px;
+	}
+	thead .author, .date{
+		width: 120px;
+	}
+	thead .view{
+		width: 50px;
+	}
+	thead .no{
+		width: 40px;
+		
+	}
+	
+ </style>
+</head>
+<body>
+	<fieldset>
+		<legend>공지사항 작성하기</legend>
+	<form class="mainbox" action="insert.no" method="post">
+		
+		<div class="box box-title">
+			<div class="title-letter letter">제목</div>
+			<div class="form title-form">
+				<input type="text" name="title" id="input-title" required placeholder="제목을 입력하시오.">
+			</div>
+		</div>
+		<div class="box box-content">
+			<div class="content-letter letter">내용</div>
+			<div class="form content-form">
+				<textarea name="content"  id="input-content" required placeholder="내용을 입력하세요"></textarea>
+			</div>
+		</div>
+
+		<div class="box box-uploadfile">
+			<div class="uploadfile-letter letter">첨부파일</div>
+			<div class="form uploadfile-form">
+				<input type="file" name="uploadFile" id="input-uploadfile">
+			</div>
+		</div>
+
+		<button class="submit">작성하기</button>
+	</form>
+</fieldset>
+
+		<hr class="bar">
+
+		<table class="table" border="1px">
+			<thead>
+			<tr>
+				<th class="no">번호</th>
+				<th colspan="2">제목</th>
+				<th class="author">작성자</th>
+				<th class="date">작성일</th>
+				<th class="view">조회수</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>9</td>
+					<td>공지사항 제목 9</td>
+					<td class="td-button"><a href=""><button>바로가기</button></a></td>
+					<td>user01</td>
+					<td>2021-03-29</td>
+					<td>34</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>공지사항 제목 6</td>
+					<td class="td-button"><a href=""><button>바로가기</button></a></td>
+					<td>answ445</td>
+					<td>2021-03-12</td>
+					<td>67</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>공지사항 제목 3</td>
+					<td class="td-button"><a href=""><button>바로가기</button></a></td>
+					<td>testg12</td>
+					<td>2021-03-01</td>
+					<td>98</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>공지사항 제목 2</td>
+					<td class="td-button"><a href=""><button>바로가기</button></a></td>
+					<td>palwe3</td>
+					<td>2021-01-02</td>
+					<td>85</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>공지사항 제목 1</td>
+					<td class="td-button"><a href=""><button>바로가기</button></a></td>
+					<td>xml23</td>
+					<td>2020-12-24</td>
+					<td>124</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="4">전체공지사항 갯수</td>
+					<td colspan="2">5개</td>
+				</tr>
+
+			</tfoot>
+		</table>
+
+</body>
+</html>
