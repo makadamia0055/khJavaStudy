@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>호이스팅 예제</title>
+</head>
+<body>
+	<script>
+		/*
+		 호이스팅은 js가 실행전, 변수나 함수들을 위로 끌어올리는 작업
+		 let와 const는 호이스팅으로 등록되나, 해당 구문시점까지 (블록 스코프까지)
+		 사용할 수 없다.
+		 호이스팅은 함수의 시작지점에서 일어나는 것.
+		 전역 변수의 호이스팅은 전역 시작지점에서 일어나고 
+		 로컬 변수의 호이스팅은 해당 함수의 시작 지점에서 일어나고
+		*/
+		// x=10;
+		// var x;
+
+		// console.log(x);
+
+		// y=20;
+		// let y;
+		// console.log(y); 
+
+		// test1();
+		// function text1(){ console.log('Hi');}
+
+		// test2();
+		var test2 = function(){
+			console.log('Hello');
+		}
+		test2();
+
+	</script>
+</body>
+</html>

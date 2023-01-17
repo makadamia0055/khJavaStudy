@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>옵셔널 체이닝 예제</title>
+</head>
+<body>
+	<script>
+		/*
+		let 객체 ={
+			속성1 : 값, 
+			속성2 : 값, 
+			속성3 : {
+				속성3-1: 값,
+				속성3-2: 값
+			}
+		}
+		객체.속성3.속성3-1 = 새로운 값;
+
+		*/
+		let user = {
+			id : '123',
+			pw : '345',
+			authority: {
+				name: 'admin',
+				value: 10
+			}
+		}
+		user.authority.name = 'user';
+		user.authority.value = 9;
+		user.authority.code = 7; // 없는 속성인데 추가함.
+		
+		console.log(user.name.firstName); // 에러
+		console.log(user.name?.firstName); // undefined
+	</script>
+	
+</body>
+</html>

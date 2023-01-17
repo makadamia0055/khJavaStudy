@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습 예제</title>
+</head>
+<body>
+	<script>
+		/*알림창을 통해 이름을 입력받고 
+		입력받은 이름을 콘솔에 출력하는 코드를 작성하세요.*/
+		
+		// let name = prompt('이름을 입력하세요.');
+		// function printName(n){
+		// 	let str = `당신의 이름은 ${n}입니다.`;
+		// 	return str;
+		// }
+		// alert(printName(name));
+		
+			/* 알림창을 통해 두 수를 입력받아 두 수의 합을 확인하는 코드를 작성하세요.*/
+			//입력한 값이 숫자가 아닌 경우 0으로 대체해서 합을 구하도록 수정.
+			let str1 = prompt('첫번째 숫자를 입력하세요');
+			let str2 = prompt('두번째 숫자를 입력하세요');
+			// 입력받은 숫자의 데이터형이 문자열이기 때문에 변환필요
+			// + 연산자, Number() 캐스팅, parseInt(), parseFloat() 등
+			let num1 = +str1;
+			let num2 = +str2;
+			
+			/*
+				isNaN(변수) : 변수가 NaN인지 알려주는 함수
+				*/
+
+
+			function sum(num1, num2){
+				num1 = num1??0;
+				num2 = num2??0;
+				if(isNaN(num1)){
+					num1 = 0;
+				}
+				if(isNaN(num2)){
+					num2 = 0;
+				}
+				return num1+num2;
+			}
+			alert(`${str1}+${str2}=${sum(num1, num2)}`);
+
+
+	</script>
+</body>
+</html>

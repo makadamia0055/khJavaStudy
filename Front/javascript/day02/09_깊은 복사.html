@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>깊은 복사 예제</title>
+</head>
+<body>
+	<script>
+
+		let user1 = {
+			id: 'abc',
+			pw: 'qwe'
+		}
+		// 얕은 복사 예제
+		let user2 = user1;
+		user2.id = 'qwe';
+		console.log(user1); // user1.id의 값도 변경
+		console.log(user2); 
+
+
+		user1.id='abc'; // 초기화
+		
+		// 깊은 복사 예제1
+		let user3 ={}
+		for(key in user1){
+			user2[key] = user1[key];
+		}
+		user3.id = 'qwe';
+		console.log(user1); // user1.id의 값은 그대로
+		console.log(user3); 
+
+		// 깊은 복사 예제 2;
+		Object.assign(user2, user1, {name: '홍길동'}, {name: '임꺽정', age : 21});
+		// 제일 앞의 인수에 나머지 인수들의 프로퍼티를 복사함. 
+		// 프로퍼티 키 값이 중복 시 제일 나중 것이 반영됨.
+		console.log(user2);
+	</script>
+</body>
+</html>

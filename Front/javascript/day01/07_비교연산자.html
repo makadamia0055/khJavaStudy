@@ -40,10 +40,14 @@
 		console.log(`null === undefined : ${null===undefined}`);
 
 		// null vs 0
-		console.log(`null > 0 : ${null > 0}`);
-		console.log(`null == 0 : ${null == 0}`);
-		console.log(`null === 0 : ${null === 0}`);
-		console.log(`null >= 0 : ${null >= 0}`);
+		console.log(`null > 0 : ${null > 0}`); // null이 비교연산자 때문에 0으로 형변환
+		console.log(`null == 0 : ${null == 0}`); //null이 형변환 안됨
+		console.log(`null >= 0 : ${null >= 0}`); //null이 비교연산자 때문에 0으로 형변환
+
+		//undefined
+		console.log(`undefined > 0 : ${undefined > 0}`); //undefinde가 NaN으로 형변환
+		console.log(`undefined > 0 : ${undefined == 0}`); //undefinde가 NaN으로 형변환
+		console.log(`undefined > 0 : ${undefined >= 0}`); //undefinde가 NaN으로 형변환
 
 
 	</script>

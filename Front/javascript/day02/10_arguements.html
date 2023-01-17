@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>arguments 예제</title>
+</head>
+<body>
+	<script>
+		/* arguments : 함수에서 매개변수들을 모아놓은 객체
+		*/
+
+		function test(arg1, arg2, arg3){
+			console.log(arguments)
+			for(value of arguments){
+				console.log(value);
+			}
+		}
+		test(1, 'abc', true, {name: '홍길동'});
+		// 선언된 매개변수 수보다 많은 인수를 삽입했으나 추가 인수까지 작동.
+		// 함수의 매개변수를 칭하는 예약어 arguments
+		// arguments를 이용하면 추가 인수에도 접촉 가능.
+		
+	</script>
+</body>
+</html>
