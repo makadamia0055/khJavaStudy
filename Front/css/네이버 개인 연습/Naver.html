@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Naver</title>
+	<style>
+		*{margin:0px; padding:0px;}
+		ul, ol{ list-style-type: none}
+		a{text-decoration:none;}
+		.body{ 
+			min-width: 1190px;
+			font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
+			line-height: 16px; font-size: 12px; color: #202020;
+			height: 1000px;
+		}
+		.inner-container{ 
+			width: 1130px; margin: 0 auto; padding: 0 30px;
+		}
+		.box-search{
+			position: relative; height: 160px;
+		}
+		.box-service{
+			position:absolute;
+			top:12px; right:27px;
+		}
+		.box-service .link-start-page{
+			display: inline-block;
+			float:left;
+			font-size:11px;
+			color: #404040;
+		}
+		.box-service .link-start-page:hover{
+			text-decoration: underline;
+		}
+
+		.box-service .link-start-page::after{
+			display: inline-block;
+			width:26px; height:26px; background-position: -382px -213px;
+			vertical-align: top; content:''; margin:-3px 0 0 3px;
+		}
+		.sa_bar{
+			float:left;
+			width:1px; height:10px;
+			margin: 3px 7px;
+			background-color: #e4e8eb;
+		}
+		.box-service .link-jrnaver{
+			float:left;
+		}
+		.box-service .link-jrnaver .ico_jrnaver{
+			display: inline-block;
+			width: 60px; height:10px;
+			background-position:-264px -296px;
+			vertical-align: top;
+			margin: 3px;
+		}
+		.box-service .link-jrnaver:hover .ico_jrnaver{
+			background-position:-326px -296px;
+		}
+		.box-service .link-happybean{
+			float:left;
+			margin-left: 6px;
+		}
+		.box-service .link-happybean .ico_happybin{
+			display: inline-block;
+			width: 34px; height:11px;
+			background-position:-365px -245px;
+			vertical-align: top;
+			margin: 3px;
+		}
+		.box-service .link-happybean:hover .ico_happybin{
+			background-position:-380px -199px;
+		}
+		.logo_area{
+			position: relative;
+			height: 100%;
+		}
+		.logo{
+			position:absolute;
+			top:50%; left:-9px; margin-top:-32px;
+
+		}
+		.logo_naver:before{
+			
+			display: inline-block;
+			width: 222px; height: 52px; 
+			background-position: 0px -158px;
+			vertical-align: top; content:'';
+		}
+
+
+		.link-start-page.img1::after, .ico_jrnaver.img1, .ico_happybin.img1, .logo_naver.img1{
+			background-image: url(./img/sp_main_947f65.png);
+			background-size: 442px 428px;
+		}
+		.blind{
+			position: absolute;
+			clip: rect(0 0 0 0);
+			width: 1px; height:1px;
+			margin: -1px;
+			overflow: hidden;
+
+		}
+
+	</style>
+</head>
+<body>
+	<div class="body">
+		<div class="container-search">
+			<div class="inner-container">
+				<div class="box-search">
+					<div class="box-service">
+						<a href="https://help.naver.com/service/30016/contents/18042?osType=PC&lang=ko" class="link-start-page img1">네이버를 시작페이지로</a>
+						<i class="sa_bar"></i>
+						<a href="https://jr.naver.com" class="link-jrnaver">
+							<i class="ico_jrnaver img1"></i><span class="blind">쥬니어네이버</span>
+						</a>
+						<a href="https://happybean.naver.com" class="link-happybean">
+							<i class="ico_happybin img1"></i><span class="blind">해피빈</span>
+						</a>
+						<!--  -->
+					</div>
+					<div class="logo_area">
+					<div class="logo"><a href="/" class="logo_naver img1">
+						<sapn class="blind">네이버</sapn>
+					</a></div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
