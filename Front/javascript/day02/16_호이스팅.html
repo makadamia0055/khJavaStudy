@@ -14,12 +14,13 @@
 		 사용할 수 없다.
 		 호이스팅은 함수의 시작지점에서 일어나는 것.
 		 전역 변수의 호이스팅은 전역 시작지점에서 일어나고 
-		 로컬 변수의 호이스팅은 해당 함수의 시작 지점에서 일어나고
+		 로컬 변수의 호이스팅은 해당 함수의 시작 지점에서 일어남
+		 호이스팅은 선언만 끌어오지 값은 끌어오지 않는다.
 		*/
-		// x=10;
-		// var x;
+		x=10;
+		var x;
 
-		// console.log(x);
+		console.log(x);
 
 		// y=20;
 		// let y;
@@ -28,7 +29,7 @@
 		// test1();
 		// function text1(){ console.log('Hi');}
 
-		// test2();
+		test2();
 		var test2 = function(){
 			console.log('Hello');
 		}

@@ -31,7 +31,7 @@
 		user.authority.name = 'user';
 		user.authority.value = 9;
 		user.authority.code = 7; // 없는 속성인데 추가함.
-		
+		// user.name?.firstName = '홍' // 옵셔널 체이닝으로 값을 할당할 수는 없음.
 		console.log(user.name.firstName); // 에러
 		console.log(user.name?.firstName); // undefined
 	</script>

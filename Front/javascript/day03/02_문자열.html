@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문자열 예제</title>
+</head>
+<body>
+	<script>
+		let str = 'abc,def,ghi';
+		/* str 에서 ,가 몇개 있는지 확인하는 코드를 작성하세요.*/
+		
+		function check1(str){
+			let count = 0;
+					
+			for( i = 0; i<str.length; i++){
+				if(str.charAt(i)==','){
+					count++;
+				}
+			}
+			return count;	
+		}
+	
+		console.log(check1(str));
+
+		// 선생님 코드
+		// let index = -1, count =0; //index = 찾은 ','의 위치, count=갯수
+		// do{
+		// 	index = str.indexOf(',', index+1);
+		// 	count= index>=0?count+1:count;
+		// }while(index!=-1);
+		// console.log(`${str}에서 ,의 개수 : ` + count);
+
+		/*,를 기준으로 문자열들을 출력하는 코드를 작성하세요.*/
+
+		//내 코드
+			// let index = -1;
+			// do{
+			// 	let nextIndex = str.indexOf(',', index+1);
+			// 	let tmpStr;
+			// 	if(nextIndex!=-1){
+			// 		tmpStr = str.slice(index+1, nextIndex);
+			// 	}else{
+			// 		tmpStr = str.slice(index+1);
+			// 	}
+			// 	console.log(tmpStr)
+			// 	index=nextIndex;
+			// }while(index!=-1);
+
+			// 선생님 버전
+			// index = -1;
+			// let start = 0, end = start+1;
+			// do{
+			// 	start = index+1;
+			// 	index=str.indexOf(',', index+1);
+			// 	end = index!=-1? index : str.length;
+			// 	let word = str.substring(start, end);
+			// 	console.log(word);
+			// }while(index !=-1);
+
+			//배열버전
+			let arr =str.split(',');
+			for(let tmp of arr){
+				console.log(tmp);
+			}
+
+
+	</script>
+</body>
+</html>

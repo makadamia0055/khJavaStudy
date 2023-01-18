@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+	- splice(index [, deleteCount, elem1, ..., elemN]
+	index => 삭제할 요소의 위치
+	delete => 삭제할 요소의 개수
+	elem1~elemN => 삭제된 배열에 추가할 요소들
+	배열에서 index 번지부터 deleteCount개의 요소 제허 후 item1~itemN을 추가한 후, 
+	제거된 요소들을 '반환'하는 메소드
+	=> 부분 배열을 만드는 메소드로 삭제할 수 있지만, 
+	pop식의 요소를 삭제하는 메소드
+	*/
+		let arr = [1, 'hi', {name: '홍길동'}];
+		console.log(arr.splice(0, 2, 4, true));
+		console.log(arr);
+
+</script>
+</body>
+</html>

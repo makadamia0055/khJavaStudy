@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+	/* 정렬메소드 sort(함수)
+	 	sort를 함수 없이 사용하면 내부 요소가 문자열로 
+	 	캐스팅되고 그 결과대로 정렬됨.
+		java에서 comparator 사용하듯 함수 넣으면 됨.
+	*/
+	let students = [
+		{grade :2, classNum : 1, num : 1, name: '나길동'},
+		{grade :1, classNum : 1, num : 1, name: '홍길동'},
+			{grade :3, classNum : 1, num : 1, name: '다길동'},
+			{grade :1, classNum : 1, num : 2, name: '가길동'},
+		];
+		students.sort((a,b)=>{
+			if(a.grade != b.grade)
+				return -(a.grade- b.grade);
+			if(a.classNum != b.classNum)
+				return -(a.classNum-b.classNum);
+			return -(a.num - b.num);
+		});
+		students.forEach(item=>console.log(item));
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>호출 스케쥴링</title>
+</head>
+<body>
+	<div class="min">00</div>
+	<script>
+		/*
+		setTimeout(함수, 딜레이 시간, 매개변수, 매개변수2, ...);
+		- 딜레이 시간 밀리초 뒤에 함수를 실행.
+		- 함수를 실행할 때 매개변수1, 매개변수, ... 를 함수의 매개변수로 전달
+		- 함수 실행 후 타이머의 아이디를 리턴;
+		
+		*/
+		//1000ms 후에 함수를 실행
+		// let timerId = setTimeout(function(name){
+		// 	alert('안녕하세요. 제 이름은 ${name}입니다.');
+
+		// }, 5000, '홍길동');
+
+		/*
+		setInterval(함수, 딜레이시간, 매개변수들);
+		- 딜레이 시간마다 함수를 실행
+		clearInterval(아이디)
+		- 아이디와 일치하는 작업을 취소
+		*/
+		// setInterval(()=> console.log(1), 1000);
+		// let intervalId = setInterval(()=>{
+		// 	document.body.innerText = `${sec++}`;
+		// }, 100)
+		let sec = 0; 
+		let min = 0;
+		let hour = 0;
+		let ClockId = setInterval(()=>{
+			sec++;
+			if(sec==60){
+				sec=0;
+				min++;
+			}
+			if(min==60){
+				min=0;
+				hour++;
+			}
+			hour=(hour>=24?0:hour);
+			document.body.innerText = getString(hour, min, sec);
+			
+		}, 100)
+		function getString(hour, min, sec){
+			return `${zerofill(hour)} : ${zerofill(min)} : ${zerofill(sec)}`;
+		}
+		function zerofill(num){
+			return `${num<10?'0'+num:num}`;
+		}
+	</script>
+</body>
+</html>
