@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+	<style>
+		.bg-color{
+			background-color: yellow;
+		}
+	</style>
+<body>
+	<ul>
+		<!-- 인자로 this 를 넣어줄 수 있음. -->
+		<li onclick="changeBackground(this);">1</li>
+		<li onclick="changeBackground(this);">2</li>
+		<li onclick="changeBackground(this);">3</li>
+	</ul>
+	<script>
+		function changeBackgroune(el){
+			el.classList.toggle('bg-yellow');
+		}
+	</script>
+</body>
+</html>

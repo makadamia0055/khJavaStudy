@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+			padding:0; margin:0;
+		}
+		.container{
+			width: 600px; height: 200px;
+			border: 3px solid black;
+		}
+		.box{
+			float:left; width:33.33%; height: 200px;
+			
+			
+		}
+		.box + .box{
+			border-left: 3px solid black; margin-left: -3px;
+		}
+		.box::after{
+			content: ''; clear: both; display: inline-block;
+		}
+		.bg-yellow{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box" onclick="changeBGColor(this)"></div>
+		<div class="box" onclick="changeBGColor(this)"></div>
+		<div class="box" onclick="changeBGColor(this)"></div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="box" onclick="changeBGColor2(this)"></div>
+		<div class="box" onclick="changeBGColor2(this)"></div>
+		<div class="box" onclick="changeBGColor2(this)"></div>
+	</div>
+
+	<script>
+		// 방법 1
+		/*
+		li태그 전체에 bg-yellow를 전부 제거, 선택한 요소에 bg-yellow를 추가
+		*/
+		let index = undefined;
+		function changeBGColor(el){
+			let tmp = document.querySelectorAll('.container .box');
+			tmp.forEach((s)=>{s.classList.remove('bg-yellow');});
+			el.classList.add('bg-yellow');
+		}
+		function changeBGColor2(el){
+			if(index){
+				index.classList.remove('bg-yellow');
+			}
+			let tmp = document.querySelectorAll('.container .box');
+			el.classList.add('bg-yellow');
+			index = el;
+		}
+		
+		//전역변수로 이전에 선택한 요소를 기억
+		// 이전에 선택한 요소에서 bg-yellow를 제거
+		// 선택한 요소에 bg-yellow를 추가
+		
+	</script>
+</body>
+</html>
