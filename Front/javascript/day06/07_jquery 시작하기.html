@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	 <!-- j쿼리 연결은 j쿼리 코드 이전에 수행되어야 한다. -->
+	 <style>
+		.container{ margin-bottom: 30px;}
+		.box1, .box2, .box3{
+			height: 100px; background-color: yellow;
+		}
+	 </style>
+</head>
+<body>
+	<div class="container">
+		<button class="btn-show">show</button>
+		<button class="btn-hide">hide</button>
+		<button class="btn-toggle">toggle</button>
+		<div class="box1"></div>
+	</div>
+	<div class="container">
+		<button class="btn-fadeIn">fadeIn</button>
+		<button class="btn-fadeOut">fadeOut</button>
+		<button class="btn-fadeToggle">fadeToggle</button>
+		<button class="btn-fadeTo">fadeTo</button>
+		<div class="box2"></div>
+	</div>
+	<div class="container">
+		<button class="btn-slideDown">slideDown</button>
+		<button class="btn-slideUp">slideUp</button>
+		<button class="btn-slideToggle">slideToggle</button>
+		<div class="box3"></div>
+	</div>
+	<script>
+		// j쿼리의 장점 : 같은 클래스 box에 이벤트 부여하기
+		// 바닐라 js에서 반복문으로 시도하던걸
+		let boxes = document.querySelectorAll('.box');
+		// boxes.forEach(()=>{})
+
+		// j쿼리에서는 반복문 없이 일괄적으로 그냥 부여
+		// $('.box').click(()=>{console.log(123);});
+		$('.box').click(function(){
+			console.log($(this).text());
+		})
+		//j쿼리 기본구조
+		//$('선택자').action(시간, 콜백함수);
+		$('.btn-show').click(()=>$('.box1').show(500, ()=>console.log('show')));
+		$('.btn-hide').click(()=>$('.box1').hide('fast'));
+		$('.btn-toggle').click(()=>$('.box1').toggle(2000));
+
+		$('.btn-fadeIn').click(()=>$('.box2').fadeIn(300, ()=>console.log('fadeIn')));
+		$('.btn-fadeOut').click(()=>$('.box2').fadeOut(300));
+		$('.btn-fadeToggle').click(()=>$('.box2').fadeToggle(300));
+		$('.btn-fadeTo').click(()=>$('.box2').fadeTo(1000, 0.5));
+
+		$('.btn-slideDown').click(()=>$('.box3').slideDown(1000));
+		$('.btn-slideUp').click(()=>$('.box3').slideUp(1000));
+		$('.btn-slideToggle').click(()=>$('.box3').slideToggle(1000));
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0; padding:0;
+		}
+		.big-box::after{
+			content: ''; clear: both; display: block;
+		}
+		.container{
+			width:504px; height: 50px;
+			border: 1px solid black;
+			display: inline-block;
+			float: left;
+		}
+		.btn{
+			float: left;
+			width: 50px; height: 50px; border: 1px solid black;
+			display: inline-block; line-height: 50px;
+			text-align: center;
+			text-decoration: none;
+			margin-left: -1px;
+			margin-right: -1px;
+		}
+		.inner-box{
+			width: 100px; height: 50px;
+			float: left; line-height: 50px;
+			text-align: center;
+		}
+		.inner-box + .inner-box{
+			border-left: 1px solid black;
+			
+
+		}
+		.inner-box[aria-selected="true"]{
+			background-color: aqua;
+		}
+	</style>
+</head>
+<body>
+	<div class="big-box">
+	<a href="#" class="btn prev" onclick="moveBox(this)">&lt;</a>
+	<div class="container">
+		<div class="inner-box" aria-selected="false">엔터</div>
+		<div class="inner-box" aria-selected="true">스포츠</div>
+		<div class="inner-box" aria-selected="false">자동차</div>
+		<div class="inner-box" aria-selected="false">웹툰</div>
+		<div class="inner-box" aria-selected="false">경제</div>
+	</div>
+	<a href="#" class="btn next" onclick="moveBox(this)">&gt;</a>
+</div>
+<script>
+	function moveBox(state){
+		let currentBox = document.querySelector('.inner-box[aria-selected="true"]');
+		if(state.classList.contains('prev')){
+			let prevBox = currentBox.previousElementSibling;
+			if(currentBox==currentBox.parentElement.firstElementChild){
+				prevBox = currentBox.parentElement.lastElementChild;
+			}
+			currentBox.ariaSelected = "false";
+			prevBox.ariaSelected = "true";
+
+	}	else{
+		let nextBox = currentBox.nextElementSibling;
+			if(currentBox==currentBox.parentElement.lastElementChild){
+				nextBox = currentBox.parentElement.firstElementChild;
+			}
+			currentBox.ariaSelected = "false";
+			nextBox.ariaSelected = "true";
+	}
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.container{ width: 622px;}
+		.container::after{
+			clear: both; display: block; content: ''; 
+		}
+		.btn-prev, .btn-next{
+			float: left; width: 48px; height: 48px; border: 1px solid #000;
+			line-height: 48px; text-align: center; text-decoration: none; color: #000;
+		}
+		.list-menu{
+			list-style: none; margin: 0 10px; padding: 0; float: left;
+			width: 500px; height: 48px; border: 1px solid #000;
+		}
+		.item-menu{
+			float: left; width: 100px;height: 48px; text-align: center; line-height: 48px;
+		}
+		.item-menu~.item-menu{
+			border-left: 1px solid #000; margin-left: -1px;
+		}
+		.link-menu{
+			height: 100%; width: 100%; display: block; color: #000; text-decoration: none;
+		}
+		.item-menu.selected{
+			background-color: yellow;
+		}
+		.list-box{
+			width: 500px;  list-style: none; padding: 0; margin: 10px auto;
+			border: 1px solid #000; height: 500px; overflow: hidden;
+			z-index: 0;
+		}
+		.item-box{
+			width: 100%; height: 100%; background-color: yellow;
+		}
+		.item-box:nth-child(2n){
+			background-color: rgb(163, 163, 214);
+		}
+		.item-box.selected{
+			z-index: 10;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<a href="#" class="btn-prev" onclick="moveItem('prev')">&lt;</a>
+		<ul class="list-menu">
+			<li class="item-menu selected">
+				<a href="#" class="link-menu" id="ent" >엔터</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="sport" >스포츠</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="car" >자동차</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="webtoon" >웹툰</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="finance" >경제</a>
+			</li>
+		</ul>
+		<a href="#" class="btn-next" onclick="moveItem('next')">&gt;</a>
+	</div>
+	<div class="container">
+		<ul class="list-box">
+			<li class="item-box ent selected">엔터</li>
+			<li class="item-box sport" hidden>스포츠</li>
+			<li class="item-box car" hidden>자동차</li>
+			<li class="item-box webtoon" hidden>웹툰</li>
+			<li class="item-box finance" hidden>경제</li>
+
+		</ul>
+	</div>
+	<script>
+		let selectedItem = document.querySelector('.item-menu.selected');
+		function moveItem(state){
+			selectedItem.classList.remove('selected');
+
+			if(state =='prev'&& selectedItem.previousElementSibling){
+				selectedItem = selectedItem.previousElementSibling;
+			}else if(state =='next' && selectedItem.nextElementSibling){
+				selectedItem = selectedItem.nextElementSibling;
+			}
+			selectedItem.classList.add('selected')
+			selectContents(selectedItem);
+		}
+		// 온클릭 추가하고 하는 방법
+		// function clickItem(el){
+		// 	selectedItem.classList.remove('selected');
+
+		// 	selectedItem = el.parentElement;
+		// 	selectedItem.classList.add('selected');
+		// }
+
+		// 온클릭 추가 없이 하는 방법
+		let itemList = document.querySelectorAll('.item-menu');
+		itemList.forEach((item)=>{
+			item.onclick = () =>{
+			selectedItem.classList.remove('selected');
+			selectedItem = item;
+			selectedItem.classList.add('selected');
+			selectContents(selectedItem);
+		}
+		});
+		
+		function selectContents(el){
+		let category = el.firstElementChild.id;
+		let currentBox = document.querySelector('.item-box.selected');
+		currentBox.classList.remove('selected');
+		let itemList = document.querySelectorAll('.item-box');
+		itemList.forEach((item)=>{
+			if(item.classList.contains(category)){
+				item.classList.add('selected');
+				item.hidden = false;
+			}else{
+				item.hidden = true;
+			}
+			
+		});
+		}
+	</script>
+</body>
+</html>
