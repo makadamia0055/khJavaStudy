@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding:0; margin: 0;
+		}
+		li{
+			display: inline-block;
+		}
+		.box{
+			width: 300px; height: 50px;
+			border: 1px solid black;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<ul class="list">
+		<li class="item-box">
+			<input type="checkbox" name="fruit" id="apple">
+			<label for="apple">사과</label>
+		</li>
+		<li class="item-box">
+			<input type="checkbox" name="fruit" id="banana">
+			<label for="banana">바나나</label>
+		</li>
+		<li class="item-box">
+			<input type="checkbox" name="fruit" id="orange">
+			<label for="orange">오렌지</label>
+		</li>
+		<br>
+		<br>
+		<button class="btn">클릭</button>
+	</ul>
+	<script>
+		/** ex1 선택하고 버튼을 눌렀을 때 콘솔로 선택한 요소의 값이 출력되게
+		 */
+	
+		// $('.btn').click(()=>{
+		// 	let list = $('[name=fruit]:checked'); // 선택자를 통해 필터링 가능
+		// 	for(tmp of list){
+		// 		// if($(tmp).prop('checked'))
+		// 			console.log($(tmp).val());
+		// 	}
+		// 	// jquery에서 forEach 대신 each를 사용
+		// 	// list.each(function(){
+		// 	// 	console.log($(this).val());
+		// 	// })
+			
+		// });
+
+		/*
+			ex2 선택하고 버튼을 눌렀을 때 다른 박스에 내용이 출력되게.
+		*/
+
+		$('.btn').click(()=>{
+			let list = $('[name=fruit]:checked');
+			let str = '';
+			list.each((index, item)=>{
+				str+= $(item).prop('id') + " ";
+			});
+			$('.box').text(str);
+		});
+
+		//선생님 코드 - 배열로 함.
+		// $('#btn').click(()=>{
+		// 	let arr = [];
+		// 	$('[name=fruit]:checked').each(function(index){
+		// 		arr.push($(this).val());
+		// 	});
+		// 	let str = arr.join(', ');
+		// 	$('.box').text(str);
+		// });
+
+		/*
+		주말 과제 : 박스 3개 만들어서 각 박스마다 순차적으로 넣기
+		
+		*/
+	</script>
+</body>
+</html>

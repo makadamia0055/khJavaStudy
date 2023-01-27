@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding: 0; margin: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+			color: inherit;
+		}
+		.list-menu{
+			display: flex;
+		}
+		
+		.list-menu::after{
+			content: ''; clear: both; display: block;
+		}
+		.item-menu{
+			height: 50px; width: 100%;
+		}
+		.item-menu + .item-menu{
+			margin-left: -3px
+			
+		}
+		.link-menu{
+			display: block; height: 100%; text-align: center;
+			line-height: 50px; border: 3px solid black;
+		}
+		.list-sub{
+			border: 3px solid #000; 
+			margin-top: -3px; display: none;
+			
+		}
+		.list-sub .link-sub{
+			height: 50px; line-height: 50px; text-align: center;
+			display: block;
+		}
+		.list-sub .item-sub + .item-sub{
+			border-top : 3px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<ul class="list-menu">
+		<li class="item-menu">
+			<a href="#" class="link-menu">메뉴1</a>
+			<ul class="list-sub">
+				<li class="item-sub">
+					<a href="">메뉴1-1</a>
+				</li>
+				<li class="item-sub">
+					<a href="">메뉴1-2</a>
+				</li>
+			</ul>
+		</li>
+		<li class="item-menu">
+			<a href="#" class="link-menu">메뉴2</a>
+			<ul class="list-sub">
+				<li class="item-sub">
+					<a href="">메뉴2-1</a>
+				</li>
+				<li class="item-sub">
+					<a href="">메뉴2-2</a>
+				</li>
+			</ul>
+		</li>
+		<li class="item-menu">
+			<a href="#" class="link-menu">메뉴3</a>
+			<ul class="list-sub">
+				<li class="item-sub">
+					<a href="">메뉴3-1</a>
+				</li>
+				<li class="item-sub">
+					<a href="">메뉴3-2</a>
+				</li>
+			</ul>
+		</li>
+			
+	</ul>
+	<script>
+		// 클릭된 요소의 자식 요소들 중에서 서브 메뉴를 선택하여 toggle
+			$('.link-menu, .link-sub').click((e)=>e.preventDefault());
+			$('.item-menu').mouseover(function(){
+				$(this).children('.list-sub').stop().slideDown();
+			});
+			$('.item-menu').mouseout(function(){
+				$(this).children('.list-sub').stop().slideUp();
+			});
+			// stop를 이용하면 중복, 잔여판정문제 막을 수 있음
+			// 진행중인 작업 멈추고 이걸 진행하라는 메소드
+	</script>
+</body>
+</html>

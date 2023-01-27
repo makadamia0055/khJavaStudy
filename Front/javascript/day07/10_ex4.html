@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{ padding: 0; margin: 0;}
+		.container{
+			width: 300px; height: 50px;
+			margin: 10px 10px;
+			
+		}
+		.btn{
+			height: 20px; width: 20px;
+			text-align: center; line-height: 20px;
+			text-decoration: none; color: inherit;
+			border: 1px solid black;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<a href="#" class="btn prev">&lt;</a>
+		<span class="current">1</span>
+		<span>/</span>
+		<span class="maxNum">6</span>
+		<a href="#" class="btn next">&gt;</a>
+	</div>
+	<script>
+		$('.btn').click(function(){
+			let currentN = +($('.current').text());
+			let maxN = +($('.maxNum').text());
+			if($(this).hasClass('next')&& currentN < maxN ){
+				$('.current').text(`${currentN+1}`);
+			}
+			if($(this).hasClass('prev')&& currentN > 1 ){
+				$('.current').text(`${currentN-1}`);
+			}
+		});
+	</script>
+</body>
+</html>

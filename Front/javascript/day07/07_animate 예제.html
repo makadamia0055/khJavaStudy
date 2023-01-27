@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			width: 100px; height: 100px;
+			background-color: red; position: relative;
+		}
+	</style>
+</head>
+<body>
+	<!-- 버튼을 클릭하면 오른쪽으로 가는 -->
+	<div>
+		<button class="btn">버튼</button>
+	</div>
+	<div class="box"></div>
+	<script>
+		/*
+		$(selector).animate({params},speed,callback);
+		- {param} : 애니메이션을 적용시킬 css 속성과 값들로 이루어진 객체.
+		- speed : 애니메이션 실행시간, 단위 ms
+		- callback : 애니메이션 종료후 실행할 함수
+		- css 속성 명에 '-' 가 있는 경우 -를 없애고 카멜 표기법으로 쓰던지, 
+		'속성명'으로 작성하면 됨.
+		margin-left => marginLeft 혹은 'margin-left'
+
+		position이 relative이어야 animate가 된다고 함.
+		
+		*/
+		$('.btn').click(()=>{
+			$('.box1').animate({
+				// left : '200px'
+				marginLeft : '200px' 
+				
+			}, 1000, function(){
+				$(this).animate({
+					marginLeft : 0
+				}, 1000)
+			})
+		});
+
+		// 선언된 객체를 값으로 사용가능
+		let cssBefore = {
+			marginLeft: 0
+		};
+		let cssAfter = {
+			marginLeft: '100px'
+		}
+
+
+		$('.btn').click(()=>{
+			$('.box').animate(cssAfter, 1000, function(){
+				$(this).animate(cssBefore, 1000)
+			})
+		});
+
+
+	</script>
+</body>
+</html>

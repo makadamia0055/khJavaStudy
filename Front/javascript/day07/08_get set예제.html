@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="box">
+		<a href="http://www.naver.com">네이버로</a>
+		<input type="text" id="input1">
+		<input type="checkbox" id="input2" num="1">
+	</div> 
+	<button class="btn1">get text</button><br>
+	<button class="btn2">get Html</button><br>
+	<button class="btn3">get val</button><br>
+	<button class="btn4">get attr</button><br>
+	<button class="btn5">get prop</button><br><br>
+
+	<button class="btn6">set text</button><br>
+	<button class="btn7">set Html</button><br>
+	<button class="btn8">set val</button><br>
+	<button class="btn9">set attr</button><br>
+	<button class="btn10">set prop</button><br>
+	<script>
+		/*
+		get와 set의 차이
+		매개변수 갯수. 
+		매개변수가 없으면 가져오고, 있으면 거기에 값을 넣고
+		
+		text()
+		- 요소 안에 있는 텍스트를 가져옴.
+		text('text')
+		- 요소 안에 있는 텍스트를 'text'로 덮어씀.
+		html()
+		- 요소 안에 있는 html 코드를 가져옴
+		html('html');
+		- 요소 안에 있는 html 코드를 'html'로 덮어씀.
+		val()
+		- 요소 안에 있는 value 값을 가져음.(input태그, textarea태그, select태그)
+		val('value')
+		- 요소 안에 있는 value 값을 'value'로 set함.
+		attr('속성명')
+		- 요소 안에 있는 속성 값을 가져옴.(태그의 표준 속성이 아니어도 됨.)
+		attr('속성명', '값')
+		- 요소 안에 있는 속성 값을 '값'으로 덮어씀
+		prop('프로퍼티명')
+		- 요소 안에 있는 프로퍼티 값을 가져옴(태그의 표준 속성이어야함.)
+		prop('프로퍼티명', '값')
+		- 요소 안에 있는 프로퍼티 값을 '값'으로 set함.
+		
+		data('name')
+		- 요소 속성의 data-name에 해당하는 값을 가져옴.
+		data('name', '값')
+		- 요소 속성이 data-'name'에 해당하는 값을 set함.
+		*/
+		$('.btn1').click(()=>alert($('.box').text())); // get text
+		$('.btn6').click(()=>$('a').text('Hello')); // set text
+
+		$('.btn2').click(()=>alert($('.box').html())); //get html
+		$('.btn7').click(()=>$('a').html('<button>네이버로</button>')); // set text
+
+		$('.btn3').click(()=>alert($('#input1').val())); // get value
+		$('.btn8').click(()=>$('#input1').val('Hello')); // set value
+
+		$('.btn4').click(()=>{
+			// alert($('#input2').attr('num'));// 비표준 속성값도 잘 가져옴. 
+			alert($('#input2').attr('checked')); // 표준 속성이지만 명시되어 있지 않아 못가져오고 undefined를 띄움
+		}) 
+		$('.btn5').click(()=>{
+			// alert($('#input2').prop('num')); // 비표준속성이라 못가져오고 undefined를 띄움.
+			alert($('#input2').prop('checked')); // 표준속성이라 명시되어 있지 않아도 체크 값에 따라 false/true 값을 가져옴
+		})
+
+		$('.btn9').click(()=>{
+			// $('#input2').attr('num', 2);
+			// alert($('#input2').attr('num')) 
+			$('#input2').attr('checked' , ''); // 명시되어 있지 않아도 기입 가능
+		});
+		$('.btn10').click(()=>{
+			$('#input2').prop('checked', false); 
+		});
+
+
+		// let className = box.className;
+		// let value = input.value; // .연산자로 불러올 수 있는 것은 표준 속성들.
+			// div의 value는 표준 속성이 아니라 .으로 불러올 수 없다.
+			// input의 value는 표준속성이라 .으로 불러올 수 있음.
+			// query의 attr / prop에도 같은 차이점이 적용됨.
+		alert(value);
+	</script>
+</body>
+</html>
