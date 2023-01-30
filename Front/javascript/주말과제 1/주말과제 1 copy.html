@@ -22,16 +22,21 @@
 			border: 2px solid black;
 			margin: 10px;
 		}
+		.box-container::after{
+			clear: both; content: ''; display: block;
+		}
 		.box + .box{
 			border-left: 1px solid black;
 			margin-left:-1px;
 		}
 		.box{
 			width: 100px; height: 50px;
-			
+			line-height: 50px;
+			text-align: center;
 			float:left;
 						
 		}
+
 	</style>
 </head>
 <body>
@@ -55,12 +60,13 @@
 		</li>
 		<br>
 		<br>
-		<button class="btn">클릭</button>
+		<button class="btn-click">클릭</button>
+		<button class="btn-clear">초기화</button>
 	</ul>
 	<script>
 		
 
-		$('.btn').click(()=>{
+		$('.btn-click').click(()=>{
 			let list = $('[name=fruit]:checked');
 			let arr = [];
 			list.each((index, item)=>{
@@ -72,6 +78,11 @@
 				$(`.box:nth-child(${index +1})`).text(value);
 			}
 		)});
+		$('.btn-clear').click(()=>{
+			$("[name=fruit]:checked").prop('checked', false);
+			$('.box').text('');
+
+		})
 
 	
 		/*
