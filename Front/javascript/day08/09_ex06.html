@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.container{ width: 622px;}
+		.container::after{
+			clear: both; display: block; content: ''; 
+		}
+		.btn{
+			float: left; width: 48px; height: 48px; border: 1px solid #000;
+			line-height: 48px; text-align: center; text-decoration: none; color: #000;
+		}
+		.list-menu{
+			list-style: none; margin: 0 10px; padding: 0; float: left;
+			width: 500px; height: 48px; border: 1px solid #000;
+		}
+		.item-menu{
+			float: left; width: 100px;height: 48px; text-align: center; line-height: 48px;
+		}
+		.item-menu~.item-menu{
+			border-left: 1px solid #000; margin-left: -1px;
+		}
+		.link-menu{
+			height: 100%; width: 100%; display: block; color: #000; text-decoration: none;
+		}
+		.item-menu.selected{
+			background-color: yellow;
+		}
+		.list-box{
+			width: 500px;  list-style: none; padding: 0; margin: 10px auto;
+			border: 1px solid #000; height: 500px; overflow: hidden;
+			z-index: 0;
+		}
+		.item-box{
+			width: 100%; height: 100%; background-color: yellow;
+		}
+		.item-box:nth-child(2n){
+			background-color: rgb(163, 163, 214);
+		}
+		.item-box.selected{
+			z-index: 10;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<a href="#" class="btn prev">&lt;</a>
+		<ul class="list-menu">
+			<li class="item-menu selected">
+				<a href="#" class="link-menu" id="ent" >엔터</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="sport" >스포츠</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="car" >자동차</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="webtoon" >웹툰</a>
+			</li>
+			<li class="item-menu">
+				<a href="#" class="link-menu" id="finance" >경제</a>
+			</li>
+		</ul>
+		<a href="#" class="btn next">&gt;</a>
+	</div>
+	<div class="container">
+		<ul class="list-box">
+			<li class="item-box ent selected">엔터</li>
+			<li class="item-box sport" hidden>스포츠</li>
+			<li class="item-box car" hidden>자동차</li>
+			<li class="item-box webtoon" hidden>웹툰</li>
+			<li class="item-box finance" hidden>경제</li>
+
+		</ul>
+	</div>
+	<script>
+		$('.btn').click(function(){
+			let currentObj = $('.item-menu.selected');
+			currentObj.removeClass('selected');
+			if($(this).hasClass('prev')){
+				// if(currentObj.prev()){
+				// 	currentObj = currentObj.prev();
+				// } prev가 처음이어도 비어있는 객체를 리턴해서 이 코드는 안됨
+				// if(currentObj.next().length !=0)
+				// 선생님은 위 코드로 함
+				if(currentObj.index()!=0){
+					currentObj = currentObj.prev();
+				}
+				
+			}else{
+				if(currentObj.index()!=$('.item-menu').length-1){
+					currentObj = currentObj.next();
+				}
+			}
+			currentObj.click();
+		})
+
+		$('.item-menu').click(function(){
+			selectedMenu($(this));
+		})
+		// 선생님은 함수를 만들어서 코드 정리. 
+		function selectedMenu(el){
+			if(el !=null&&el.length !=0){
+			$('.item-menu').removeClass('selected');
+			el.addClass('selected');
+			moveItemBox(el);
+		}};
+		function moveItemBox(el){
+			$('.item-box').removeClass('selected');
+			if(el!=null){
+				let id = $(el).children().prop('id');
+				
+				$(`.item-box.${id}`).addClass('selected');
+			}
+		}
+	</script>
+</body>
+</html>

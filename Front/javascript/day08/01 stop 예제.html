@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>stop 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn">중지</button>
+	<div class="box"></div>
+	<script>
+		$('.box').slideUp(3000).slideDown(3000)
+		.slideUp(3000).slideDown(3000)
+		.slideUp(3000).slideDown(3000)
+		.slideUp(3000).slideDown(3000);
+		$('.btn').clicl(()=>{
+			$('.box').stop(true, true);
+		})
+		
+		/*
+		$(selector).stop(stopAll, goToEnd);
+		기본값 false false
+		-stopAll
+			-true or false
+			- 요소의 여러 애니메이션이 큐에 대기하고 있을 때 
+				큐를 비울 건지 말건지를 결정(true시 비움)
+			- goToEnd
+				-true or false
+				- 요소가 애니매이션을 멈출 때 진행하던 애니메이션을 끝내고 멈출건지
+				지금 멈출 건지를 결정
+				-false : 지금 멈춤
+				-true : 하던 애니메이션이 끝까지 진행 했을때 상태로 
+				진행하고 멈춤
+		*/
+
+	</script>
+</body>
+</html>

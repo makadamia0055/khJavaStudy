@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ex02</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding:0; margin:0;
+		}
+		.box{
+			display: none;
+			width: 100px; 
+			height: 100px;
+			text-align: center; line-height: 50px;
+			border: 1px solid black;
+		}
+		.box2{
+			display: inline-block;
+			width: 100px; 
+			height: 100px;
+			text-align: center; line-height: 100px;
+			vertical-align: bottom;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="box2"></div>
+	<!-- 
+		hidden 속성을 주어도 css값을 변경하면 변경된 값 반영하여 화면에 나타남 
+	https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/hidden-->
+	<br>
+	<button class="btn">버튼</button>
+	<!-- 
+		1) 버튼을 생성하고, 버튼을 클릭했을 때 빈 박스에 Hello라는 글자가 
+		출력되도록 코드를 작성하세요
+		2) 버튼을 클릭했을때 hello가 쓰인 박스가 보이도록
+
+		show()/hide()/toggle() : 너비 높이가 0, 0에서 지정된 값으로 변경, 너비 높이가 0이면 display : none
+		fadeIn()/fadeOut()/fadeToggle()/fadeTo() : 투명도가 변경, 투명도가 0이면 display: none
+		slideDown()/slideUp()/slideToggle()
+	 -->
+<script>
+	$('.box2').hide();
+	$('.btn').click(function(){
+		$('.box').text('Hello');
+		$('.box').css('display')=='none'? $('.box').css('display', 'inline-block') : $('.box').css('display', 'none');
+		$('.box2').toggle();
+		// show()/hide()/toggle() 도 css의 display: none값을 조정하는 듯?
+	})
+
+</script>
+
+</body>
+</html>

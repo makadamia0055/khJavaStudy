@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ex4</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			display: inline-block;
+			width: 100px; height: 100px;
+			border: 1px solid black;
+			line-height: 100px; text-align: center;
+			vertical-align: bottom;
+
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+		체크박스, 텍스트 박스를 배치하고 체크 박스를 선택하면 바나나가 텍스트 박스에 추가되고,
+		체크를 해체하면 바나나가 박스에서 삭제되도록 코드를 작성하세요.
+
+		prop() : 표준 속성인 경우 사용하는걸 추천
+		attr() : 비 표준속성인 경우 사용하는걸 추천
+	 -->
+	<div class="box"></div><br>
+	<label for="banana"><input type="checkbox" id="banana" value="바나나">바나나</label>
+	<script>
+		$('#banana').click(function(){
+			$(this).prop('checked')?$('.box').text($(this).val()): $('.box').text('');
+			// 그 자손까지 타고 가는 것(캡쳐링<=>버블링:조상으로 가는것) 때문에 라벨의 클릭 이벤트가 체크박스에도 적용 됨
+			// tab로 타고가서 스페이스바 쳐도 클릭으로 적용됨.
+		});
+
+
+	</script>
+</body>
+</html>

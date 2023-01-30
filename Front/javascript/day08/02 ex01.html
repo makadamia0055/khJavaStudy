@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ex01</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn">버튼입니다.</button>
+	<!--
+		1. 버튼을 배치하고, 버튼을 클릭했을 때 alert('Hello')가 뜨도록 코드 작성 
+		2. alert문을 버튼 안의 문자가 뜨도록 수정
+	
+	-->
+	<script>
+		/*
+		요소.text(): 요소 안의 글자를 가져옴(자손 포함). 대부분의 태그에 적용 가능, 
+		단 단일 태그는 제외
+
+		요소.html(): 요소 안의 html코드를 가져옴(자손 포함). 대부분의 태그에 적용 가능,
+		단 안일 태그는 제외
+
+		요소.val(): 요소 안의 value를 가져옴. input태그, select태그, textarea 태그만 가능
+		다른 태그에 value 속성을 추가하고 써도 안됨. 표준 속성이 아니기 때문.
+		*/
+		$('.btn').click(function(){
+			alert($(this).text());
+		});
+	</script>
+</body>
+</html>

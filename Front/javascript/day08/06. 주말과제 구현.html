@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding:0; margin: 0;
+		}
+		ul{
+			margin-left: 10px;
+		}
+		li{
+			display: inline-block;
+		}
+		.box-container{
+			width: 300px; height : 50px;
+			display: inline-block;
+			border: 2px solid black;
+			margin: 10px;
+		}
+		.box-container::after{
+			content: ''; display: block; clear: both;
+			margin-bottom:  20px;
+		}
+		.box + .box{
+			border-left: 1px solid black;
+			margin-left:-1px;
+		}
+		.box{
+			width: 100px; height: 50px;
+			float:left; 
+			text-align: center; line-height: 50px;
+			vertical-align: bottom;
+						
+		}
+	</style>
+</head>
+<body>
+	<div class="box-container">
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	</div>
+	<ul class="list">
+		<li class="item-box">
+			<label for="apple">
+			<input type="checkbox" name="fruit" id="apple" value="사과">
+			사과</label>
+		</li>
+		<li class="item-box">
+			<label for="banana">
+			<input type="checkbox" name="fruit" id="banana" value="바나나">
+			바나나</label>
+		</li>
+		<li class="item-box">
+			<label for="orange">
+			<input type="checkbox" name="fruit" id="orange" value="오렌지">
+			오렌지</label>
+		</li>
+		
+		
+	</ul>
+	<script>
+		/*
+		체크박스 클릭 이벤트 등록
+			- 모든 체크 박스 중에서 체크된 박스들의 value를 배열에 추가
+		*/
+
+		$('[name=fruit]').click(()=>{
+			let list = $('[name=fruit]:checked');
+			let arr = [];
+			list.each((index, item)=>{
+				arr.push($(item).val());
+			});
+			console.log(list);
+			$('.box').text('');
+			// 바닐라js였으면 반복문으로 처리할 부분을 그냥
+			// 메소드 하나로 처리
+			arr.forEach(function(value, index){
+				$(`.box:nth-child(${index +1})`).text(value);
+				//$('.box').eq(index).text(value); 으로 간결화 가능
+			}
+		)});
+			function getCheckValue(){
+				let checkboxList = $('[name=fruit]');
+				if(!checkboxList)
+				return;
+				checkboxList.each(function(){
+					if($(this).prop('checked')){
+						arr.puch($(this).val());
+					}
+				});
+				return arr;
+			}
+	
+	
+
+	</script>
+</body>
+</html>

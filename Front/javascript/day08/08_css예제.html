@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			width: 300px; height: 300px; border: 1px solid black;
+			margin-top: 30px; text-align: center; line-height: 300px;
+		}
+		.selected{
+			background: yellowgreen;
+			
+		}
+	</style>
+</head>
+<body>
+	<button class="btn-add">add class</button>
+	<button class="btn-remove">remove class</button>
+	<button class="btn-toggle">toggel class</button>
+	<button class="btn-css1">background : red</button>
+	<button class="btn-css2">border-width: 3px, font-size: 30px</button>
+	<div class="box">박스</div>
+	<script>
+		/*
+		A.addClass('B') : A요소의 클래스 리스트에 클래스명을 추가
+		A.removeClass('B') : A요소의 클래스 리스트에 클래스명을 삭제
+		A.toggleClass('B') : A요소의 클래스 리스트에 클래스명을 토글
+		A.css('속성명', '값') : A클래스의 스타일로 '속성: 값' css 스타일을 적용
+		A.css({속성명1 : 값1, 속성명2 : 값2 ...}) : A클래스의 css 스타일로 객체를 설정
+		A.css('속성명') : A클래스의 속성명에 해당하는 css스타일 값을 가져옴
+		*/
+		$('.btn-add').click(()=>{
+			$('.box').addClass('selected');
+		});
+		$('.btn-remove').click(()=>{
+			$('.box').removeClass('selected');
+		});
+		$('.btn-toggle').click(()=>{
+			$('.box').toggleClass('selected');
+		});
+		$('.btn-css1').click(()=>{
+			$('.box').css('background', 'red') // 1개만 적용할 떄
+		})
+		$('.btn-css2').click(()=>{
+			$('.box').css({'border-width':'3px', 'font-size': '30px'})
+			// 여러개 바꿀 때
+		})
+		let border = $('.box').css('border');
+		console.log(border);
+		
+	</script>
+</body>
+</html>
