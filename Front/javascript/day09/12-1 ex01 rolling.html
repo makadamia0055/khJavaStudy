@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>rolling ex</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding: 0px; margin: 0px;
+		}
+		a{
+			text-decoration: none;
+			color: inherit;
+		}
+		body{
+			padding: 0px; margin: 50px;
+		}
+		ul{
+			list-style: none;
+		}
+		
+		.item-news{
+			width: 200px; height: 50px;
+			line-height: 50px;
+			background-color: yellowgreen;
+		}
+		.container{
+			width: 200px; height: 50px;
+			border: 3px double black;
+			margin : 50px 100px;
+			overflow: hidden;
+		
+		}
+		.item-news:nth-child(){
+			background-color: blanchedalmond;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul class="item-list">
+			<li class="item-news"><a href="#">안녕하세요.1</a></li>
+			<li class="item-news"><a href="#">안녕하세요.2</a></li>
+			<li class="item-news"><a href="#">안녕하세요.3</a></li>
+			<li class="item-news"><a href="#">안녕하세요.4</a></li>
+			<li class="item-news"><a href="#">안녕하세요.5</a></li>
+			<li class="item-news"><a href="#">안녕하세요.6</a></li>
+	</ul>
+</div>
+	
+
+
+	<script>
+		
+		let liftListId = setInterval(() => {
+			if(!$('.item-news').first().is(':animated')){
+				// 위 코드를 안넣어주면 이상하게 꼬이는 경우가 있음
+				// 이론적으로는 꼬일 수 없는데 꼬인다고 함.
+			$('.item-list').animate({'margin-top': '-=50px'}, 900, 
+			detachNews)
+		
+		}
+		}, 1000);
+		
+		let detachNews = function(){ // 애니메이션 시간이 인터벌 시간보다 짧은게 안정적
+				let tmpObj = $('.item-news').first().detach();
+				// this를 써도 됨.
+				console.log(tmpObj)
+				$('.item-list').append($(tmpObj)).removeAttr('style');
+				
+		}
+	</script>
+</body>
+</html>

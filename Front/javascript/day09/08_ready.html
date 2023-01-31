@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<script>
+		/*
+			javascript window.onload() 와 비슷한 기능
+			그러나 window.onload()는 하나만 있어야 되는데
+			.ready는 여러개 가능
+		*/
+		$(document).ready(function(){
+			// 이벤트는 안에 배치
+			$('.btn').click(function(){
+				alert('안녕하세요');
+			})
+
+		});
+
+		//$(function(){}) 도 마찬가지로 로딩이 다 되어야 실행되게 하는 기능을 수행함.
+		$(function(){
+			$('.btn').click(function(){
+				alert('안녕하세요');
+			})
+		}) 
+		// 일반 함수들은 밖에 배치
+	</script>
+	<button class="btn">클릭</button>
+</body>
+</html>

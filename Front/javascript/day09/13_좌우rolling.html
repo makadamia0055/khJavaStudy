@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>좌우 롤링</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			margin: 0; padding: 0;
+		}
+		body{
+			margin: 100px; 
+		}
+		a{ text-decoration: none; color: inherit;}
+		ul{
+			list-style: none;
+		}
+		.container{
+			overflow: hidden;
+			width: 100px;
+			height: 30px;
+			border: 3px double black;
+		}
+		ul{
+			width:500%;
+		}
+		.item-news{
+			float: left;
+			width: 20%; height: 30px; line-height: 30px;
+			box-sizing: border-box;
+			background-color: aquamarine;
+			
+		}
+		.item-list::after{
+			content:''; display: block; clear: both;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<ul class="item-list">
+			<li class="item-news"><a href="#">안녕하세요.1</a></li>
+			<li class="item-news"><a href="#">안녕하세요.2</a></li>
+			<li class="item-news"><a href="#">안녕하세요.3</a></li>
+			<li class="item-news"><a href="#">안녕하세요.4</a></li>
+			<li class="item-news"><a href="#">안녕하세요.5</a></li>
+			<li class="item-news"><a href="#">안녕하세요.6</a></li>
+	</ul>
+</div>
+	<script>
+	
+		let moveNews = setInterval(wideFunc, 1000);
+		// 에러: 자꾸 1번만 실행이 됨
+		// 이유 : 함수명()을 넣었음.
+		// 함수를 호출하는게 아니라 함수명을 인수로 넘겨주면 됨
+		// 함수()를 넣었으니까 자꾸 함수값=실행결과를 인터벌로 넘겨줬던것.
+		// 그래서 1번만 실행되었던 것.
+
+		function wideFunc(){
+			let width = $('.item-news').innerWidth();
+			$('.item-list').animate({'margin-left': `-${width}px`}, 900, function(){
+				let tmpObj = $('.item-news').first().detach()
+				$('.item-list').append($(tmpObj)).removeAttr('style');
+			})
+		}
+
+
+		$('.container').hover(function(){
+			 clearInterval(moveNews);
+		}, function(){moveNews = setInterval(wideFunc, 1000)})
+		// 이거 아이디 적용 안해서 두번째 호버가 적용 안되었음.
+	</script>
+</body>
+</html>

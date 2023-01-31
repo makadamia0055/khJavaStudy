@@ -34,7 +34,7 @@
 		.list-box{
 			width: 500px;  list-style: none; padding: 0; margin: 10px auto;
 			border: 1px solid #000; height: 500px; overflow: hidden;
-			z-index: 0;
+			
 		}
 		.item-box{
 			width: 100%; height: 100%; background-color: yellow;
@@ -43,7 +43,7 @@
 			background-color: rgb(163, 163, 214);
 		}
 		.item-box.selected{
-			z-index: 10;
+		
 		}
 		
 	</style>
@@ -113,11 +113,11 @@
 			moveItemBox(el);
 		}};
 		function moveItemBox(el){
-			$('.item-box').removeClass('selected');
+			$('.item-box').removeClass('selected').hide();
 			if(el!=null){
 				let id = $(el).children().prop('id');
-				
-				$(`.item-box.${id}`).addClass('selected');
+				console.log($(`.item-box.${id}`));
+				$(`.item-box.${id}`).addClass('selected').show();
 			}
 		}
 	</script>

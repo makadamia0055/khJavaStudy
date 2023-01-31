@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>rolling ex</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding: 0px; margin: 0px;
+		}
+		ul{
+			list-style: none;
+		}
+		.item-menu{
+			margin :50px 100px;
+		}
+		.item-list{
+			width: 200px; height: 50px;
+			border: 1px solid red;
+			margin-top:-1px;
+		}
+		.box{
+			width: 200px; height: 50px;
+			border: 3px double black;
+			margin-left: -2px;
+			margin-top: -2px;
+		}
+		
+	</style>
+</head>
+<body>
+	<ul class="item-menu">
+		<div class="topList"></div>
+		<div class="box"><li class="item-list">1</li></div>
+		<div class="bottomList">
+			<li class="item-list">2</li>
+			<li class="item-list">3</li>
+			<li class="item-list">4</li>
+			<li class="item-list">5</li>
+			<li class="item-list">6</li>
+		</div>
+		
+	</ul>
+
+
+	<script>
+		let rollingId = setInterval(() => {
+			moveBox();
+		}, 1000);
+		function moveBox(){
+			let tmpObj = $('.box .item-list').detach();
+			$('topList').append(tmpObj);
+			if($('.bottomList .item-list').first()){
+				tmpObj = $('.bottomList .item-list').first().detach();
+				$('.box').append(tmpObj);
+			}
+
+		}
+		
+	</script>
+</body>
+</html>
