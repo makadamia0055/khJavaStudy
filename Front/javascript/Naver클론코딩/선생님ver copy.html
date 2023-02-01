@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NAVER</title>
+	<style>
+		* { margin: 0; padding: 0;}
+		ul,ol{ list-style: none;}
+		a{	text-decoration: none;}
+		#body{ 
+			min-width: 1190px;
+			font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
+			line-height: 16px; font-size: 12px; color: #202020;
+			height: 1000px;
+		}
+		.inner-container{ 
+			width: 1130px; margin: 0 auto; padding: 0 30px;
+		}
+		.box-search{
+			position: relative; height: 160px;
+		}
+		.box-search .box-service{
+			position: absolute; right: -3px; top: 12px;
+		}
+		.box-search .link-start-page{
+			font-size: 11px; color: #404040; float: left; 
+		}
+		.box-search .link-start-page:hover{
+			text-decoration: underline;
+		}
+		.box-search .link-start-page::after{
+			content: ''; width: 26px; height: 26px; display: inline-block;
+			background-position: -382px -213px;
+			vertical-align: top; margin: -3px 0 0 3px;
+		}
+		.box-search .link-jrnaver{
+			float: left;
+		}
+		.box-search .link-jrnaver .icon-jrnaver{
+			width: 60px; height: 10px; background-position: -264px -296px;
+			display: inline-block; vertical-align: top;
+			margin: 3px; 
+		}
+		.box-search .link-jrnaver:hover .icon-jrnaver{
+			background-position: -326px -296px;
+		}
+		.box-search .icon-bar{
+			float: left; width: 1px; height: 10px; margin: 3px 7px;
+			background: #e4e8eb;
+		}
+		.box-search .link-happybean{
+			float: left; margin-left: 6px;
+		}
+		.box-search .link-happybean .icon-happybean{
+			width: 34px; height: 11px; background-position: -365px -245px;
+			display: inline-block; vertical-align: top;
+			margin: 3px 3px 2px; 
+		}
+		.box-search .link-happybean:hover .icon-happybean{
+			background-position: -380px -199px;
+		}
+
+		.box-search .box-search-area{
+			position: absolute; top: 50%; left: 238px;
+			margin-top: -28px;
+		}
+		.box-search .form-search{
+			width: 582px; height: 52px; border: 2px solid  #19ce60;
+			border-radius: 2px; 
+		}
+		.box-search .input-search{
+			width: 444px; height: 24px; padding: 13px 15px;
+			margin: 1px; background-color: #fff;
+			font-size: 18px; line-height: 24px; color: #000;
+			font-weight: bold; outline: 0; border: 0;
+		}
+		.box-search .btn-search{
+			position: absolute; top: 0; right: 0; bottom: 0;
+			width: 56px; background-color: #19ce60;
+			border: 0; outline: 0;
+			border-radius: 0 2px 2px 0; cursor: pointer;
+		}
+		.box-search .icon-search{
+			width: 22px; height: 22px; display: inline-block;
+			vertical-align: top; background-position: -420px -24px;
+		}
+		.box-search .btn-auto-complete{
+			position: absolute; top: 0; bottom: 0; right: 64px;
+			width: 22px;
+		}
+		.box-search .icon-auto-complete{
+			display: inline-block; width: 10px; height: 5px;
+			background-position: -158px -151px;
+			position: absolute; top: 50%; left: 50%;
+			margin: -2px 0 0 -5px;
+		}
+		.box-search .btn-kbd{
+			position: absolute; top: 0; bottom: 0; right: 84px;
+			width: 36px;
+		}
+		.box-search .icon-kbd{
+			display: inline-block; width: 20px; height: 12px;
+			background-position: -398px -267px;
+			position: absolute; top: 50%; left: 50%;
+			margin: -6px 0 0 -10px;
+		}
+		.logo-area{
+			position: absolute;
+			top:50%;
+			left: -9px;
+			margin-top: -32px;
+			height: 100%;
+		}
+		.logo_naver{
+			display: block;
+		}
+		.logo_naver::before{
+			display: inline-block;
+			width:222px;
+			height: 52px;
+			background-position: 0 -158px;
+			vertical-align: top;
+			content:'';
+		}
+		.container-search{
+			border-bottom: 1px solid #e4e8eb;}
+			
+			.container-menu{
+				position: relative;
+				box-shadow:  0 1px 3px 0 rgb(0 0 0/ 12%);
+			}
+		.menu-inner-container{
+			position: relative;
+			width: 1130px;
+			padding: 0 30px;
+			margin: 0 auto;
+		}
+		.group_nav{
+			overflow: hidden;
+			position: relative;
+			padding: 11px 270px 11px 0;
+		}
+		.list_nav{
+			float:left; font-size: 15px; line-height: 30px; font-weight: 700;
+			color:#000; letter-spacing: -.3px;
+		}
+		.list_nav .nav_item{
+			float:left;
+			
+		}
+		.nav_item + .nav_item{
+			margin-left:12px;
+		}
+		.list_nav .nav{
+			display: block;
+			text-decoration: none;
+		}
+		.list_nav.list_nav.type_fix .nav{
+			color:#03c75a;
+		}
+		.list_nav .ico_mail{
+			display: inline-block;
+			width: 21px; height: 21px; background-position: -420px -73px;
+			vertical-align: top; margin:3px 9px 0 0 ;
+		}
+		.list_nav .ico_shopping{
+			width: 24px; height:20px; background-position: -76px -386px;
+			line-height: 30px;margin: 5px 0 0 0;
+			display: inline-block;
+		}
+		.list_nav .ico_shoppinglive{
+			width: 54px; height: 20px; background-position: -209px -267px;
+			vertical-align: top; margin: 5px 0px 0 0;
+			display: inline-block;
+		}
+		.list_nav .ico_tv{
+			display: inline-block;
+			width: 12px; height: 14px; background-position: -256px -212px;
+			vertical-align: top; margin: 9px 2px 0 0 ;
+
+		}
+		.btn-more{
+		float: left;
+		margin-left:17px;
+		font-size:13px;
+		line-height: 30px;
+		color:#202020; text-align: right;
+		}
+		.btn-more:hover{
+			text-decoration: underline;
+		}
+		.btn-more::after{
+			display: inline-block;
+			width: 11px; height: 7px; background-position: -402px -296px;
+			content:'';
+			margin-left:7px;
+			vertical-align: 2px;
+
+		}
+		.list_nav.type_custom .nav_item + .nav_item{
+			margin-left: 11px;
+			letter-spacing: -1px;
+		}
+		.group-weather{
+			width:270px; height: 52px; top:0; right:0;
+			bottom:0; overflow: hidden; text-align: right;
+			position: absolute;
+	
+		}
+		
+		.list_nav.NM_FAVORITE_LIST .nav{
+			color:inherit;
+		}
+		.list_nav + .list_nav{
+			margin-left:12px
+		}
+		/* body  */
+		.container-body{
+			position: relative;
+			width: 1130px; padding: 20px 30px;
+			margin: 0 auto;
+			letter-spacing: -.2px;
+		}
+		.container-body .box-left{
+			float: left;
+			width:750px;
+			
+		}
+		.container-body .box-right{
+			float:right;
+			width: 350px;
+		}
+		.box-left .link-left-ad{
+			display: inline-block;
+			width: 750px; height: 135px;
+			background-image: url(img/ads.jpg);
+			background-size: 750px 135px;
+		}
+		/* 오른쪽 */
+		
+		/* 로그인 박스 */
+		.box-right-login{
+			padding: 16px 16px 12px 17px;
+			background-color: #f7f9fa;
+			border: 1px solid #dae1e6;
+		}
+		.login_msg{
+			padding-left: 3px;
+			color:gray;
+		}
+		.link_login{
+			display: block; padding: 15px 0; margin-top: 11px;
+			background-color: #19ce60; border: 1px solid #15c654;
+			border-radius: 2px; font-size: 13px; color:#fff; font-weight: 700;
+			text-align: center; text-decoration: none;
+
+		}
+		.ico_naver{
+			display: inline-block; width: 60px;
+			height: 12px; background-position: -202px -296px;
+			vertical-align: top; margin: 2px 5px 0 0;
+		}
+		.ico_lock::before{
+			display: inline-block; width: 10px; height: 14px;
+			background-position: -408px -55px; vertical-align: top;
+			margin: -1px 1px 1px; content: '';
+		}		
+		.sub_area{
+			margin: 14px 8px 0 4px;
+		}
+		.floatleft-sub_area{
+			float: left;
+		}
+		.floatright-sub_area{
+			float:right;
+		}
+		.ico_dot::before{
+			background-color: #d7dce0;
+			display: inline-block;
+			width: 3px; height: 3px; border-radius: 50%;
+			margin: 0 5px 0 2px;
+			vertical-align: 3px;
+			content: '';
+		}
+		.link_look, .link_join{
+			color:#404040;
+		}
+		.link_look:hover, .link_join:hover{
+			text-decoration: underline;
+		}
+		.ico_join::before{
+			display: inline-block;
+			width: 11px; height:11px; background-position: -401px -245px;
+			vertical-align: top;
+			content: ''; margin: 2px 5px 0 0 ;
+		}
+		.box-right-login .sub_area::after{
+			content: '';
+			display: table;
+			table-layout: fixed;
+			clear: both;
+
+		}
+	
+		/* 뉴스 박스 */
+		.box-news{
+			width: 750px;
+			margin-top: 12px;
+		}
+		.news-headline{
+			position: relative; padding: 12px 15px 11px 15px;
+			background-color: #f7f9fa; border: 1px solid #dae1e6;
+			line-height: 24px;
+		}
+		.headline-leftbox{
+			float: left;
+		}
+		
+		.leftbox-company{
+			overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+			float: left; position: relative; max-width: 89px; padding-right: 12px;
+			margin-right: 7px; font-size: 13px; color: #000; font-weight: 700;
+			text-decoration: none; letter-spacing: -.3px; display: inline-block;
+		}
+		.leftbox-company::after{
+			position: absolute; top: 7px; right:0 ; display: inline-block;
+			width: 6px; height: 10px; background-position: -262px -112px;
+			vertical-align: top; content:'';
+
+		}
+		.leftbox-title{
+			overflow: hidden; float: left; width: 310px; height: 24px;
+		}
+		.leftbox-title .leftbox-title-contents{
+			position: relative; overflow: hidden; min-width: 100%; height: 100%;
+			width:310px;
+		}
+		.leftbox-title-article{
+			color: #000;
+		}
+		.leftbox-title-article:hover{
+			text-decoration:  underline;
+		}
+		.news-headline::after{
+			content:''; display: table; table-layout: fixed; clear: both;
+		}
+		.headline-rightbox{
+			float: right;
+			font-weight: bold;
+		}
+		.link-newshome{
+			color:#3565c9;
+			
+		}
+		.rightbox-menu{
+			float:left; height: 24px; font-size: 13px; text-decoration: none;
+		}
+		.rightbox-menu .ico_dot{
+			margin: 0 0 0 8px;
+			vertical-align: 3px;
+		}
+		.rightbox-menu .link-news{
+			margin: 0 4px 0 7px;
+			color: #202020;
+		}
+
+		/* 뉴스 스탠드 */
+		.newstand-menubar{
+			padding: 22px 0 16px;
+			font-size: 14px;
+			line-height: 18px;
+		}
+
+		.leftbox-newstand-menubar>*{
+			float:left;
+		}
+		.ico_newnews{
+			display: inline-block; width: 27px; height: 24px;
+			background-position: -272px -342px; vertical-align: top;
+			content: '';
+			margin: -6px 1px 0 0 ;
+		}
+		.link-newstand-title{
+			color:#000; font-weight: 700; text-decoration: none;
+			white-space: nowrap;
+		}
+		.link-newstand-title::after{
+			display: inline-block; width: 7px; height: 11px;
+			background-position: -410px -213px; content:'';
+			margin-left: 6px; vertical-align: -1px;
+
+		}
+		.ico_bigdot{
+			background-color: #c7ccd1;
+			display: inline-block;
+			width: 4px; height: 4px; border-radius: 50%;
+			content:''; margin: 0 8px 0 4px;
+			vertical-align: 3px;
+		}
+		.leftbox-newstand-menubar .btn_sort{
+			font-size: 14px; color: #505050; 
+		}
+		.leftbox-newstand-menubar .btn_sort.btn_sort_selected{
+			color:#000; font-weight: 700;
+		}
+		.leftbox-newstand-menubar .sort_area{
+			float: left;
+			margin-left: 10px;
+		}
+		.rightbox-newstand-menubar{
+			float:right;
+
+		}
+		.rightbox-newstand-menubar .btn_set{
+			float:left;
+			padding: 0 9px;
+		}
+
+		.rightbox-newstand-menubar .ico_list{
+			display: inline-block;
+			width: 14px;
+			height: 13px;
+			background-position: -244px -310px;
+			vertical-align: top;
+			opacity: .7;
+		}
+		.rightbox-newstand-menubar .ico_list:hover{
+			opacity: 1;
+		}
+		.rightbox-newstand-menubar .ico_tile{
+			display: inline-block;
+			width: 13px;
+			height: 13px;
+			background-position: -291px -310px;
+			vertical-align: top;
+			opacity: .7;
+		}
+		.rightbox-newstand-menubar .ico_tile:hover{
+			opacity: 1;
+		}
+		.rightbox-newstand-menubar .ico_set{
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			background-position: -102px -386px;
+			vertical-align: top;
+			opacity: .7;
+			margin: -1px 0 1px;
+		}
+		.rightbox-newstand-menubar .ico_set:hover{
+			opacity: 1;
+		}
+		/* newstand */
+		.newstand-contents{
+			position: relative;
+			height: 260px; border: 1px solid #dae1e6;
+			border-width: 1px 0;
+		}
+		.thumb-contents{
+			position: relative;
+		}
+		.thumb-contents .btn_prev{
+			position: absolute; left:-26px; z-index: 10;
+			top: 109px; color: inherit; text-decoration: none;
+		}
+		.thumb-contents .ico_prev{
+			display: inline-block; width: 44px; height: 44px;
+			background-position: -224px -158px;
+			vertical-align: top;
+		}
+		.thumb-contents .btn_next{
+			position: absolute; right:-13px; z-index: 10;
+			top: 109px; color: inherit; text-decoration: none;
+		}
+		.thumb-contents .ico_next{
+			display: inline-block; width: 44px; height: 44px;
+			background-position: -92px -296px;
+			vertical-align: top;
+		}
+		.press_ci_container{
+			height: 100%; overflow: hidden;
+		}
+		.press_ci_container .plat1{
+			width: 750px; float: left; 
+		}
+		.press_ci_container .plat1 .tile_view{
+			position: relative;
+			height: 260px; border: 1px solid #dae1e6;
+			border-width:0 1px;
+		}
+
+		.tile_view .frame_area{
+			position: absolute; top: 0; left: 0; right: 0; bottom:0;
+		}
+		.tile_view .frame_area .line{
+			position: absolute; background-color: #e4e8eb; z-index: 1;
+		}
+		.tile_view .frame_area .to_right1,
+		.tile_view .frame_area .to_right2,
+		.tile_view .frame_area .to_right3{
+		left: 0; right: 0; height: 1px;
+		}
+		.tile_view .frame_area .to_bottom1,
+		.tile_view .frame_area .to_bottom2,
+		.tile_view .frame_area .to_bottom3,
+		.tile_view .frame_area .to_bottom4,
+		.tile_view .frame_area .to_bottom5{
+			top:0; bottom:0; width: 1px;
+		}
+
+		.tile_view .frame_area .to_right1{ top : 65px;	}
+		.tile_view .frame_area .to_right2{ top : 130px;	}
+		.tile_view .frame_area .to_right3{ top : 190px;	}
+
+		.tile_view .frame_area .to_bottom1{left : 124px;}
+		.tile_view .frame_area .to_bottom2{left : 248px;}
+		.tile_view .frame_area .to_bottom3{left : 372px;}
+		.tile_view .frame_area .to_bottom4{left : 497px;}
+		.tile_view .frame_area .to_bottom5{left : 622px;}
+
+		.thumb_area .thumb_box{
+			position: relative; float: left; width: 16.66%; height: 65px;
+
+		}
+		.thumb_area .thumb_box a.thumb{
+			display: block; padding: 23px 0 22px; text-align: center;
+			color: inherit; 
+		}
+		.tile_view .popup_wrap{
+			position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+			display: none;
+			overflow: hidden; padding: 19px 0 18px; background-color: #f7f9fa;
+			font-size: 0; line-height: 0; text-align: center; letter-spacing: -.2px;
+		}
+		.tile_view .btn_popup{
+			display: inline-block;
+			padding: 7px 8px 5px;
+			background-color: #fff;
+			border: 1px solid #dae1e6;
+			font-size: 12px; line-height: 16px; color: #505050;
+			vertical-align: top;
+		}
+		.tile_view .btn_popup + .btn_popup{
+			margin-left: -1px;
+		}
+		.tile_view .btn_popup:hover{
+			border-color: #bec8d8;
+		}
+		.tile_view .thumb_box:hover>.popup_wrap{
+			display: block;
+		}
+		.sc_timesquare{
+			position: relative;
+			height: 47px;
+			margin: 12px 0;
+			border: 1px solid #dae1e6;
+			letter-spacing: -.25px;
+		}
+		.sc_timesquare .card_wrap{
+			overflow: hidden;
+			height:47px;
+			padding-right: 67px;
+			/* 버튼 넣을 자리. */
+		}
+		.sc_timesquare .card_nav{
+			position:absolute;
+			top: 11px;
+			right: 10px;
+			overflow: hidden;
+		}
+		.sc_timesquare .card_nav .btn_nav{
+			float: left; background-color: #fff;
+			border: 1px solid #e4e8eb;
+		}
+		.sc_timesquare .card_nav .btn_nav:hover{
+			background-color: #fafbfc;
+		}
+		.sc_timesquare .card_nav .btn_prev::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -162px -327px; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
+
+		}
+		.sc_timesquare .card_nav .btn_prev:hover::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -154px -327px; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
+
+		}
+
+		
+		.sc_timesquare .card_nav .btn_next::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -146px -327px; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
+
+		}
+		.sc_timesquare .card_nav .btn_next:hover::before{
+			display: inline-block; width: 6px; height: 9px;
+			background-position: -138px -327px;; vertical-align: top;
+			content:''; margin: 7px 8px 6px;
+
+		}
+		.sc_timesquare .card_nav .btn_nav + .btn_nav{
+			margin-left: -1px;
+		}
+		/* 오른쪽 첫번째 광고 */
+		.ads-right1 {
+			width: 350px; height:200px;
+		}
+		.ads-right1 .iframe-ads-right1{
+			width: 350px; height: 200px; visibility: inherit;
+			border:0px;
+		}
+		/* 왼쪽 테마케스트 */
+		.box-left-padding{
+			padding: 35px 0 27px;
+			letter-spacing: -.25px;
+		}
+		.group_title{
+			overflow: hidden;
+			padding-bottom: 17px;
+		}
+		.title-area{
+			float:left;
+		}
+		.group_title .title-area .title{
+			font-size: 14px; color: #000;
+		}
+		.group_title .title-area .subtitle{
+			margin-left: 8px;
+			color: grey;
+		}
+		.info-area{
+			float: right;
+		}
+		.group_title .info-area .info{color: grey;	}
+		.group_title .info-area .new{ color: #000;}
+		.group_title .info-area .btn_set{
+			position: relative; margin-left: 14px;
+			color: #505050;
+		}
+		.group_title .info-area .btn_set::before{
+			width: 11px; height: 11px; background-position: -358px -310px;
+			content:''; margin-right : 4px; vertical-align: -1px;
+			opacity: .7; display: inline-block;
+		}
+		.group_title .info-area .btn_set:hover::before, .btn_set:hover{
+			opacity: 1; text-decoration: underline;
+		}
+		.group_title .info-area .btn_set::after{
+			position: absolute;
+			top: 2px; left: -8px; content: '';
+			width: 1px; height: 12px; background-color: #e4e8eb;
+
+		}
+		
+		.container-main_category{
+			position: relative; background-color: #fff;
+		}
+		.container-main_category::before{
+			position: absolute; top: 0; left: 0 ; right:0; bottom:0;
+			content:''; border: 1px solid #dae1e6;
+		}
+		.pm_btn_next{
+			top: 6px; right: -18px;
+			position: absolute; z-index: 10;
+		}
+		.pm_btn_prev{
+			top: 6px; left: -23px;
+			position: absolute; z-index: 10;
+
+		}
+		.pm_btn_prev .ico_btn{
+			display: inline-block;
+			width: 40px; height: 40px; background-position: -128px -342px;
+			vertical-align: top;
+		}
+		.pm_btn_next .ico_btn{
+			display: inline-block;
+			width: 40px; height: 40px; background-position: -86px -342px;
+			vertical-align: top;
+		}
+		.list_category_wrap{
+			overflow: hidden;
+		}
+		.container-main_category .list_category_wrap .list_category{
+			font-size: 0; line-height: 0; white-space: nowrap;
+			transition: transform .3s ease;
+		}
+		.container-main_category .list_category_wrap .list_category:before{
+			top: 0; left: 0; right: 0; bottom: 0 ; content: ''; 
+			position: absolute;
+			border: 1px solid #dae1e6;
+		}
+		.frame-main_category .category_item{
+			position: relative; display: inline-block;
+			width: 94px; z-index: 1; vertical-align: top;
+		}
+		.frame-main_category .category_item:first-child, .main_category .category_item:nth-child(8n+1){
+			width:92px;
+		}
+		.frame-main_category .tab{
+			display: block; border-right: 1px solid #dae1e6;
+			font-size: 13px; line-height: 49px; font-weight: 700;
+			text-align: center; text-decoration: none;
+			color:inherit;
+		}
+		.frame-main_category .list_category::after{
+			content:'';display: table; table-layout: fixed;
+			clear: both;
+
+		}
+		
+
+
+		.frame-main_category .tab.id_enter:hover { color: #e65da0;}
+		.frame-main_category .tab.id_sports:hover { color: #0147b5;}
+		.frame-main_category .tab.id_cargame:hover { color: #4a94e1;}
+		.frame-main_category .tab.id_bboom:hover { color: #66c971;}
+		.frame-main_category .tab.id_finance:hover { color: #35ae5e;}
+		.frame-main_category .tab.id_myfeed:hover { color: #5290ff;}
+		.frame-main_category .tab.id_living:hover { color: #ebaa00;}
+		.frame-main_category .tab.id_livinghome:hover { color: #c08d31;}
+		.frame-main_category .tab.id_culture:hover { color: #42be6f;}
+		.frame-main_category .tab.id_beauty:hover { color: #8449ca;}
+
+		.frame-main_category .tab.id_enter[aria-selected=true] { background-color: #e65da0; color:#fff;}
+		
+
+		.frame-main_category .tab.id_sports[aria-selected=true] { background-color: #0147b5; color:#fff;}
+		.frame-main_category .tab.id_cargame[aria-selected=true] { background-color: #4a94e1; color:#fff;}
+		.frame-main_category .tab.id_bboom[aria-selected=true] { background-color: #66c971; color:#fff;}
+		.frame-main_category .tab.id_finance[aria-selected=true] { background-color: #35ae5e; color:#fff;}
+		.frame-main_category .tab.id_myfeed[aria-selected=true] { background-color: #5290ff; color:#fff;}
+		.frame-main_category .tab.id_living[aria-selected=true] { background-color: #ebaa00; color:#fff;}
+		.frame-main_category .tab.id_livinghome[aria-selected=true] { background-color: #c08d31; color:#fff;}
+		.frame-main_category .tab.id_culture[aria-selected=true] { background-color: #42be6f; color:#fff;}
+		.frame-main_category .tab.id_beauty[aria-selected=true] { background-color: #8449ca; color:#fff;}
+
+
+
+
+		.contentsbox{
+			height: 500px;
+			background-color: #15c654;
+		}
+
+
+
+
+
+
+		.ico_middot{
+			width: 2px; height: 2px; display: inline-block; margin: 0 2px;
+			background-color: rgba(32, 32, 32, .8);
+			border-radius: 50%; vertical-align: 4px;
+		}
+
+		/* 오른쪽 트랜드 쇼핑 */
+		.shopcast{
+			width: 350px; margin-top: 15px;
+		}
+		.frame-trendshopping-right3 {
+			padding: 12px 0 13px; line-height: 17px;
+		}
+		.frame-trendshopping-right3 .left-trendshopping{
+			float:left;
+			margin: 2px 0 0 1px;
+			font-size: 13px;
+			line-height: 17px; color: #000;
+		}
+		.frame-trendshopping-right3 .right-trendshopping{
+			float:right;
+		}
+		.frame-trendshopping-right3 .right-trendshopping>li{
+			float:left;
+		}
+		.right-trendshopping .tab{
+			display: block; padding: 0 1px; border-bottom: 2px solid transparent;
+			color:#202020; font-weight: 700;
+		}
+		.right-trendshopping .tab[aria-selected=true]{
+			border-color: #19ce60; color: #03c75a
+		}
+		.right-trendshopping .tab-item + .tab-item{
+			margin-left: 11px;
+		}
+		.frame-trendshopping-right3 .left-trendshopping .trendshopping{
+			color:inherit; font-weight: 700;
+		}
+		.frame-trendshopping-right3 .left-trendshopping .trendshopping::before{
+			display: inline-block; width:15px; height: 15px; 
+			background-position: -109px -22px;
+			content: ''; margin-right: 4px; vertical-align: -3px;
+		}
+		.frame-trendshopping-right3 .left-trendshopping .trendshopping::after{
+			display: inline-block; width:5px; height: 9px; 
+			background-position: -109px -49px;
+			content: ''; margin-left: 7px; vertical-align: 0px;
+		}
+
+		/* mall 컨테이너 */
+		.container-mall{
+			overflow: hidden;
+			width: 350px;
+			height: 1763px;
+			border: 1px solid #e4e8eb;
+		}
+		.mall-title{
+			overflow: hidden;
+			padding: 12px 4px 11px 10px;
+			background-color: #f7f9fa;
+			border-bottom: 1px solid #dae1e6;
+		}
+
+
+		.mall-title [class^=ls]{
+			background-color: #c9cccf;
+			
+			width: 3px; height: 3px; border-radius: 50%;
+			vertical-align: top; float: left;
+		}
+		.mall-title .ls13{	margin: 10px 13px 0;	}
+		.mall-title .ls12{	margin: 10px 12px 0;	}
+		.mall-title .ls11{	margin: 10px 11px 0;	}
+		.mall-title .ls10{	margin: 10px 11px 0;	}
+		.mall-title .link_mall{
+			float: left; line-height: 23px; color: #404040;
+		}
+		.container-mall .group_goods{
+			position: relative; padding: 55px 8px 20px;
+		}
+		.container-mall .group_goods .shop_control{
+			position: absolute; text-align: right;
+			top:13px; right: 8px;
+		}
+
+		.group_goods .shop_control .num_box {
+			float: left; line-height: 29px; color: gray;
+		}
+		.group_goods .shop_control .num_box .current{
+			margin-right: 4px; color:#202020;
+			font-weight: 700; 
+		}
+
+		.group_goods .shop_control .btn_box{
+			overflow: hidden; float: left; margin-left: 7px;
+		}
+		.shop_control .btn_box .btn_prev::before{
+			display: inline-block; width: 5px; height: 9px;
+			background-position: -116px -60px;
+			vertical-align: top; content: '';
+			margin: 9px 12px 9px 10px;
+		}
+		.shop_control .btn_box .btn_next::before{
+			display: inline-block; width: 5px; height: 9px;
+			background-position: -109px -60px;
+			vertical-align: top; content: '';
+			margin: 9px 10px 9px 12px;
+		}
+		.shop_control .btn_box .btn{
+			float: left;
+			background-color: #fff;
+			border: 1px solid #dae1e6;
+		}
+		.shop_control .btn_box .btn + .btn{
+			margin-left: -1px;
+		}
+
+		.group_goods .list_goods_wrap .list_goods{
+			margin-top: -21px; margin-right: -5px;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item{
+			margin-top: 20px; float: left; width: 33.33%;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods{
+			display: block; margin-right: 5px; color: inherit;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods:hover{
+			text-decoration: underline;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods .thumb_box{
+			overflow: hidden; position: relative;
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods .thumb_box>img{
+			transform: translateZ(0);
+		}
+		.group_goods .list_goods_wrap .list_goods .goods_item .link_goods:hover img{
+			transition-duration: .3s;
+			transform: scale(1.05);
+			
+		}
+
+		.goods_item .link_goods .thumb_box .thumb_bd{
+			position : absolute; top:0; left: 0; right: 0; bottom: 0; 
+			opacity: .08;
+			border: 1px solid #000;
+		}
+
+		.list_goods .goods_item .link-goods .thumb_box>img{
+			overflow: clip; vertical-align: top;
+			
+			
+		}
+	
+		.group_goods .title{
+			overflow: hidden; text-overflow: ellipsis;
+			white-space: nowrap; display: block;
+			text-align: center;
+		}
+		.group_goods .title:first-child{
+			line-height: 16px; font-weight: 700;
+		}
+		.goods_item .link_goods .title_box{
+			margin-top: 10px;
+		}
+
+		/* 공용 */
+		.clearfix::after{
+			clear: both; display: block; content: '';
+		}
+
+		.blind{
+			position: absolute;
+			width: 1px; height: 1px; margin: -1px; overflow: hidden;
+		}
+
+		.link-start-page::after, .icon-jrnaver.img1, .icon-happybean.img1,
+		.icon-search.img1, .icon-auto-complete.img1, .logo_naver::before,
+		.icon-kbd.img1, .ico_mail, .ico_shopping, .ico_shoppinglive, .ico_tv,
+		.btn-more::after, .ico_naver.img1, .ico_lock::before, .ico_join::before,
+		.leftbox-company::after, .ico_newnews, .link-newstand-title::after, .ico_list, .ico_tile, .ico_set,
+		.ico_prev, .ico_next, .btn_prev::before, .btn_next::before,
+		.group_title .info-area .btn_set::before,
+		.pm_btn_next>i, .pm_btn_prev>i{
+			background-image: url(img/img1.png);
+			background-size: 442px 428px;
+		}
+		.img2-after::after,
+		.img2-before::before, .img2{
+			background-image: url(img/img2.png);
+			background-size: 129px 101px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="body">
+		<div class="container-search">
+			<div class="inner-container">
+				<div class="box-search">
+					<div class="box-service">
+						<a href="https://help.naver.com/service/30016/contents/18042?osType=PC&lang=ko" class="link-start-page img1">네이버를 시작페이지로</a>
+						<i class="icon-bar"></i>
+						<a href="https://jr.naver.com/" class="link-jrnaver">
+							<i class="icon-jrnaver img1"></i>
+							<span class="blind">쥬니어네이버</span>
+						</a>
+						<a href="https://happybean.naver.com/" class="link-happybean">
+							<i class="icon-happybean img1"></i>
+							<span class="blind">해피빈</span>
+						</a>
+					</div>
+					<div class="logo-area"><a href="/Naver클론코딩/선생님ver copy.html" class="logo_naver">
+						<span class="blind">네이버</span>
+					</a></div>
+					<!-- 우측 상단 서비스 페이지 구현 완료 -->
+					<div class="box-search-area">
+						<form action="" class="form-search">
+							<input type="text" class="input-search">
+							<button class="btn-search">
+								<i class="icon-search img1"></i>
+								<span class="blind">검색</span>
+							</button>
+							<a href="#" class="btn-kbd">
+								<i class="icon-kbd img1"></i>
+								<span class="blind">가상키보드</span>
+							</a>
+							<a href="#" class="btn-auto-complete">
+								<i class="icon-auto-complete img1"></i>
+								<span class="blind">자동완성</span>
+							</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-menu">
+			<div class="menu-inner-container">
+				<div class="group_nav">
+					<ul class="list_nav type_fix">
+						<li class="nav_item">
+							<a href="https://mail.naver.com" class="nav">
+								<i class="ico_mail"></i>메일
+							</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav">카페</a>
+						</li>
+						<li class="nav_item">
+							<a href="https://section.blog.naver.com/" class="nav">블로그</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav">지식iN</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav shopping"><i class="ico_shopping"></i><span class="blind">쇼핑</span></a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav shoppinglive"><i class="ico_shoppinglive"></i><span class="blind">쇼핑live</span></a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav">Pay</a>
+						</li>
+						<li class="nav_item">
+							<a href="" class="nav"><i class="ico_tv"></i>TV</a>
+						</li>
+
+					</ul>
+					<ul class="list_nav NM_FAVORITE_LIST type_custom">
+						<li class="nav_item"><a href="" class="nav">영어/영영</a></li>
+						<li class="nav_item"><a href="" class="nav">파파고</a></li>
+						<li class="nav_item"><a href="" class="nav">MYBOX</a></li>
+
+
+
+					</ul>
+					
+					<a href="#" class="btn-more">더보기</a>
+
+				</div>
+				<div class="group-weather"></div>
+			</div>
+		</div>
+		<div class="container-body">
+			<div class="box-left">
+				<div class="box-left-ad">
+					<a href="#" class="link-left-ad"><span class="blind">카트라이더광고</span></a>
+				</div>
+
+			<div class="box-news">
+				<span class="blind">뉴스스탠드</span>
+				<div class="news-headline">
+					<div class="headline-leftbox">
+					<div class="leftbox-company">연합뉴스</div>
+					<div class="leftbox-title">
+						<div class="leftbox-title-contents"><a href="" class="leftbox-title-article">중국, 한국인 단기비자 전면 중단</a></div>
+					</div>
+
+				</div>
+				<div class="headline-rightbox">
+					<div class="rightbox-menu">
+						<a href="" class="link-newshome">뉴스홈</a>
+						<i class="ico_dot"></i>
+						<a href="" class="link-news ent">연예</a>
+						<a href="" class="link-news sport">스포츠</a>
+						<a href="" class="link-news economy">경제</a>
+					</div>
+
+				</div>
+				</div>
+				<div class="newstand-menubar clearfix">
+					<div class="leftbox-newstand-menubar">
+						<a href="" class="link-newstand-title"><i class="ico_newnews"></i>
+						뉴스스탠드</a>
+						<div class="sort_area">
+						<a href="" class="btn_sort">구독한 언론사</a>
+						<i class="ico_bigdot"></i>
+						<a href="" class="btn_sort btn_sort_selected">전체 언론사</a>
+					</div>
+					</div>
+					<div class="rightbox-newstand-menubar">
+						<a href="" class="btn_set"><i class="ico_list"></i></a>
+						<a href="" class="btn_set"><i class="ico_tile"></i></a>
+						<a href="" class="btn_set"><i class="ico_set"></i></a>
+
+					</div>
+
+				</div>
+				<div class="newstand-contents">
+					<div class="thumb-contents">
+						<a href="" class="btn_prev" aria-selected="true">
+							<span class="blind">이전</span>
+							<i class="ico_prev"></i>
+						</a>
+						<a href="" class="btn_next" aria-selected="true">
+							<span class="blind">다음</span>
+							<i class="ico_next"></i>
+						</a>
+						<div class="press_ci_container">
+							<div class="plat1">
+								<div class="tile_view">
+									<div class="frame_area">
+										<i class="line to_right1"></i>
+										<i class="line to_right2"></i>
+										<i class="line to_right3"></i>
+										<i class="line to_bottom1"></i>
+										<i class="line to_bottom2"></i>
+										<i class="line to_bottom3"></i>
+										<i class="line to_bottom4"></i>
+										<i class="line to_bottom5"></i>
+
+									</div>
+									<div class="thumb_area">
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/422.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">연합뉴스</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/031.png" alt="아이뉴스"
+												class="news_logo" height="20"><span class="blind">아이뉴스</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="디지털타임즈"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/005.png" alt="국민일보"
+												class="news_logo" height="20"><span class="blind">국민일보</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/009.png" alt="매일경제"
+												class="news_logo" height="20"><span class="blind">매일경제</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/003.png" alt="뉴시스"
+												class="news_logo" height="20"><span class="blind">뉴시스</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/up/2022/0905/nsd131925414.png" alt="2dnet korea"
+												class="news_logo" height="20"><span class="blind">2dnet korea</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/052.png" alt="ytn"
+												class="news_logo" height="20"><span class="blind">ytn</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/022.png" alt="세계일보"
+												class="news_logo" height="20"><span class="blind">세계일보</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/904.png" alt="jtbc"
+												class="news_logo" height="20"><span class="blind">jtbc</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/308.png" alt="시사인"
+												class="news_logo" height="20"><span class="blind">시사인</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/139.png" alt="스포탈코리아"
+												class="news_logo" height="20"><span class="blind">스포탈코리아</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/327.png" alt="뉴데일리"
+												class="news_logo" height="20"><span class="blind">뉴데일리</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/018.png" alt="이데일리"
+												class="news_logo" height="20"><span class="blind">이데일리</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/925.png" alt="일요신문"
+												class="news_logo" height="20"><span class="blind">일요신문</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/965.png" alt="전기신문"
+												class="news_logo" height="20"><span class="blind">전기신문</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/up/2022/1024/nsd174430433.png" alt="서울와이어"
+												class="news_logo" height="20"><span class="blind">서울와이어</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/421.png" alt="뉴스1"
+												class="news_logo" height="20"><span class="blind">뉴스1</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/310.png" alt="여성신문"
+												class="news_logo" height="20"><span class="blind">여성신문</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/980.png" alt="kbc광주방송"
+												class="news_logo" height="20"><span class="blind">kbc광주방송</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/941.png" alt="초이스경제"
+												class="news_logo" height="20"><span class="blind">초이스경제</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+										<div class="thumb_box">
+											<a href="" class="thumb">
+												<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/029.png" alt="연합뉴스"
+												class="news_logo" height="20"><span class="blind">디지털타임즈</span>
+											</a>
+											<div class="popup_wrap">
+												<a href="" class="btn_popup subscribe_press">구독</a>
+												<a href="" class="btn_popup unsubscribe_press" style="display:none;">해지</a>
+												<a href="" class="btn_popup">기사보기</a>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+	</div>
+	<div class="box-left-padding">
+		<div class="box-left-themecast">
+			<div class="headline-themecast">
+				<div class="group_title">
+					<span class="blind">주제별 캐스트</span>
+					<div class="title-area">
+						<strong class="title">오늘 읽을만한 글</strong>
+						<span class="subtitle">주제별로 분류된 다양한 글 모음</span>
+					</div>
+					<div class="info-area">
+						<span class="info">
+							<strong class="new">678</strong> 개의 글</span>
+							<a href="" class="btn_set">관심주제 설정</a>
+					</div>
+				</div>
+				<div class="frame-main_category">
+					<div class="container-main_category">
+						<a href="#" class="pm_btn_prev NM_theme_prev">
+							<i class="ico_btn"></i><span class="blind">이전</span>
+						</a>
+						<a href="#" class="pm_btn_next NM_THEME_NEXT">
+							<i class="ico_btn"></i><span class="blind">다음</span>
+						</a>
+						<div class="list_category_wrap">
+							<ul class="list_category">
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_enter" aria-selected="true">엔터</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_sports" aria-selected="false">스포츠</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_bboom" aria-selected="false">웹툰</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_finance" aria-selected="false">경제</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_myfeed" aria-selected="false">추천<span class="ico_middot"></span>구독</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_living" aria-selected="false">레시피</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_livinghome" aria-selected="false">리빙</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_culture" aria-selected="false">책방</a>
+
+								</li>
+								<li class="category_item">
+									<a href="" class="_nm_theme_cate tab id_beauty" aria-selected="false">패션뷰티</a>
+
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+	<!-- 카테고리 박스 끝 -->
+
+	<div class="contentsbox"></div>
+
+	<!-- 왼쪽 컨텐츠 끝 -->
+			</div>
+			<div class="box-right">
+				<div class="box-right-login">
+					
+						<span class="blind">로그인</span>
+						<p class="login_msg">네이버를 더 안전하고 편리하게 이용하세요</p>
+						<a href="" class="link_login"><i class="ico_naver img1"></i><span class="blind">네이버</span>로그인</a>
+						<div class="sub_area">
+							<div class="floatleft-sub_area">
+								<a href="" class="link_look ico_lock">
+									아이디</a>
+									<a href="" class="link_look ico_dot">비밀번호찾기</a>
+							</div>
+							<div class="floatright-sub_area">
+								<a href="" class="link_join ico_join">회원가입</a>
+							</div>
+						</div>
+					
+				</div>
+			<div class="sc_timesquare">
+				<div class="card_wrap">
+					
+					<div class="card_nav">
+						<a href="" class="btn_nav btn_prev"><span class="blind">이전</span></a>
+						<a href="" class="btn_nav btn_next"><span class="blind">다음</span></a>
+					</div>
+				</div>
+			</div>
+			<!-- 오른쪽 세번째 광고 -->
+			<div class="ads-right1">
+				<div class="frame-ads-right1">
+				<span class="veta_bd_t"></span>
+				<span class="veta_bd_b"></span>
+				<span class="veta_bd_l"></span>
+				<span class="veta_bd_r"></span>
+
+				<iframe src="./add2.html" frameborder="0" class="iframe-ads-right1"></iframe>
+			</div>
+			</div>
+			<div class="shopcast">
+				<!-- <iframe src="" frameborder="0" class="shopcast_iframe"> -->
+				<div class="frame-trendshopping-right3 clearfix">
+					<div class="left-trendshopping clearfix">
+						<a href="" class="trendshopping img2-before img2-after">트렌드쇼핑</a>
+					</div>
+
+					<ul class="right-trendshopping">
+						<li class="tab-item right-trendshopping-product"><a href="" class="tab tab-product" aria-selected="false">상품</a></li>
+						<li class="tab-item right-trendshopping-shoppingmall"><a href="" class="tab tab-shoppingmall" aria-selected="false">쇼핑몰</a></li>
+						<li class="tab-item right-trendshopping-men"><a href="" class="tab tab-men" aria-selected="true">MEN</a></li>
+					</ul>
+				</div>
+
+				<div class="container-mall">
+					<div class="mall-title">
+						<span class="blind">몰 바로가기</span>
+						<div class="mall-area  clearfix">
+						<a href="" class="link_mall">쿠팡</a>
+						<i class="ls13"></i>
+						<a href="" class="link_mall">G마켓</a>
+						<i class="ls13"></i>
+						<a href="" class="link_mall"><strong>옥션</strong></a>
+						<i class="ls12"></i>
+						<a href="" class="link_mall">11번가</a>
+						<i class="ls13"></i>
+						<a href="" class="link_mall">SSG닷컴</a>
+						<i class="ls12"></i>
+						<a href="" class="link_mall"><Strong>티몬</Strong></a>
+					</div>
+					<div class="mall-area  clearfix">
+						<a href="" class="link_mall"><strong>올리브영</strong></a>
+						<i class="ls11"></i>
+						<a href="" class="link_mall">위메프</a>
+						<i class="ls11"></i>
+						<a href="" class="link_mall">GS샵</a>
+						<i class="ls10"></i>
+						<a href="" class="link_mall"><strong>CJ온스타일</strong></a>
+						<i class="ls11"></i>
+						<a href="" class="link_mall">패션플러스</a>
+					</div>
+						
+					</div>
+					<div class="group_goods type_men">
+						<div class="shop_control clearfix">
+							<div class="num_box">
+								<span class="current">
+									<span class="blind">현재</span>1</span><span class="blind">전체</span>/ 6</div>
+							<div class="btn_box clearfix">
+								<a href="" class="btn_prev btn img2-before"><span class="blind">이전</span></a>
+								<a href="" class="btn btn_next img2-before"><span class="blind">다음</span></a>
+							</div>
+							
+							</div>
+							<div class="list_goods_wrap">
+								<span class="blind">상품 리스트</span>
+								<ul class="list_goods">
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									<li class="goods_item">
+										<a href="" class="link_goods">
+											<div class="thumb_box">
+												<img src="https://s.pstatic.net/shopping.phinf/20230109_4/abf0b05e-9ea1-43bc-ac58-9e868c982f68.jpg" width="107" height="146" alt="엔진오일" class="men_giftlist_m">
+												<span class="thumb_bd"></span>
+											</div>
+											<div class="title_box">
+												<span class="title">이것만 넣어줘도</span>
+												<span class="title">내차수명이 늘어나</span>
+											</div>
+										</a>
+									</li>
+									
+								</ul>
+
+						</div>
+					</div>
+				</div>
+				
+		</div>
+	<!-- </iframe> -->
+			</div>
+			
+
+
+
+		</div>
+		<footer class="container-footer"></footer>
+	</div>
+</body>
+</html>

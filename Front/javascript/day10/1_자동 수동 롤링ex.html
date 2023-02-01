@@ -69,26 +69,37 @@
 	</div>
 	<script src="../js/jquery.min.js"></script>
 	<script>
-		$('.btn-next').click(function(){
+		$('.btn-next').click(moveNext);
+		$('.btn-prev').click(movePrev);
+
+		function moveNext(time){
 			let width = $('.item-news').first().innerWidth();
 			if(!$('.item-news').first().is(':animated')){
 				$('.item-news').first().animate({
 					marginLeft : `-${width}px`
-				},1000, function(){
+				},time, function(){
 					$(this).detach().appendTo('.list-news').removeAttr('style');
 				});
 			}
-		});
-		$('.btn-prev').click(function(){
+		}
+		function movePrev(){
 			let width = $('.item-news').first().innerWidth();
 			if(!$('.item-news').first().is(':animated')){
 			$('.item-news').last().detach().prependTo('.list-news').css('margin-left', `-${width}px`);
 				$('.item-news').first().animate({
 					'margin-left': 0}
-				, 1000)
+				, time)
 			}
-				
-		});
+		}
+		let moveNews = setInterval(moveNext, 2000, 1200);
+			// 함수의 매개변수는 시간 다음에 넣어줌.
+		
+		
+
+
+		$('.container').hover(function(){
+			 clearInterval(moveNews);
+		}, function(){moveNews = setInterval(moveNext, 2000, 1200)})
 	</script>
 </body>
 </html>

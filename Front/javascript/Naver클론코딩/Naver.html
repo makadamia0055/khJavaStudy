@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NAVER_CLONE</title>
+	<link rel="stylesheet" href="../bootstrap4/bootstrap.min.css">
+	<style>
+		*{margin:0; padding:0;}
+		ul,ol{list-style: none;}
+		a{text-decoration: none;}
+		body{
+			height: 1000px;
+		}
+		#body{min-width: 1190px;
+					line-height:16px; color:#202020;
+					font-size: 12px;
+				}
+		#header{width:1130px; 
+			height: 160px;
+			margin: 0 auto; 	
+		padding: 0 30px; position: relative; }
+		
+		#header-inner{ position: relative;
+		margin-block-start: 0.67em;
+		margin-block-end:0.67em;
+		}
+		
+		.top-linker{
+			position: absolute;
+			top:12px; right:27px;
+			font-size: 11px;
+		}
+		.top-linker-link{
+			color:rgb(40, 40, 40);
+			float: left;
+			
+		}
+		#welcomepage:hover{
+			text-decoration: underline;
+			color:rgb(40, 40, 40);
+		}
+		
+		.grayscale{
+			filter:grayscale(100%);
+		}
+		.top-linker-link:hover>.grayscale{
+			filter:grayscale(0%);
+		}
+		.welcomelabel, #junior, #happybean, #logo{
+			background: url(./img/img1.png);
+			background-size: 442px 428px;
+		}
+
+		.welcomelabel{
+			width: 26px; height: 26px; 
+			display: inline-block;
+			background-position: -382px -213px;
+		}
+		#junior{
+			width: 60px; height: 10px;
+			background-position: -326px -296px;
+		
+		}
+		#happybean{
+			width:34px; height: 11px;
+			background-position: -380px -199px;
+		}
+		#logo{
+			width: 155px; height:30px;
+			background-position: -65px -175px  ;
+			display: inline-block;
+		}
+		.logo-container{
+			vertical-align: middle;
+			position: absolute;
+			top:50%;
+			
+			display: inline-block;
+		}
+		#search{
+			position: absolute;
+			top: 50%;
+			left:268px;
+		}
+		.green_window{
+			position: relative;
+			width:582px; height:52px;
+			border:2px solid #19ce60;
+			border-radius: 2px;
+		}
+		.query{
+			width:444px; height:24px; padding: 13px 15px;
+			margin: 1px; background-color: #fff;
+			font-size: 18px; line-height: 24px;
+			color:#000; font-weight: 700; outline: 0;
+			border: 0;
+		}
+		.box-search .search-form{
+			position: relative;
+		}
+		.box-search .btn-search{
+			position: absolute; top: 0; right: 0; bottom: 0;
+			width: 56px; background-color: #19ce60;
+			border: 0; outline: 0;
+			border-radius: 0 2px 2px 0; cursor: pointer;
+		}
+		
+		/* 여백을 주기 위해서  */
+	</style>
+</head>
+<body>
+	<div id="body">
+		<div class="header-container">
+			<header id="header">
+				<div class="header-inner">
+					<div class="top-linker row">
+						<a class="top-linker-link" id="welcomepage" href="https://help.naver.com/support/welcomePage/guide.help">네이버를 시작페이지로 </a>
+						<div class="welcomelabel"></div>
+						<a class="top-linker-link ml-2" href="https://jr.naver.com/"><div id="junior"  class="grayscale"></div></a>
+						<a class="top-linker-link ml-2" href="https://happybean.naver.com/"><div id="happybean" class="grayscale"></div></a>
+					</div>
+					<div class="logo-container"><i id="logo" class="logo img1"></i></div>
+					<div class="search-area green_window" id="search">
+					<form action="" method="get" class="search-form">
+						<input type="text" class="query">
+						<button class="btn-search"></button>
+					</form>
+				</div>
+				</div>
+			</header>
+		</div>
+		<div class="nav-container">
+
+		</div>
+		<div class="section-container">
+
+		</div>
+		<div class="footer-container"></div>
+
+	</div>
+</body>
+</html>

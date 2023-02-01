@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{padding : 0;
+			margin: 0;}
+		.join-container{
+			display: inline-block;
+			width: 500px;
+			height: 500px;
+			border: 3px double black;
+			text-align: center;
+			vertical-align: bottom;
+			margin: 200px 300px;
+			
+		}
+		[name=id], [name=pw], [name=pw2]{
+			display: block; width: 100% ; height: 40px;
+			margin-bottom: 20px; border-radius:  10px;
+			border:  1px solid black; line-height:  40px;
+			padding: 0 10px; box-sizing: border-box;
+		}
+		.title{
+			margin-top: 30px;
+		}
+		.box{
+			margin: 10px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	
+		<form action="" method="get" class="join-container">
+		<h3 class="title">회원가입</h3><br><br>
+		
+		<div class="box id-box">
+		<div class="text-id">아이디</div>
+		<input type="text" name="id" id="id" placeholder="아이디" >
+	</div>
+		<div class="box pw-box">
+			<div class="pw-text">비밀번호</div>
+		<input type="password" name="pw" id="pw" placeholder="비번" >
+		<div class="pwck-text">비밀번호 확인</div>
+		<input type="password" name="pw2" id="pw2" placeholder="비번확인">
+	</div>
+		
+		<div class="box radio-box">
+		<label><input type="radio" name="gender" value="남성" >남성</label>
+		<label><input type="radio" name="gender" value="여성" >여성</label>
+	</div>
+		
+		<button class="btn-join">회원가입</button>
+		</form>
+		
+	
+	<script>
+		$('.form').submit(function(){
+			let id = $('[name=id]').val();
+			if(id.length==0){
+				alert('아이디는 필수 항목입니다.');
+				$('[name=id]').focus();
+				return false();
+			}
+			let pw = $('[name=pw]').val();
+			if(pw.length==0){
+				alert('비밀번호는 필수 항목입니다.');
+				$('[name=pw]').focus();
+				return false();
+			}
+			let pw2 = $('[name=pw2]').val();
+			if(pw2.length==0){
+				alert('비밀번호는 필수 항목입니다.');
+				$('[name=pw2]').focus();
+				return false();
+			}
+			if(pw!=pw2){
+				alert('비번과 비번2가 일치하지 않습니다.')
+				$('[name=pw]').focus();
+				return false();
+			}
+			if($('[name=gender]:checked').length==0){
+				alert('성별은 필수 항목입니다.');
+				$('[name=gender]').focus();
+				return false;
+			}
+			
+		})
+	</script>
+</body>
+</html>
