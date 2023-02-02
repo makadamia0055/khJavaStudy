@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<style>
+		*{
+			padding: 0; margin: 0; 
+		}
+		a{
+			text-decoration: none;
+			color: inherit;
+		}
+		.main{
+			display: inline-block;
+			position: relative;
+			width: 500px; height: 500px;
+			padding: 20px;
+			background-color: rgba(46, 46, 46, 0.911);
+
+		}
+		.left-link{
+			display: inline-block;
+			width: 40px; height: 40px;
+			line-height: 40px; color: aliceblue;
+			text-align: center;
+			border-radius:5px;
+			background-color: rgb(31, 31, 31);
+			position: absolute;
+		}
+		.right-box{
+			border: 3px double rgba(99, 99, 99, 0.692);
+			background-color: darkgray;
+			border-radius: 20px;
+			height: 400px; width: 200px;
+			float: right;
+			padding: 7px;
+			position: absolute;
+			right: -206px;
+			
+		}
+		.btn-close{
+			float: right;	
+			border: 0px;
+			background-color: rgba(71, 71, 71, 0.692);
+			color: white;
+			border-radius: 5px;
+			width: 20px;
+			height:20px;
+			outline: 0;
+			cursor: pointer;
+		}
+		nav{
+			border : 1px solid black;
+			position: relative;
+		}
+		nav::after{
+			display: block; content: ''; clear: both;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<nav>
+			<a href="#" class="left-link"><i class="fas fa-bars"></i></a>
+			<!-- icon의 크기, 색은 css의 font-size, color 옵션으로 조정 가능 -->
+		</nav>
+		
+
+		<div class="right-box"><button class="btn-close"><i class="fas fa-times"></i></button></div>
+	</div>
+	<script>
+		$('.left-link').click(function(){
+			$('.right-box').animate({'right': '20px'}, 1000);
+		})
+		$('.btn-close').click(function(){
+			$('.right-box').animate({'right': '-400px'}, 1000);
+		})
+	</script>
+</body>
+</html>

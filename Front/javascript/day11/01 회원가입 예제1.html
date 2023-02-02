@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입</title>
+	<style>
+		.form{
+			width: 500px; margin: 0 auto;
+		}
+		.title{
+			text-align: center;
+		}
+		[name=id],[name=pw],[name=pw2]{
+			display: block; width: 100%; height: 40px;
+			margin-bottom: 20px; border-radius: 10px;
+			border: 1px solid black; line-height: 40px;
+			padding: 0 10px; box-sizing: border-box;
+			margin-top: 20px;
+		}
+		.btn-submit{
+			width: 100%; margin-top: 20px; height: 40px;
+			border-radius: 10px; border: 1px solid black;
+			cursor: pointer; display: block;
+		}
+		[id$=error]{ 
+			/* $=... => ... 해당 요소로 끝나는  */
+			color: red;
+			height: 20px;
+			
+			display: block;
+		}
+		.box-gender{
+			margin-top:20px;
+		}
+	</style>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="../js/additional-methods.min.js"></script>
+</head>
+<body>
+	<form action="" method="get" class="form">
+		<h1 class="title">회원가입</h1>
+		<input type="text" name="id" placeholder="아이디">
+		<label for="id" id="id-error" class="error"></label>
+		<input type="password" name="pw" id="pw" placeholder="비번">
+		<label for="pw" id="pw-error" class="error"></label>
+		<input type="password" name="pw2" id="pw2" placeholder="비번확인">
+		<label for="pw2" id="pw2-error" class="error"></label>
+		<div class="box-gender">
+			<label>
+				<input type="radio" name="gender" value="남성"> 남성
+			</label>
+			<label>
+				<input type="radio" name="gender" value="여성"> 여성
+			</label>
+		</div>
+		<button type="submit" class="btn-submit">회원가입</button>
+	</form>
+	<script>
+		$(function(){
+			/*
+			$("form").validate({
+						rules : { // 요소를 검사할 규칙
+							 input태그 요소의 name값: { // name값으로 input 태그 요소를 등록함.
+                required : 't/f', 필수항목
+                minlength : '숫자', 최소 길이 
+								maxlength : '숫자', 최대 길이
+								regex: '정규표현식', 정규표현식
+								equalTo : 'id값', 두 값을 비교할 때 사용
+								digits : '숫자만', 
+								email : '이메일형식', 
+								url : 'url형식'
+            }
+			}, 
+							messages : { // rules에서 일치하지 않은 경우 보여줄 메세지.
+								input태그 요소의 name값 : { // 위에서 rules를 적용한 요소 중 message를 줄 요소
+								required : 각 항목의 조건을 위반했을 시 보여줄 메세지
+                minlength :
+								maxlength :
+								regex: 
+								equalTo : 
+								digits : 
+								email : 
+								url : 
+								}
+
+			}})
+			*/
+    $("form").validate({
+        rules: {
+            id: {
+                required : true,
+                // minlength : 5, 
+								// maxlength : 13,
+								regex : /^[a-zA-Z0-9]{5,13}$/ // 정규표현식에서 길이 제약이 있기에
+																	//minlength와 maxlength를 생략해도 되는데
+																	// message를 따로 주고 싶으면 기입, 아니면 생략
+            },
+            pw: {
+                required : true,
+                // minlength : 8,
+								// maxlength : 20,
+                regex: /^[a-zA-Z0-9!@#$%]{5,20}$/
+								// /^(?=\w{8,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/ // 알파벳과 숫자가 하나씩 포함되어야 할 때
+            },
+            pw2: {
+                required : true,
+                regex: /^[a-zA-Z0-9!@#$%]{5,20}$/,
+                equalTo : pw
+            },
+            gender: {
+                required : true,
+            },
+            
+    	    },
+        //규칙체크 실패시 출력될 메시지
+				// 나타나는 메시지의 형태는 <label for="해당요소name" class="error">메세지</label>
+        messages : {
+            id: {
+                required : "필수로입력하세요",
+                regex : "5~13 글자, 영문 숫자만 가능합니다."
+            },
+            pw: {
+                required : "필수로입력하세요",
+                regex : "5~20 글자, 영문 숫자, 특수문자 !@#$%만 가능합니다."
+            },
+            pw2: {
+                required : "필수로입력하세요",
+								regex : "5~20 글자, 영문 숫자, 특수문자 !@#$%만 가능합니다.",
+                equalTo : "비밀번호와 비밀번호 확인이 일치하지 않습니다."
+            },
+            gender: {
+                required : "필수로입력하세요",
+                
+            },
+            
+        	},//
+					submitHandler : function (form){
+						alert('전송 전 마지막 확인');
+						return false;
+					} // 전송 전 실행할 함수 입력 가능
+    	});
+		})
+$.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var re = new RegExp(regexp);
+        return this.optional(element) || re.test(value);
+    },
+    "Please check your input."
+);
+	</script>
+</body>
+</html>
