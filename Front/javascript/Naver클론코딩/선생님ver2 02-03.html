@@ -180,18 +180,42 @@
 		.group-menu .link-favority-menu{
 			color: #000;
 		}
+
+		.group-menu .list-empty-box {
+			letter-spacing: -1px;
+			margin-left : 12px;
+		}
+		.group-menu .list-empty-box .nav_item{
+			float: left;
+		}
+
+		.group-menu .list-empty-box .nav_item .empty_box{
+			width: 68px; height: 28px; background-color: #f7f9fa;
+			border: 1px solid #dae1e6; border-radius: 2px;
+		}
+
+		.group-menu .list-empty-box .nav_item .empty_box.selected{
+			width: fit-content; height: fit-content;
+			font-size: 15px ; line-height: 30px; font-weight: bold;
+			letter-spacing: -.3px; background-color: #fff; 
+			border: none;
+		}
+		.group-menu .list-empty-box .nav_item + .nav_item{
+			margin-left : 8px;
+		}
+	
+		.group-menu .list-empty-box .nav_item .empty_box.type_point{
+			background-color: #fff;
+			border-color: #19ce60;
+		}
+
+
+
 		.group-menu .btn-more{
 			margin-left: 17px; font-size: 13px; line-height: 30px;
 			color: #202020;
 		}
-		.group-menu .btn-more:hover{
-			text-decoration: underline;
-		}
-		.group-menu .btn-more.fold:hover{
-			text-decoration: underline; color: #0ecd5a;
-		}
-		
-		.group-menu  .icon-more{
+		.group-menu .icon-more{
 			width: 11px; height: 7px; display: inline-block;
 			background-position: -402px -296px;	vertical-align: 2px;
 			margin-left: 7px;
@@ -210,6 +234,28 @@
 		.group-menu .btn-more.fold .text-more{
 			display: none;
 		}
+		.group-menu .box-btn-area{
+			position: absolute; top: 0; right: 0; width: 270px; padding: 11px 0; background-color: #fff;
+			text-align: right; z-index: 10; display: none;
+		}
+		.group-menu .box-btn-area .btn{
+			display: inline-block; padding: 7px 13px 5px; margin-left: 3px; background: #fff;
+			border: 1px solid #dae1e6; border-radius: 15px; color: inherit;
+		}
+		.group-menu .box-btn-area .btn:hover{
+			text-decoration: underline;
+		}
+		.group-menu .box-btn-area .btn-set::before{
+			content: ''; display: inline-block; width: 11px; height: 11px; 
+			background-position: -332px -310px; vertical-align: top;margin: 2px 5px 0 0;
+		}
+		.group-menu .box-btn-area .btn-reset::before{
+			content: ''; display: inline-block; width: 10px; height: 13px; 
+			background-position: -408px -71px; vertical-align: top;margin-right: 6px;
+		}
+		.group-menu .box-btn-area .btn-save{
+			background-color: #19ce60; border-color: #00c73c; color: #fff;
+		}
 		.group-weather{
 			width: 270px; height: 52px; top: 0; right: 0; 
 			bottom: 0; overflow: hidden; text-align: right;
@@ -220,6 +266,54 @@
 		}
 		.container-menu{
 			box-shadow: 0 1px 3px 0 rgba(0,0,0,0.12);
+			position: relative;
+		}
+		.container-menu .container-service{
+			position: absolute; top: 52px; left: 0; right: 0; 
+			border-top: 1px solid #e4e8eb; box-shadow: 0 4px 4px 0 rgba(0,0,0,0.12); 
+			background-color: #fff; z-index: 100; display: none; 
+			padding: 20px 30px 22px;
+		}
+		.container-menu .group-service{
+			margin: 0 auto; width: 1128px; border: 1px solid #e4e8eb; border-width: 0 1px;
+			display: table; table-layout: fixed;
+		}
+		.container-menu .list-service{
+			font-size: 13px; letter-spacing: -.25px; line-height: 26px; padding: 0 14px 0 15px;
+			display: table-cell;
+		}
+		.container-menu .list-service+.list-service{
+			border-left: 1px solid #e4e8eb;
+		}
+		.container-menu .list-service .service-title{
+			color: #000; font-weight: bold; margin-bottom: 3px;
+		}
+		.container-menu .list-service .service-data a{
+			color: inherit;
+		}
+		.container-menu .list-service .service-data .link-dic{
+			display: inline-block; margin-top: 5px ; color: gray;
+		}
+		.container-menu .list-service .service-data .link-dic::after{
+			content: ''; display: inline-block; width: 6px; height: 10px;
+			background-position: -262px -124px; margin-left: 7px; vertical-align: 0;
+		}
+		.container-menu .list-service label{
+			position: relative;
+		}
+		.container-menu .list-service .service-data [type=checkbox]{
+			position: absolute; top: 0; left: 0; opacity: 0; width: 16px; height: 16px;
+		}
+		.container-menu .list-service .service-data [type=checkbox]:focus{
+			opacity: 1;
+		}
+		.container-menu .list-service .service-data [type=checkbox]:checked+.icon-check{
+			background-position: -420px -365px;
+		}
+		.container-menu .list-service .service-data .icon-check{
+			display: inline-block; width: 16px; height: 16px;
+			background-position: -420px -347px; vertical-align: top;
+			margin: 4px 9px 0 0;
 		}
 
 		/* 메인 */
@@ -313,7 +407,7 @@
 			line-height: 24px; 
 		}
 		.box-body-left2 .box-contents{
-			float: left; overflow: hidden;
+			float: left;
 		}
 		.box-body-left2 .box-service{
 			float: right;
@@ -772,29 +866,28 @@
 		.box-body-right4 .box-contents .box-shop-in2{
 			border-top: 1px solid #e4e8eb;
 		}
+
 		.box-body-left3 .box-menu .btn-prev{
-			position: absolute; top: 6px; left: -23px;
-			z-index: 10;
+			position: absolute; top: 6px; left: -23px; z-index: 10;
 		}
 		.box-body-left3 .box-menu .btn-next{
-			position: absolute; top: 6px; right: -18px;
-			z-index: 10;
+			position: absolute; top: 6px; right: -18px; z-index: 10;
 		}
-
-		.box-body-left3 .box-menu .btn-prev i, 
+		.box-body-left3 .box-menu .btn-prev i,
 		.box-body-left3 .box-menu .btn-next i{
 			display: inline-block;
-			width:40px; height: 40px; background-position: -128px -342px;
-			vertical-align: top;
-			
+			width: 40px; height: 40px;
+			background-position: -128px -342px;
 		}
 		.box-body-left3 .box-menu .btn-next i{
 			background-position: -86px -342px;
 		}
 		
-		
 
 		/* 공통 */
+		.display-none{
+			display: none !important;
+		}
 		.clearfix::after{
 			clear: both; display: block; content: '';
 		}
@@ -821,7 +914,9 @@
 		.box-body-right2 .box-btn .btn-prev .icon-prev,
 		.box-body-right2 .box-btn .btn-next .icon-next,
 		.box-body-left3 .area-info .btn-set::before,
-		.img1-after::after, .img1-before::before, .icon-img{
+		.img1-after::after, .img1-before::before,
+		.icon-img,
+		.container-menu .list-service .service-data .icon-check{
 			background-image: url(img/img1.png);
 			background-size: 442px 428px;
 		}
@@ -942,9 +1037,358 @@
 								<a href="#" class="link-favority-menu">웹툰</a>
 							</li>
 						</ul>
+						<ul class="list-empty-box clearfix display-none">
+							<li class="nav_item">
+								<div class="empty_box selected">더보기</div>
+							</li>
+							<li class="nav_item">
+								<div class="empty_box"></div>
+							</li>
+							<li class="nav_item">
+								<div class="empty_box"></div>
+							</li>
+							<li class="nav_item">
+								<div class="empty_box"></div>
+							</li>
+
+						</ul>
+						<ul class="list-selected-menu"></ul>
 						<a href="#" class="btn-more"><span class="text-more">더보기</span><span class="text-fold">접기</span><i class="icon-more img1"></i></a>
+						<div class="box-btn-area">
+							<a href="#" class="btn btn-favorite-all">서비스 전체보기</a>
+							<a href="#" class="btn btn-set img1-before">메뉴설정</a>
+							<a href="#" class="btn btn-reset img1-before display-none">초기화</a>
+							<a href="#" class="btn btn-save display-none">저장</a>
+						</div>
 					</div>
 					<div class="group-weather"></div>
+				</div>
+			</div>
+			<div class="container-service">
+				<div class="group-service">
+					<dl class="list-service">
+						<dt class="service-title">ㄱ-ㅁ</dt>
+						<dd class="service-data">
+							<a href="#">구독</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">날씨</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">네이버 MY CAR</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">네이버 게임</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">네이버 예약</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">네이버 프리미엄콘텐츠</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">네이버플러스 멤버십</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">뉴스</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">데이터랩</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">도서</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">메모</a>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅂ-ㅅ</dt>
+						<dd class="service-data">
+							<a href="#">밴드</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">부동산</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">스포츠</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">시리즈</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">시리즈온</a>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅇ</dt>
+						<dd class="service-data">
+							<a href="#">엑스퍼트</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">영화</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">오디오클립</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">오피스</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">웨일</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">웹소설</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">웹툰</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">인플루언서</a>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅈ-ㅊ</dt>
+						<dd class="service-data">
+							<a href="#">주소록</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">증권</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">지도</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">지식백과</a>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅋ-ㅎ</dt>
+						<dd class="service-data">
+							<a href="#">캘린더</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">클로바더빙</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">파파고</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">포스트</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">학술정보</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">항공권</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">호텔</a>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">A-Z</dt>
+						<dd class="service-data">
+							<a href="#">Keep</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">modoo!</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">MYBOX</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">TV연예</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">VIBE</a>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">사전</dt>
+						<dd class="service-data">
+							<a href="#">사전</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">국어사전</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">영어/영영사전</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">일본어사전</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">중국어사전</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#">한자사전</a>
+						</dd>
+						<dd class="service-data">
+							<a href="#" class="link-dic img1-after">사전 더보기</a>
+						</dd>
+					</dl>
+				</div>
+				<div class="group-service  display-none">
+					<dl class="list-service">
+						<dt class="service-title">ㄱ-ㅁ</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="구독" ><i class="icon-check"></i>구독</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="날씨" ><i class="icon-check"></i>날씨</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="네이버 MY CAR" ><i class="icon-check"></i>네이버 MY CAR</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="네이버 게임" ><i class="icon-check"></i>네이버 게임</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="네이버 예약" ><i class="icon-check"></i>네이버 예약</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="프리미엄콘텐츠" ><i class="icon-check"></i>프리미엄콘텐츠</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="네이버플러스" ><i class="icon-check"></i>네이버플러스</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="뉴스" ><i class="icon-check"></i>뉴스</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="데이터랩" ><i class="icon-check"></i>데이터랩</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="도서" ><i class="icon-check"></i>도서</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="메모" ><i class="icon-check"></i>메모</label>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅂ-ㅅ</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="밴드" ><i class="icon-check"></i>밴드</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="부동산" ><i class="icon-check"></i>부동산</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="스포츠" ><i class="icon-check"></i>스포츠</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="시리즈" ><i class="icon-check"></i>시리즈</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="시리즈온" ><i class="icon-check"></i>시리즈온</label>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅇ</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="엑스퍼트" ><i class="icon-check"></i>엑스퍼트</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="영화" ><i class="icon-check"></i>영화</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="오디오클립" ><i class="icon-check"></i>오디오클립</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="오피스" ><i class="icon-check"></i>오피스</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="웨일" ><i class="icon-check"></i>웨일</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="웹소설" ><i class="icon-check"></i>웹소설</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="웹툰" ><i class="icon-check"></i>웹툰</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="인플루언서" ><i class="icon-check"></i>인플루언서</label>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅈ-ㅊ</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="주소록" ><i class="icon-check"></i>주소록</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="증권" ><i class="icon-check"></i>증권</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="지도" ><i class="icon-check"></i>지도</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="지식백과" ><i class="icon-check"></i>지식백과</label>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">ㅋ-ㅎ</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="캘린더" ><i class="icon-check"></i>캘린더</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="클로바더빙" ><i class="icon-check"></i>클로바더빙</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="파파고" ><i class="icon-check"></i>파파고</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="포스트" ><i class="icon-check"></i>포스트</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="학술정보" ><i class="icon-check"></i>학술정보</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="항공권" ><i class="icon-check"></i>항공권</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="호텔" ><i class="icon-check"></i>호텔</label>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">A-Z</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="Keep" ><i class="icon-check"></i>Keep</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="modoo!" ><i class="icon-check"></i>modoo!</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="MYBOX" ><i class="icon-check"></i>MYBOX</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="TV연예" ><i class="icon-check"></i>TV연예</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="VIBE" ><i class="icon-check"></i>VIBE</label>
+						</dd>
+					</dl>
+					<dl class="list-service">
+						<dt class="service-title">사전</dt>
+						<dd class="service-data">
+							<label><input type="checkbox" value="사전" ><i class="icon-check"></i>사전</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="국어사전" ><i class="icon-check"></i>국어사전</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="영어/영영사전" ><i class="icon-check"></i>영어/영영사전</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="일본어사전" ><i class="icon-check"></i>일본어사전</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="중국어사전" ><i class="icon-check"></i>중국어사전</label>
+						</dd>
+						<dd class="service-data">
+							<label><input type="checkbox" value="한자사전" ><i class="icon-check"></i>한자사전</label>
+						</dd>
+					</dl>
 				</div>
 			</div>
 		</div>
@@ -967,16 +1411,10 @@
 										<a href="#" class="link-media">연합뉴스</a>
 										<ul class="list-issue">
 											<li class="item-issue">
-												<a href="#" class="link-issue">尹心? 여론? 중대 기로 가경원, '불출마 압박'에도 당권 도전하나</a>
-											</li>
-											<li class="item-issue">
 												<a href="#" class="link-issue">尹心? 여론? 중대 기로 나경원, '불출마 압박'에도 당권 도전하나</a>
 											</li>
 											<li class="item-issue">
-												<a href="#" class="link-issue">尹心? 여론? 중대 기로 다경원, '불출마 압박'에도 당권 도전하나</a>
-											</li>
-											<li class="item-issue">
-												<a href="#" class="link-issue">尹心? 여론? 중대 기로 라경원, '불출마 압박'에도 당권 도전하나</a>
+												<a href="#" class="link-issue">尹心? 여론? 중대 기로 나경원, '불출마 압박'에도 당권 도전하나</a>
 											</li>
 										</ul>
 									</div>
@@ -2056,9 +2494,9 @@
 									</div>
 								</div>
 								<div class="box-shop-body">
-									<div class="box-shop-in1">
+									<div class="box-shop-in1 box-shop-in">
 										<div class="box-pagination clearfix">
-											<div class="box-page"><em>1</em>/ 6</div>
+											<div class="box-page"><em class="current-page">1</em><span>/</span> <span class="max-page">6</span></div>
 											<div class="box-btn">
 												<a href="#" class="btn-prev img2-before"></a>
 												<a href="#" class="btn-next img2-before"></a>
@@ -2176,13 +2614,136 @@
 										</ul>
 										<div class="box-shop-pagination clearfix">
 											<a href="#" class="btn-prev img2-before"></a>
-											<div class="box-page"><em>1</em>/ 6</div>
+											<div class="box-page"><em class="current-page">1</em><span>/</span> <span class="max-page">6</span></div>
 											<a href="#" class="btn-next img2-before"></a>
 										</div>
 									</div>
-									<div class="box-shop-in2"></div>
-									<div class="box-shop-in3"></div>
-									<div class="box-shop-in4"></div>
+									<div class="box-shop-in1 box-shop-in">
+										<div class="box-pagination clearfix">
+											<div class="box-page"><em class="current-page">1</em><span>/</span> <span class="max-page">6</span></div>
+											<div class="box-btn">
+												<a href="#" class="btn-prev img2-before"></a>
+												<a href="#" class="btn-next img2-before"></a>
+											</div>
+										</div>
+										<ul class="list-goods clearfix">
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+											<li class="item-goods">
+												<a href="#" class="link-goods">
+													<div class="box-thumb">
+														<img src="https://s.pstatic.net/shopping.phinf/20221013_13/787abf47-091f-45a5-bb53-b1dde6f45242.jpg" alt="상품1" width="107" height="146">
+														<span class="box-border"></span>
+													</div>
+													<div class="box-dsc">
+														<span class="title">2만원대 성능완벽</span>
+														<span class="title">극찬하는 대세템!</span>
+													</div>
+												</a>
+											</li>
+										</ul>
+										<div class="box-shop-pagination clearfix">
+											<a href="#" class="btn-prev img2-before"></a>
+											<div class="box-page"><em class="current-page">1</em><span>/</span> <span class="max-page">6</span></div>
+											<a href="#" class="btn-next img2-before"></a>
+										</div>
+									</div>
+									<div class="box-shop-in3 box-shop-in"></div>
+									<div class="box-shop-in4 box-shop-in"></div>
 								</div>
 							</div>
 						</div>
@@ -2195,8 +2756,6 @@
 		<footer class="container-footer">
 			
 		</footer>
-
-		
 	</div>
 </body>
 </html>

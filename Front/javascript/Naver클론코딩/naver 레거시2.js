@@ -110,69 +110,51 @@ $(function(){
 $(function(){
 	$('.group-menu .btn-more').click(function(e){
 		e.preventDefault();
+		if($(this).hasClass('fold')){
+			setMenuServiceBtn(true);
+		}
 		$(this).toggleClass('fold');
 		$('.container-menu .container-service').toggle();
 		$('.group-menu .box-btn-area').toggle();
-		setMenuServiceBtn(true);
 	});
 	$('.group-menu .box-btn-area .btn-set').click(function(e){
 		e.preventDefault();
 		setMenuServiceBtn();
 	})
+	
 })
 
-
-const selectedMenuArr = []; 
 function setMenuServiceBtn(flag){
 	$('.group-menu .box-btn-area .btn').removeClass('display-none');
 	$('.container-service .group-service').removeClass('display-none');
-	$('.container-menu .list-favority-menu').removeClass('display-none')
-	$('.container-menu .list-empty-box').removeClass('display-none')
 	if(flag){
 		$('.group-menu .box-btn-area .btn-reset').addClass('display-none');
 		$('.group-menu .box-btn-area .btn-save').addClass('display-none');
 		$('.container-service .group-service').last().addClass('display-none');
-		$('.container-menu .list-empty-box').addClass('display-none');
+		setMenuList(true)
 	}else{
 		$('.group-menu .box-btn-area .btn-set').addClass('display-none');
 		$('.group-menu .box-btn-area .btn-favorite-all').addClass('display-none');
 		$('.container-service .group-service').first().addClass('display-none');
-		$('.container-menu .list-favority-menu').addClass('display-none');
-		
-		let tmpMenuArr = selectedMenuArr.slice(); // 깊은복사
-		$('.group-service input[type=checkbox]').click(function(){
-			let tmpValue = $(this).val();
-			if(!tmpMenuArr.includes(tmpValue)){
-				tmpMenuArr.push(tmpValue);
-			}else{
-				// 배열에서 삭제 작업 해줘야함.
-				tmpMenuArr.splice(tmpMenuArr.indexOf(tmpValue), 1, tmpMenuArr.slice(tmpMenuArr.indexOf(tmpValue)+1))
-			}
-			sortTmpMenuArr(tmpMenuArr);
-		})
+		setMenuList();
 	}
 }
-
-function sortTmpMenuArr(arr){
-	$(arr).each(function(index, item){
-		$('.list-empty-box .item-box').eq(index).text(`${item}`).removeClass('select').next().addClass('select');
+function setMenuList(flag){
+	if(flag){
+		$('.group-menu .list-favority-menu').removeClass('display-none');
+		$('.group-menu .list-empty-box').addClass('display-none');
+	}else{
+		$('.group-menu .list-favority-menu').addClass('display-none');
+		$('.group-menu .list-empty-box').removeClass('display-none');
+		focusFirstBox();
 		
-	})
-	
-
+	}
+}
+function focusFirstBox(){
+	$('.group-menu .list-empty-box .empty_box:not(.selected)').first().addClass('type_point')
 }
 
-/*
-박스에 작업하기
-tmp배열과 최종 배열까지
-배열이 2개 필요함. 
-저장 버튼을 눌렀을 때 tmpArr의 값이 최종 배열의 값으로 옮겨가게.
-최종 배열이 비어있으면 기본 메뉴를 출력해줌.
-아니면 최종 배열의 값을 적용. select 메뉴에 
-초기화를 누르면 최종배열 초기화
 
-
-*/ 
 
 let liRight2 = '.box-body-right2 .item-stock';
 let ulRight2 = '.box-body-right2 .list-stock';
