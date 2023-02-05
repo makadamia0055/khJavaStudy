@@ -122,12 +122,18 @@ $(function(){
 })
 
 
-const selectedMenuArr = []; 
+let selectedMenuArr = []; 
 function setMenuServiceBtn(flag){
 	$('.group-menu .box-btn-area .btn').removeClass('display-none');
 	$('.container-service .group-service').removeClass('display-none');
-	$('.container-menu .list-favority-menu').removeClass('display-none')
-	$('.container-menu .list-empty-box').removeClass('display-none')
+
+	if(selectedMenuArr.length==0){
+		$('.container-menu .list-favority-menu').removeClass('display-none')
+	}else{
+		$('.container-menu .list-selecte-menu').removeClass('display-none')
+	}
+		$('.container-menu .list-empty-box').removeClass('display-none');
+
 	if(flag){
 		$('.group-menu .box-btn-area .btn-reset').addClass('display-none');
 		$('.group-menu .box-btn-area .btn-save').addClass('display-none');
@@ -139,28 +145,66 @@ function setMenuServiceBtn(flag){
 		$('.container-service .group-service').first().addClass('display-none');
 		$('.container-menu .list-favority-menu').addClass('display-none');
 		
+		//리셋버튼
 		let tmpMenuArr = selectedMenuArr.slice(); // 깊은복사
+		$('.group-menu .box-btn-area .btn-reset').click(function(){ // 초기화 버튼
+			selectedMenuArr = [];
+			tmpMenuArr=[];
+			clearMenuItem();
+		});
+
 		$('.group-service input[type=checkbox]').click(function(){
-			let tmpValue = $(this).val();
-			if(!tmpMenuArr.includes(tmpValue)){
-				tmpMenuArr.push(tmpValue);
-			}else{
-				// 배열에서 삭제 작업 해줘야함.
-				tmpMenuArr.splice(tmpMenuArr.indexOf(tmpValue), 1, tmpMenuArr.slice(tmpMenuArr.indexOf(tmpValue)+1))
+			let tmpValue=$(this).val();
+			if($(this).prop('checked')){ // 최대 개수 예외처리
+				if(tmpMenuArr.length>=4){
+					alert('최대 4개까지 설정할 수 있습니다.')
+					$(this).prop('checked', false);
+
+				}else{ // 입력
+					if(!tmpMenuArr.includes(tmpValue)){
+						tmpMenuArr.push(tmpValue);
+						clearMenuItem();
+						addMenuItem(tmpMenuArr);
+
+					}
+				}
+			}else{ // 삭제
+				tmpMenuArr = tmpMenuArr.slice(0, tmpMenuArr.indexOf(tmpValue)).concat(tmpMenuArr.slice(tmpMenuArr.indexOf(tmpValue)+1))
+				clearMenuItem();
+				addMenuItem(tmpMenuArr);
 			}
-			sortTmpMenuArr(tmpMenuArr);
+
+		})
+		$('.group-menu .box-btn-area .btn-save').click(function(){
+			selectedMenuArr = tmpMenuArr.slice();
+			if(selectedMenuArr.length==0){
+				alert('선택된 메뉴가 없습니다. 초기설정으로 돌아갑니다.');
+				$('.group-menu .list-favority-menu').removeClass('display-none');
+				$('.group-menu .list-selecte-menu').addClass('display-none');
+				// $('.group-menu .btn-more').click();
+			}else{
+				$('.group-menu .list-favority-menu').addClass('display-none');
+				$('.group-menu .list-selecte-menu').removeClass('display-none');
+				$('.container-menu .list-empty-box').addClass('display-none');
+				// $('.group-menu .btn-more').click();
+				$(selectedMenuArr).each(function(index, item){
+					$('.group-menu .list-selecte-menu .item-selected-menu').eq(index).children().first().text(`${item}`);
+				})
+			}
 		})
 	}
 }
 
-function sortTmpMenuArr(arr){
+
+function addMenuItem(arr){ // 텍스트 입력 및 다음 칸으로 셀렉트 넘기는 메소드
 	$(arr).each(function(index, item){
 		$('.list-empty-box .item-box').eq(index).text(`${item}`).removeClass('select').next().addClass('select');
-		
 	})
-	
-
 }
+function clearMenuItem(){ // 초기화 메소드
+	$('.list-empty-box .item-box').text('').removeClass('select').first().addClass('select');
+}
+
 
 /*
 박스에 작업하기
