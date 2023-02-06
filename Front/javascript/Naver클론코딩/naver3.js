@@ -110,128 +110,124 @@ $(function(){
 $(function(){
 	$('.group-menu .btn-more').click(function(e){
 		e.preventDefault();
-		foldMenu(this);
-		// $(this).toggleClass('fold');
-		// $('.container-menu .container-service').toggle();
-		// $('.group-menu .box-btn-area').toggle();
-		// setMenuServiceBtn(true);
+		$(this).toggleClass('fold');
+		$('.container-menu .container-service').toggle();
+		$('.group-menu .box-btn-area').toggle();
+		setMenuServiceBtn(true);
 	});
 	$('.group-menu .box-btn-area .btn-set').click(function(e){
 		e.preventDefault();
 		setMenuServiceBtn();
 	})
-})
+	$('.group-service-check [type=checkbox]').click(function(){
+		//클릭한 요소의 value를 가져옴
+		let val = $(this).val();
 
-function foldMenu(obj){
-	$(obj).toggleClass('fold');
-	$('.container-menu .container-service').toggle();
-	$('.group-menu .box-btn-area').toggle();
-	setMenuServiceBtn(true)
+		//전역 배열에 val이 있는지 확인 (또는 클릭한 요소의 checked 여부를 확인)
+		let index = tmpMenuArr.indexOf(val);
+		//배열에 val가 있으면 (또는 클릭한 요소가 checked가 해제되면)
+		if(index >= 0){
+			//배열에 val를 제거
+			tmpMenuArr.splice(index, 1);//index 번지부터 1개 삭제
+		}
+		//없으면
+		else{
+			//배열의 길이가 4이상이면 현재 선택한 요소를 checked를 해제하고 알림창을 띄운 후 종료
+			if(tmpMenuArr.length >= 4){
+				$(this).prop('checked', false);
+				alert('최대 4개까지 설정할 수 있습니다.');
+				return;
+			}
+			//배열에 val를 추가
+			tmpMenuArr.push(val);
+		}
+		//주어진 전역 배열을 기준으로 list-empty-box 요소를 배치(함수로 따로 만듬)
+		drawEmptyboxMenu(tmpMenuArr);
+	});
+	//저장 버튼
+	$('.group-menu .btn-save').click(function(){
+		if(tmpMenuArr.length == 0)
+			alert('선택된 메뉴가 없습니다. 초기설정으로 돌아갑니다.');
+		selectedMenuArr = tmpMenuArr.splice(0);
+		init();
+		$('.group-menu .btn-more').click();
+	});
+	//초기화
+	$('.group-menu .btn-reset').click(function(){
+		alert('초기설정으로 돌아갑니다.');
+		tmpMenuArr = selectedMenuArr = [];
+		init();
+		$('.group-menu .btn-more').click();
+	});
+});
+//선택된 메뉴에 따른 메뉴 박스 관리 및 체크박스 관리하는 함수
+function init(){
+	//선택된 메뉴에 따른 메뉴 박스 관리
+	//선택된 메뉴가 없는 경우 => 고정된 메뉴가 출력
+	if(selectedMenuArr.length == 0){
+		$('.list-favority-menu').show();
+		$('.list-select-menu').hide();
+	}
+	//선택된 메뉴가 있는 경우 => 선택된 메뉴가 출력
+	else{
+		$('.list-favority-menu').hide();
+		$('.list-select-menu').show();
+		/*
+		$('.list-select-menu .item-box').text('');
+		for(index in selectedMenuArr){
+			$('.list-select-menu .item-box').eq(index).text(selectedMenuArr[index]);
+		}*/
+		$('.list-select-menu').html('');
+		for(index in selectedMenuArr){
+			let str = `<li class="item-box ">${selectedMenuArr[index]}</li>`;
+			$('.list-select-menu').append(str);
+		}
+	}
 }
-
-let selectedMenuArr = []; 
+function drawEmptyboxMenu(tmpMenuArr){
+	//select : 녹색박스, select 클래스를 제거=>녹색박스 제거
+	//모든 박스에 있는 글자들을 ''(빈 문자열)로 초기화
+	$('.list-empty-box .item-box').removeClass('select').text('');
+	for(index in tmpMenuArr){
+		$('.list-empty-box .item-box').eq(index).text(tmpMenuArr[index]);
+	}
+	
+	$('.list-empty-box .item-box').eq(tmpMenuArr.length).addClass('select');
+	//체크박스 관리
+	$('.group-service-check [type=checkbox]').each(function(){
+		let val = $(this).val();
+		if(tmpMenuArr.indexOf(val) != -1)
+			$(this).prop('checked',true);
+		else
+			$(this).prop('checked',false);
+	})
+}
+let tmpMenuArr = [];  //선택한 메뉴를 저장할 임시 배열(저장 전)
+let selectedMenuArr = []; //선택한 메뉴를 저장할 배열(저장 완료)
 function setMenuServiceBtn(flag){
 	$('.group-menu .box-btn-area .btn').removeClass('display-none');
 	$('.container-service .group-service').removeClass('display-none');
-
-	if(selectedMenuArr.length==0){
-		$('.container-menu .list-favority-menu').removeClass('display-none')
-	}else{
-		$('.container-menu .list-selecte-menu').removeClass('display-none')
-	}
-		$('.container-menu .list-empty-box').removeClass('display-none');
-
+	$('.container-menu .list-favority-menu').removeClass('display-none');
+	$('.container-menu .list-select-menu').removeClass('display-none');
+	$('.container-menu .list-empty-box').removeClass('display-none')
+	//접기
 	if(flag){
 		$('.group-menu .box-btn-area .btn-reset').addClass('display-none');
 		$('.group-menu .box-btn-area .btn-save').addClass('display-none');
 		$('.container-service .group-service').last().addClass('display-none');
 		$('.container-menu .list-empty-box').addClass('display-none');
-	}else{
+	}
+	//더보기
+	else{
 		$('.group-menu .box-btn-area .btn-set').addClass('display-none');
 		$('.group-menu .box-btn-area .btn-favorite-all').addClass('display-none');
-		$('.group-menu .list-selecte-menu').addClass('display-none');
 		$('.container-service .group-service').first().addClass('display-none');
 		$('.container-menu .list-favority-menu').addClass('display-none');
-		
-		//리셋버튼
-		let tmpMenuArr = selectedMenuArr.slice(); // 깊은복사
-		$('.group-menu .box-btn-area .btn-reset').click(function(){ // 초기화 버튼
-			selectedMenuArr = [];
-			tmpMenuArr=[];
-			clearMenuItem();
-			$('.group-service .list-service input[type=checkbox]').prop('checked', false);
-		});
-
-		$('.group-service input[type=checkbox]').click(function(){
-			let tmpValue=$(this).val();
-			if($(this).prop('checked')){ // 최대 개수 예외처리
-				if(tmpMenuArr.length>=4){
-					alert('최대 4개까지 설정할 수 있습니다.')
-					$(this).prop('checked', false);
-					
-					// 여기서 꽉 채우고 다시 클릭했을 때 삭제이벤트가 일어나서 그거 수정해야함.
-
-				}else{ // 입력
-					if(!tmpMenuArr.includes(tmpValue)){
-						tmpMenuArr.push(tmpValue);
-						clearMenuItem();
-						addMenuItem(tmpMenuArr);
-					}
-				}
-			}else{ // 삭제
-				tmpMenuArr = tmpMenuArr.slice(0, tmpMenuArr.indexOf(tmpValue)).concat(tmpMenuArr.slice(tmpMenuArr.indexOf(tmpValue)+1))
-				clearMenuItem();
-				addMenuItem(tmpMenuArr);
-			}
-
-		})
-		$('.group-menu .box-btn-area .btn-save').click(function(e){
-			e.preventDefault();
-			selectedMenuArr = tmpMenuArr.slice();
-			if(selectedMenuArr.length==0){
-				alert('선택된 메뉴가 없습니다. 초기설정으로 돌아갑니다.');
-				$('.group-menu .list-favority-menu').removeClass('display-none');
-				$('.group-menu .list-selecte-menu').addClass('display-none');
-				// $('.group-menu .btn-more').click(); // 접기
-				foldMenu($('.group-menu .btn-more'));
-			}else{
-				$('.group-menu .list-favority-menu').addClass('display-none');
-				$('.group-menu .list-selecte-menu').removeClass('display-none');
-				$('.container-menu .list-empty-box').addClass('display-none');
-				//  $('.group-menu .btn-more').click(); // 접기
-				foldMenu($('.group-menu .btn-more'));
-				 // selectedMenuArr 초기화
-				 $('.group-menu .list-selecte-menu .item-selected-menu .link-selected-menu').text('');
-				$(selectedMenuArr).each(function(index, item){
-					$('.group-menu .list-selecte-menu .item-selected-menu').eq(index).children().first().text(`${item}`);
-				})
-			}
-		})
+		$('.container-menu .list-select-menu').addClass('display-none');
+		tmpMenuArr = selectedMenuArr.slice(0);
+		drawEmptyboxMenu(tmpMenuArr);
 	}
 }
-
-
-function addMenuItem(arr){ // 텍스트 입력 및 다음 칸으로 셀렉트 넘기는 메소드
-	$(arr).each(function(index, item){
-		$('.list-empty-box .item-box').eq(index).text(`${item}`).removeClass('select').next().addClass('select');
-	})
-}
-function clearMenuItem(){ // 초기화 메소드
-	$('.list-empty-box .item-box').text('').removeClass('select').first().addClass('select');
-}
-
-
-/*
-박스에 작업하기
-tmp배열과 최종 배열까지
-배열이 2개 필요함. 
-저장 버튼을 눌렀을 때 tmpArr의 값이 최종 배열의 값으로 옮겨가게.
-최종 배열이 비어있으면 기본 메뉴를 출력해줌.
-아니면 최종 배열의 값을 적용. select 메뉴에 
-초기화를 누르면 최종배열 초기화
-
-
-*/ 
 
 let liRight2 = '.box-body-right2 .item-stock';
 let ulRight2 = '.box-body-right2 .list-stock';

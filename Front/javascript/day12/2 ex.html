@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			text-align: center;
+		}
+		.fieldset{
+			display: inline-block;
+			width : 500px; height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="get" class="form">
+		<fieldset class="fieldset">
+			<div class="box">
+				<input type="text" name="id" id=""><br>
+				<button type="button" class="btn-duplicate-check">중복확인</button>
+			</div>
+			<div class="box">
+				<button type="submit" class="btn-submit">회원가입</button>
+			</div>
+			</fieldset>
+	</form>
+	
+	<script>
+		let isDuplicate = false;
+		$('.btn-duplicate-check').click(function(){
+			let id = $('input[name=id]').val();
+			let idRegEx = /^[a-zA-Z0-9]{5,8}$/
+			if(idRegEx.test(id)){
+				alert('사용할 수 있는 아이디 입니다.')
+				isDuplicate=true;
+			}else{
+				alert('아이디는 5~8자 숫자, 영어로 구성되어야 합니다.')
+				isDuplicate=false;
+			}
+		})
+		$('input[name=id]').change(function(){
+			isDuplicate=false;
+		})
+		$('.btn-submit').click(function(){
+			if(!isDuplicate){
+				alert('아이디 중복 체크가 필요합니다.')
+				$('input[name=id]').focus();
+				return false;
+			}
+			
+		})
+	</script>
+</body>
+</html>

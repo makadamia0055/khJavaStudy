@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>공승배 ui구현 포트폴리오</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<style>
+		.form{
+			width: 500px;
+		}
+		.table *{
+			margin: 3px;
+		}
+		.first{	width: 130px;	}
+
+		.bottom{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="get" class="form">
+		<fieldset>
+			<legend>회원 가입 양식</legend>
+			<table class="table">
+				<tr class="firstR">
+					<th class="first"></th>
+					<th class="second"></th>
+					<th></th>
+				</tr>
+			<tr>
+				<td>아이디</td>
+				<td>
+					<input type="text" name="id" id="idtext">
+				</td>
+				<td>
+					<button class="duplicate-check" type="button">중복확인</button>
+				</td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td>
+					<input type="password" name="pw" id="password">
+				</td>
+				</tr>
+			<tr>
+				<td>비밀번호확인</td>
+				<td>
+					<input type="password" name="pw2" id="password2">
+				</td>
+			</tr>
+			<tr>
+				<td>지역</td>
+				<td>
+					<label>
+						서울<input type="radio" class="radio-btn" name="city" value="seoul">
+					</label>
+					<label>
+						부산<input type="radio" class="radio-btn" name="city" value="busan">
+					</label>
+					<label>
+						대구<input type="radio" class="radio-btn" name="city" value="daegu">
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="bottom" colspan="3"><button type="reset">초기화</button>
+					<button type="button" class="btn-submit">회원가입</button></td>
+					<button type="submit" class="btn-hidden" hidden>송신</button>
+			</tr>
+		</table>
+		</fieldset>
+	</form>
+	<script>
+		$('.duplicate-check').click(function(e){
+			e.preventDefault();
+			let idRegEx = /^[a-z][a-zA-Z0-9!@#]{5,11}$/;
+			let idtext1 = $('#idtext').val();
+			if(idRegEx.test(idtext1)){
+				$('#idtext').css('background-color', 'green');
+			}else{
+				$('#idtext').css('background-color', 'red');
+			}
+		})
+		$('.btn-submit').click(function(e){
+			if($('.radio-btn:checked').prop('checked')){
+				$('.btn-hidden').click();
+			}else{
+				alert("지역을 선택해주세요.")
+				
+			}
+		})
+	
+	</script>
+</body>
+</html>
