@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.main-container{
+			width: 900px;
+			height: 500px;
+			border: 3px solid black;
+			position: relative;
+			display: inline-block;
+			padding: 10px;
+		}
+		
+		.layer{
+			position:absolute;
+			top:0; left: 0; right : 0; bottom: 0;
+			z-index:90;
+			background-color: rgba(0, 0, 0, 0.7)
+
+		}
+		.modal{
+			z-index: 100;
+		}
+		.box{
+			border: 1px solid black;
+			width: 32%;
+			display: inline-block;
+			box-sizing: border-box;
+			height: 100px;
+			background-color: #fff;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			padding: 5px;
+			border-radius: 10px;
+			
+		}
+		.box + .box{
+			margin-left : 10px;
+		}
+		
+		.box-container::after{
+			clear: both; content: ''; display: block;
+		}
+		.modal{
+			position: absolute;
+			top: 10%;
+			left: 10%;
+			width: 80%;
+			height: 80%;
+			background-color: rgb(187, 230, 215);
+			border-radius: 20px;
+			float: left;
+			
+		}
+		.btn-close{
+			position: absolute;
+			top: 20px;
+			right : 20px;
+			width: 20px; height: 20px;
+			font-size: 15px; font-weight: 700;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="modal-back">
+		<i class="layer" hidden></i>
+		<div class="modal" hidden>
+			<span class="text-box"></span>
+			<button class="btn-close">x</button>
+
+		</div>
+		
+	
+	<div class="main-container">
+		
+		<div class="box-container">
+			<div class="box">
+				Lorem1 ipsum dolor sit amet consectetur adipiEum.
+			</div>
+			<div class="box">
+				r adipisicing elit. Aliquam totam placeat vitae. Non ipsum, temporibus laudantium aut quia voluptatibus quam nobis doloremque itaque, deserunt ipsa beatae explicabo commodi odio. Eum.
+			</div>
+			<div class="box">
+				cing elit. Aliquam totam placeat vitae. Non ipsum, temporibus laudantium aut quia voluptatibus quam nobis doloremque itaque, deserunt ipsa beatae explicabo commodi odio. Eum.
+			</div>
+		</div>
+	</div>
+</div>
+	<script>
+		$('.box').click(function(){
+			$('.modal-back').addClass('selected');
+			$('.modal').show();
+			$('.layer').show()
+
+			$('.modal .text-box').text($(this).text())
+		})
+		$('.btn-close').click(function(){
+			$('.modal-back').removeClass('selected');
+			$('.modal').hide();
+			$('.layer').hide()
+			$('.modal .text-box').text('');
+		})
+	</script>
+</body>
+</html>
