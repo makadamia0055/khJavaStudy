@@ -1,4 +1,4 @@
-package kr.kh.spring;
+package kr.kh.spring.controller;
 
 public class InfoVO {
 	private String name;
