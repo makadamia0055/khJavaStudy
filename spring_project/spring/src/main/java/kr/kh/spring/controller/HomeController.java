@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.kh.spring.service.MemberService;
+import kr.kh.spring.vo.MemberVO;
 
 /**
  * Handles requests for the application home page.
@@ -66,15 +68,29 @@ public class HomeController {
 		mv.setViewName("/main/ex4");
 		return mv;
 	}
-	@RequestMapping(value = "/ex5")
-	public ModelAndView ex5(ModelAndView mv, String num) {
-		String name = memberService.getNameByNum(num);
-		mv.addObject("name", name);
-		mv.addObject("num", num);
-		mv.setViewName("/main/ex5");
+
+	@RequestMapping(value ="/signup", method=RequestMethod.GET)
+	public ModelAndView signup(ModelAndView mv) {
+		mv.setViewName("/member/signup");
 		return mv;
 	}
-	
-	
+	@RequestMapping(value ="/signup", method=RequestMethod.POST)
+	public ModelAndView signupPost(ModelAndView mv, MemberVO member) {
+		boolean isSignup = memberService.signup(member);
+		
+		if(isSignup) {
+			memberService.emailAuthentication(member.getMe_id());
+			// 아이디가 주어지면 주어진 아이디의 인증번회를 발급하고, 
+			// 발급한 이메일 인증번호를 db에 저장하고, 
+			//이메일로 인증 번호가 있는 링크를 전송하는 기능
+			mv.setViewName("redirect:/");
+		}else {
+			mv.setViewName("redirect:/signup");
+		}
+		// 해당 url에서 작업이 끝났을 떄 다른 url로 다시 전달하는것.
+		// 화면을 전달하는게 아니라. 
+		
+		return mv;
+	}
 	
 }
