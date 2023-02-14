@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.kh.spring.service.MemberService;
+import kr.kh.spring.vo.MemberOkVO;
 import kr.kh.spring.vo.MemberVO;
 
 /**
@@ -79,7 +80,7 @@ public class HomeController {
 		boolean isSignup = memberService.signup(member);
 		
 		if(isSignup) {
-			memberService.emailAuthentication(member.getMe_id());
+			memberService.emailAuthentication(member.getMe_id(), member.getMe_email());
 			// 아이디가 주어지면 주어진 아이디의 인증번회를 발급하고, 
 			// 발급한 이메일 인증번호를 db에 저장하고, 
 			//이메일로 인증 번호가 있는 링크를 전송하는 기능
@@ -92,5 +93,31 @@ public class HomeController {
 		
 		return mv;
 	}
-	
+	@RequestMapping(value ="/email", method=RequestMethod.GET)
+	public ModelAndView emain(ModelAndView mv, MemberOkVO mok) {
+		if(memberService.emailAuthenticationConfirm(mok)) {
+			
+		}else {
+			
+		}
+		mv.setViewName("redirect:/");
+		return mv;
+	}
+	@RequestMapping(value ="/login", method=RequestMethod.GET)
+	public ModelAndView login(ModelAndView mv) {
+		mv.setViewName("member/login");
+		return mv;
+	}
+	@RequestMapping(value ="/login", method=RequestMethod.POST)
+	public ModelAndView loginPost(ModelAndView mv, MemberVO member) {
+		MemberVO user = memberService.login(member);
+		mv.addObject("user", user);
+		if(user!=null) {
+			mv.setViewName("redirect:/");
+		}else {
+			mv.setViewName("redirect:/login");
+		}
+		System.out.println(user);
+		return mv;
+	}
 }
