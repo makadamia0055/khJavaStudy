@@ -26,9 +26,11 @@
 	      		<a class="nav-link" href="<c:url value='/logout'></c:url>">로그아웃</a>
 	    	</li>
 	    </c:if>
-	     <li class="nav-item">
-	      <a class="nav-link" href="/spring/ex4">ex 4</a>
-	    </li>
+	    <c:if test="${user!=null }">
+	     	<li class="nav-item">
+	      		<a class="nav-link" href="/board/list">게시판</a>
+	    	</li>
+	    </c:if>
 	    <li class="nav-item">
 	      <a class="nav-link" href="/spring/ex5">ex 5</a>
 	    </li>
