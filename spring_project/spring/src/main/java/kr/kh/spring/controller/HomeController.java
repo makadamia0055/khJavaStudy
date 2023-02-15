@@ -1,5 +1,9 @@
 package kr.kh.spring.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,7 +127,15 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping(value ="/logout", method=RequestMethod.GET)
-	public ModelAndView logout(ModelAndView mv, HttpSession session) {
+	public ModelAndView logout(ModelAndView mv, HttpSession session, HttpServletResponse response) throws IOException {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(user !=null) {
+			//controller에서 alert창 보내기
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그아웃 되었습니다.'); location.href='/spring/' </script>");
+			out.flush();
+		}
 		// 세션에 있는 회원 정보 삭제. 원래는 HttpRequest 받아서 세션 추출해줘야 되는데, 
 		// 그냥 HttpSession으로 호출하면 알아서 매핑해준다고 함
 		session.removeAttribute("user");
