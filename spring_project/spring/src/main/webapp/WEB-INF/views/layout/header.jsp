@@ -31,8 +31,18 @@
 	      		<a class="nav-link" href="/board/list">게시판</a>
 	    	</li>
 	    </c:if>
-	    <li class="nav-item">
-	      <a class="nav-link" href="/spring/ex5">ex 5</a>
-	    </li>
+	    
+	    <c:if test="${user!=null && user.me_authority >=9}">
+		    <li class="nav-item dropdown">
+		      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+		        관리자 메뉴
+		      </a>
+		      <div class="dropdown-menu">
+		        <a class="dropdown-item" href="<c:url value='/admin/board/type/list'></c:url>">게시글 타입 관리</a>
+		        <a class="dropdown-item" href="#">Link 2</a>
+		        <a class="dropdown-item" href="#">Link 3</a>
+		      </div>
+		    </li>
+		</c:if>		    
 	  </ul>
 	</nav>

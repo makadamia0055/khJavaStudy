@@ -15,4 +15,5 @@ public class BoardController {
 		mv.setViewName("/board/list");
 		return mv;
 	}
+	
 }
