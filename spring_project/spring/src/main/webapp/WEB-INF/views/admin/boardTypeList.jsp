@@ -21,37 +21,39 @@
     <tbody>
     	<c:forEach items="${list}" var="bt">
     	  <tr>
-	        <td class="form-group">${bt.bt_num}</td>
-	        <td class="form-group">
-	        	<select class="form-control" name="bt_type">
-	        		<option <c:if test="${bt.bt_type =='일반'}"> selected</c:if>>일반</option>
-	        		<option <c:if test="${bt.bt_type =='이미지'}"> selected</c:if>>이미지</option>
-	        	</select>	
-	        	
-	        </td>
-	        <td class="form-group">
-	        	<input type="text" class="form-control" value="${bt.bt_name}" name="bt_name">
-	        	</td>
-	        <td>
-	        	<select class="form-control" name="bt_r_authority">
-	        		<option value="0" <c:if test="${bt.bt_r_authority ==0 }">selected</c:if>
-	        		>비회원 이상</option>
-	        		<option value="1" <c:if test="${bt.bt_r_authority ==1 }">selected</c:if>
-	        		>회원 이상</option>
-	        		<option value="9" <c:if test="${bt.bt_r_authority ==9 }">selected</c:if>
-	        		>관리자 이상</option>
-	        	</select>	
-	        </td>
-	        <td>
-	        	<select class="form-control" name="bt_w_authority">
-	        		
-	        		<option value="1" <c:if test="${bt.bt_w_authority ==1 }">selected</c:if>
-	        		>회원 이상</option>
-	        		<option value="9" <c:if test="${bt.bt_w_authority ==9 }">selected</c:if>
-	        		>관리자 이상</option>
-	        	</select>
-	        </td>
-	        <td><button class="btn btn-outline-primary mt-3">수정</button><button class="btn btn-primary mt-3">삭제</button></td>
+    	  	<form action="<c:url value='/admin/board/type/update'></c:url>" method="post">
+		        <td class="form-group">${bt.bt_num}<input type="hidden" name="bt_num" value="${bt.bt_num }"></td>
+		        <td class="form-group">
+		        	<select class="form-control" name="bt_type">
+		        		<option <c:if test="${bt.bt_type =='일반'}"> selected</c:if>>일반</option>
+		        		<option <c:if test="${bt.bt_type =='이미지'}"> selected</c:if>>이미지</option>
+		        	</select>	
+		        	
+		        </td>
+		        <td class="form-group">
+		        	<input type="text" class="form-control" value="${bt.bt_name}" name="bt_name">
+		        	</td>
+		        <td>
+		        	<select class="form-control" name="bt_r_authority">
+		        		<option value="0" <c:if test="${bt.bt_r_authority ==0 }">selected</c:if>
+		        		>비회원 이상</option>
+		        		<option value="1" <c:if test="${bt.bt_r_authority ==1 }">selected</c:if>
+		        		>회원 이상</option>
+		        		<option value="9" <c:if test="${bt.bt_r_authority ==9 }">selected</c:if>
+		        		>관리자 이상</option>
+		        	</select>	
+		        </td>
+		        <td>
+		        	<select class="form-control" name="bt_w_authority">
+		        		
+		        		<option value="1" <c:if test="${bt.bt_w_authority ==1 }">selected</c:if>
+		        		>회원 이상</option>
+		        		<option value="9" <c:if test="${bt.bt_w_authority ==9 }">selected</c:if>
+		        		>관리자 이상</option>
+		        	</select>
+		        </td>
+		        <td><button class="btn btn-outline-danger mt-3">수정</button><button class="btn btn-danger mt-3">삭제</button></td>
+		       </form>
 	      </tr>
       	</c:forEach>
     </tbody>
@@ -89,6 +91,8 @@
   </table>
   
 </div>
+
+<c:url value='/admin/board/type/update'></c:url>
 <%-- <c:forEach begin="1" end="10" step="1" var="i">
 <!-- 일반 반복문 사용하듯, 1부터 10까지 1씩 증가해서 반복 출력 -->
 ${i}<br>
