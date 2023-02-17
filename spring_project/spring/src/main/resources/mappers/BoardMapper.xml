@@ -5,7 +5,9 @@
 <mapper namespace="kr.kh.spring.dao.BoardDAO">
   <select id="selectAllBoardType" resultType="kr.kh.spring.vo.BoardTypeVO">
   <!-- 여러 개 면 자동으로 리스트에 담아 보내줌. -->
-  	select * from board_type
+  	<![CDATA[
+  	select * from board_type where bt_w_authority <=#{authority}
+  	]]>
   </select>
   <insert id="insertBoardType">
   	insert into board_type(bt_type, bt_name, bt_r_authority, bt_w_authority)
@@ -24,4 +26,10 @@
   <delete id="deleteBoardType">
   	delete from board_type where bt_num = #{bt_num}
   </delete>
+  <insert id="insertBoard" useGeneratedKeys="true" keyProperty="bo.bo_num">
+  	insert into board(bo_title, bo_content, bo_me_id, bo_bt_num, bo_ori_num)
+  	values(#{bo.bo_title},#{bo.bo_content},#{bo.bo_me_id},#{bo.bo_bt_num},
+  	)
+  	<!-- last_insert_id() 마지막에 넣어준 auto_increment값  -->
+  </insert>
 </mapper>

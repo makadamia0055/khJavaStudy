@@ -28,7 +28,7 @@
 	    </c:if>
 	    <c:if test="${user!=null }">
 	     	<li class="nav-item">
-	      		<a class="nav-link" href="/board/list">게시판</a>
+	      		<a class="nav-link" href="<c:url value='/board/list'></c:url>">게시판</a>
 	    	</li>
 	    </c:if>
 	    

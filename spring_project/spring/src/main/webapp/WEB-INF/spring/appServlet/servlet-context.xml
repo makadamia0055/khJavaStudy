@@ -40,10 +40,16 @@
 	<!--로그인 인터셉터-->
 	<beans:bean id="loginInterceptor" 
 		class="kr.kh.spring.interceptor.LoginInterceptor"></beans:bean>
+		<beans:bean id="AdminInterceptor" 
+		class="kr.kh.spring.interceptor.AdminInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login"/>
 			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<beans:ref bean="AdminInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
