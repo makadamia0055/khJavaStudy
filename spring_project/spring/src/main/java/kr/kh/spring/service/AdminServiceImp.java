@@ -42,6 +42,18 @@ public class AdminServiceImp implements AdminService{
 		}
 		
 	}
+
+	@Override
+	public boolean deleteBoardType(int bt_num) {
+		if(bt_num<=0) {
+			return false;
+		}
+		try {
+			return boardDao.deleteBoardType(bt_num);
+		}catch(Exception e) {
+			return false;
+		}
+	}
 	
 
 }

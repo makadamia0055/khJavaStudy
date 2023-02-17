@@ -52,7 +52,7 @@
 		        		>관리자 이상</option>
 		        	</select>
 		        </td>
-		        <td><button class="btn btn-outline-danger mt-3">수정</button><button class="btn btn-danger mt-3">삭제</button></td>
+		        <td><button class="btn btn-outline-danger mt-3 btn-edit">수정</button><button class="btn btn-danger mt-3 btn-del">삭제</button></td>
 		       </form>
 	      </tr>
       	</c:forEach>
@@ -91,6 +91,20 @@
   </table>
   
 </div>
+<script>
+$('.btn-del').click(function(){
+	let res= confirm('게시글 타입을 삭제하면 해당 게시글 타입인 모든 게시글들이 삭제됩니다. \n삭제 하시겠습니까?');
+	if(!res){
+		return false;
+	}
+	//조상 중에 form태그를 찾아서 action부분을 수정
+	let url = '<c:url value="/admin/board/type/delete"></c:url>';
+	$(this).parents('tr').find('form').attr('action', url);
+	
+	
+
+});
+</script>
 
 <c:url value='/admin/board/type/update'></c:url>
 <%-- <c:forEach begin="1" end="10" step="1" var="i">
