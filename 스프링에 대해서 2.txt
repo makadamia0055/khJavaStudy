@@ -1,0 +1,31 @@
+Spring 프로젝트의 기본 모델
+
+-M : model => 데이터를 주고 받을 떄 만들어지는 클래스들 vo
+-V : view => 화면 jsp
+-C : controller => 요청한 일을 처리하는 역할 
+
+
+spring의 요청들은 기본적으로 DispatcherServelet을 통해 적합한 모듈로 할당된다.
+http://localhost:8080/spring/ 뒤의 url을 처리할 수 있는 메소드가 있는지
+
+controller의 @RequestMapping의 value가 처리할 수 있는 url에 해당/
+@RequestMapping의 method는 post, get 등 처리 방법을 정하는 것. 정하면 그것만 받아들임.
+생략시 둘다 처리
+
+Spring의 자격은 @어노테이션을 기반으로 부여된다. 
+Controller 역시 @Controller 라는 어노테이션에 의해 컨트롤러로 인식되어 작동한다.
+
+
+Controller 를 수정하는 경우 서버 재시작을 해줘야함. (지가 스스로 재시작 때리는 경우 있음. 저장시)
+
+
+stajun.tistory.com
+
+
+템플릿 설정하기 
+https://stajun.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC3-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+
+타일즈 설정파일
+WEB-INF > spring > tiles-def.xml
+name에 해당하는 클래스를 가진 요소에 자동적으로 value의 jsp 화면을 적용해줌.
+-> 그래서 템플릿이라고 함.

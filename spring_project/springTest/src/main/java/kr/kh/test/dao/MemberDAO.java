@@ -10,4 +10,6 @@ public interface MemberDAO {
 
 	int insertSignup(@Param("m")MemberVO memberVO);
 
+	MemberVO selectMemberById(@Param("me_id")String me_id);
+
 }

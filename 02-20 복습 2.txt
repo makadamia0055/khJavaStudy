@@ -1,0 +1,44 @@
+<로그인 기능 구현>
+1. url 설정: /login
+2. 링크 추가 
+3. 홈 컨트롤러에 메소드 추가 
+- @RequestMapping
+ -value : /login
+ -method : get
+-setViewName : /member/login
+
+4. login.jsp 추가
+form태그 : post
+
+5. 서버 재가동 후  테스트
+
+6. 홈 컨트롤러에 메소드 추가 
+- @RequestMapping
+ -value : /login
+ -method : post
+-setViewName : redirect : / or /login
+-화면에서 전달한 로그인 정보를 가져와서 확인
+-서비스에게 로그인 정보를 주면서 로그인 해서 회원 정보를 가져오라고 함
+회원정보가 있으면 메인으로 리다이렉트, 없으면 /login으로 리다이렉트
+-회원 정보를 ModelAndView에 담아서 전달
+
+7. 서비스/서비스imp 메소드 추가 및 구현
+- 로그인 정보 체크 
+- 다오에게 아이디를 주면서 회원 정보를 가지고 오라고 시킴
+- 가져온 회원 정보가 없으면 null을 리턴
+- 가져온 회원 정보가 있으면 비밀번호 암호화 객체에서 제공하는 matchs메소드를 활용하여 비밀번호가 맞으면 회원정보를 리턴하고 , 틀리면 null을 리턴(비밀번호 암호화 문서 참고)
+
+8. DAO/mapper 
+- select문을 이용하여 회원정보를 가져오는 메소드 및 쿼리 구현
+
+9. LoginInterceptor를 추가 및 구현(Docs 문서 참고)
+- postHandle 메소드 오버라이딩
+-회원 정보가 있으면 세션에 회원 정보 저장
+
+10. servlet-context.xml. 에 LoginIntercepor 등록
+
+11. 테스트 
+- 로그인 시도 후 메인으로 가면 home.jsp에 ${user}를 추가해서 찍히는지 확인.
+
+
+

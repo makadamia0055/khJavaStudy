@@ -34,7 +34,8 @@
         </beans:list>
     	</beans:property>
 	</beans:bean>
-		
+	
+	
 	<context:component-scan base-package="kr.kh.test.*" />
 		
 </beans:beans>
