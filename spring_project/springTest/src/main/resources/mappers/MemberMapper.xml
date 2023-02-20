@@ -6,4 +6,7 @@
   <select id="selectMemberName" resultType = "String">
   	select st_name from student where st_num = #{num}
   </select>
+  <insert id="insertSignup">
+  	insert into member(me_id, me_pw, me_email, me_birthday) values(#{m.me_id}, #{m.me_pw}, #{m.me_email}, #{m.me_birthday} )
+  </insert>
 </mapper>
