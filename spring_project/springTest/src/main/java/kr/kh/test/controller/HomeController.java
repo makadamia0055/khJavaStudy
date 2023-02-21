@@ -72,9 +72,9 @@ public class HomeController {
 		}
 		return mv;
 	}
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public ModelAndView loginOut(ModelAndView mv, HttpSession session) {
-		session.setAttribute("user", null);
+		session.removeAttribute("user");
 		mv.setViewName("redirect:/");
 		return mv;
 	}
