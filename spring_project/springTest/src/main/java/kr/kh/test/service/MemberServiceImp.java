@@ -127,4 +127,16 @@ public class MemberServiceImp implements MemberService{
 		}
 		return serverMemberVO;
 	}
+	@Override
+	public boolean checkAuth(MemberOKVO mok) {
+		if(memberDao.checkAndDeleteAuth(mok)==0) {
+			return false;
+		}
+		int member_Auth = 1;
+		if(memberDao.updateAuth(member_Auth, mok)==0) {
+			return false;
+		}
+		return true;
+	
+	}
 }

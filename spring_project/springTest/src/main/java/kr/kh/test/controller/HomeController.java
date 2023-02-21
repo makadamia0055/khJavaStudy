@@ -2,6 +2,7 @@ package kr.kh.test.controller;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.kh.test.service.MemberService;
+import kr.kh.test.vo.MemberOKVO;
 import kr.kh.test.vo.MemberVO;
 
 
@@ -75,6 +77,17 @@ public class HomeController {
 	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public ModelAndView loginOut(ModelAndView mv, HttpSession session) {
 		session.removeAttribute("user");
+		mv.setViewName("redirect:/");
+		return mv;
+	}
+	@RequestMapping(value="/email/authentication", method = RequestMethod.GET)
+	public ModelAndView authentication(ModelAndView mv, HttpServletRequest req) {
+		String mo_me_id = req.getParameter("mo_me_id");
+		String mo_num = req.getParameter("mo_num");
+		MemberOKVO mok = new MemberOKVO(mo_me_id, mo_num);
+		if(memberService.checkAuth(mok)) {
+		}
+		
 		mv.setViewName("redirect:/");
 		return mv;
 	}

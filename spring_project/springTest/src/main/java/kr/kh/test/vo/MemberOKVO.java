@@ -30,6 +30,5 @@ public class MemberOKVO {
 		super();
 		this.mo_me_id = mo_me_id;
 		this.mo_num = mo_num;
-		this.mo_valid_time = new Date();
 	}
 }

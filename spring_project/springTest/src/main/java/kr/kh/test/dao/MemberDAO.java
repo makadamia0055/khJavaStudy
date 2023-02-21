@@ -13,4 +13,8 @@ public interface MemberDAO {
 
 	int insertMemberOKVO(@Param("memberOK")MemberOKVO memberOKVO);
 
+	int checkAndDeleteAuth(@Param("mok")MemberOKVO mok);
+
+	int updateAuth(@Param("num")int member_Auth, @Param("mok")MemberOKVO mok);
+
 }
