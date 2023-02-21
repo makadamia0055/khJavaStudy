@@ -28,7 +28,7 @@
 			      	</li>
 			     </c:if>
 		      	<li class="nav-item">
-		        	<a class="nav-link" href="#">Link</a>
+		        	<a class="nav-link" href="<c:url value='/test1'></c:url>">Test</a>
 		      	</li>    
 	    	</ul>
 		</div> 

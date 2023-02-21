@@ -8,5 +8,4 @@ public interface MemberService {
 	boolean insertSignup(MemberVO memberVO) throws Exception;
 
 	MemberVO login(MemberVO member);
-
 }

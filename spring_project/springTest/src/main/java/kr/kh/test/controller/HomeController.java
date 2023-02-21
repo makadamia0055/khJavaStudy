@@ -78,4 +78,5 @@ public class HomeController {
 		mv.setViewName("redirect:/");
 		return mv;
 	}
+
 }

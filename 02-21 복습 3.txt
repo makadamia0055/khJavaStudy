@@ -6,3 +6,25 @@ value: /logout
 method : 상관없음
 viewName : redirect:/
 -HttpSession에서 user정보를 삭제
+
+<이메일 인증>
+1. serviceImp
+ 회원가입 완료 후 이메일 인증 보내기.
+-랜덤으로 6자리 (영문 + 숫자) 문자열 생성
+-MemberOKVO 추가 
+-생성된 문자열과 아이디를 이용하여 MemberOKVO 객체를 생성
+-DAO 에게 MemberOKVO 객체를 주면서 추가하라고 요청
+-서비스의 메소드에게 이메일 제목, 이메일 주소와 문자열을 주면서 링크로 만들어서 전송하라고 요청
+- 메소드 추가 
+	- 해당 이메일로 링크를 보내는 작업을 추가(문서 참고)
+
+2. DAO/Mapper에 메소드 추가 및 쿼리 구현
+	-MemberOKVO가 주어지면 추가하는 쿼리 작성
+	-validtime은 한시간 이후까지
+
+3. pom.xml에 의존성 추가(문서 참고)
+
+4. root-context.xml에 메일 정보 추가(문서 참고)
+
+5. 서비스imp에 메일 샌더 객체 추가(문서 참고)
+

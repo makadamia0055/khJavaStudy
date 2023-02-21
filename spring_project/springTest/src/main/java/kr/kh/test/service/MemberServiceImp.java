@@ -2,11 +2,16 @@ package kr.kh.test.service;
 
 import java.util.regex.Pattern;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.kh.test.dao.MemberDAO;
+import kr.kh.test.vo.MemberOKVO;
 import kr.kh.test.vo.MemberVO;
 
 @Service 
@@ -17,7 +22,12 @@ public class MemberServiceImp implements MemberService{
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
-
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	String contextPath = "/test";
+	
 	
 
 	@Override
@@ -49,8 +59,61 @@ public class MemberServiceImp implements MemberService{
 //			적용된 개수를 알려줌.
 			return false;
 		}
-		return true;
+		if(authorizeUser(memberVO)) {
+			
+			return true;
+		}else {
+			return false;
+		}
 		
+	}
+	private boolean authorizeUser(MemberVO member) {
+		MemberOKVO memberOKVO = new MemberOKVO();
+		memberOKVO.setMo_me_id(member.getMe_id());
+		memberOKVO.setMo_num(makeRandomStr(6));
+		if(memberDao.insertMemberOKVO(memberOKVO)!=0) {
+			String title ="계정 이메일 인증 메일입니다.";
+			String href = "http://localhost:8080" + contextPath + "/email/authentication?mo_me_id="+memberOKVO.getMo_me_id()+"&mo_num="+memberOKVO.getMo_num();
+			String content = "<a href='"+href+"'>이메일 인증 링크</a>";
+			sendAuthMail(title, content, member.getMe_email());
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+	}
+	private boolean sendAuthMail(String title, String content, String receiver) {
+		 String setfrom = "psycat06@gmail.com";         
+		   
+
+		    try {
+		        MimeMessage message = mailSender.createMimeMessage();
+		        MimeMessageHelper messageHelper 
+		            = new MimeMessageHelper(message, true, "UTF-8");
+
+		        messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+		        messageHelper.setTo(receiver);     // 받는사람 이메일
+		        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+		        messageHelper.setText(content, true);  // 메일 내용
+
+		        mailSender.send(message);
+		        return true;
+		    } catch(Exception e){
+		        System.out.println(e);
+		        return false;
+		    }
+
+	}
+	public String makeRandomStr(int size) {
+		String str = "";
+		String pattern = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		int min = 0, max = pattern.length()-1;
+		while(str.length() < size) {
+			int r = (int)(Math.random()*(max-min+1)+min);
+			str += pattern.charAt(r);
+		}
+		return str;
 	}
 
 	@Override
