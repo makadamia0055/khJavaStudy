@@ -18,13 +18,7 @@ public class MemberServiceImp implements MemberService{
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
-	@Override
-	public String selectMemberName(Integer num) {
-		if(num==null) {
-			return null;
-		}
-		return memberDao.selectMemberName(num);
-	}
+	
 
 	@Override
 	public boolean insertSignup(MemberVO memberVO) throws Exception {

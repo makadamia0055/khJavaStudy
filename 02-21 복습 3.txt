@@ -1,0 +1,8 @@
+로그아웃
+1. url : /logout
+2. 링크 추가 : header.jsp
+3. 컨트롤러에 메소드 추가
+value: /logout
+method : 상관없음
+viewName : redirect:/
+-HttpSession에서 user정보를 삭제

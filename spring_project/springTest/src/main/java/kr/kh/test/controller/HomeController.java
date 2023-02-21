@@ -3,6 +3,7 @@ package kr.kh.test.controller;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,7 @@ public class HomeController {
 	MemberService memberService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(ModelAndView mv, Integer num) {
-		String name = memberService.selectMemberName(num);
-		System.out.println(name);
+	public ModelAndView home(ModelAndView mv) {
 		mv.setViewName("/main/home");
 		return mv;
 	}
@@ -66,12 +65,17 @@ public class HomeController {
 		System.out.println(member);
 		MemberVO user = memberService.login(member);
 		if(user!=null) {
-			mv.addObject(user);
+			mv.addObject("user", user);
 			mv.setViewName("redirect:/");
 		}else {
 			mv.setViewName("redirect:/login");
 		}
 		return mv;
 	}
-	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public ModelAndView loginOut(ModelAndView mv, HttpSession session) {
+		session.setAttribute("user", null);
+		mv.setViewName("redirect:/");
+		return mv;
+	}
 }

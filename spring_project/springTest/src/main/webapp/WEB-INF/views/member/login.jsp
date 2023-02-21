@@ -21,3 +21,6 @@
 	
 	</form>
 </div>
+<script>
+$('#id').focus();
+</script>

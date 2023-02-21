@@ -40,7 +40,7 @@
 	<!--로그인 인터셉터-->
 	<beans:bean id="loginInterceptor" 
 		class="kr.kh.spring.interceptor.LoginInterceptor"></beans:bean>
-		<beans:bean id="AdminInterceptor" 
+	<beans:bean id="AdminInterceptor" 
 		class="kr.kh.spring.interceptor.AdminInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
