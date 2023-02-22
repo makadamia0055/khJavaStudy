@@ -151,3 +151,5 @@ Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
 Servers/Tomcat v9.0 Server at localhost-config/web.xml
 
 spring_project/springTest/src/main/webapp/WEB-INF/config/key.properties
+
+spring_project/springTest/src/main/resources/config/key.properties
