@@ -126,3 +126,26 @@ atlassian-ide-plugin.xml
 
 # VS Code
 .vscode/
+Servers/Tomcat v9.0 Server at localhost (2)-config/catalina.policy
+
+Servers/Tomcat v9.0 Server at localhost (2)-config/catalina.properties
+
+Servers/Tomcat v9.0 Server at localhost (2)-config/context.xml
+
+Servers/Tomcat v9.0 Server at localhost (2)-config/server.xml
+
+Servers/Tomcat v9.0 Server at localhost (2)-config/tomcat-users.xml
+
+Servers/Tomcat v9.0 Server at localhost (2)-config/web.xml
+
+Servers/Tomcat v9.0 Server at localhost-config/catalina.policy
+
+Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
+
+Servers/Tomcat v9.0 Server at localhost-config/context.xml
+
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+
+Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
+
+Servers/Tomcat v9.0 Server at localhost-config/web.xml
