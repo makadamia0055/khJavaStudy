@@ -19,19 +19,20 @@
 	    <property name="username" value="root"></property>
 	    <property name="password" value="root"></property>
 	</bean> 
-	<!--  config프로퍼티 설정 
+	<!--  외부 프로퍼티 불러오기 설정 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     	<property name="locations">
-    	 <value>classpath:config/key.properties </value>
+    		<value>classpath:config/key.properties </value>
     	</property>
+    	
 	</bean>
-	 -->
+	
 	<!-- 메일 세팅 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	    <property name="host" value="smtp.gmail.com" />
 	    <property name="port" value="587" />
-	    <property name="username" value="psycat06@gmail.com" />
-	    <property name="password" value="" />
+	    <property name="username" value="${googleMail}" />
+	    <property name="password" value="${googlePassword}" />
 	    <property name="javaMailProperties">
 	        <props>
 	            <prop key="mail.transport.protocol">smtp</prop>

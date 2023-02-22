@@ -27,8 +27,18 @@
 				        	</form>
 			      	</li>
 			     </c:if>
+			      <c:if test="${user.me_authority ==9}">
+			     	<li class="nav-item dropdown">
+				     	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        					관리자 메뉴
+      					</a>
+      					<div class="dropdown-menu">
+				        	<a class="dropdown-item" href="<c:url value='/admin/board/type/list'></c:url>">게시판 관리</a>
+			        	</div>
+				    </li>
+			     </c:if>
 		      	<li class="nav-item">
-		        	<a class="nav-link" href="<c:url value='/test1'></c:url>">Test</a>
+		        	<a class="nav-link" href="<c:url value='/test1' ></c:url>">Test</a>
 		      	</li>    
 	    	</ul>
 		</div> 
