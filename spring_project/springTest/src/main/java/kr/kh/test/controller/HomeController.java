@@ -42,7 +42,7 @@ public class HomeController {
 				System.out.println("회원가입 완료");
 				res.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = res.getWriter();
-				out.print("<script>alert('회원가입을 완료했습니다.')</script>");
+				out.print("<script>alert('회원가입을 완료했습니다.') location.href='/test/' </script>");
 				out.close();
 			}else {
 				mv.setViewName("/member/signup");
@@ -66,10 +66,11 @@ public class HomeController {
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member) {
 		System.out.println(member);
 		MemberVO user = memberService.login(member);
-		if(user!=null) {
+		if(user!=null && user.getMe_authority() >0) {
 			mv.addObject("user", user);
 			mv.setViewName("redirect:/");
-		}else {
+		}else if(user!=null){
+			System.out.println("인증되지 않은 회원입니다.");
 			mv.setViewName("redirect:/login");
 		}
 		return mv;
@@ -86,6 +87,9 @@ public class HomeController {
 		String mo_num = req.getParameter("mo_num");
 		MemberOKVO mok = new MemberOKVO(mo_me_id, mo_num);
 		if(memberService.checkAuth(mok)) {
+			// 인증 성공 메시지
+		}else {
+			// 인증 실패 메시지
 		}
 		
 		mv.setViewName("redirect:/");

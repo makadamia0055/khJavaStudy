@@ -129,14 +129,18 @@ public class MemberServiceImp implements MemberService{
 	}
 	@Override
 	public boolean checkAuth(MemberOKVO mok) {
+		if(mok==null||mok.getMo_me_id()==null|| mok.getMo_num()==null) {
+			return false;
+		}
 		if(memberDao.checkAndDeleteAuth(mok)==0) {
 			return false;
 		}
-		int member_Auth = 1;
-		if(memberDao.updateAuth(member_Auth, mok)==0) {
-			return false;
-		}
-		return true;
+		// 회원 등급 변수
+		int updateCount = 1;
+//		if(memberDao.updateAuth(updateCount, mok)==0) {
+//			return false;
+//		}
+		return memberDao.updateAuth(updateCount, mok)!=0;
 	
 	}
 }

@@ -13,7 +13,7 @@
   	insert into member_OK(mo_me_id, mo_num, mo_valid_time) values(#{memberOK.mo_me_id}, #{memberOK.mo_num}, Date_ADD(now(), interval 1 hour))
   </insert>
   <delete id="checkAndDeleteAuth">
-  	delete from member_ok where mo_me_id = #{mok.mo_me_id} and mo_num = #{mok.mo_num} and mo_valid_time > now()
+  	delete from member_ok where mo_me_id = #{mok.mo_me_id} and mo_num = #{mok.mo_num} and mo_valid_time >= now()
   </delete>
   <update id="updateAuth">
   	update member 
