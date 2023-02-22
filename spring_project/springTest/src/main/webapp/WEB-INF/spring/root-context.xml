@@ -24,8 +24,7 @@
     	<property name="locations">
     		<value>classpath:config/key.properties </value>
     	</property>
-    	
-	</bean>
+    </bean>
 	
 	<!-- 메일 세팅 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
