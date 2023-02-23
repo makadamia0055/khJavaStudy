@@ -24,7 +24,9 @@ public class AdminServiceImp implements AdminService{
 		if(!checkVO(bTVO)) {
 			return false;
 		}
-		
+		if(!duplicateNameCheck(bTVO)) {
+			return false;
+		}
 		if(btDao.insertNewType(bTVO)!=0) {
 			
 			return true;
@@ -39,7 +41,8 @@ public class AdminServiceImp implements AdminService{
 			System.out.println("객체오류");
 			return false;
 		}
-		if(bTVO.getBt_name().equals("")) {
+		if(bTVO.getBt_name().trim().equals("")||
+				bTVO.getBt_name().trim().length()==0) {
 			System.out.println("공백이름");
 			return false;
 		}
@@ -55,11 +58,39 @@ public class AdminServiceImp implements AdminService{
 			System.out.println("쓰권오류");
 			return false;
 		}
-		if(btDao.selectTypeByName(bTVO.getBt_name())!=null) {
+		
+		return true;
+	}
+	private boolean duplicateNameCheck(BoardTypeVO bt) {
+		ArrayList<BoardTypeVO> dbDao = btDao.selectTypeByName(bt.getBt_name());
+		if(dbDao.size()!=0) {
+			if(dbDao.size()==1&&dbDao.get(0).getBt_num()==bt.getBt_num()) {
+				return true;
+			}
+			
 			System.out.println("중복이름");
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean editBoardType(BoardTypeVO bt) {
+		if(!checkVO(bt)) {
+			return false;
+		}
+		if(bt.getBt_num()<0) {
+			return false;
+		}
+		if(!duplicateNameCheck(bt)) {
+			return false;
+		}
+		if(btDao.updateBoardType(bt)==0) {
+			return false;
+		}else {
+			
+			return true;
+		}
 	}
 	
 	

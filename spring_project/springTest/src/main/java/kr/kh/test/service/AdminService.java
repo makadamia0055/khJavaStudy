@@ -10,4 +10,6 @@ public interface AdminService {
 
 	boolean insertBoardType(BoardTypeVO bTVO);
 
+	boolean editBoardType(BoardTypeVO bt);
+
 }

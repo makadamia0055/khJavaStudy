@@ -10,6 +10,7 @@
 		<thead>
 			<tr>
 				<th>번호</th>
+				<th style="display:none;">진짜 번호</th>
 				<th>타입</th>
 				<th>게시판 명</th>
 				<th>읽기 권한</th>
@@ -20,26 +21,27 @@
 		<tbody>
 		<c:forEach var="btVO" items="${btVOList }" varStatus="status">
 			<tr>
-				<form action="" method="get">
-					<td>${status.count}<span hidden>${btVO.getBt_num() }</span></td>
+				<form action="<c:url value='/admin/board/type/update'></c:url>" method="post">
+					<td>${status.count}</td>
+					<td style="display:none;"> <input type=text id="bt_num" name="bt_num" value = " ${btVO.getBt_num() }"></td>
 					<td>
-						<select id="bt_type">
+						<select id="bt_type" name="bt_type">
 							<option value="일반" <c:if test="${btVO.getBt_type() == '일반'}">selected </c:if>>일반</option>
 							<option value="이미지" <c:if test="${btVO.getBt_type() == '이미지'}">selected </c:if>>이미지</option>
 						</select>
 					</td>
 					<td>
-						<input type="text" id="bt_name" placeholder="게시판 명" value="${btVO.getBt_name() }">
+						<input type="text" id="bt_name" name="bt_name" placeholder="게시판 명" value="${btVO.getBt_name() }">
 					</td>
 					<td>
-						<select id="bt_r_authority">
+						<select id="bt_r_authority" name="bt_r_authority">
 							<option value="0" <c:if test="${btVO.getBt_r_authority() == 0}">selected</c:if>>비회원 이상</option>
 							<option value="1" <c:if test="${btVO.getBt_r_authority() == 1}">selected</c:if>>회원 이상</option>
 							<option value="9" <c:if test="${btVO.getBt_r_authority() == 9}">selected</c:if>>관리자 이상</option>
 						</select>
 					</td>
 					<td>
-						<select id="bt_w_authority">
+						<select id="bt_w_authority" name="bt_w_authority">
 							<option value="0" <c:if test="${btVO.getBt_w_authority() == 0}">selected</c:if>>비회원 이상</option>
 							<option value="1" <c:if test="${btVO.getBt_w_authority() == 1}">selected</c:if>>회원 이상</option>
 							<option value="9" <c:if test="${btVO.getBt_w_authority() == 9}">selected</c:if>>관리자 이상</option>
@@ -56,6 +58,7 @@
 			<tr>
 				<form action="<c:url value='/admin/board/type/insert'></c:url>" method="post">
 					<td></td>
+					<td style="display:none;"></td>
 					<td>
 						<select id="bt_type" name="bt_type">
 							<option value="일반">일반</option>
