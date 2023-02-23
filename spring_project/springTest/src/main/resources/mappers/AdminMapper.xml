@@ -7,5 +7,11 @@
  		select * from board_type where #{authority} >= bt_w_authority  
  	
  	</select>
+ 	<select id="selectTypeByName" resultType="kr.kh.test.vo.BoardTypeVO">
+ 		select * from board_type where bt_name like #{name}
+ 	</select>
+ 	<insert id="insertNewType">
+ 		insert into board_type(bt_type, bt_name, bt_r_authority, bt_w_authority) values(#{bt.bt_type}, #{bt.bt_name}, #{bt.bt_r_authority}, #{bt.bt_w_authority})
+ 	</insert>
  </mapper>
   

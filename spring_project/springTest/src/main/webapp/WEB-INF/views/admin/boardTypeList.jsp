@@ -29,7 +29,7 @@
 						</select>
 					</td>
 					<td>
-						<input type="text" id="by_name" placeholder="게시판 명" value="${btVO.getBt_name() }">
+						<input type="text" id="bt_name" placeholder="게시판 명" value="${btVO.getBt_name() }">
 					</td>
 					<td>
 						<select id="bt_r_authority">
@@ -52,36 +52,38 @@
 				</form>
 			</tr>
 		</c:forEach>
-		<tr>
-			<form action="" method="">
-				<td></td>
-				<td>
-					<select id="bt_type">
-						<option value="일반">일반</option>
-						<option value="이미지">이미지</option>
-					</select>
-				</td>
-				<td>
-					<input type="text" id="by_name" placeholder="게시판 명">
-				</td>
-				<td>
-					<select id="bt_r_authority">
-						<option value="0">비회원 이상</option>
-						<option value="1">회원 이상</option>
-						<option value="9">관리자 이상</option>
-					</select>
-				</td>
-				<td>
-					<select id="bt_w_authority">
-						<option value="1">회원 이상</option>
-						<option value="9">관리자 이상</option>
-					</select>
-				</td>
-				<td>
-					<button id="submit_button" class="btn btn-outline-primary">등록</button>
-				</td>
-			</form>
-		</tr>
+		<tfoot>
+			<tr>
+				<form action="<c:url value='/admin/board/type/insert'></c:url>" method="post">
+					<td></td>
+					<td>
+						<select id="bt_type" name="bt_type">
+							<option value="일반">일반</option>
+							<option value="이미지">이미지</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" id="bt_name" name="bt_name" placeholder="게시판 명">
+					</td>
+					<td>
+						<select id="bt_r_authority" name="bt_r_authority">
+							<option value="0">비회원 이상</option>
+							<option value="1">회원 이상</option>
+							<option value="9">관리자 이상</option>
+						</select>
+					</td>
+					<td>
+						<select id="bt_w_authority" name="bt_w_authority">
+							<option value="1">회원 이상</option>
+							<option value="9">관리자 이상</option>
+						</select>
+					</td>
+					<td>
+						<button id="submit_button" class="btn btn-outline-primary">등록</button>
+					</td>
+				</form>
+			</tr>
+		</tfoot>
 	</tbody>
 	
 	</table>

@@ -8,4 +8,6 @@ public interface AdminService {
 
 	ArrayList<BoardTypeVO> selectWholeType();
 
+	boolean insertBoardType(BoardTypeVO bTVO);
+
 }

@@ -24,5 +24,12 @@ public class AdminController {
 		mv.setViewName("/admin/boardTypeList");
 		return mv;
 	}
-
+	@RequestMapping(value="/admin/board/type/insert", method = RequestMethod.POST)
+	public ModelAndView boardTypeInsert(ModelAndView mv, BoardTypeVO bTVO) {
+		if(adminService.insertBoardType(bTVO)) {
+			
+		}
+		mv.setViewName("redirect:/admin/board/type/list");
+		return mv;
+	}
 }
