@@ -21,65 +21,28 @@
 		<c:forEach var="btVO" items="${btVOList }" varStatus="status">
 			<tr>
 				<form action="" method="get">
-					<td>${btVO.getBt_num() }</td>
+					<td>${status.count}<span hidden>${btVO.getBt_num() }</span></td>
 					<td>
-						<c:if test="${btVO.getBt_type() == '일반'}">
-							<select id="bt_type">
-								<option value="일반" selected>일반</option>
-								<option value="이미지">이미지</option>
-							</select>
-						</c:if>
-						<c:if test="${btVO.getBt_type() == '이미지'}">
-							<select id="bt_type">
-								<option value="일반">일반</option>
-								<option value="이미지" selected>이미지</option>
-							</select>
-						</c:if>
-						
+						<select id="bt_type">
+							<option value="일반" <c:if test="${btVO.getBt_type() == '일반'}">selected </c:if>>일반</option>
+							<option value="이미지" <c:if test="${btVO.getBt_type() == '이미지'}">selected </c:if>>이미지</option>
+						</select>
 					</td>
 					<td>
 						<input type="text" id="by_name" placeholder="게시판 명" value="${btVO.getBt_name() }">
 					</td>
 					<td>
 						<select id="bt_r_authority">
-							<c:choose>
-								<c:when test="${btVO.getBt_r_authority() == 0 }">
-									<option value="0" selected>비회원 이상</option>
-									<option value="1">회원 이상</option>
-									<option value="9">관리자 이상</option>
-								</c:when>
-								<c:when test="${btVO.getBt_r_authority() == 1 }">
-									<option value="0" >비회원 이상</option>
-									<option value="1" selected>회원 이상</option>
-									<option value="9">관리자 이상</option>
-								</c:when>
-								<c:when test="${btVO.getBt_r_authority() == 9 }">
-									<option value="0">비회원 이상</option>
-									<option value="1">회원 이상</option>
-									<option value="9"  selected>관리자 이상</option>
-								</c:when>
-							</c:choose>
+							<option value="0" <c:if test="${btVO.getBt_r_authority() == 0}">selected</c:if>>비회원 이상</option>
+							<option value="1" <c:if test="${btVO.getBt_r_authority() == 1}">selected</c:if>>회원 이상</option>
+							<option value="9" <c:if test="${btVO.getBt_r_authority() == 9}">selected</c:if>>관리자 이상</option>
 						</select>
 					</td>
 					<td>
 						<select id="bt_w_authority">
-							<c:choose>
-								<c:when test="${btVO.getBt_w_authority() == 0 }">
-									<option value="0" selected>비회원 이상</option>
-									<option value="1">회원 이상</option>
-									<option value="9">관리자 이상</option>
-								</c:when>
-								<c:when test="${btVO.getBt_w_authority() == 1 }">
-									<option value="0" >비회원 이상</option>
-									<option value="1" selected>회원 이상</option>
-									<option value="9">관리자 이상</option>
-								</c:when>
-								<c:when test="${btVO.getBt_w_authority() == 9 }">
-									<option value="0">비회원 이상</option>
-									<option value="1">회원 이상</option>
-									<option value="9"  selected>관리자 이상</option>
-								</c:when>
-							</c:choose>
+							<option value="0" <c:if test="${btVO.getBt_w_authority() == 0}">selected</c:if>>비회원 이상</option>
+							<option value="1" <c:if test="${btVO.getBt_w_authority() == 1}">selected</c:if>>회원 이상</option>
+							<option value="9" <c:if test="${btVO.getBt_w_authority() == 9}">selected</c:if>>관리자 이상</option>
 						</select>
 					</td>
 					<td>

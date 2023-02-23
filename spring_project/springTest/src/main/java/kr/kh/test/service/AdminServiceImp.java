@@ -15,8 +15,8 @@ public class AdminServiceImp implements AdminService{
 
 	@Override
 	public ArrayList<BoardTypeVO> selectWholeType() {
-		
-		return btDao.selectWholeType();
+		final int adminAuthority = 9;
+		return btDao.selectWholeType(adminAuthority);
 	}
 	
 	
