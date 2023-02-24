@@ -12,4 +12,6 @@ public interface AdminService {
 
 	boolean editBoardType(BoardTypeVO bt);
 
+	boolean deleteBoardType(Integer btNum);
+
 }

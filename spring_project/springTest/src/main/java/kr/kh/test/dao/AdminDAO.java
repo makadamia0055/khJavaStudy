@@ -16,4 +16,6 @@ public interface AdminDAO {
 
 	int updateBoardType(@Param("bt")BoardTypeVO bt);
 
+	int deleteBoardType(@Param("btNum")Integer btNum);
+
 }

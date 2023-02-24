@@ -21,5 +21,9 @@
  				bt_w_authority = #{bt.bt_w_authority }
 			where bt_num = #{bt.bt_num}
  	</update>
+ 	<delete id="deleteBoardType">
+ 		delete from board_type
+ 		where bt_num = #{btNum}
+ 	</delete>
  </mapper>
   

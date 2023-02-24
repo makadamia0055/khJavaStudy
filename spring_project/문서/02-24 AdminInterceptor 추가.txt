@@ -1,0 +1,9 @@
+<관리자 페이지 접근 제한 적용>
+
+1. AdminInterceptor 추가 및 구현(문서 참고)
+-prehandle 오버라이딩
+- 세션에 저장된 정보가 없거나, 세션에 저장된 권한이 관리자 미만이면 메인으로 리다이렉트
+- 세션에 저장된 정보가 있고, 세션에 저장된 권한이 관리자이면, 접근가능.
+
+2. servlet-context.xml
+admininterceptor 등록 및 url 등록

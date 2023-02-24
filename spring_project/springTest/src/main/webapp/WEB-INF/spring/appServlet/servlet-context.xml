@@ -47,4 +47,15 @@
         	<beans:ref bean="loginInterceptor"/>
     	</interceptor>
 	</interceptors>
-	</beans:beans>
+	
+	
+	<beans:bean id="adminInterceptor" 
+		class="kr.kh.test.interceptor.AdminInterceptor">
+	</beans:bean>
+	<interceptors>
+    	<interceptor>
+        	<mapping path="/admin/board/type/list"/>
+        	<beans:ref bean="adminInterceptor"/>
+    	</interceptor>
+	</interceptors>
+</beans:beans>

@@ -1,0 +1,27 @@
+<게시판 삭제> 
+1. url 선정 : /admin/board/type/delete
+
+2. boardtypeList.jsp 수정
+	삭제 버튼을 a태그로 감싸고 a태그에 href에 선정된 url로 수정하고
+	url뒤에 삭제할 게시판 정보를 넘겨줌
+
+3. 컨트롤러에 메소드 추가
+-value : /admin/board/type/delete
+-method : get
+-viewName : redirect:/admin/board/type/list
+
+4. 컨트롤러 메소드 구현
+- 게시판 번호 확인
+- 서비스에게 번호를 주면서 삭제하라고 요청
+- 서비스에게 번호를 주면서 삭제하라고 요청한 뒤에 삭제 결과를 받아옴
+- 알려준 결과를 이용하여 안내메시지 출력
+	- 성공하면 삭제 성공 메시지
+	- 실패하면 삭제 실패 메시지
+
+5. serviceImp 메소드 추가 및 구현
+- 게시판 번호 체크
+-다오에게 게시판 번호를 주면서 삭제한 후 적용된 개수를 알려달라고 요청
+-0개이면 false를, 0개가 아니면 true를 리턴
+
+6. 다오/매퍼
+delete 태그 및 쿼리문 작성

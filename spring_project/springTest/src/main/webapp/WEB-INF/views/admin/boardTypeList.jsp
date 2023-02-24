@@ -49,7 +49,9 @@
 					</td>
 					<td>
 						<button id="edit_button" class="btn btn-outline-success">수정</button>
-						<button id="delete_button" class="btn btn-outline-danger">삭제</button>
+						<a href="<c:url value='/admin/board/type/delete?bt_num=${btVO.bt_num }'></c:url>">
+							<button id="delete_button" type="button" class="btn btn-outline-danger">삭제</button>
+						</a>
 					</td>
 				</form>
 			</tr>

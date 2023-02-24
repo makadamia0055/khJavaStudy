@@ -79,7 +79,7 @@ public class AdminServiceImp implements AdminService{
 		if(!checkVO(bt)) {
 			return false;
 		}
-		if(bt.getBt_num()<0) {
+		if(bt.getBt_num()<1  ) {
 			return false;
 		}
 		if(!duplicateNameCheck(bt)) {
@@ -91,6 +91,17 @@ public class AdminServiceImp implements AdminService{
 			
 			return true;
 		}
+	}
+
+	@Override
+	public boolean deleteBoardType(Integer btNum) {
+		if(btNum==null||btNum<1) {
+			return false;
+		}
+		if(btDao.deleteBoardType(btNum)==0) {
+			return false;
+		}
+		return true;
 	}
 	
 	
