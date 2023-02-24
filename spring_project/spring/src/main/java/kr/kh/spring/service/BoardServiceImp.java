@@ -35,6 +35,9 @@ public class BoardServiceImp implements BoardService{
 		
 		// 게시글 등록
 		boardDao.insertBoard(board);
+/*		mapper에서 useGeneratekey는 해당 작업이 일어난 후 
+ * 		기본키를 지정한 프로퍼티에 넣어준다 
+ * */		
 		
 		// 첨부파일 등록
 		
@@ -49,6 +52,11 @@ public class BoardServiceImp implements BoardService{
 	
 		
 		return true;
+	}
+
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		return boardDao.selectBoardList();
 	}
 	
 }

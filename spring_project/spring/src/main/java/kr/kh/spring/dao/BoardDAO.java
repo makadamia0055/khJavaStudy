@@ -19,6 +19,8 @@ public interface BoardDAO {
 
 	void insertBoard(@Param("bo")BoardVO board);
 
+	ArrayList<BoardVO> selectBoardList();
+
 	
 	
 }

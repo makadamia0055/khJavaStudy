@@ -26,6 +26,11 @@ public class BoardController {
 	@RequestMapping(value ="/board/list", method=RequestMethod.GET)
 	public ModelAndView boardList(ModelAndView mv) {
 		mv.setViewName("/board/list");
+		// 우선 전체 게시글을 가져오는 코드로 작성하고 
+				// 추후에 페이지네이션 및 검색기능을 적용
+		ArrayList<BoardVO> list = boardService.getBoardList();
+		mv.addObject("list", list);
+		mv.setViewName("/board/list");
 		return mv;
 	}
 	@RequestMapping(value ="/board/insert", method=RequestMethod.GET)
@@ -43,7 +48,7 @@ public class BoardController {
 			
 			mv.setViewName("/board/insert");
 		}
-	
+		
 		return mv;
 	}
 	@RequestMapping(value ="/board/insert", method=RequestMethod.POST)
