@@ -27,9 +27,11 @@
   	delete from board_type where bt_num = #{bt_num}
   </delete>
   <insert id="insertBoard" useGeneratedKeys="true" keyProperty="bo.bo_num">
-  	insert into board(bo_title, bo_content, bo_me_id, bo_bt_num, bo_ori_num)
-  	values(#{bo.bo_title},#{bo.bo_content},#{bo.bo_me_id},#{bo.bo_bt_num},
-  	)
+  	insert into board(bo_num, bo_title, bo_content, bo_me_id, bo_bt_num, bo_ori_num)
+  	select ifnull(max(bo_num),0)+1, #{bo.bo_title},#{bo.bo_content},#{bo.bo_me_id},#{bo.bo_bt_num},
+  	ifnull(max(bo_num),0)+1
+  	from board order by bo_num desc limit 1
+  	
   	<!-- last_insert_id() 마지막에 넣어준 auto_increment값  -->
   </insert>
 </mapper>

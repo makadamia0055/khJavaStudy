@@ -30,6 +30,8 @@ public class BoardController {
 	}
 	@RequestMapping(value ="/board/insert", method=RequestMethod.GET)
 	public ModelAndView boardInsert(ModelAndView mv, HttpServletRequest request) {
+		// 세션에서 회원 정보 가져옴
+		// => 쓰기 권한이 있는 게시판을 가져오기 위해서
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		
 		ArrayList<BoardTypeVO> btList = boardService.getBoardType(user.getMe_authority());
@@ -47,8 +49,9 @@ public class BoardController {
 	@RequestMapping(value ="/board/insert", method=RequestMethod.POST)
 	public ModelAndView boardInsertPost(ModelAndView mv, BoardVO board,
 			HttpSession session) {
-		
+		// 세션에 잇는 회원 정보 가져옴. 작성자에 넣어주려고
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		// 게시글 정보와 회원 정보를 이용하여 게시글 등록하라고 시킴
 		boardService.insertBoard(board, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;

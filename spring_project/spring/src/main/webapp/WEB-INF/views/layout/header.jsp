@@ -26,11 +26,10 @@
 	      		<a class="nav-link" href="<c:url value='/logout'></c:url>">로그아웃</a>
 	    	</li>
 	    </c:if>
-	    <c:if test="${user!=null }">
-	     	<li class="nav-item">
-	      		<a class="nav-link" href="<c:url value='/board/list'></c:url>">게시판</a>
-	    	</li>
-	    </c:if>
+	   	<li class="nav-item">
+	      	<a class="nav-link" href="<c:url value='/board/list'></c:url>">게시판</a>
+	    </li>
+	  
 	    
 	    <c:if test="${user!=null && user.me_authority >=9}">
 		    <li class="nav-item dropdown">
