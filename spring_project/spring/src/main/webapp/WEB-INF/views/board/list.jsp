@@ -24,7 +24,7 @@
 			<tr>
 				<td class="form-group">${bo.bo_num}</td>
 				<td class="form-group">
-					<a href="<c:url value='/board/detail'></c:url>">${bo.bo_title}</a>
+					<a href="<c:url value='/board/detail/${bo.bo_num }'></c:url>">${bo.bo_title}</a>
 				</td>
 				<td class="form-group">${bo.bo_me_id }</td>
 				<td class="form-group">${bo.bo_up}/${bo.bo_up}</td>
