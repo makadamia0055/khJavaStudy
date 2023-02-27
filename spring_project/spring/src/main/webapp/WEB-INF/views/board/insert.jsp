@@ -11,7 +11,7 @@
 <script src="<c:url value='/resources/js/summernote.min.js'></c:url>"></script>
 <div class="container-fluid mt-3">
 	<h1>게시글 작성</h1>
-	<form action="<c:url value='/board/insert'></c:url>" method="post">
+	<form action="<c:url value='/board/insert'></c:url>" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="type">게시글 타입 : </label>
 			<select class="form-control" name="bo_bt_num" id = "type">

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.kh.spring.service.BoardService;
@@ -53,11 +54,13 @@ public class BoardController {
 	}
 	@RequestMapping(value ="/board/insert", method=RequestMethod.POST)
 	public ModelAndView boardInsertPost(ModelAndView mv, BoardVO board,
-			HttpSession session) {
+			HttpSession session, MultipartFile[] files) {
+			//input.jsp의 files와 이름 맞춰야함.
+		
 		// 세션에 잇는 회원 정보 가져옴. 작성자에 넣어주려고
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		// 게시글 정보와 회원 정보를 이용하여 게시글 등록하라고 시킴
-		boardService.insertBoard(board, user);
+		boardService.insertBoard(board, user, files);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
