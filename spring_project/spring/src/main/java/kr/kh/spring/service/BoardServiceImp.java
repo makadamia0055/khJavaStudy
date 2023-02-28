@@ -94,13 +94,26 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public BoardVO getBoard(int bo_num) {
+	public BoardVO getBoard(int bo_num, MemberVO user) {
 		// 조회수 증가
 		boardDao.updateBoardViews(bo_num);
 		// 게시글 가져오기 
 		// 순서를 바꾸면 db의 게시글과 화면에 나오는 게시글의 조회수가 다른 경우가 생김
 		BoardVO board = boardDao.selectBoard(bo_num);
-		return board;
+		if(board == null) {
+			return null;
+		}	
+		BoardTypeVO boardType = boardDao.selectBoardType(board.getBo_bt_num());
+		if(boardType.getBt_r_authority() == 0) {
+			return board;
+		}
+		if(user == null) {
+			return null;
+		}
+		if(boardType.getBt_r_authority()<=user.getMe_authority()) {
+			return board;
+		}
+		return null;
 	}
 
 	@Override

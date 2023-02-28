@@ -53,4 +53,8 @@
   		set bo_views = bo_views+1 
   		where bo_num = #{bo_num}
   </update>
+  <select id="selectBoardType" resultType="kr.kh.spring.vo.BoardTypeVO">
+  	select * from board_type
+  		where bt_num = #{bt_num}
+  </select>
 </mapper>
