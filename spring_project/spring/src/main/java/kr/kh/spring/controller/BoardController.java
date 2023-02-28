@@ -123,10 +123,6 @@ public class BoardController {
 		BoardVO board = boardService.getBoardByWriteAuthority(bo_num, user);
 		if(board==null) {
 			MessageUtils.alertAndMovePage(response, "작성자가 아니거나 존재하지 않는 게시글 입니다.", "/spring", "/board/list");
-		}
-		boolean res = boardService.updateBoard(bo_num, user);
-		if(res) {
-			MessageUtils.alertAndMovePage(response, "게시글을 수정했습니다.", "/spring", "/board/list");
 		}else {
 			mv.addObject("board", board);
 			ArrayList<BoardTypeVO> btList = boardService.getBoardType(user.getMe_authority());
