@@ -28,6 +28,8 @@ public interface BoardDAO {
 
 	ArrayList<FileVO> selectFileList(@Param("bo_num")int bo_num);
 
+	void updateBoardViews(@Param("bo_num")int bo_num);
+
 	
 	
 }
