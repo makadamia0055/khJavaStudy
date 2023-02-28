@@ -69,6 +69,14 @@
 				
 			</c:if>
 		</div>
+		<c:if test="${user != null && user.me_id == board.bo_me_id }">
+			<div>
+				<button class="btn btn-outline-primary btn-update">수정</button>
+				<a href="<c:url value='/board/delete/${board.bo_num }'></c:url>">
+					<button class="btn btn-outline-primary btn-delete">삭제</button>
+				</a>
+			</div>
+		</c:if>
 	
 	
 </div>

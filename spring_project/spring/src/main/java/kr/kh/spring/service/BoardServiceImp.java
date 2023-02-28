@@ -21,7 +21,22 @@ public class BoardServiceImp implements BoardService{
 	BoardDAO boardDao;
 	
 	String uploadPath = "D:\\uploadfiles";
-
+	private void deleteFileList(ArrayList<FileVO> fileList) {
+		
+		if(fileList ==null || fileList.size() ==0) {
+			return;
+		}
+		
+		for(FileVO file : fileList) {
+			if(file==null) {
+				continue;
+			}
+			UploadFileUtils.removeFile(uploadPath, file.getFi_name());
+			boardDao.deleteFile(file);
+		}
+	}
+	
+	
 	@Override
 	public ArrayList<BoardTypeVO> getBoardType(int authority) {
 		return boardDao.selectAllBoardType(authority);
@@ -158,6 +173,25 @@ public class BoardServiceImp implements BoardService{
 		return null;
 		
 		return boardDao.selectLikesById(user.getMe_id(), bo_num);
+	}
+
+	@Override
+	public boolean deleteBoard(int bo_num, MemberVO user) {
+		if(user==null) {
+			return false;
+		}
+		BoardVO board = boardDao.selectBoard(bo_num);
+		if(board == null)
+			return false;
+		
+		if(!board.getBo_me_id().equals(user.getMe_id())){
+			
+			return false;
+		}
+		ArrayList<FileVO> fileList = boardDao.selectFileList(bo_num);
+		
+		deleteFileList(fileList);
+		return boardDao.deleteBoard(bo_num) !=0;
 	}
 	
 }
