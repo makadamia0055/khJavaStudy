@@ -115,4 +115,31 @@ public class BoardController {
 		}
 		return mv;
 	}
+	@RequestMapping(value ="/board/update/{bo_num}", method=RequestMethod.GET)
+	public ModelAndView boardUpdate(ModelAndView mv,
+			HttpSession session, @PathVariable("bo_num")int bo_num, HttpServletResponse response) {
+		// 세션에 있는 회원 정보 가져옴. 작성자와 아이디 같은지 확인하려고	
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		BoardVO board = boardService.getBoardByWriteAuthority(bo_num, user);
+		if(board==null) {
+			MessageUtils.alertAndMovePage(response, "작성자가 아니거나 존재하지 않는 게시글 입니다.", "/spring", "/board/list");
+		}
+		boolean res = boardService.updateBoard(bo_num, user);
+		if(res) {
+			MessageUtils.alertAndMovePage(response, "게시글을 수정했습니다.", "/spring", "/board/list");
+		}else {
+			mv.addObject("board", board);
+			ArrayList<BoardTypeVO> btList = boardService.getBoardType(user.getMe_authority());
+			mv.addObject("btList", btList);
+//			작성할 타입이 없으면 작성 페이지로 갈 필요가 없어서 게시글 리스트로 		
+			if(btList.size()==0) {
+				MessageUtils.alertAndMovePage(response, "작성할 수 있는 게시판이 없습니다.", "/spring", "/board/list");
+
+			}else {
+				
+				mv.setViewName("/board/update");
+			}
+		}
+		return mv;
+	}
 }

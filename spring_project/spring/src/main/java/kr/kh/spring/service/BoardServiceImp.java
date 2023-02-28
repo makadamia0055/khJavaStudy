@@ -193,5 +193,26 @@ public class BoardServiceImp implements BoardService{
 		deleteFileList(fileList);
 		return boardDao.deleteBoard(bo_num) !=0;
 	}
+
+
+	@Override
+	public BoardVO getBoardByWriteAuthority(int bo_num, MemberVO user) {
+		// 조회수 증가
+				// 게시글 가져오기 
+				// 순서를 바꾸면 db의 게시글과 화면에 나오는 게시글의 조회수가 다른 경우가 생김
+				BoardVO board = boardDao.selectBoard(bo_num);
+				if(board == null) {
+					return null;
+				}	
+				
+				if(user == null) {
+					return null;
+				}
+				if(user.getMe_id().equals(board.getBo_me_id()))
+					return board;
+				
+				return null;
+			}
+	}
 	
 }

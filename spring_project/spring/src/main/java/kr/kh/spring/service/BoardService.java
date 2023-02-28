@@ -28,5 +28,7 @@ public interface BoardService {
 
 	boolean deleteBoard(int bo_num, MemberVO user);
 
+	BoardVO getBoardByWriteAuthority(int bo_num, MemberVO user);
+
 
 }
