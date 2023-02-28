@@ -1,6 +1,8 @@
 package kr.kh.spring.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +22,7 @@ import kr.kh.spring.utils.MessageUtils;
 import kr.kh.spring.vo.BoardTypeVO;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.FileVO;
+import kr.kh.spring.vo.LikesVO;
 import kr.kh.spring.vo.MemberVO;
 
 //@RequestMapping(value="/board") // 여기에 추가하면 기본 경로를 저걸로 매핑
@@ -69,10 +73,12 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value ="/board/detail/{bo_num}", method=RequestMethod.GET)
-	public ModelAndView boardInsertPost(ModelAndView mv,@PathVariable("bo_num")int bo_num, HttpSession session, HttpServletResponse res) {
+	public ModelAndView boardDetail(ModelAndView mv,@PathVariable("bo_num")int bo_num, HttpSession session, HttpServletResponse res) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		BoardVO board = boardService.getBoard(bo_num, user);
 		ArrayList<FileVO> files = boardService.getFileList(bo_num);
+		LikesVO likesVo = boardService.getLikes(bo_num, user);
+		mv.addObject("likes", likesVo);
 		mv.addObject("board", board);
 		mv.addObject("files", files);
 		if(board==null) {
@@ -84,6 +90,17 @@ public class BoardController {
 		}
 		return mv;
 	}
-	
+	@ResponseBody // 리턴값을 직접 화면에 보내주겠다는 표시
+	@RequestMapping(value ="/board/like/{li_state}/{bo_num}", method=RequestMethod.GET)
+	public Map<String, Object> boardLike(ModelAndView mv, BoardVO board,
+			HttpSession session, @PathVariable("li_state")int li_state,
+			@PathVariable("bo_num")int bo_num) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		// res가 1이면 추천 -1이면 비추천
+		int res = boardService.updateLikes(user, bo_num, li_state);
+		map.put("res", res);
+		return map;
+	}
 	
 }

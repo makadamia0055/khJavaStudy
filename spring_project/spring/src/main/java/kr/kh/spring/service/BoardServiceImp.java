@@ -11,6 +11,7 @@ import kr.kh.spring.utils.UploadFileUtils;
 import kr.kh.spring.vo.BoardTypeVO;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.FileVO;
+import kr.kh.spring.vo.LikesVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Service
@@ -119,6 +120,44 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public ArrayList<FileVO> getFileList(int bo_num) {
 		return boardDao.selectFileList(bo_num);
+	}
+
+	@Override
+	public int updateLikes(MemberVO user, int bo_num, int li_state) {
+		//이미 추천/비추천을 했는지 확인 기존 추천/비추천 정보 가져옴
+		LikesVO likesVo =boardDao.selectLikesById(user.getMe_id(), bo_num);
+		
+		// 없으면 추가
+					// LikesVO 객체를 생성하여 DAO에게 전달해서 Insert하라고 시킴
+					// bo_num를 리턴
+				
+		if(likesVo == null) {
+			likesVo = new LikesVO(li_state, user.getMe_id(), bo_num);
+			boardDao.insertLikes(likesVo);
+			return li_state;
+		}
+		
+		// 있으면 수정
+		if(li_state != likesVo.getLi_state()) {
+			likesVo.setLi_state(li_state);
+			boardDao.updateLikes(likesVo);
+			return li_state;
+		}
+			// 현재 상태와 기존 상태가 다르면 => 상태를 바꿈
+			// bo_num을 리턴
+		likesVo.setLi_state(0);
+		boardDao.updateLikes(likesVo);
+			// 현재 상태와 기존 상태가 같으면 => 취소
+			// 0을 리턴
+		return 0;
+	}
+
+	@Override
+	public LikesVO getLikes(int bo_num, MemberVO user) {
+		if(user==null)
+		return null;
+		
+		return boardDao.selectLikesById(user.getMe_id(), bo_num);
 	}
 	
 }
