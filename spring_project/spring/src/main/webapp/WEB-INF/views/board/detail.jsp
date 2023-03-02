@@ -56,16 +56,16 @@
 		</div>
 		<div class="pagination justify-content-center" style="margin:20px 0">
 			<c:if test="${likes !=null && likes.li_state ==1 }">
-				<button class="btn btn-success btn-up">추천</button>
+				<button class="btn btn-success btn-vote  btn-up">추천</button>
 			</c:if>
 			<c:if test="${likes !=null && likes.li_state !=1 }">
-				<button class="btn btn-outline-success btn-up">추천</button>
+				<button class="btn btn-outline-success btn-vote btn-up">추천</button>
 			</c:if>
 			<c:if test="${likes !=null && likes.li_state ==-1 }">
-				<button class="btn btn-danger btn-down ml-2">비추천</button>
+				<button class="btn btn-danger btn-vote  btn-down ml-2">비추천</button>
 			</c:if>
 			<c:if test="${likes !=null && likes.li_state !=-1 }">
-				<button class="btn btn-outline-danger btn-down ml-2">비추천</button>
+				<button class="btn btn-outline-danger btn-vote btn-down ml-2">비추천</button>
 				
 			</c:if>
 		</div>
@@ -84,7 +84,7 @@
 </div>
 <script>
 	$(function(){
-		$('.btn').click(function(){
+		$('.btn-vote').click(function(){
 			if('${user}'== '' ){
 				let res = confirm('로그인한 회원만 추천을 할 수 있습니다.\n로그인 페이지로 이동하겠습니까?');
 				if(res){

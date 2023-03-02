@@ -121,12 +121,15 @@ public class BoardController {
 		// 세션에 있는 회원 정보 가져옴. 작성자와 아이디 같은지 확인하려고	
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		BoardVO board = boardService.getBoardByWriteAuthority(bo_num, user);
+		ArrayList<FileVO> files = boardService.getFileList(bo_num);
+
 		if(board==null) {
 			MessageUtils.alertAndMovePage(response, "작성자가 아니거나 존재하지 않는 게시글 입니다.", "/spring", "/board/list");
 		}else {
 			mv.addObject("board", board);
 			ArrayList<BoardTypeVO> btList = boardService.getBoardType(user.getMe_authority());
 			mv.addObject("btList", btList);
+			mv.addObject("files", files);
 //			작성할 타입이 없으면 작성 페이지로 갈 필요가 없어서 게시글 리스트로 		
 			if(btList.size()==0) {
 				MessageUtils.alertAndMovePage(response, "작성할 수 있는 게시판이 없습니다.", "/spring", "/board/list");
@@ -136,6 +139,25 @@ public class BoardController {
 				mv.setViewName("/board/update");
 			}
 		}
+		return mv;
+	}
+	@RequestMapping(value ="/board/update/{bo_num}", method=RequestMethod.POST)
+	public ModelAndView boardUpdatePost(ModelAndView mv,
+			HttpSession session,
+			@PathVariable("bo_num")int bo_num, 
+			HttpServletResponse response, // 수정할 게시글 정보
+			BoardVO board, MultipartFile[] files, // 추가된 첨부파일
+			int[] fileNums) { // 삭제될 첨부파일
+		// 세션에 있는 회원 정보 가져옴. 작성자와 아이디 같은지 확인하려고
+//		System.out.println(board);
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		if(boardService.updateBoard(board, files, fileNums, user)) {
+			MessageUtils.alertAndMovePage(response, "게시글 수정이 완료되었습니다.", "/spring", "/board/detail/"+bo_num);
+
+		}else {
+			MessageUtils.alertAndMovePage(response, "게시글을 수정하지 못하였습니다.", "/spring", "/board/list");
+		}
+		
 		return mv;
 	}
 }
