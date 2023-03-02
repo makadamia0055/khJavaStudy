@@ -29,7 +29,7 @@
 					<a href="<c:url value='/board/detail/${bo.bo_num }'></c:url>">${bo.bo_title}</a>
 				</td>
 				<td class="form-group">${bo.bo_me_id }</td>
-				<td class="form-group">${bo.bo_up}/${bo.bo_up}</td>
+				<td class="form-group">${bo.bo_up}/${bo.bo_down}</td>
 				<td class="form-group">${bo.bo_register_date_str}</td>
 				<td class="form-group">${bo.bo_views}</td>
 			</tr>

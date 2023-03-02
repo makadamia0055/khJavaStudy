@@ -99,6 +99,7 @@ public class BoardController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		// res가 1이면 추천 -1이면 비추천
 		int res = boardService.updateLikes(user, bo_num, li_state);
+		boardService.updateBoardByLikes(bo_num);
 		map.put("res", res);
 		return map;
 	}

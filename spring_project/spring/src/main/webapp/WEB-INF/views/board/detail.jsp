@@ -55,6 +55,11 @@
 			</div>
 		</div>
 		<div class="pagination justify-content-center" style="margin:20px 0">
+			<c:if test="${likes ==null}">
+				<button class="btn btn-success btn-vote  btn-up">추천</button>
+				<button class="btn btn-danger btn-vote  btn-down ml-2">비추천</button>
+				
+			</c:if>
 			<c:if test="${likes !=null && likes.li_state ==1 }">
 				<button class="btn btn-success btn-vote  btn-up">추천</button>
 			</c:if>
