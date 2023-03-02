@@ -2,11 +2,35 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
-<style>
-	
-</style>
+
 <link href="<c:url value='/resources/css/summernote.min.css'></c:url>" rel="stylesheet">
 <script src="<c:url value='/resources/js/summernote.min.js'></c:url>"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<style>
+.swiper {
+      width: 100%;
+      height: 200px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide2 img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }	
+</style>
+
 <div class="container-fluid mt-3">
 	<h1>게시글 확인</h1>
 		<div class="form-group">
@@ -45,15 +69,28 @@
 			</div>
 		</div>
 		</c:if>
-		<div id="image" style="display : none">
-			<div class="form-group mt-3">
-				<label>첨부파일 : </label>
-				<!-- input type="file"의 경우 accept를 입력하면 해당 유형의 파일들만 업로드창에서 보임. -->
-				<input type="file" class="form-control" name="files" accept="image/*">
-				<input type="file" class="form-control" name="files" accept="image/*">
-				<input type="file" class="form-control" name="files" accept="image/*">
+		<c:if test="${board.bt_type =='이미지' }">
+			<div id="image" style="display">
+				<div class="form-group mt-3">
+					<label>이미지 : </label>
+					<!-- input type="file"의 경우 accept를 입력하면 해당 유형의 파일들만 업로드창에서 보임. -->
+					
+				</div>
 			</div>
-		</div>
+						 
+		</c:if>
+		<!-- Swiper -->
+		<div class="swiper mySwiper">
+			 <div class="swiper-wrapper">
+		 		<c:forEach items="${files}" var="file">
+				   	<div class="swiper-slide">
+						<img src="<c:url value='/download${file.fi_name}'></c:url>" height="200" width="auto">
+				    </div>
+				</c:forEach>
+			 </div>
+				<div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+		 </div>
 		<div class="pagination justify-content-center" style="margin:20px 0">
 			<c:if test="${likes ==null}">
 				<button class="btn btn-success btn-vote  btn-up">추천</button>
@@ -140,3 +177,13 @@
 
 </script>
 
+ <script>
+    var swiper = new Swiper(".mySwiper", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        
+      },
+      loop: true,
+    });
+  </script>

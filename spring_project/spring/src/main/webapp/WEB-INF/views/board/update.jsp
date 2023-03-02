@@ -3,10 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <style>
-	.error{
-	color: red;
-	}
+.file-box{
+	width: 100px; height: 200px; 
+	border: 1px solid black; font-size : 50px ;
+	text-align : center; line-height : 200px ; font-weight : bold;
+	border-radius : 5px; 
+	float: left ; cursor : pointer;
+}
+#image>div::after{
+	display : block; content: ''; clear: both;
+}
+#image>div>div{
+float : left;
+margin-right : 20px;
+}
+#image [type=file]{
+	display:none;
+}
 </style>
+
 <link href="<c:url value='/resources/css/summernote.min.css'></c:url>" rel="stylesheet">
 <script src="<c:url value='/resources/js/summernote.min.js'></c:url>"></script>
 <div class="container-fluid mt-3">
@@ -45,22 +60,30 @@
 				
 			</div>
 		</div>
-		<%-- <div id="image" style="display : none">
-			<div class="form-group mt-3 files">
-				<label>첨부파일 : </label>
-				<c:forEach items="${files}" var="file">
-					<a href="<c:url value='/download${file.fi_name }'></c:url>" download="${file.fi_ori_name}" class="form-control" >${file.fi_ori_name}
-						<i class="btn-times" style="color:red;" data-num="${file.fi_num}">X</i>
-					
-					</a>
-				</c:forEach>
+		<div id="image" style="display:none;" >
+			<label>이미지 : </label>
+			<div class="form-group mt-3">
 				<!-- input type="file"의 경우 accept를 입력하면 해당 유형의 파일들만 업로드창에서 보임. -->
+				<c:forEach items="${files }" var="file">
+					<div>
+						<div class = "file-box" style="display:none">+</div>
+						<input type="file" class="form-control" name="files" accept="image/*" onchange="readURL(this);">
+						<img class="preview" src="<c:url value='/download${file.fi_name}'></c:url>">
+		
+					</div>
+				</c:forEach>
 				<c:forEach begin="1" end="${3 - files.size()}">
-					<input type="file" class="form-control" name="files" accept="image/*">
+					<div>
+						<div class = "file-box">+</div>
+						<input type="file" class="form-control" name="files" accept="image/*" onchange="readURL(this);">
+						<img class="preview">
+		
+					</div>
 				</c:forEach>
 				
+			
 			</div>
-		</div> --%>
+
 		<button class="btn btn-outline-success col-12">게시글 수정</button>
 	
 	</form>
@@ -127,6 +150,27 @@
 		
 	})
 	
+	$('.file-box, .preview').click(function(){
+     		$(this).siblings('input').click();
+     	});
+     	function readURL(input){
+     		if(!input.files || !input.files[0]){
+     			input.nextElementSibling.src = '';
+     			input.previousElementSibling.style.display = 'block';
+
+     			return ; 
+     		}
+     		let reader = new FileReader();
+     		reader.onload = function(e){
+     			input.previousElementSibling.style.display = 'none';
+
+     			input.nextElementSibling.src = e.target.result;
+				input.style.display = 'none';
+     		}
+     		reader.readAsDataURL(input.files[0])
+     		
+     	}
+     	
      	</script>
 
 	    
