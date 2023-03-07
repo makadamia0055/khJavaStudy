@@ -17,4 +17,4 @@
  	로그인 해주십시오.
  </c:otherwise>
 </c:choose>
-<a href="<c:url value='/board/list'></c:url>">보드 리스트로</a>
+<a href="<c:url value='/board/insert'></c:url>">insert Page</a>
