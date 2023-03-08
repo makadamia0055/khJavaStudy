@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.test.dao.BoardDAO;
+import kr.kh.test.pagination.Criteria;
 import kr.kh.test.utils.UploadFileUtils;
 import kr.kh.test.vo.BoardTypeVO;
 import kr.kh.test.vo.BoardVO;
@@ -70,4 +71,23 @@ public class BoardServiceImp implements BoardService{
 		
 		
 	}
+
+	@Override
+	public ArrayList<BoardVO> selectBoardList(Criteria crit) {
+		if(crit==null) {
+			crit = new Criteria();
+		}
+		
+		return boardDao.selectBoardList(crit);
+	}
+
+	@Override
+	public int selectBoardCount(Criteria crit) {
+		if(crit==null) {
+			crit = new Criteria();
+		}
+		return boardDao.selectBoardCount(crit);
+	}
+
+	
 }

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.kh.test.pagination.Criteria;
+import kr.kh.test.pagination.PageMaker;
 import kr.kh.test.service.BoardService;
 import kr.kh.test.utils.MessageUtils;
 import kr.kh.test.vo.BoardTypeVO;
@@ -27,7 +29,17 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(ModelAndView mv, Criteria crit) {
+		if(crit==null) {
+			crit = new Criteria();
+		}
+		System.out.println(crit);
+		ArrayList<BoardVO> list = boardService.selectBoardList(crit);
+		int boardCount = boardService.selectBoardCount(crit);
+		int viewPage = 4;
+		PageMaker pm = new PageMaker(boardCount, viewPage, crit);
+		mv.addObject("pm", pm);
+		mv.addObject("boardList", list);
 		mv.setViewName("/board/list");
 		return mv;
 	}
