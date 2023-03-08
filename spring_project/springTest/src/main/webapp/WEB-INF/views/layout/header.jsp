@@ -4,7 +4,7 @@
     
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 	<div class="container">
-	  	<a class="navbar-brand" href="#">
+	  	<a class="navbar-brand" href="<c:url value='/'></c:url>">
 	  	 <img alt="로고" height="40" src="<c:url value='/resources/img/cat.png'></c:url>">
 	  	</a>
 	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -27,6 +27,17 @@
 				        	</form>
 			      	</li>
 			     </c:if>
+			      <c:if test="${user.me_authority >=1}">
+			     	<li class="nav-item dropdown">
+				     	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        					게시판 메뉴
+      					</a>
+      					<div class="dropdown-menu">
+				        	<a class="dropdown-item" href="<c:url value='/board/list'></c:url>">게시판 목록</a>
+				        	<a class="dropdown-item" href="<c:url value='/board/insert'></c:url>">게시판 쓰기</a>
+			        	</div>
+				    </li>
+			     	</c:if>
 			      <c:if test="${user.me_authority ==9}">
 			     	<li class="nav-item dropdown">
 				     	<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">

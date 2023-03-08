@@ -44,7 +44,7 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/board/insert", method=RequestMethod.POST)
-	public ModelAndView boardInsertPost(ModelAndView mv, BoardVO board, MultipartFile files, HttpServletResponse resp, HttpServletRequest req, HttpSession session) {
+	public ModelAndView boardInsertPost(ModelAndView mv, BoardVO board, MultipartFile[] files, HttpServletResponse resp, HttpServletRequest req, HttpSession session) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		String msg;
 		if(user==null) {
@@ -54,9 +54,11 @@ public class BoardController {
 		
 		if(!boardService.insertBoard(user, board, files)) {
 			msg = "게시글 등록 실패";
-			req.setAttribute("url", "/board/list");
+			req.setAttribute("url", "/board/insert");
+
 		}else {
 			msg = "게시글 등록 성공";
+			req.setAttribute("url", "/board/list");
 		}
 		 
 		req.setAttribute("msg", msg);
