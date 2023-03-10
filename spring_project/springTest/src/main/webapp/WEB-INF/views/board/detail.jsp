@@ -8,7 +8,7 @@
 	</div>
 	<div class="form-group">
 		<label>게시판</label>
-		<div class="form-control">${board.bt_name }</div>
+		<div class="form-control">${board.bt_type }</div>
 	</div>
 	<div class="form-group">
 		<label>작성자</label>
@@ -47,4 +47,6 @@
 	<a class="btn btn-success" href="<c:url value='/board/list'></c:url>">목록</a>
 	<c:if test="${board.bo_me_id == user.me_id }">
 		<form action="<c:url value='/board/delete/${board.bo_num}'></c:url>" method="post"><button class="btn btn-danger">삭제</button></form>
+		<form action="<c:url value='/board/update/${board.bo_num}'></c:url>" method="get"><button class="btn btn-primary">수정</button></form>
+		
 	</c:if>

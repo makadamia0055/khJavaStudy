@@ -96,4 +96,27 @@ public class BoardController {
 		mv.setViewName("/common/message");
 		return mv;
 	}
+	@RequestMapping(value="/board/update/{bo_num}", method=RequestMethod.GET)
+	public ModelAndView boardUpdate(ModelAndView mv, @PathVariable("bo_num")int bo_num, HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		ArrayList<BoardTypeVO> btList = boardService.getBoardTypeList(user);
+		BoardVO board = boardService.justGetBoard(bo_num);
+		ArrayList<FileVO> fileList = boardService.getFileList(bo_num);
+
+		mv.addObject("fileList", fileList);
+		mv.addObject("btList", btList);
+		mv.addObject("board", board);
+		mv.setViewName("/board/update");
+		return mv;
+	}
+	@RequestMapping(value="/board/update/{bo_num}", method=RequestMethod.POST)
+	public ModelAndView boardUpdatePost(ModelAndView mv, @PathVariable("bo_num")int bo_num, HttpSession session, BoardVO board, MultipartFile[] files, ArrayList<Integer> fileNums){
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		ArrayList<FileVO> fileList = boardService.getFileList(bo_num);
+
+		mv.addObject("fileList", fileList);
+		mv.addObject("board", board);
+		mv.setViewName("/board/update");
+		return mv;
+	}
 }

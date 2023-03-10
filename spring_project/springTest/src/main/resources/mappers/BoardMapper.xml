@@ -70,6 +70,10 @@
   		*
   	from
   		board
+  	
+  	join board_type 
+  	
+  	on bo_bt_num = bt_num
   	where
   		bo_num = #{bo_num}
   </select>

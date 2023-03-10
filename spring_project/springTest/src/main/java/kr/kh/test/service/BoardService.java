@@ -26,4 +26,8 @@ public interface BoardService {
 	ArrayList<FileVO> getFileList(int bo_num);
 
 	boolean boardDelete(MemberVO user, int bo_num);
+
+	BoardVO justGetBoard(int bo_num);
+
+
 }
