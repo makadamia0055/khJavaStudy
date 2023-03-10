@@ -35,4 +35,8 @@ public interface BoardDAO {
 	BoardVO selectBoard(@Param("bo_num")int bo_num);
 
 	ArrayList<FileVO> selectFileList(@Param("bo_num")int bo_num);
+
+	int deleteFiles(@Param("fi_num")int bo_num);
+	
+	int deleteBoard(@Param("bo")BoardVO board);
 }

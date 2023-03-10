@@ -45,3 +45,6 @@
 		</div>
 	</c:if>
 	<a class="btn btn-success" href="<c:url value='/board/list'></c:url>">목록</a>
+	<c:if test="${board.bo_me_id == user.me_id }">
+		<form action="<c:url value='/board/delete/${board.bo_num}'></c:url>" method="post"><button class="btn btn-danger">삭제</button></form>
+	</c:if>

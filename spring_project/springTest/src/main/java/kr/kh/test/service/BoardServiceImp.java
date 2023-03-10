@@ -45,23 +45,7 @@ public class BoardServiceImp implements BoardService{
 		if(isOk == 0)
 			return false;
 		//첨부파일 추가
-		if(files == null || files.length == 0)
-			return true;
-		for(MultipartFile file : files) {
-			if(file == null || file.getOriginalFilename().length() == 0)
-				continue;
-			try {
-				String path = UploadFileUtils.uploadFile(uploadPath, 
-						file.getOriginalFilename(), file.getBytes());
-				FileVO fileVo = new FileVO(board.getBo_num(), path, 
-						file.getOriginalFilename());
-				boardDao.insertFile(fileVo);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return true;
-			}
-			
-		}
+		insertFileList(board.getBo_num(), files);
 		return true;
 	}
 
@@ -87,8 +71,65 @@ public class BoardServiceImp implements BoardService{
 			return boardDao.selectBoard(bo_num);
 		}
 
-		@Override
-		public ArrayList<FileVO> getFileList(int bo_num) {
+	@Override
+	public ArrayList<FileVO> getFileList(int bo_num) {
 			return boardDao.selectFileList(bo_num);
 		}
+
+	@Override
+	public boolean boardDelete(MemberVO user, int bo_num) {
+		if(bo_num<0) {
+			return false;
+		}
+		BoardVO board = boardDao.selectBoard(bo_num);
+		if(board==null)
+			return false;
+		if(user==null||!user.getMe_id().equals(boardDao.selectBoard(bo_num).getBo_me_id())) {
+			return false;
+		}
+		ArrayList<FileVO> files = getFileList(bo_num);
+		deleteFileList(files);
+		if(boardDao.deleteBoard(board)==0){
+			return false;
+		}else {
+			return true;
+			
+		}
+			
+		
+	}
+	private void insertFileList(int bo_num, MultipartFile[] files) {
+		if(files == null || files.length == 0)
+			return;
+		for(MultipartFile file : files) {
+			if(file == null || file.getOriginalFilename().length() == 0)
+				continue;
+			try {
+				String path = UploadFileUtils.uploadFile(uploadPath, 
+						file.getOriginalFilename(), file.getBytes());
+				FileVO fileVo = new FileVO(bo_num, path, 
+						file.getOriginalFilename());
+				boardDao.insertFile(fileVo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return;
+			}
+			
+		}
+	}
+	
+	private void deleteFileList(ArrayList<FileVO> fileList) {
+		if(fileList ==null || fileList.size()==0) {
+			return;
+		}
+		String uploadPath = "D:\\uploadfiles\\";
+		for(FileVO file : fileList) {
+			if(UploadFileUtils.removeFile(uploadPath, file.getFi_name())) {
+				System.out.println(file.getFi_ori_name() + "삭제 성공");
+				boardDao.deleteFiles(file.getFi_num());
+			}else {
+				System.out.println(file.getFi_ori_name() + "삭제 실패");
+			}
+		}
+	}
 }

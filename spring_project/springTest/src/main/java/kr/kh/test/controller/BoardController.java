@@ -2,6 +2,7 @@ package kr.kh.test.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,22 @@ public class BoardController {
 		mv.addObject("board", board);
 		mv.addObject("fileList", fileList);
 		mv.setViewName("/board/detail");
+		return mv;
+	}
+	@RequestMapping(value="/board/delete/{bo_num}", method=RequestMethod.POST)
+	public ModelAndView boardDelete(ModelAndView mv,
+			@PathVariable("bo_num")int bo_num, HttpServletRequest req, HttpSession session) {
+		MemberVO user =(MemberVO)session.getAttribute("user");
+		System.out.println(user);
+		String msg = "";
+		if(boardService.boardDelete(user, bo_num)) {
+			msg="게시글 삭제를 성공했습니다.";
+		}else {
+			msg="게시글 삭제를 실패했습니다.";
+		}
+		req.setAttribute("msg", msg);
+		req.setAttribute("url", "/board/list");
+		mv.setViewName("/common/message");
 		return mv;
 	}
 }
