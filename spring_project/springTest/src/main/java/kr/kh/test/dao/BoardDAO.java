@@ -11,14 +11,28 @@ import kr.kh.test.vo.FileVO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardTypeVO> selectBoardTypeByAuth(@Param("i")int i);
 
-	int insertBoardCommon(@Param("bo")BoardVO board);
+	ArrayList<BoardTypeVO> selectBoardTypeList(@Param("authority")int adminAuthority);
 
-	int insertFileInfo(@Param("fi")FileVO tmpVo);
+	BoardTypeVO selectBoardTypeByName(@Param("bt_name")String bt_name);
 
-	ArrayList<BoardVO> selectBoardList(@Param("crit")Criteria crit);
+	int insertBoardType(@Param("bt")BoardTypeVO bt);
 
-	int selectBoardCount(@Param("crit")Criteria crit);
+	int updateBoardType(@Param("bt")BoardTypeVO bt);
 
+	boolean deleteBoardType(@Param("bt_num")Integer bt_num);
+
+	int insertBoard(@Param("bo")BoardVO board);
+
+	void insertFile(@Param("file")FileVO fileVo);
+
+	ArrayList<BoardVO> selectBoardList(@Param("cri")Criteria cri);
+
+	int selectTotalCountBoard(@Param("cri")Criteria cri);
+
+	int updateViews(@Param("bo_num")int bo_num);
+
+	BoardVO selectBoard(@Param("bo_num")int bo_num);
+
+	ArrayList<FileVO> selectFileList(@Param("bo_num")int bo_num);
 }

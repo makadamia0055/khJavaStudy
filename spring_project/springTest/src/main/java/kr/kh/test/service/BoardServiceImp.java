@@ -18,76 +18,77 @@ import kr.kh.test.vo.MemberVO;
 public class BoardServiceImp implements BoardService{
 	@Autowired
 	BoardDAO boardDao;
-	String uploadPath ="D:\\uploadfiles";
+	
+	String uploadPath = "D:\\uploadfiles";
 
 	@Override
-	public ArrayList<BoardTypeVO> getBoardTypeVO(int i) {
-		if(i<0) {
+	public ArrayList<BoardTypeVO> getBoardTypeList(MemberVO user) {
+		if(user == null || user.getMe_authority() == 0)
 			return null;
-		}
-		return boardDao.selectBoardTypeByAuth(i);
+		return boardDao.selectBoardTypeList(user.getMe_authority());
 	}
 
 	@Override
-	public boolean insertBoard(MemberVO user, BoardVO board, MultipartFile[] files) {
-		if(user==null||user.getMe_id()==null) {
+	public boolean insertBoard(BoardVO board, MemberVO user, MultipartFile[] files) {
+		if(user == null || user.getMe_authority() == 0)
 			return false;
-		}
-		if(board==null||board.getBo_title().trim().length()==0||board.getBo_content().trim().length()==0||board.getBo_bt_num()==0) {
+		if(board == null || 
+			board.getBo_title().trim().length() == 0 ||
+			board.getBo_content().trim().length() == 0 ||
+			board.getBo_bt_num() == 0)
 			return false;
-		}
+		
 		board.setBo_me_id(user.getMe_id());
-		if(boardDao.insertBoardCommon(board)==0) {
+		
+		int isOk = boardDao.insertBoard(board);
+		
+		if(isOk == 0)
 			return false;
-		}else {
-			//첨부파일 추가
-			if(!insertFiles(files, board.getBo_num())) {
-				return false;
-			}
-			
+		//첨부파일 추가
+		if(files == null || files.length == 0)
 			return true;
-		}
-	}
-
-	private boolean insertFiles(MultipartFile[] files, int bo_num) {
-		String fileName = "";
 		for(MultipartFile file : files) {
-			if(file==null||file.getOriginalFilename().trim().length()==0) {
+			if(file == null || file.getOriginalFilename().length() == 0)
 				continue;
-			}
 			try {
-				fileName = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-				
-				FileVO tmpVo = new FileVO(bo_num, file.getOriginalFilename(), fileName);
-				if(boardDao.insertFileInfo(tmpVo)==0) {
-				}
-				
+				String path = UploadFileUtils.uploadFile(uploadPath, 
+						file.getOriginalFilename(), file.getBytes());
+				FileVO fileVo = new FileVO(board.getBo_num(), path, 
+						file.getOriginalFilename());
+				boardDao.insertFile(fileVo);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return false;
+				return true;
 			}
+			
 		}
 		return true;
-		
-		
 	}
 
 	@Override
-	public ArrayList<BoardVO> selectBoardList(Criteria crit) {
-		if(crit==null) {
-			crit = new Criteria();
-		}
-		
-		return boardDao.selectBoardList(crit);
+	public ArrayList<BoardVO> getBoardList(Criteria cri) {
+		cri = cri == null ? new Criteria() : cri;
+		return boardDao.selectBoardList(cri);
 	}
 
 	@Override
-	public int selectBoardCount(Criteria crit) {
-		if(crit==null) {
-			crit = new Criteria();
-		}
-		return boardDao.selectBoardCount(crit);
+	public int getTotalCountBoard(Criteria cri) {
+		cri = cri == null ? new Criteria() : cri;
+		return boardDao.selectTotalCountBoard(cri);
 	}
 
-	
+	@Override
+	public BoardVO getBoardAndUpdateView(int bo_num) {
+		
+		int res;
+		res = boardDao.updateViews(bo_num);
+		if(res == 0)
+			return null;
+			return boardDao.selectBoard(bo_num);
+		}
+
+		@Override
+		public ArrayList<FileVO> getFileList(int bo_num) {
+			return boardDao.selectFileList(bo_num);
+		}
 }
