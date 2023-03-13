@@ -12,6 +12,7 @@ import kr.kh.test.utils.UploadFileUtils;
 import kr.kh.test.vo.BoardTypeVO;
 import kr.kh.test.vo.BoardVO;
 import kr.kh.test.vo.FileVO;
+import kr.kh.test.vo.LikesVO;
 import kr.kh.test.vo.MemberVO;
 
 @Service
@@ -107,8 +108,8 @@ public class BoardServiceImp implements BoardService{
 			try {
 				String path = UploadFileUtils.uploadFile(uploadPath, 
 						file.getOriginalFilename(), file.getBytes());
-				FileVO fileVo = new FileVO(bo_num, path, 
-						file.getOriginalFilename());
+				FileVO fileVo = new FileVO(bo_num, file.getOriginalFilename(), path 
+						);
 				boardDao.insertFile(fileVo);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -141,4 +142,74 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.selectBoard(bo_num);
 		
 	}
+
+	@Override
+	public boolean updateBoard(BoardVO board, MemberVO user, MultipartFile[] files, int[] fileNums) {
+		if(user==null)
+			return false;
+		if(board==null||board.getBo_title().trim().length() == 0||
+				board.getBo_content().trim().length()==0||
+				board.getBo_bt_num()<=0)
+			return false;
+		BoardVO dbBoard = boardDao.selectBoard(board.getBo_num());
+		if(dbBoard==null)
+			return false;
+		if(!dbBoard.getBo_me_id().equals(user.getMe_id()))
+			return false;
+		
+		int res = boardDao.updateBoard(board);
+//		수정 누르고 아무 수정 안하고 제출하면 어떻게 처리 할 것인가
+		if(res==0)
+			return false;
+		// 게시글 첨부파일 수정
+		// 새 첨부파일 등록
+		insertFileList(board.getBo_num(), files);
+		
+		// 기존 첨부파일을 삭제하지 않는 경우
+		if(fileNums == null|| fileNums.length == 0)
+			return true;
+		
+		//첨부파일을 삭제하는 메소드를 이용하기 위해서
+		//int[] 정보를=> ArrayList<fileVO>로 변환하는 작업
+		ArrayList<FileVO> fileList = new ArrayList<FileVO>();
+		for(int num : fileNums) {
+			FileVO fileVo = boardDao.selectFile(num);
+			if(fileVo==null)
+				continue;
+			fileList.add(fileVo);
+		}
+		deleteFileList(fileList);
+		return true;
+		
+	}
+
+	@Override
+	public int updateLike(int li_bo_num, int li_state, MemberVO user) {
+		if(user==null)
+			return -100;
+		
+		int res = 0;
+		LikesVO dbLikesVo = boardDao.selectLikes(li_bo_num, user.getMe_id());
+		if(dbLikesVo==null) {
+			LikesVO likesVo = new LikesVO(li_state, user.getMe_id(), li_bo_num);
+			boardDao.insertLikes(likesVo);
+			res = li_state;
+		}else if(dbLikesVo.getLi_state()==li_state) {
+			//취소
+			LikesVO likesVo = new LikesVO(0, user.getMe_id(), li_bo_num);
+			boardDao.updateLikes(likesVo);
+			res = 0;
+		}else {
+			// 변경
+			LikesVO likesVo = new LikesVO(li_state, user.getMe_id(), li_bo_num);
+			boardDao.updateLikes(likesVo);
+			res = li_state;
+		}
+		boardDao.updateBoardUpAndDown(li_bo_num);
+
+		return res;
+	}
+
+	
+	
 }

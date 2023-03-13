@@ -29,8 +29,8 @@
 		<div class="form-control">${board.bo_views }</div>
 	</div>
 	<div>
-		<button class="btn btn-outline-success">추천(${board.bo_up})</button>
-		<button class="btn btn-outline-danger">비추천(${board.bo_down})</button>
+		<button class="btn btn-outline-success btn-up" data-state="1">추천(${board.bo_up})</button>
+		<button class="btn btn-outline-danger btn-down" data-state="-1">비추천(${board.bo_down})</button>
 	</div>
 	<div class="form-group">
 		<label>내용</label>
@@ -50,3 +50,22 @@
 		<form action="<c:url value='/board/update/${board.bo_num}'></c:url>" method="get"><button class="btn btn-primary">수정</button></form>
 		
 	</c:if>
+	
+	<script>
+	$('.btn-up, .btn-down').click(function(e){
+		let li_state = $(this).data('state');
+		
+		
+		$.ajax({
+	        async:true,
+	        type:'GET',
+//	        data:${map},
+	        url:'<c:url value="/board/like/"></c:url>'+ ${board.bo_num}+'/'+li_state,
+	        dataType:"json" // 서버에서 보낸 데이터의 타입. Map로 받을 것이기에 json으로
+	        //contentType:"application/json; charset=UTF-8", 서버로 보내는 데이터의 타입
+	        
+	    }); 
+		
+	})
+	
+	</script>

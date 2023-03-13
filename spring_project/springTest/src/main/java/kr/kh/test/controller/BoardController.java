@@ -1,6 +1,8 @@
 package kr.kh.test.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +22,7 @@ import kr.kh.test.service.BoardService;
 import kr.kh.test.vo.BoardTypeVO;
 import kr.kh.test.vo.BoardVO;
 import kr.kh.test.vo.FileVO;
+import kr.kh.test.vo.LikesVO;
 import kr.kh.test.vo.MemberVO;
 
 @Controller
@@ -71,15 +75,29 @@ public class BoardController {
 	}
 	@RequestMapping(value="/board/detail/{bo_num}", method=RequestMethod.GET)
 	public ModelAndView boardDetail(ModelAndView mv,
-			@PathVariable("bo_num")int bo_num) {
+			@PathVariable("bo_num")int bo_num, HttpSession session) {
 		BoardVO board = boardService.getBoardAndUpdateView(bo_num);
 		ArrayList<FileVO> fileList = boardService.getFileList(bo_num);
-
+		
 		mv.addObject("board", board);
 		mv.addObject("fileList", fileList);
 		mv.setViewName("/board/detail");
 		return mv;
 	}
+	@RequestMapping(value="/board/like/{bo_num}/{li_state}", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> boardLikeState(ModelAndView mv, HttpSession session,
+			@PathVariable("bo_num")int li_bo_num, @PathVariable("li_state")int li_state) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		int res = boardService.updateLike(li_bo_num, li_state, user);
+		map.put("state", res);
+		return map;
+	}
+	
+	
+	
 	@RequestMapping(value="/board/delete/{bo_num}", method=RequestMethod.POST)
 	public ModelAndView boardDelete(ModelAndView mv,
 			@PathVariable("bo_num")int bo_num, HttpServletRequest req, HttpSession session) {
@@ -110,13 +128,20 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/board/update/{bo_num}", method=RequestMethod.POST)
-	public ModelAndView boardUpdatePost(ModelAndView mv, @PathVariable("bo_num")int bo_num, HttpSession session, BoardVO board, MultipartFile[] files, ArrayList<Integer> fileNums){
+	public ModelAndView boardUpdatePost(ModelAndView mv, @PathVariable("bo_num")int bo_num, HttpSession session, BoardVO board, MultipartFile[] files, int[] fileNums){
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		ArrayList<FileVO> fileList = boardService.getFileList(bo_num);
-
-		mv.addObject("fileList", fileList);
-		mv.addObject("board", board);
-		mv.setViewName("/board/update");
+		boolean res = boardService.updateBoard(board, user, files, fileNums);
+		String url = "/board/detail/"+bo_num;
+		String msg; 
+		if(res) {
+			msg = "게시글 수정 성공!";
+		}else {
+			msg = "게시글 수정 실패!";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("url", url);
+		mv.setViewName("/common/message");
 		return mv;
 	}
 }
