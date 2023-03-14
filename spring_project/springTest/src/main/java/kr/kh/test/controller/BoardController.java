@@ -78,7 +78,9 @@ public class BoardController {
 			@PathVariable("bo_num")int bo_num, HttpSession session) {
 		BoardVO board = boardService.getBoardAndUpdateView(bo_num);
 		ArrayList<FileVO> fileList = boardService.getFileList(bo_num);
-		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		LikesVO likesVo = boardService.getLikes(user, bo_num);
+		mv.addObject("like", likesVo);
 		mv.addObject("board", board);
 		mv.addObject("fileList", fileList);
 		mv.setViewName("/board/detail");
@@ -89,9 +91,10 @@ public class BoardController {
 	public Map<String, Object> boardLikeState(ModelAndView mv, HttpSession session,
 			@PathVariable("bo_num")int li_bo_num, @PathVariable("li_state")int li_state) {
 		MemberVO user = (MemberVO)session.getAttribute("user");
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		int res = boardService.updateLike(li_bo_num, li_state, user);
+		BoardVO board = boardService.getBoardAndUpdateView(li_bo_num);
+		map.put("board", board);
 		map.put("state", res);
 		return map;
 	}

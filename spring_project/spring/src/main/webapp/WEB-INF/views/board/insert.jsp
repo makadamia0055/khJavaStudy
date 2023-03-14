@@ -28,13 +28,14 @@ margin-right : 20px;
 <div class="container-fluid mt-3">
 	<h1>게시글 작성</h1>
 	<form action="<c:url value='/board/insert'></c:url>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="bo_ori_num" value="${board.bo_num}">
 		<div class="form-group">
 			<label for="type">게시글 타입 : </label>
-			<select class="form-control" name="bo_bt_num" id = "type">
+			<select class="form-control" name="bo_bt_num" id = "type" <c:if test="${board != null}">readonly</c:if>>
 				<option value="0">게시판을 선택하세요.</option>
 			<c:forEach items="${btList }" var="bt">
 				
-				<option value="${bt.bt_num}">${bt.bt_name}</option>
+				<option value="${bt.bt_num}" <c:if test="${board!=null && board.bo_bt_num == bt.bt_num }">selected</c:if>>${bt.bt_name}</option>
 				
 			</c:forEach>
 			
@@ -165,6 +166,6 @@ margin-right : 20px;
      		
      	}
      	
-     	
+     	$('select').val('${board.bo_bt_num}').trigger('change');
 </script>
 	    

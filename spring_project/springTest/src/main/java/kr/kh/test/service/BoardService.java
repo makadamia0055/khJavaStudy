@@ -34,5 +34,7 @@ public interface BoardService {
 
 	int updateLike(int li_bo_num, int li_state, MemberVO user);
 
+	LikesVO getLikes(MemberVO user, int li_bo_num);
+
 
 }

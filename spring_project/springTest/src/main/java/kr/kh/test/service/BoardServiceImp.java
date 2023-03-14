@@ -210,6 +210,14 @@ public class BoardServiceImp implements BoardService{
 		return res;
 	}
 
+	@Override
+	public LikesVO getLikes(MemberVO user, int li_bo_num) {
+		if(user ==null)
+			return null;
+		LikesVO likesVo = boardDao.selectLikes(li_bo_num,  user.getMe_id());
+		return likesVo;
+	}
+
 	
 	
 }
