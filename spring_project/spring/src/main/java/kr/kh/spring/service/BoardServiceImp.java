@@ -11,6 +11,7 @@ import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.utils.UploadFileUtils;
 import kr.kh.spring.vo.BoardTypeVO;
 import kr.kh.spring.vo.BoardVO;
+import kr.kh.spring.vo.CommentVO;
 import kr.kh.spring.vo.FileVO;
 import kr.kh.spring.vo.LikesVO;
 import kr.kh.spring.vo.MemberVO;
@@ -286,6 +287,50 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public int getBoardTotalCount(Criteria cri) {
 		return boardDao.selectBoardTotalCount(cri);
+	}
+
+
+	@Override
+	public boolean insertComment(CommentVO comment, MemberVO user) {
+		if(user ==null)
+			return false;
+		if(comment ==null)
+			return false;
+		comment.setCo_me_id(user.getMe_id());
+		return boardDao.insertComment(comment) !=0;
+	}
+
+
+	@Override
+	public ArrayList<CommentVO> getCommentList(Criteria cri, int co_bo_num) {
+		if(cri==null) {
+			cri=new Criteria();
+		}
+		
+		return boardDao.selectCommentList(cri, co_bo_num);
+	}
+
+
+	@Override
+	public int getTotalCountCommentList(int co_bo_num) {
+		return boardDao.selectTotalCountCommentList(co_bo_num);
+	}
+
+
+	@Override
+	public boolean deleteComment(CommentVO comment, MemberVO user) {
+		if(user==null) {
+			return false;
+		}
+		
+		if(comment==null) {
+			return false;
+		}
+		CommentVO dbComment = boardDao.selectComment(comment.getCo_num());
+		if(dbComment==null||dbComment.getCo_me_id().equals(user.getMe_id()))
+			return false;
+			
+		return boardDao.deleteComment(comment.getCo_num()) !=0;
 	}
 
 

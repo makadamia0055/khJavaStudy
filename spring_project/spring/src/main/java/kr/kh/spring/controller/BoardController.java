@@ -39,7 +39,7 @@ public class BoardController {
 		mv.setViewName("/board/list");
 		// 우선 전체 게시글을 가져오는 코드로 작성하고 
 				// 추후에 페이지네이션 및 검색기능을 적용
-		cri.setPerPageNum(2);
+		cri.setPerPageNum(4);
 		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		// 일단 보여줄 컨텐츠가 없어서 페이지당 컨텐츠 수를 2로
 		int totalCount = boardService.getBoardTotalCount(cri);
