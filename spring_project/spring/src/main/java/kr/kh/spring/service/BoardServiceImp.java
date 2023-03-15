@@ -17,27 +17,66 @@ import kr.kh.spring.vo.LikesVO;
 import kr.kh.spring.vo.MemberVO;
 
 @Service
-public class BoardServiceImp implements BoardService{
+public class BoardServiceImp implements BoardService {
 	
 	@Autowired
 	BoardDAO boardDao;
 	
 	String uploadPath = "D:\\uploadfiles";
-	private void deleteFileList(ArrayList<FileVO> fileList) {
-		
-		if(fileList ==null || fileList.size() ==0) {
-			return;
-		}
-		
-		for(FileVO file : fileList) {
-			if(file==null) {
+
+	private boolean checkBoard(BoardVO board) {
+		//게시글이 없거나, 게시글 제목이 비어있거나, 내용이 비어있으면
+		if(board == null || 
+			board.getBo_title() == null|| 
+			board.getBo_title().trim().length() == 0 ||
+			board.getBo_content() == null )
+			return false;
+		BoardTypeVO bt = boardDao.selectBoardType(board.getBo_bt_num());
+		if(bt == null)
+			return false;
+		if(bt.getBt_type().equals("이미지"))
+			return true;
+		if( board.getBo_content() == null|| 
+			board.getBo_content().trim().length() == 0)
+			return false;
+		return true;
+	}
+	
+	private void uploadFiles(MultipartFile [] files, int bo_num) {
+		if(files == null || files.length == 0)
+			return ;
+		//반복문
+		for(MultipartFile file : files) {
+			if(file == null || file.getOriginalFilename().length() == 0)
 				continue;
-			}
+			String fileName = "";
+			//첨부파일 서버에 업로드
+			try {
+				fileName = UploadFileUtils.uploadFile(uploadPath, 
+						file.getOriginalFilename(), //파일명
+						file.getBytes()); //실제 파일 데이터
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			System.out.println(fileName);
+			//첨부파일 객체를 생성
+			FileVO fileVo = new FileVO(file.getOriginalFilename(), fileName, 
+					bo_num);
+			//다오에게서 첨부파일 정보를 주면서 추가하라고 요청
+			boardDao.insertFile(fileVo);
+		}
+	}
+	private void deleteFileList(ArrayList<FileVO> fileList) {
+		if(fileList == null || fileList.size() == 0) 
+			return;
+		for(FileVO file : fileList) {
+			if(file == null)
+				continue;
 			UploadFileUtils.removeFile(uploadPath, file.getFi_name());
 			boardDao.deleteFile(file);
 		}
+		
 	}
-	
 	
 	@Override
 	public ArrayList<BoardTypeVO> getBoardType(int authority) {
@@ -46,104 +85,47 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public boolean insertBoard(BoardVO board, MemberVO user, MultipartFile[] files) {
-		if(user==null) {
+		//회원 정보가 없으면
+		if(user == null)
 			return false;
-		}
-		
-		if(!checkBoard(board)) {
+		//게시글에 빠진 항목이 있으면 false를 리턴
+		if(!checkBoard(board))
 			return false;
-		}
-		
 		board.setBo_me_id(user.getMe_id());
 		
-		// 게시글 등록
+		//게시글 등록
 		boardDao.insertBoard(board);
-/*		mapper에서 useGeneratekey는 해당 작업이 일어난 후 
- * 		기본키를 지정한 프로퍼티에 넣어준다 
- * */		
 		
 		uploadFiles(files, board.getBo_num());
-		
-		
-		// 첨부파일 서버에 업로드
-		
-		// 첨부파일 객체를 생성
-		
-		// dao에게 첨부파일 정보 주면서 추가하라고 요청
-		
-		return true;
-		
-	}
-	private void uploadFiles(MultipartFile [] files, int bo_num) {
-		if(files==null||files.length==0) {
-			return ;
-		}
-		for(MultipartFile file : files) {
-			if(file==null||file.getOriginalFilename().length()==0) {
-				continue;
-			}
-			String fileName = "";
-			try {
-				fileName = UploadFileUtils.uploadFile(uploadPath, 
-						file.getOriginalFilename(), // 파일명
-						file.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			} // 실제 파일 데이터
-			System.out.println(fileName);
-			FileVO fileVo = new FileVO(file.getOriginalFilename(), fileName, bo_num);
-			boardDao.insertFile(fileVo);
-		}
-	}
-
-	private boolean checkBoard(BoardVO board) {
-		if(board==null|| 
-				board.getBo_title()==null
-				|| board.getBo_title().trim().length()==0
-				)
-			return false;
-		BoardTypeVO bt = boardDao.selectBoardType(board.getBo_bt_num());
-		if(bt==null) {
-			return false;
-		}
-		if(bt.getBt_type().equals("이미지")) {
-			return true;
-		}
-		if(board.getBo_content()==null
-				||board.getBo_content().trim().length()==0)
-			return false;
-		
 		return true;
 	}
+	
 
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria cri) {
-		if(cri==null) {
-			cri=new Criteria();
-		}
+		if(cri == null)
+			cri = new Criteria();
 		return boardDao.selectBoardList(cri);
 	}
 
 	@Override
 	public BoardVO getBoard(int bo_num, MemberVO user) {
-		// 조회수 증가
+		//조회수 증가
 		boardDao.updateBoardViews(bo_num);
-		// 게시글 가져오기 
-		// 순서를 바꾸면 db의 게시글과 화면에 나오는 게시글의 조회수가 다른 경우가 생김
-		BoardVO board = boardDao.selectBoard(bo_num);
-		if(board == null) {
+		//게시글 가져오기
+		BoardVO board = boardDao.selectBoard(bo_num); 
+		if(board == null)
 			return null;
-		}	
 		BoardTypeVO boardType = boardDao.selectBoardType(board.getBo_bt_num());
-		if(boardType.getBt_r_authority() == 0) {
+		//비회원 이상 읽기 가능
+		if(boardType.getBt_r_authority() == 0)
 			return board;
-		}
-		if(user == null) {
+		//회원이상인 경우 비회원은 못봄
+		if(user == null)
 			return null;
-		}
-		if(boardType.getBt_r_authority()<=user.getMe_authority()) {
+		//게시글 읽기 권한이 사용자 권한 이하인경우만 조회가능
+		if(boardType.getBt_r_authority() <= user.getMe_authority() )
 			return board;
-		}
 		return null;
 	}
 
@@ -154,203 +136,161 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public int updateLikes(MemberVO user, int bo_num, int li_state) {
-		//이미 추천/비추천을 했는지 확인 기존 추천/비추천 정보 가져옴
-		LikesVO likesVo =boardDao.selectLikesById(user.getMe_id(), bo_num);
-		
-		// 없으면 추가
-					// LikesVO 객체를 생성하여 DAO에게 전달해서 Insert하라고 시킴
-					// bo_num를 리턴
-				
+		//기존에 추천/비추천 정보를 가져옴
+		LikesVO likesVo = boardDao.selectLikesById(user.getMe_id(), bo_num);
+		//없으면 추가
 		if(likesVo == null) {
+			//LikesVO 객체를 생성
 			likesVo = new LikesVO(li_state, user.getMe_id(), bo_num);
+			//생성된 객체를 다오에게 전달해서 insert 하라고 시킴
 			boardDao.insertLikes(likesVo);
+			//li_state를 리턴
 			return li_state;
 		}
 		
-		// 있으면 수정
+		//있으면 수정
 		if(li_state != likesVo.getLi_state()) {
+			//현재 상태와 기존 상태가 다르면 => 상태를 바꿔야함
 			likesVo.setLi_state(li_state);
+			//업데이트
 			boardDao.updateLikes(likesVo);
+			//li_state를 리턴
 			return li_state;
 		}
-			// 현재 상태와 기존 상태가 다르면 => 상태를 바꿈
-			// bo_num을 리턴
+		//현재 상태와 기존상태가 같으면 => 취소
 		likesVo.setLi_state(0);
+		//업데이트
 		boardDao.updateLikes(likesVo);
-			// 현재 상태와 기존 상태가 같으면 => 취소
-			// 0을 리턴
+		//0을 리턴
 		return 0;
 	}
 
 	@Override
 	public LikesVO getLikes(int bo_num, MemberVO user) {
-		if(user==null)
-		return null;
-		
+		if(user == null)
+			return null;
 		return boardDao.selectLikesById(user.getMe_id(), bo_num);
 	}
 
 	@Override
 	public boolean deleteBoard(int bo_num, MemberVO user) {
-		if(user==null) {
+		if(user == null)
 			return false;
-		}
 		BoardVO board = boardDao.selectBoard(bo_num);
 		if(board == null)
 			return false;
-		
-		if(!board.getBo_me_id().equals(user.getMe_id())){
-			
+		//로그인한 사용자와 작성자가 다르면
+		if(!board.getBo_me_id().equals(user.getMe_id()))
 			return false;
-		}
 		ArrayList<FileVO> fileList = boardDao.selectFileList(bo_num);
-		
 		deleteFileList(fileList);
-		return boardDao.deleteBoard(bo_num) !=0;
+		return boardDao.deleteBoard(bo_num) != 0;
 	}
-
 
 	@Override
 	public BoardVO getBoardByWriteAuthority(int bo_num, MemberVO user) {
-		// 조회수 증가
-				// 게시글 가져오기 
-				// 순서를 바꾸면 db의 게시글과 화면에 나오는 게시글의 조회수가 다른 경우가 생김
-				BoardVO board = boardDao.selectBoard(bo_num);
-				if(board == null) {
-					return null;
-				}	
-				
-				if(user == null) {
-					return null;
-				}
-				if(user.getMe_id().equals(board.getBo_me_id()))
-					return board;
-				
-				return null;
-			
+		//게시글 가져오기
+		BoardVO board = boardDao.selectBoard(bo_num); 
+		if(board == null)
+			return null;
+		if(user == null)
+			return null;
+		if(user.getMe_id().equals(board.getBo_me_id()))
+			return board;
+		return null;
 	}
-
 
 	@Override
 	public boolean updateBoard(BoardVO board, MultipartFile[] files, int[] fileNums, MemberVO user) {
-		if(board == null || board.getBo_num()<=0) {
+		if(board == null || board.getBo_num()<=0)
 			return false;
-		}
-		if(user == null) {
+		if(user == null)
 			return false;
-		}
-		// 게시글 정보를 가져옴. 
-		BoardVO tmpBD = boardDao.selectBoard(board.getBo_num());
-		// 가져온 게시글이 null인지 확인.
-		if(tmpBD==null) {
+		//게시글 정보를 가져옴
+		BoardVO dbBoard = boardDao.selectBoard(board.getBo_num());
+		//가져온 게시글이 null인지 확인
+		if(dbBoard == null)
 			return false;
-		}
-		if(!tmpBD.getBo_me_id().equals(user.getMe_id())){
-				return false;
-				// 게시글 작성자가 로그인한 회원이 맞는지 확인
-		}
+		//게시글 작성자가 로그인한 회원이 맞는지 확인
+		if(!dbBoard.getBo_me_id().equals(user.getMe_id()))
+			return false;
+		//다오에게 게시글 정보를 주면서 수정하라고 요청
+		if(boardDao.updateBoard(board) == 0)
+			return false;
 		
-		// 다오에게 게시글 정보를 주면서 수정하라고 요청
-		if(boardDao.updateBoard(board) == 0) {
-			return false;
-		}
-		// 추가할 첨부 파일을 업로드
+		//추가할 첨부파일을 업로드
 		uploadFiles(files, board.getBo_num());
-
-		if(fileNums == null || fileNums.length==0) {
+		
+		//fileNums를 이용하여 첨부파일 객체를 가져와서 첨부파일 리스트에 추가
+		if(fileNums == null || fileNums.length == 0)
 			return true;
-		}
+
 		ArrayList<FileVO> fileList = new ArrayList<FileVO>();
-		// fileNums를 이용하여 첨부파일 객체를 가져옴 첨부파일 리스트에 추가 
 		for(int fileNum : fileNums) {
 			FileVO fileVo = boardDao.selectFile(fileNum);
-			if(fileVo != null) {
+			if(fileVo != null)
 				fileList.add(fileVo);
-			}
 		}
-		// 삭제 첨부 파일 리스트를 이용하여 불필요한 첨부파일들을 삭제
 		
+		//삭제 첨부파일 리스트를 이용하여 첨부파일 삭제
 		deleteFileList(fileList);
+		
+		
 		return true;
-		
-
-		
 	}
-
 
 	@Override
 	public void updateBoardByLikes(int bo_num) {
 		boardDao.updateBoardByLikes(bo_num);
 	}
 
-
 	@Override
 	public int getBoardTotalCount(Criteria cri) {
 		return boardDao.selectBoardTotalCount(cri);
 	}
 
-
 	@Override
 	public boolean insertComment(CommentVO comment, MemberVO user) {
-		if(user ==null)
+		if(user == null)
 			return false;
-		if(comment ==null)
+		if(comment == null)
 			return false;
 		comment.setCo_me_id(user.getMe_id());
-		return boardDao.insertComment(comment) !=0;
+		return boardDao.insertComment(comment) != 0;
 	}
-
 
 	@Override
 	public ArrayList<CommentVO> getCommentList(Criteria cri, int co_bo_num) {
-		if(cri==null) {
-			cri=new Criteria();
-		}
-		
+		if(cri == null)
+			cri = new Criteria();
 		return boardDao.selectCommentList(cri, co_bo_num);
 	}
-
 
 	@Override
 	public int getTotalCountCommentList(int co_bo_num) {
 		return boardDao.selectTotalCountCommentList(co_bo_num);
 	}
 
-
 	@Override
 	public boolean deleteComment(CommentVO comment, MemberVO user) {
-		if(user==null) {
+		if(comment == null)
 			return false;
-		}
-		
-		if(comment==null) {
+		if(user == null)
 			return false;
-		}
 		CommentVO dbComment = boardDao.selectComment(comment.getCo_num());
-		if(dbComment==null||!dbComment.getCo_me_id().equals(user.getMe_id()))
+		if(dbComment == null || !dbComment.getCo_me_id().equals(user.getMe_id()))
 			return false;
-			
-		return boardDao.deleteComment(comment.getCo_num()) !=0;
+		return boardDao.deleteComment(comment.getCo_num()) != 0;
 	}
-
 
 	@Override
 	public boolean updateComment(CommentVO comment, MemberVO user) {
-		if(user==null) {
+		if(comment == null || user == null)
 			return false;
-		}
 		
-		if(comment==null) {
-			return false;
-		}
 		CommentVO dbComment = boardDao.selectComment(comment.getCo_num());
-		if(dbComment==null||!dbComment.getCo_me_id().equals(user.getMe_id()))
+		if(dbComment == null || !dbComment.getCo_me_id().equals(user.getMe_id()))
 			return false;
-		
-		return boardDao.updateComment(comment);
+		return boardDao.updateComment(comment) != 0;
 	}
-
-
-	
-	
 }
