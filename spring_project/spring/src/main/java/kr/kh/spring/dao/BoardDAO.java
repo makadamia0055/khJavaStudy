@@ -63,6 +63,8 @@ public interface BoardDAO {
 
 	CommentVO selectComment(@Param("co_num")int co_num);
 
+	boolean updateComment(@Param("comment")CommentVO comment);
+
 	
 	
 }

@@ -19,39 +19,49 @@ import kr.kh.spring.service.BoardService;
 import kr.kh.spring.vo.CommentVO;
 import kr.kh.spring.vo.MemberVO;
 
-@RestController//ajax를 이용하는 애들이 모여있을때 사용
+@RestController
 public class CommentController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping(value="/comment/insert", method=RequestMethod.POST)
-	public Map<String, Object> commentInsert(@RequestBody CommentVO comment, HttpSession session){
-		MemberVO user = (MemberVO)session.getAttribute("user");
+	@RequestMapping(value = "/comment/insert", method=RequestMethod.POST)
+	public Map<String, Object> commentInsert(@RequestBody CommentVO comment,
+			HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		MemberVO user = (MemberVO) session.getAttribute("user");
 		boolean res = boardService.insertComment(comment, user);
 		map.put("result", res);
 		return map;
 	}
-	
-	@RequestMapping(value="/comment/list/{co_bo_num}", method=RequestMethod.POST)
-	public Map<String, Object> commentList(@RequestBody Criteria cri, @PathVariable("co_bo_num") int co_bo_num, HttpSession session){
-		MemberVO user = (MemberVO)session.getAttribute("user");
+	@RequestMapping(value = "/comment/list/{co_bo_num}", method=RequestMethod.POST)
+	public Map<String, Object> commentList(@RequestBody Criteria cri,
+			@PathVariable("co_bo_num") int co_bo_num) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		ArrayList<CommentVO> list = boardService.getCommentList(cri, co_bo_num);
+		//PageMaker
 		int totalCount = boardService.getTotalCountCommentList(co_bo_num);
 		PageMaker pm = new PageMaker(totalCount, 5, cri);
 		map.put("list", list);
 		map.put("pm", pm);
 		return map;
 	}
-	@RequestMapping(value="/comment/delete/{co_bo_num}", method=RequestMethod.POST)
-	public Map<String, Object> commentDelete(@RequestBody CommentVO comment, HttpSession session){
+	@RequestMapping(value = "/comment/delete", method=RequestMethod.POST)
+	public Map<String, Object> commentDelete(@RequestBody CommentVO comment,
+			HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		MemberVO user = (MemberVO)session.getAttribute("user");
+		MemberVO user = (MemberVO) session.getAttribute("user");
 		boolean res = boardService.deleteComment(comment, user);
 		map.put("result", res);
 		return map;
 	}
-	
+	@RequestMapping(value = "/comment/update", method=RequestMethod.POST)
+	public Map<String, Object> commentUpdate(@RequestBody CommentVO comment,
+			HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		boolean res = boardService.updateComment(comment, user);
+		map.put("result", res);
+		return map;
+	}
 }

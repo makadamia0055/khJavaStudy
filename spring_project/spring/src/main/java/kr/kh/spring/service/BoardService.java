@@ -46,6 +46,8 @@ public interface BoardService {
 
 	boolean deleteComment(CommentVO comment, MemberVO user);
 
+	boolean updateComment(CommentVO comment, MemberVO user);
+
 
 
 }
