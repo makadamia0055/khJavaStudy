@@ -18,6 +18,10 @@ public interface MemberService {
 	MemberVO login(MemberVO member);
 
 	boolean checkId(MemberVO user);
+
+	void updateMemberBySession(MemberVO user);
+
+	MemberVO getMemberBySession(String me_session_id);
 	
 	
 }

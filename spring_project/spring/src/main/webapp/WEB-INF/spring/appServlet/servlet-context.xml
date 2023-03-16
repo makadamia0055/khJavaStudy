@@ -47,6 +47,10 @@
 		class="kr.kh.spring.interceptor.MemberInterceptor"></beans:bean>
 	<beans:bean id="GuestInterceptor" 
 		class="kr.kh.spring.interceptor.GuestInterceptor"></beans:bean>
+	<beans:bean id="AutoLoginInterceptor" 
+		class="kr.kh.spring.interceptor.AutoLoginInterceptor"></beans:bean>
+	<beans:bean id="LoginRedirectInterceptor" 
+		class="kr.kh.spring.interceptor.LoginRedirectInterceptor"></beans:bean>
 	<interceptors>
 		<interceptor>
 			<mapping path="/login"/>
@@ -66,6 +70,14 @@
 			<mapping path="/login"/>
 			<mapping path="/signup"/>
 			<beans:ref bean="GuestInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:ref bean="AutoLoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:ref bean="LoginRedirectInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -114,7 +115,13 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping(value ="/login", method=RequestMethod.GET)
-	public ModelAndView login(ModelAndView mv) {
+	public ModelAndView login(ModelAndView mv, HttpServletRequest req) {
+		String url = req.getHeader("Referer");
+		// 이 url로 오기 전의 url을 담고 있는 값 = Referer
+		// !url.contain("login") => login post에서 온 경우를 제외하기 위해서(로그인 실패로 리다이렉트 해서 넘어온 경우)  
+		if(url != null && !url.contains("login")) {
+			req.getSession().setAttribute("prevURL", url);
+		}
 		mv.setViewName("member/login");
 		return mv;
 	}
@@ -124,6 +131,10 @@ public class HomeController {
 		mv.addObject("user", user);
 		if(user!=null) {
 			mv.setViewName("redirect:/");
+			// 자동 로그인 체크 여부는 DB에 기록되지 않기 때문에 그걸 넘겨줌(그렇게 VO와 DB 테이블을 구현했음)
+			// user는 DB에서 가져온 회원정보라 자동 로그인 여부를 알 수 없음.
+			// 그래서 화면에서 가져온 member에 있는 자동 로그인 여부를 user에 수정
+			user.setAutoLogin(member.isAutoLogin());
 		}else {
 			mv.setViewName("redirect:/login");
 		}
@@ -143,6 +154,8 @@ public class HomeController {
 		// 세션에 있는 회원 정보 삭제. 원래는 HttpRequest 받아서 세션 추출해줘야 되는데, 
 		// 그냥 HttpSession으로 호출하면 알아서 매핑해준다고 함
 		session.removeAttribute("user");
+		user.setMe_session_limit(null);
+		memberService.updateMemberBySession(user);
 		mv.setViewName("redirect:/");
 		return mv;
 	}

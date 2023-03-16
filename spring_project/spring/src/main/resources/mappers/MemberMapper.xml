@@ -41,6 +41,18 @@
   		from member
   		where me_id = #{me_id}
   	</select>
+  	<update id="updateSession">
+  		update member
+  			set me_session_id = #{m.me_session_id},
+  				me_session_limit = #{m.me_session_limit}
+  			where
+  				me_id = #{m.me_id}
+  	</update>
+  	<select id="selectMemberBySession" resultType="kr.kh.spring.vo.MemberVO">
+  		select * 
+  		from member
+  		where me_session_id = #{me_session_id} and me_session_limit > now() 
+  	</select>
   	<!--
   	 #{}과 ${}의 차이
   	 #{값}는 해당 값을 문자열로 입력 => '값'

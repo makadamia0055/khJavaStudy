@@ -143,4 +143,25 @@ public class MemberServiceImp implements MemberService{
 		return memberDao.updateAuth(updateCount, mok)!=0;
 	
 	}
+	@Override
+	public boolean checkIdDuplicate(MemberVO tmpId) {
+		if(tmpId==null||tmpId.getMe_id()==null||tmpId.getMe_id().trim().length()==0) {
+			System.out.println("객체 유효성 검사 실패");
+			return false;
+		}
+			
+		String reg = "^[a-zA-Z][a-zA-Z0-9!@#$]{4,12}$";
+		
+		if(!tmpId.getMe_id().matches(reg)) {
+			System.out.println("정규식 검사 실패");
+			return false;
+		}
+		if(memberDao.selectMemberById(tmpId.getMe_id())==null) {
+			System.out.println("아이디 사용 가능");
+			return true;
+		}else {
+			System.out.println("중복 아이디 검출");
+			return false;
+		}
+	}
 }

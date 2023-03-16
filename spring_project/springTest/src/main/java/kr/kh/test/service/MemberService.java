@@ -11,4 +11,6 @@ public interface MemberService {
 	MemberVO login(MemberVO member);
 
 	boolean checkAuth(MemberOKVO mok);
+
+	boolean checkIdDuplicate(MemberVO tmpId);
 }

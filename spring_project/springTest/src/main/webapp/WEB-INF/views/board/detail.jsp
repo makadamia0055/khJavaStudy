@@ -63,7 +63,14 @@
 		<form action="<c:url value='/board/update/${board.bo_num}'></c:url>" method="get"><button class="btn btn-primary">수정</button></form>
 		
 	</c:if>
-	
+	<!-- 댓글 창 -->
+	<div class="input-group mt-3 mb-3">
+	  <textarea class="form-control comment-text" placeholder="댓글을 입력해주세요."></textarea>
+	  <div class="input-group-append">
+	    <button class="btn btn-success btn-comment" type="button">댓글등록</button>
+	  </div>
+	</div>
+	<!-- 추천 비추천 스크립트 -->
 	<script>
 	$('.btn-up, .btn-down').click(function(e){
 		if('${user.me_id}'==''){
@@ -112,3 +119,47 @@
 	})
 	
 	</script>
+	<!-- 댓글 등록 버튼 클릭 이벤트 -->
+	<script>
+	$('.btn-comment').click(function(){
+		if(${user == null}){
+			if(confirm("영차")){
+				location.href='<c:url value="/login"></c:url>';
+			}else{
+				return;
+			}
+		}
+		let co_content = $(this).parent().siblings('.comment-text').val();
+		if(co_content.trim().length==0){
+			alert('댓글을 입력해주세요');
+			return;
+		}
+		let commentObj = {
+				co_content: co_content,
+				co_bo_num : ${board.bo_num}
+		}
+		$.ajax({
+			async:true,
+			url:"<c:url value='/comment/insert/'></c:url>",
+			type:"POST",
+			data: memberObj,
+			dataType: "JSON",
+			contentType:"application/json; charset=UTF-8",
+			success : function(data){
+				if(data.isChecked){
+					idCheck = true;
+					alert('사용가능한 아이디입니다.');
+				}else{
+					alert('사용이 불가능한 아이디입니다.');
+				}
+			}
+			
+			
+		})
+	})
+			
+			
+					
+					
+	</script>
+	
