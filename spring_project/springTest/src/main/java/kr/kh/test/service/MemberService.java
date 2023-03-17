@@ -13,4 +13,8 @@ public interface MemberService {
 	boolean checkAuth(MemberOKVO mok);
 
 	boolean checkIdDuplicate(MemberVO tmpId);
+
+	void updateSessionInfo(MemberVO user);
+
+	MemberVO getUserBySessionId(String string);
 }

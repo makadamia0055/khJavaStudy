@@ -40,7 +40,8 @@ public class HomeController {
 	}
 	@RequestMapping(value="/signup", method = RequestMethod.POST)
 	public ModelAndView signupPost(ModelAndView mv, MemberVO memberVO, HttpServletResponse res) {
-		
+		String msg = "";
+		String url = "";
 		try {
 			if(memberService.insertSignup(memberVO)) {
 				MessageUtils.alertAndMovePage(res, "회원가입에 성공했습니다.", contextPath, "/");
@@ -59,35 +60,49 @@ public class HomeController {
 		}
 	}
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public ModelAndView login(ModelAndView mv) {
+	public ModelAndView login(ModelAndView mv, HttpServletRequest req) {
+		String refer = req.getHeader("Referer");
+		System.out.println(refer);
+		if(refer!=null&&!refer.contains("login")) {
+			req.setAttribute("prevURL", refer);
+		}
 		mv.setViewName("/member/login");
 		return mv;
 	}
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member, HttpServletResponse res, 
 			HttpServletRequest req) {
-		System.out.println(member);
+		String msg = "";
+		String url = "";
 		MemberVO user = memberService.login(member);
 		if(user!=null && user.getMe_authority() >0) {
+			user.setAutoLogin(member.isAutoLogin());
 			mv.addObject("user", user);
+			msg = "로그인 완료";
+			url = "/";
 			
-			MessageUtils.alertAndMovePage(res, "로그인 완료", req.getContextPath(), "/");
-			
-			mv.setViewName("redirect:/");
 		}else if(user!=null){
-			MessageUtils.alertAndMovePage(res, "이메일 인증이 완료되어야 로그인이 가능합니다.", req.getContextPath(), "/");
-			mv.setViewName("redirect:/");
+			msg = "이메일 인증이 완료되어야 로그인이 가능합니다.";
+			url = "/";
 		}else {
-			MessageUtils.alertAndMovePage(res, "로그인에 실패했습니다.", req.getContextPath(), "/login");
-			mv.setViewName("redirect:/login");
+			msg = "로그인에 실패했습니다.";
+			url = "login";
+			
 		}
+		mv.addObject("url", url);
+		mv.addObject("msg", msg);
+		mv.setViewName("/common/message");
 		return mv;
 	}
 	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public ModelAndView loginOut(ModelAndView mv, HttpSession session, HttpServletResponse res) {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		user.setMe_session_limit(null);
+		memberService.updateSessionInfo(user);
 		session.removeAttribute("user");
-		MessageUtils.alertAndMovePage(res, "로그아웃이 완료되었습니다.", contextPath, "/");
-		mv.setViewName("redirect:/");
+		mv.addObject("url", "/");
+		mv.addObject("msg", "로그아웃이 완료되었습니다.");
+		mv.setViewName("/common/message");
 		return mv;
 	}
 	@RequestMapping(value="/email/authentication", method = RequestMethod.GET)

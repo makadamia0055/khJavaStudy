@@ -18,4 +18,8 @@ public interface MemberDAO {
 	int updateAuth(@Param("num")int member_Auth, @Param("mok")MemberOKVO mok);
 //	DAO 메소드에 매개변수가 2개 이상이면 무조건 @Param 써줘야함.
 
+	void updateSessionInfo(@Param("m")MemberVO user);
+
+	MemberVO getUserBySessionId(@Param("me_session_id")String session_id);
+
 }

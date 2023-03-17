@@ -65,9 +65,9 @@
 	</c:if>
 	<!-- 댓글 창 -->
 	<div class="input-group mt-3 mb-3">
-	  <textarea class="form-control comment-text" placeholder="댓글을 입력해주세요."></textarea>
+	  <textarea class="form-control co_content" placeholder="댓글을 입력해주세요." name="co_content"></textarea>
 	  <div class="input-group-append">
-	    <button class="btn btn-success btn-comment" type="button">댓글등록</button>
+	    <button class="btn btn-success btn-comment-insert" type="button">댓글등록</button>
 	  </div>
 	</div>
 	<!-- 추천 비추천 스크립트 -->
@@ -121,43 +121,52 @@
 	</script>
 	<!-- 댓글 등록 버튼 클릭 이벤트 -->
 	<script>
-	$('.btn-comment').click(function(){
-		if(${user == null}){
-			if(confirm("영차")){
+	const bo_num = '${bo_num}';
+	$('.btn-comment-insert').click(function(){
+		if(${user== null}){
+			if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. <br>로그인 페이지로 이동하시겠습니까?")){
 				location.href='<c:url value="/login"></c:url>';
+				return;
 			}else{
 				return;
 			}
 		}
-		let co_content = $(this).parent().siblings('.comment-text').val();
+		let co_content = $(this).parent().siblings('[name=co_content]').val();
 		if(co_content.trim().length==0){
 			alert('댓글을 입력해주세요');
 			return;
 		}
 		let commentObj = {
 				co_content: co_content,
-				co_bo_num : ${board.bo_num}
+				co_bo_num : bo_num
 		}
+		ajaxPost(commentObj, "<c:url value='/comment/insert'></c:url>", insertSuccess);
+	});
+	
+	
+	
+	function insertSuccess(data){
+		if(data.res){
+			alert('댓글이 등록되었습니다.');
+			$('[name=co_content]').val('');
+		}else{
+			alert('댓글 등륵이 실패하였습니다.');
+		}
+		
+	}
+	function ajaxPost(obj, url, successFunction){
 		$.ajax({
-			async:true,
-			url:"<c:url value='/comment/insert/'></c:url>",
-			type:"POST",
-			data: memberObj,
+			async:false,
+			type: 'POST',
+			data: JSON.stringify(obj),
+			url: url,
 			dataType: "JSON",
 			contentType:"application/json; charset=UTF-8",
-			success : function(data){
-				if(data.isChecked){
-					idCheck = true;
-					alert('사용가능한 아이디입니다.');
-				}else{
-					alert('사용이 불가능한 아이디입니다.');
-				}
-			}
+			success : successFunction
 			
 			
 		})
-	})
-			
+	}
 			
 					
 					

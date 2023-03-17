@@ -59,6 +59,26 @@
         	<beans:ref bean="adminInterceptor"/>
     	</interceptor>
 	</interceptors>
+	
+	<beans:bean id="AutoLoginInterceptor" 
+		class="kr.kh.test.interceptor.AutoLoginInterceptor">
+	</beans:bean>
+	<interceptors>
+    	<interceptor>
+        	<mapping path="/**"/>
+        	<beans:ref bean="AutoLoginInterceptor"/>
+    	</interceptor>
+	</interceptors>
+	<beans:bean id="LoginRedirectInterceptor" 
+		class="kr.kh.test.interceptor.LoginRedirectInterceptor">
+	</beans:bean>
+	<interceptors>
+    	<interceptor>
+        	<mapping path="/**"/>
+        	<beans:ref bean="LoginRedirectInterceptor"/>
+    	</interceptor>
+	</interceptors>
+	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	    <!-- 업로드 최대 크기 10Mb -->
 	    <beans:property name="maxUploadSize" value="10485760"></beans:property>

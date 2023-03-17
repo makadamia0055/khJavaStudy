@@ -16,6 +16,10 @@
 			<label for="pw">비밀번호 : </label>
 			<input type="password" class="form-control" id="pw" name="me_pw">
 		</div>
+		<label for="autoLogin">자동로그인 : </label>
+		<input type="checkbox" id="autoLogin" name="autoLogin" value="true">
+		
+				
 		
 			<button class="btn btn-outline-success col-12">로그인</button>
 	
