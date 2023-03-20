@@ -1,16 +1,20 @@
 package kr.kh.test.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.kh.test.pagination.Criteria;
+import kr.kh.test.pagination.PageMaker;
 import kr.kh.test.service.CommentService;
 import kr.kh.test.vo.CommentVO;
 import kr.kh.test.vo.MemberVO;
@@ -29,4 +33,18 @@ public class CommentController {
 		return map;
 		
 	}
+	
+	@RequestMapping(value="/comment/list/{bo_num}", method=RequestMethod.POST)
+	public Map<String, Object> commentList(@RequestBody Criteria cri,
+			@PathVariable("bo_num")int bo_num){
+		Map<String, Object> map = new HashMap<String, Object>();
+		ArrayList<CommentVO> commentList = commentService.selectCommentList(cri, bo_num);
+		map.put("list", commentList);
+		int perPageNum = 5;
+		int wholeCommentNum = commentService.selectWholeCommentCount(bo_num);
+		PageMaker pm = new PageMaker(wholeCommentNum, perPageNum, cri);
+		map.put("pm", pm);
+		return map; 
+	}
+	
 }

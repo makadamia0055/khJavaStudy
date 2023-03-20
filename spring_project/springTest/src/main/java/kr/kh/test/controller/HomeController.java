@@ -62,9 +62,8 @@ public class HomeController {
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv, HttpServletRequest req) {
 		String refer = req.getHeader("Referer");
-		System.out.println(refer);
 		if(refer!=null&&!refer.contains("login")) {
-			req.setAttribute("prevURL", refer);
+			req.getSession().setAttribute("prevURL", refer);
 		}
 		mv.setViewName("/member/login");
 		return mv;

@@ -42,38 +42,36 @@
 	<beans:bean id="loginInterceptor" 
 		class="kr.kh.test.interceptor.LoginInterceptor">
 	</beans:bean>
-	<interceptors>
-    	<interceptor>
-        	<mapping path="/login"/>
-        	<beans:ref bean="loginInterceptor"/>
-    	</interceptor>
-	</interceptors>
+	
 	
 	
 	<beans:bean id="adminInterceptor" 
 		class="kr.kh.test.interceptor.AdminInterceptor">
 	</beans:bean>
-	<interceptors>
-    	<interceptor>
-        	<mapping path="/admin/board/type/list"/>
-        	<beans:ref bean="adminInterceptor"/>
-    	</interceptor>
-	</interceptors>
+	
 	
 	<beans:bean id="AutoLoginInterceptor" 
 		class="kr.kh.test.interceptor.AutoLoginInterceptor">
 	</beans:bean>
+	
+	<beans:bean id="LoginRedirectInterceptor" 
+			class="kr.kh.test.interceptor.LoginRedirectInterceptor">
+	</beans:bean>
+	
 	<interceptors>
     	<interceptor>
+        	<mapping path="/login"/>
+        	<beans:ref bean="loginInterceptor"/>
+    	</interceptor>
+	   	<interceptor>
+        	<mapping path="/admin/board/type/list"/>
+        	<beans:ref bean="adminInterceptor"/>
+    	</interceptor>
+	   	<interceptor>
         	<mapping path="/**"/>
         	<beans:ref bean="AutoLoginInterceptor"/>
     	</interceptor>
-	</interceptors>
-	<beans:bean id="LoginRedirectInterceptor" 
-		class="kr.kh.test.interceptor.LoginRedirectInterceptor">
-	</beans:bean>
-	<interceptors>
-    	<interceptor>
+	   	<interceptor>
         	<mapping path="/**"/>
         	<beans:ref bean="LoginRedirectInterceptor"/>
     	</interceptor>

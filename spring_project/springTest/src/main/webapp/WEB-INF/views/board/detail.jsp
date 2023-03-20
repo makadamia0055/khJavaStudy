@@ -70,6 +70,48 @@
 	    <button class="btn btn-success btn-comment-insert" type="button">댓글등록</button>
 	  </div>
 	</div>
+	<!-- 댓글 조회 창 -->
+	
+	<!-- 댓글 조회 코드 -->
+	<script>
+	const bo_num = '${bo_num}';
+
+	let cri = {
+			page:1,
+			perPageNum: 5
+			
+	}
+	commentSelect();
+	function commentSelect(){
+		
+		$.ajax({
+			async: true,
+			type: 'POST',
+			data: JSON.stringify(cri),
+			url: "<c:url value='/comment/list/"+bo_num+"'></c:url>",
+			dataType: "JSON",
+			contentType:"application/json; charset=UTF-8",
+			success : listSuccess
+		})
+	}
+	
+	function listSuccess(data){
+		addCommentList(data.list);
+		addPagination(data.pm);
+	}
+	function addCommentList(list){
+		for(tmp : list){
+			
+		}
+	}
+	function addPagination(data.pm){
+		
+	}
+	
+	</script>
+	
+	
+	
 	<!-- 추천 비추천 스크립트 -->
 	<script>
 	$('.btn-up, .btn-down').click(function(e){
@@ -84,7 +126,7 @@
 	        async:true,
 	        type:'GET',
 //	        data:${map},
-	        url:'<c:url value="/board/like/"></c:url>'+ ${board.bo_num}+'/'+li_state,
+	        url:'<c:url value="/board/like/"></c:url>'+ bo_num+'/'+li_state,
 	        dataType:"json", // 서버에서 보낸 데이터의 타입. Map로 받을 것이기에 json으로
 	        //contentType:"application/json; charset=UTF-8", 서버로 보내는 데이터의 타입
 	        success: function(data){
@@ -121,7 +163,6 @@
 	</script>
 	<!-- 댓글 등록 버튼 클릭 이벤트 -->
 	<script>
-	const bo_num = '${bo_num}';
 	$('.btn-comment-insert').click(function(){
 		if(${user== null}){
 			if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. <br>로그인 페이지로 이동하시겠습니까?")){

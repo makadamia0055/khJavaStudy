@@ -21,16 +21,20 @@ public class LoginRedirectInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception{
 		MemberVO user = (MemberVO)req.getSession().getAttribute("user");
-		if(user!=null) 
+		if(user==null) 
 			return true;
 		
-		String prevURL = (String)req.getAttribute("prevURL");
-		if(prevURL!=null) {
+		String prevURL = (String)req.getSession().getAttribute("prevURL");
+		if(prevURL==null) {
+			return true;
+		}else {
+			
 			res.sendRedirect(prevURL);
+			req.getSession().removeAttribute("prevURL");
 			return false;
 			
 		}
-		return true;
+		
 			 
 	}
 }

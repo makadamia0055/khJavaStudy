@@ -15,5 +15,15 @@
 			from 
 				comment
 	</insert>
+	<select id="selectCommentList" resultType="kr.kh.test.vo.CommentVO">
+		select * from comment
+			where co_bo_num = #{bo_num}
+			order by co_ori_num desc, co_num asc
+			limit #{cri.pageStart}, #{cri.perPageNum} 
+	</select>
+	<select id="selectWholeCommentCount" resultType="int">
+		select count(*) from comment
+			where co_bo_num = #{bo_num}
+	</select>
   
 </mapper>
