@@ -19,5 +19,7 @@ public interface CommentDAO {
 
 	int deleteComment(@Param("comment")CommentVO comment);
 
+	int updateComment(@Param("comment")CommentVO comment);
+
 
 }

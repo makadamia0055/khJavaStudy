@@ -112,6 +112,24 @@
 			str += createComment(list[i]);
 		}
 		$('.comment-list').html(str);
+		$('.comment-list .btn-update').on('click', function(){
+			if(${user== null}){
+				if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. 로그인 페이지로 이동하시겠습니까?")){
+					location.href='<c:url value="/login"></c:url>';
+					return;
+				}else{
+					return;
+				}	
+			}
+			$('.comment').show();
+			$('.comment-list .btn').show();
+			$('.reply-group, .update-group').remove();
+			let content = $(this).parent().siblings('.comment-content').text();
+			str = createUpdateComment(content);
+			$(this).parents('.comment').after(str);
+			$(this).parents('.comment').hide();
+			$('.btn-update-insert').click(clickUpdateButton)
+		});
 		$('.comment-list .btn-delete').on('click', function(){
 			
 			if(${user== null}){
@@ -123,13 +141,7 @@
 				}
 				
 			}
-		/* 	let writer = $(this).parent().siblings('.comment-id').text();
-			let userId = ${user.me_id}; */
-
-			/* if(!userId.equals(writer)){
-				alert('작성자만이 댓글을 지울 수 있습니다.')
-				return;
-			} */
+		
 			if(!confirm("정말 삭제하시겠습니까?")){
 				return;
 			}
@@ -167,7 +179,41 @@
 			})
 		})
 	}
-	
+	function clickUpdateButton(){
+		if(${user== null}){
+			if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. <br>로그인 페이지로 이동하시겠습니까?")){
+				location.href='<c:url value="/login"></c:url>';
+				return;
+			}else{
+				return;
+			}
+		}
+		let co_content = $(this).parent().siblings('[name=co_content]').val();
+		if(co_content.trim().length==0){
+			alert('댓글을 입력해주세요');
+			return;
+		}
+		let updateObj = {
+				co_content: co_content,
+				co_bo_num : bo_num
+		}
+		ajaxPost(updateObj, "<c:url value='/comment/update'></c:url>", updateSuccess);
+
+	}
+	function updateSuccess(data){
+		console.log(65);
+	}
+	function createUpdateComment(content){
+		str = '';
+		str += '<div class="input-group update-group mt-3 mb-3">'+
+		  '<textarea class="form-control co_content" placeholder="댓글을 입력해주세요." name="co_content">'+content+
+		  '</textarea>'+
+		  '<div class="input-group-append">'+
+		   ' <button class="btn btn-success btn-update-insert" type="button">댓글수정</button>'+
+		  '</div>'+
+		'</div>';
+		return str;
+	}
 	function createReplyComment(){
 		str = '';
 		str += '<div class="input-group reply-group mt-3 mb-3">'+

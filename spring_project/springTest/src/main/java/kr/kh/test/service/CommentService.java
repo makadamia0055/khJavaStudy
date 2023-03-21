@@ -16,4 +16,6 @@ public interface CommentService {
 
 	public boolean deleteComment(CommentVO comment, MemberVO user);
 
+	public boolean updateComment(CommentVO comment, MemberVO user);
+
 }
