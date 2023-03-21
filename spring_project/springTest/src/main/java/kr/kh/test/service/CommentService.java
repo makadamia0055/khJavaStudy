@@ -13,4 +13,7 @@ public interface CommentService {
 	public ArrayList<CommentVO> selectCommentList(Criteria cri, int bo_num);
 
 	public int selectWholeCommentCount(int bo_num);
+
+	public boolean deleteComment(CommentVO comment, MemberVO user);
+
 }

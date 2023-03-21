@@ -71,7 +71,14 @@
 	  </div>
 	</div>
 	<!-- 댓글 조회 창 -->
+	<div class="comment-list">
+		
+	</div>
+	<!-- 댓글 페이지 네이션 -->
+	<ul class="pagination comment-pagination justify-content-center">
 	
+	</ul>
+	<hr>
 	<!-- 댓글 조회 코드 -->
 	<script>
 	const bo_num = '${bo_num}';
@@ -100,13 +107,130 @@
 		addPagination(data.pm);
 	}
 	function addCommentList(list){
-		for(tmp : list){
-			
+		str = '';
+		for(i = 0 ; i<list.length; i++){
+			str += createComment(list[i]);
 		}
+		$('.comment-list').html(str);
+		$('.comment-list .btn-delete').on('click', function(){
+			
+			if(${user== null}){
+				if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. 로그인 페이지로 이동하시겠습니까?")){
+					location.href='<c:url value="/login"></c:url>';
+					return;
+				}else{
+					return;
+				}
+				
+			}
+		/* 	let writer = $(this).parent().siblings('.comment-id').text();
+			let userId = ${user.me_id}; */
+
+			/* if(!userId.equals(writer)){
+				alert('작성자만이 댓글을 지울 수 있습니다.')
+				return;
+			} */
+			if(!confirm("정말 삭제하시겠습니까?")){
+				return;
+			}
+			let num = $(this).data('num');
+			let deleteObj = {
+					co_bo_num : bo_num, 
+					co_num : num
+			}
+			ajaxPost(deleteObj, '<c:url value="/comment/delete"></c:url>', deleteSucess)
+		})
+		$('.comment-list .btn-reply').on('click', function(){
+			let dataNum = $(this).data('num');
+			$('.btn').filter(function(){return $(this).data('num')==dataNum}).hide();
+			$('.btn').filter(function(){return $(this).data('num')!=dataNum}).show();
+			var str2 = createReplyComment();
+			$('.reply-group').remove();
+			$(this).parent().after(str2);
+			$('.btn-reply-insert').on('click', function(e){
+				let reply_content = $('.reply-group textarea').val();
+				let replyObj = {
+					co_content: reply_content,
+					co_bo_num : bo_num
+				}
+				e.preventDefault();
+				$.ajax({
+			async: true,
+			type: 'POST',
+			data: JSON.stringify(replyObj),
+			url: "<c:url value='/comment/reply/"+bo_num+"/"+dataNum+"'></c:url>",
+			dataType: "JSON",
+			contentType:"application/json; charset=UTF-8",
+			success : insertComment
+		})
+				
+			})
+		})
 	}
-	function addPagination(data.pm){
+	
+	function createReplyComment(){
+		str = '';
+		str += '<div class="input-group reply-group mt-3 mb-3">'+
+		  '<textarea class="form-control co_content" placeholder="댓글을 입력해주세요." name="co_content"></textarea>'+
+		  '<div class="input-group-append">'+
+		   ' <button class="btn btn-success btn-reply-insert" type="button">댓글등록</button>'+
+		  '</div>'+
+		'</div>';
+		return str;
+
+		}
+	function createComment(comment){
+	str = '';
+	let ml = comment.co_ori_num != comment.co_num ? 'ml-3': '';
+	str += '<div class="comment '+ml+'">'+
+		'<div class="comment-id">'+comment.co_me_id+'</div>'+
+		'<div class="comment-date">'+comment.co_register_date_str+'</div>'+
+		'<div class="comment-content">'+comment.co_content+'</div>'+
+		'<div class="btn-group">'+
+			'<button type="button" class="btn btn-outline-success btn-reply" data-num="'+comment.co_num+'">답글</button>'+
+			'<button type="button" class="btn btn-outline-success btn-update" data-num="'+comment.co_num+'">수정</button>'+
+			'<button type="button" class="btn btn-outline-success btn-delete" data-num="'+comment.co_num+'">삭제</button>'+
+		'</div>'+
+	'</div>';
+		return str;
+	}
+	function addPagination(pm){
+		let prev = pm.prev ? '' : 'disabled';
+		let next = pm.next ? '' : 'disabled';
+				
+		str = '';
+		str += '<li class="page-item '+ prev +'">'+
+  		'<a class="page-link" href="#" data-page="'+(pm.startPage - 1)+'">이전</a>'+
+		'</li>';
+		for(i=pm.startPage; i<=pm.endPage; i++){
+		let page = pm.cri.page == i ? 'active':'';
+			str+=			
+  		'<li class="page-item '+ page +'">'+
+  			'<a class="page-link" href="#" data-page="'+i+'">'+i+'</a>'+
+		'</li>';
+		}
+		str+=
+  	'<li class="page-item '+ next +'">'+
+  		'<a class="page-link" href="#" data-page="'+(pm.endPage + 1)+'">다음</a>'+
+		'</li>';
+		$('.comment-pagination').html(str);
+		$('.comment-pagination .page-link').on('click', movePage)
+		
 		
 	}
+	// 페이지 네이션 이벤트 등록
+	$('.comment-pagination .page-link').click(movePage)
+	function movePage(){
+		e.preventDefault();
+		let page = $(this).data('page');
+		cri.page = page;
+		commentSelect();
+	}
+	function choosePage(page){
+		cri.page = page;
+		commentSelect();
+	}
+	
 	
 	</script>
 	
@@ -163,6 +287,7 @@
 	</script>
 	<!-- 댓글 등록 버튼 클릭 이벤트 -->
 	<script>
+	
 	$('.btn-comment-insert').click(function(){
 		if(${user== null}){
 			if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. <br>로그인 페이지로 이동하시겠습니까?")){
@@ -184,17 +309,35 @@
 		ajaxPost(commentObj, "<c:url value='/comment/insert'></c:url>", insertSuccess);
 	});
 	
-	
-	
+	function insertComment(data){
+		if(data.res){
+			alert('댓글이 등록되었습니다.');
+			$('[name=co_content]').val('');
+			choosePage(cri.page);
+		}
+	}
+	function deleteSucess(data){
+		if(data.res){
+			alert('댓글이 삭제되었습니다.');
+			choosePage(cri.page);
+
+		}else{
+			alert('댓글 삭제가 실패하였습니다.');
+		}
+		
+	}
 	function insertSuccess(data){
 		if(data.res){
 			alert('댓글이 등록되었습니다.');
 			$('[name=co_content]').val('');
+			choosePage(1);
+
 		}else{
 			alert('댓글 등륵이 실패하였습니다.');
 		}
 		
 	}
+	
 	function ajaxPost(obj, url, successFunction){
 		$.ajax({
 			async:false,
@@ -208,7 +351,7 @@
 			
 		})
 	}
-			
+				
 					
 					
 	</script>

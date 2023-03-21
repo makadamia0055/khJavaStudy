@@ -30,9 +30,7 @@ public class CommentServiceImp implements CommentService {
 	@Override
 	public ArrayList<CommentVO> selectCommentList(Criteria cri, int bo_num) {
 		if(cri==null)
-			return null;
-		if(bo_num<0)
-			return null;
+			cri= new Criteria();
 		return commentDao.selectCommentList(cri, bo_num);
 	}
 
@@ -40,4 +38,20 @@ public class CommentServiceImp implements CommentService {
 	public int selectWholeCommentCount(int bo_num) {
 		return commentDao.selectWholeCommentCount(bo_num);
 	}
+
+	@Override
+	public boolean deleteComment(CommentVO comment, MemberVO user) {
+		if(comment ==null)
+			return false;
+		if(user == null || user.getMe_id() == null)
+			return false;
+		CommentVO tmpComment = commentDao.selectCommentByNum(comment);
+		if(!tmpComment.getCo_me_id().equals(user.getMe_id())) {
+			System.out.println("유저 다름");
+			return false;
+		}
+		return commentDao.deleteComment(comment)!=0;
+	}
+
+	
 }

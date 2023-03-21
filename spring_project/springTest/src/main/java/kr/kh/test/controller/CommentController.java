@@ -46,5 +46,25 @@ public class CommentController {
 		map.put("pm", pm);
 		return map; 
 	}
+	@RequestMapping(value="/comment/reply/{bo_num}/{co_ori_num}", method=RequestMethod.POST)
+	public Map<String, Object> insertReply(@RequestBody CommentVO comment,
+			@PathVariable("bo_num")int bo_num, @PathVariable("co_ori_num")int co_ori_num, HttpSession session){
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		comment.setCo_ori_num(co_ori_num);
+		boolean res = commentService.insertComment(comment, user);
+		map.put("res", res);
+		System.out.println(res);
+		return map; 
+	}
+	@RequestMapping(value="/comment/delete", method=RequestMethod.POST)
+	public Map<String, Object> commentDelete(@RequestBody CommentVO comment, HttpSession session){
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		boolean res = commentService.deleteComment(comment, user);
+		map.put("res", res);
+		return map;
+		
+	}
 	
 }
