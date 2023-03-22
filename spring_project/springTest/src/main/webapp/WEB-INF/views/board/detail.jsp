@@ -125,7 +125,8 @@
 			$('.comment-list .btn').show();
 			$('.reply-group, .update-group').remove();
 			let content = $(this).parent().siblings('.comment-content').text();
-			str = createUpdateComment(content);
+			let co_num = $(this).data('num');
+			str = createUpdateComment(content, co_num);
 			$(this).parents('.comment').after(str);
 			$(this).parents('.comment').hide();
 			$('.btn-update-insert').click(clickUpdateButton)
@@ -193,23 +194,32 @@
 			alert('댓글을 입력해주세요');
 			return;
 		}
+		let co_num = $(this).data('num');
 		let updateObj = {
 				co_content: co_content,
-				co_bo_num : bo_num
+				co_bo_num : bo_num, 
+				co_num : co_num
 		}
 		ajaxPost(updateObj, "<c:url value='/comment/update'></c:url>", updateSuccess);
 
 	}
 	function updateSuccess(data){
-		console.log(65);
+		if(data.res){
+			alert('댓글이 수정되었습니다.');
+			$('.update-group').remove();
+			choosePage(1);
+
+		}else{
+			alert('댓글 수정이 실패하였습니다.');
+		}
 	}
-	function createUpdateComment(content){
+	function createUpdateComment(content, co_num){
 		str = '';
 		str += '<div class="input-group update-group mt-3 mb-3">'+
 		  '<textarea class="form-control co_content" placeholder="댓글을 입력해주세요." name="co_content">'+content+
 		  '</textarea>'+
 		  '<div class="input-group-append">'+
-		   ' <button class="btn btn-success btn-update-insert" type="button">댓글수정</button>'+
+		   ' <button class="btn btn-success btn-update-insert" type="button" data-num="'+co_num+'" >댓글수정</button>'+
 		  '</div>'+
 		'</div>';
 		return str;
@@ -230,12 +240,25 @@
 	let ml = comment.co_ori_num != comment.co_num ? 'ml-3': '';
 	str += '<div class="comment '+ml+'">'+
 		'<div class="comment-id">'+comment.co_me_id+'</div>'+
-		'<div class="comment-date">'+comment.co_register_date_str+'</div>'+
+		'<div class="comment-date">'
+		if(comment.co_update_date_str ==''){
+		str+= comment.co_register_date_str
+		}else{
+		str+= comment.co_update_date_str	
+		}
+		
+	str+=
+		'</div>'+
 		'<div class="comment-content">'+comment.co_content+'</div>'+
 		'<div class="btn-group">'+
-			'<button type="button" class="btn btn-outline-success btn-reply" data-num="'+comment.co_num+'">답글</button>'+
+			'<button type="button" class="btn btn-outline-success btn-reply" data-num="'+comment.co_num+'">답글</button>';
+		if(comment.co_me_id=='${user.me_id}'){
+			str+=
+		
 			'<button type="button" class="btn btn-outline-success btn-update" data-num="'+comment.co_num+'">수정</button>'+
-			'<button type="button" class="btn btn-outline-success btn-delete" data-num="'+comment.co_num+'">삭제</button>'+
+			'<button type="button" class="btn btn-outline-success btn-delete" data-num="'+comment.co_num+'">삭제</button>';
+		}
+		str+=
 		'</div>'+
 	'</div>';
 		return str;
@@ -335,14 +358,7 @@
 	<script>
 	
 	$('.btn-comment-insert').click(function(){
-		if(${user== null}){
-			if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. <br>로그인 페이지로 이동하시겠습니까?")){
-				location.href='<c:url value="/login"></c:url>';
-				return;
-			}else{
-				return;
-			}
-		}
+		checkLogin("로그인한 회원만 댓글 입력이 가능합니다.");
 		let co_content = $(this).parent().siblings('[name=co_content]').val();
 		if(co_content.trim().length==0){
 			alert('댓글을 입력해주세요');
@@ -379,11 +395,21 @@
 			choosePage(1);
 
 		}else{
-			alert('댓글 등륵이 실패하였습니다.');
+			alert('댓글 등록이 실패하였습니다.');
 		}
 		
 	}
-	
+	function checkLogin(msg){
+		if(${user== null}){
+			if(confirm("로그인된 회원만 사용할 수 있는 기능입니다. \n로그인 페이지로 이동하시겠습니까?")){
+				location.href='<c:url value="/login"></c:url>';
+				return false;
+			}else{
+				alert(msg)
+				return true;
+			}
+		}
+	}
 	function ajaxPost(obj, url, successFunction){
 		$.ajax({
 			async:false,

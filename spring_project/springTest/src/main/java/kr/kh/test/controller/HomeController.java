@@ -31,6 +31,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {
 		mv.setViewName("/main/home");
+		System.out.println(1/0);
 		return mv;
 	}
 	@RequestMapping(value="/signup", method = RequestMethod.GET)

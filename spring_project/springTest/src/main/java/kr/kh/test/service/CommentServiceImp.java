@@ -55,11 +55,15 @@ public class CommentServiceImp implements CommentService {
 
 	@Override
 	public boolean updateComment(CommentVO comment, MemberVO user) {
-		if(comment ==null)
+		if(comment ==null||comment.getCo_num()<0)
 			return false;
 		if(user == null || user.getMe_id() == null)
 			return false;
 		CommentVO tmpComment = commentDao.selectCommentByNum(comment);
+		if(tmpComment==null) {
+			System.out.println("검색 결과 없음");
+			return false;
+		}
 		if(!tmpComment.getCo_me_id().equals(user.getMe_id())) {
 			System.out.println("유저 다름");
 			return false;

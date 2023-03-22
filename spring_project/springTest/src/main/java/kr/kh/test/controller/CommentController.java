@@ -54,7 +54,6 @@ public class CommentController {
 		comment.setCo_ori_num(co_ori_num);
 		boolean res = commentService.insertComment(comment, user);
 		map.put("res", res);
-		System.out.println(res);
 		return map; 
 	}
 	@RequestMapping(value="/comment/delete", method=RequestMethod.POST)
